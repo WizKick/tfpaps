@@ -45,41 +45,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme-007.css">
 <style>
+  /* Palette adoucie — synchronisée avec theme-007.css pour réduire la fatigue oculaire */
   :root {
-    --bg: #141414;
-    --bg-soft: #181818;
-    --surface: #1c1c1c;
-    --surface-hover: #232323;
-    --border: #2a2a2a;
-    --border-strong: #3a3a3a;
-    --text: #ebe8e2;
-    --text-dim: #9a9691;
-    --text-faint: #5a5651;
-    --accent: #f0ede7;
+    --bg: #0e0f11;
+    --bg-soft: #121316;
+    --surface: #15171a;
+    --surface-hover: #1c1f23;
+    --border: #24262a;
+    --border-strong: #32353a;
+    --text: #e4dfd3;
+    --text-dim: #8a857a;
+    --text-faint: #3c3d40;
+    --accent: #e8e3d7;
     --success: #6ee7a8;
     --error: #fb8585;
     --warning: #fcc864;
-    --gold: #d9b98c;
-    --header-bg: rgba(20, 20, 20, 0.85);
+    --gold: #c0a050;
+    --header-bg: rgba(14, 15, 17, 0.85);
   }
 
   /* ===== MODE CLAIR ===== */
   html.light {
-    --bg: #f5f3ef;
-    --bg-soft: #f0ede8;
-    --surface: #ffffff;
-    --surface-hover: #f7f5f1;
-    --border: #e0dcd6;
-    --border-strong: #c8c4be;
-    --text: #1a1815;
-    --text-dim: #5c5850;
-    --text-faint: #a09890;
-    --accent: #1a1815;
+    --bg: #f3f0e8;
+    --bg-soft: #ede9de;
+    --surface: #f8f5ec;
+    --surface-hover: #f0ede3;
+    --border: #d8d2c2;
+    --border-strong: #b8b0a0;
+    --text: #2a2820;
+    --text-dim: #605c50;
+    --text-faint: #a8a498;
+    --accent: #2a2820;
     --success: #1a7a4a;
     --error: #c0392b;
     --warning: #b07a10;
-    --gold: #9a7340;
-    --header-bg: rgba(245, 243, 239, 0.9);
+    --gold: #8a6820;
+    --header-bg: rgba(243, 240, 232, 0.9);
   }
 
   html.light body {
@@ -94,23 +95,23 @@
   html.light header { background: var(--header-bg); border-bottom-color: var(--border); }
 
   html.light .flashcard-face-front {
-    background: linear-gradient(135deg, #faf8f5, rgba(154, 115, 64, 0.04));
+    background: linear-gradient(135deg, #f6f2e8, rgba(154, 115, 64, 0.04));
     border-color: var(--border-strong);
   }
 
   html.light .parcours-hero {
-    background: linear-gradient(135deg, #fff, rgba(154, 115, 64, 0.08));
+    background: linear-gradient(135deg, #f8f5ec, rgba(154, 115, 64, 0.08));
   }
 
   html.light .mode-card.highlight {
-    background: linear-gradient(135deg, #fff, rgba(154, 115, 64, 0.07));
+    background: linear-gradient(135deg, #f8f5ec, rgba(154, 115, 64, 0.07));
   }
 
   html.light .option.correct { background: rgba(26, 122, 74, 0.08); }
   html.light .option.wrong   { background: rgba(192, 57, 43, 0.07); }
 
   html.light .defs-all-btn {
-    background: linear-gradient(135deg, #fff, rgba(154, 115, 64, 0.06));
+    background: linear-gradient(135deg, #f8f5ec, rgba(154, 115, 64, 0.06));
   }
 
   /* ===== BOUTON TOGGLE THEME ===== */
