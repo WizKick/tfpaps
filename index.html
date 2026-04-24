@@ -42,7 +42,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme-007.css">
 <style>
   :root {
@@ -2100,11 +2100,10 @@
   <div class="splash-content">
     <div class="welcome-line">Bienvenue</div>
     <div class="agent-name">Agent <span class="gold-accent">007</span></div>
-    <div class="matricule">Matricule <span class="code" id="splashMatricule">XX-0000-XX</span></div>
     <div class="mission-brief">Mission · Réussir le TFP APS</div>
     <div class="splash-enter-wrap">
       <button type="button" class="splash-enter" id="splashEnterBtn">
-        <span>Accéder au dossier</span>
+        <span>Réviser le TFP APS</span>
         <span class="arrow">→</span>
       </button>
     </div>
@@ -2469,30 +2468,6 @@
     }
     updateTimestamp();
     const tsInterval = setInterval(updateTimestamp, 1000);
-
-    // Décryptage du matricule : caractères random qui se stabilisent sur la cible
-    const matEl = document.getElementById('splashMatricule');
-    const finalMatricule = 'FR-2026-APS';
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    if (matEl) {
-      let iter = 0;
-      const maxIter = 18;
-      const decryptInterval = setInterval(() => {
-        const revealed = Math.floor((iter / maxIter) * finalMatricule.length);
-        let out = '';
-        for (let i = 0; i < finalMatricule.length; i++) {
-          if (finalMatricule[i] === '-') { out += '-'; continue; }
-          if (i < revealed) out += finalMatricule[i];
-          else out += chars[Math.floor(Math.random() * chars.length)];
-        }
-        matEl.textContent = out;
-        iter++;
-        if (iter > maxIter) {
-          clearInterval(decryptInterval);
-          matEl.textContent = finalMatricule;
-        }
-      }, 80);
-    }
 
     // EXIT : seulement sur clic bouton (PAS sur clic global, PAS d'auto-dismiss)
     function exitSplash() {
