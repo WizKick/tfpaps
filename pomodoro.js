@@ -48,8 +48,10 @@ function formatSeconds(secs) {
 function formatHours(secs) {
   const h = Math.floor(secs / 3600);
   const m = Math.floor((secs % 3600) / 60);
-  if (h > 0) return `${h}h${String(m).padStart(2,'0')}`;
-  return `${m}min`;
+  const s = secs % 60;
+  if (h > 0) return `${h}h${String(m).padStart(2,'0')}m${String(s).padStart(2,'0')}s`;
+  if (m > 0) return `${m}m${String(s).padStart(2,'0')}s`;
+  return `${s}s`;
 }
 
 function initPomodoroWidget() {
@@ -63,8 +65,8 @@ function initPomodoroWidget() {
       <div id="pomodoroHeader">
         <div id="pomodoroTitle">Pomodoro</div>
         <div id="pomodoroStats">
-          <span id="pomodoroTodayLabel">Aujourd'hui</span>
-          <span id="pomodoroTodayTime">0min</span>
+          <span id="pomodoroTodayLabel">Auj.</span>
+          <span id="pomodoroTodayTime">0s</span>
         </div>
         <button id="pomodoroClose" onclick="togglePomodoroWidget()" title="Réduire">−</button>
       </div>
@@ -142,15 +144,16 @@ function initPomodoroWidget() {
     }
     #pomodoroHeader {
       display: flex; justify-content: space-between;
-      align-items: flex-start; margin-bottom: 1rem;
+      align-items: center; margin-bottom: 1rem; gap: 0.5rem;
     }
     #pomodoroTitle {
       font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.95rem; letter-spacing: 0.05em; color: var(--text);
+      font-size: 0.9rem; letter-spacing: 0.03em; color: var(--text);
+      flex-shrink: 0;
     }
-    #pomodoroStats { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    #pomodoroTodayLabel { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
-    #pomodoroTodayTime { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--gold); }
+    #pomodoroStats { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; flex: 1; }
+    #pomodoroTodayLabel { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-faint); }
+    #pomodoroTodayTime { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
     #pomodoroClose {
       background: transparent; border: 1px solid var(--border); color: var(--text-faint);
       width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
