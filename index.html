@@ -2824,9 +2824,14 @@
     } else {
       target.classList.add('active');
     }
-    // Scroll auto vers le haut de la section
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (target) target.scrollTop = 0;
+    // Scroll vers le contenu de la section (pas le tout haut de page)
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      }
+    }, 30);
   }
 
   function showHome() {
