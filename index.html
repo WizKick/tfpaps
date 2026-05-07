@@ -5,24 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <title>TFP APS · Révision</title>
 
-<!-- Fail-safe splash : appliqué inline avant tout CSS externe pour éviter le FOUC
-     si theme-007.css tarde/échoue/est écrasé. -->
-<style>
-  #splash007 {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  #splash007[hidden],
-  body.splash-done #splash007 {
-    display: none !important;
-  }
-</style>
 
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
@@ -64,23 +46,99 @@
     --header-bg: rgba(14, 15, 17, 0.85);
   }
 
-  /* ===== MODE CLAIR ===== */
-  html.light {
-    --bg: #f3f0e8;
-    --bg-soft: #ede9de;
-    --surface: #f8f5ec;
-    --surface-hover: #f0ede3;
-    --border: #d8d2c2;
-    --border-strong: #b8b0a0;
-    --text: #2a2820;
-    --text-dim: #605c50;
-    --text-faint: #a8a498;
-    --accent: #2a2820;
+  /* ===== THÈME : BLANC (Bond White) ===== */
+  html.theme-blanc {
+    --bg: #ffffff;
+    --bg-soft: #f5f5f5;
+    --surface: #fafafa;
+    --surface-hover: #f0f0f0;
+    --border: #e0e0e0;
+    --border-strong: #c0c0c0;
+    --text: #111111;
+    --text-dim: #555555;
+    --text-faint: #aaaaaa;
+    --accent: #111111;
     --success: #1a7a4a;
     --error: #c0392b;
     --warning: #b07a10;
-    --gold: #8a6820;
-    --header-bg: rgba(243, 240, 232, 0.9);
+    --gold: #111111;
+    --header-bg: rgba(255,255,255,0.92);
+  }
+
+  /* ===== THÈME : DÉSERT ===== */
+  html.theme-desert {
+    --bg: #1a1208;
+    --bg-soft: #201608;
+    --surface: #261c0e;
+    --surface-hover: #302210;
+    --border: #3d2e14;
+    --border-strong: #54401c;
+    --text: #f0ddb0;
+    --text-dim: #a08860;
+    --text-faint: #4a3820;
+    --accent: #f0ddb0;
+    --success: #8ab870;
+    --error: #e05030;
+    --warning: #d4a030;
+    --gold: #d4882a;
+    --header-bg: rgba(26,18,8,0.88);
+  }
+
+  /* ===== THÈME : OCÉAN ===== */
+  html.theme-ocean {
+    --bg: #060e1a;
+    --bg-soft: #0a1420;
+    --surface: #0d1a28;
+    --surface-hover: #122030;
+    --border: #1a2e42;
+    --border-strong: #244060;
+    --text: #c8e8f8;
+    --text-dim: #6898b8;
+    --text-faint: #2a4060;
+    --accent: #c8e8f8;
+    --success: #40d0a0;
+    --error: #f06080;
+    --warning: #f0c040;
+    --gold: #30c8e8;
+    --header-bg: rgba(6,14,26,0.88);
+  }
+
+  /* ===== THÈME : FORÊT ===== */
+  html.theme-foret {
+    --bg: #080e08;
+    --bg-soft: #0c120c;
+    --surface: #101810;
+    --surface-hover: #162016;
+    --border: #1e2e1e;
+    --border-strong: #2a402a;
+    --text: #c8e0c0;
+    --text-dim: #6a9060;
+    --text-faint: #2a4028;
+    --accent: #c8e0c0;
+    --success: #50d870;
+    --error: #e05050;
+    --warning: #d4c040;
+    --gold: #70c840;
+    --header-bg: rgba(8,14,8,0.88);
+  }
+
+  /* ===== MODE CLAIR (legacy compat) ===== */
+  html.light, html.theme-blanc {
+    --bg: #ffffff;
+    --bg-soft: #f5f5f5;
+    --surface: #fafafa;
+    --surface-hover: #f0f0f0;
+    --border: #e0e0e0;
+    --border-strong: #c0c0c0;
+    --text: #111111;
+    --text-dim: #555555;
+    --text-faint: #aaaaaa;
+    --accent: #111111;
+    --success: #1a7a4a;
+    --error: #c0392b;
+    --warning: #b07a10;
+    --gold: #111111;
+    --header-bg: rgba(255,255,255,0.92);
   }
 
   html.light body {
@@ -394,6 +452,91 @@
     text-align: left;
     color: var(--text);
     font-family: inherit;
+  }
+
+  .mode-card-gold {
+    border-color: rgba(217,185,140,0.4);
+    background: linear-gradient(135deg, var(--surface), rgba(217,185,140,0.06));
+  }
+  .mode-card-gold .mode-number { color: var(--gold); }
+  .mode-card-gold:hover { border-color: var(--gold) !important; }
+
+  /* ===== THÈME DU JOUR MODAL ===== */
+  .tdj-overlay {
+    position: fixed; inset: 0; z-index: 9998;
+    background: rgba(0,0,0,0.75);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+  }
+  .tdj-modal {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%; max-width: 560px;
+    max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .tdj-header { margin-bottom: 1.5rem; }
+  .tdj-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.3rem; color: var(--text); margin-bottom: 0.3rem;
+  }
+  .tdj-subtitle { font-size: 0.85rem; color: var(--text-dim); }
+  .tdj-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-dim); width: 30px; height: 30px;
+    border-radius: 50%; cursor: pointer; font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .tdj-close:hover { border-color: var(--gold); color: var(--gold); }
+  .tdj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  /* ===== THEME PICKER ===== */
+  .theme-pick-btn {
+    display: flex; align-items: center; gap: 0.85rem;
+    background: var(--surface-hover); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.75rem 1rem;
+    cursor: pointer; text-align: left; transition: all 0.2s;
+    font-family: 'Outfit', sans-serif; color: var(--text);
+    width: 100%;
+  }
+  .theme-pick-btn:hover { border-color: var(--gold); background: rgba(217,185,140,0.05); }
+  .tpb-preview {
+    width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+  }
+  .tpb-info { flex: 1; min-width: 0; }
+  .tpb-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text); }
+  .tpb-desc { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.1rem; }
+  .tpb-check {
+    font-size: 0.9rem; color: var(--gold); font-weight: 700;
+    min-width: 16px; text-align: center;
+  }
+  .tdj-btn {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    cursor: pointer; text-align: left;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-dim); font-size: 0.82rem;
+    transition: all 0.2s; line-height: 1.3;
+  }
+  .tdj-btn:hover {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(217,185,140,0.07);
+  }
+  .tdj-count {
+    display: block; font-size: 0.65rem; color: var(--text-faint);
+    margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.08em;
   }
 
   .mode-card::before {
@@ -985,6 +1128,33 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* ===== THEME BREAKDOWN ===== */
+  .theme-breakdown-title {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text-faint); margin-bottom: 1rem; text-align: left;
+  }
+  .theme-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.6rem; text-align: left;
+  }
+  .theme-row-name {
+    font-size: 0.8rem; color: var(--text-dim);
+    min-width: 160px; flex-shrink: 0;
+  }
+  .theme-row-bar {
+    flex: 1; height: 6px; background: var(--border);
+    border-radius: 3px; overflow: hidden;
+  }
+  .theme-row-fill {
+    height: 100%; border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+  .theme-row-score {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.78rem; min-width: 40px; text-align: right;
   }
 
   .wrong-review {
@@ -2071,47 +2241,8 @@
   }
 </style>
 </head>
-<body class="splash-active">
+<body>
 
-<!-- ===== SPLASH 007 ===== -->
-<div id="splash007">
-  <!-- Top bar : agent + timestamp -->
-  <div class="top-bar">
-    <span class="classified">Agent 007</span>
-    <span class="timestamp" id="splashTimestamp">—</span>
-  </div>
-
-  <!-- Corners -->
-  <div class="corner corner-tl"></div>
-  <div class="corner corner-tr"></div>
-  <div class="corner corner-bl"></div>
-  <div class="corner corner-br"></div>
-
-  <!-- Gun barrel opening animation -->
-  <div class="barrel-stage">
-    <div class="crosshair h"></div>
-    <div class="crosshair v"></div>
-    <div class="barrel-dot"></div>
-    <div class="barrel-ring"></div>
-    <div class="barrel-ring-2"></div>
-    <div class="blood"></div>
-  </div>
-
-  <!-- Main content (révélé après la séquence) -->
-  <div class="splash-content">
-    <div class="welcome-line">Bienvenue</div>
-    <div class="agent-name">Agent <span class="gold-accent">007</span></div>
-    <div class="mission-brief">Mission · Réussir le TFP APS</div>
-    <div class="splash-enter-wrap">
-      <button type="button" class="splash-enter" id="splashEnterBtn">
-        <span>Réviser le TFP APS</span>
-        <span class="arrow">→</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="scanline">Niveau d'accréditation requis · Carte pro valide</div>
-</div>
 
 <header>
   <div class="header-inner">
@@ -2137,7 +2268,7 @@
           <span class="stat-label">Moyenne</span>
         </div>
       </div>
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Changer de thème"><span class="theme-toggle-icon">☀️</span><span id="themeToggleLabel">Clair</span></button>
+      <button class="theme-toggle" id="themeToggle" onclick="openThemePicker()" title="Changer de thème"><span class="theme-toggle-icon">🎨</span><span id="themeToggleLabel">Thème</span></button>
       <button class="sound-toggle" id="soundToggle" onclick="toggleSound()" title="Sons activés">🔊</button>
     </div>
   </div>
@@ -2191,11 +2322,25 @@
         <div class="mode-meta">Choisir</div>
       </button>
 
+      <button class="mode-card mode-card-gold" onclick="showThemeDuJour()">
+        <div class="mode-number">02b / Formation</div>
+        <div class="mode-title">📅 Thème du Jour</div>
+        <div class="mode-desc">Sélectionne le thème vu en formation aujourd'hui → toutes les questions dessus.</div>
+        <div class="mode-meta">Réviser</div>
+      </button>
+
       <button class="mode-card" onclick="startQuiz('exam')">
         <div class="mode-number">03 / Évaluation</div>
         <div class="mode-title">Examen Blanc</div>
         <div class="mode-desc">30 questions · 25 minutes · Conditions réelles. Pas de correction avant la fin.</div>
         <div class="mode-meta">Démarrer</div>
+      </button>
+
+      <button class="mode-card" onclick="startQuiz('full')">
+        <div class="mode-number">03b / Complet</div>
+        <div class="mode-title">Toutes les questions</div>
+        <div class="mode-desc" id="fullDesc">Toutes les questions de la base · Correction immédiate · Sans limite de temps.</div>
+        <div class="mode-meta">Tout faire</div>
       </button>
 
       <button class="mode-card" id="errorsBtn" onclick="startErrorsMode()">
@@ -2276,6 +2421,16 @@
       </div>
       <div class="timer" id="timer" style="display: none;">25:00</div>
     </div>
+    <!-- Chrono par question (exam blanc uniquement) -->
+    <div id="questionTimerBar" style="display:none; margin-bottom: 1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
+        <span style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint);">Temps par question</span>
+        <span id="questionTimerText" style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.85rem; color:var(--gold);">0:45</span>
+      </div>
+      <div style="height:3px; background:var(--border); border-radius:2px; overflow:hidden;">
+        <div id="questionTimerFill" style="height:100%; width:100%; background:var(--gold); transition:width 1s linear; border-radius:2px;"></div>
+      </div>
+    </div>
 
     <div class="question-theme" id="questionTheme"></div>
     <div class="question-text" id="questionText"></div>
@@ -2321,6 +2476,8 @@
       <button class="btn btn-primary" onclick="showHome()">Nouvelle session</button>
       <button class="btn" id="retryBtn" onclick="retryQuiz()">Recommencer</button>
     </div>
+    <!-- Résultats par thème -->
+    <div id="themeBreakdown" style="margin: 2rem 0;"></div>
     <div id="wrongReview" class="wrong-review"></div>
   </section>
 
@@ -2440,75 +2597,79 @@
 
 <footer>TFP·APS Révision — Bon courage pour l'examen</footer>
 
+<!-- ===== MODAL THÈME DU JOUR ===== -->
+<div id="themeDuJourModal" class="tdj-overlay" style="display:none;" onclick="if(event.target===this)closeThemeDuJour()">
+  <div class="tdj-modal">
+    <div class="tdj-header">
+      <div class="tdj-title">📅 Thème du Jour</div>
+      <div class="tdj-subtitle">Quel thème tu viens de voir en formation ?</div>
+      <button class="tdj-close" onclick="closeThemeDuJour()">×</button>
+    </div>
+    <div class="tdj-grid" id="tdjGrid"></div>
+  </div>
+</div>
+
+<!-- ===== MODAL THÈME VISUEL ===== -->
+<div id="themePickerModal" class="tdj-overlay" style="display:none;" onclick="if(event.target===this)closeThemePicker()">
+  <div class="tdj-modal" style="max-width:420px;">
+    <div class="tdj-header">
+      <div class="tdj-title">🎨 Choisir un thème</div>
+      <button class="tdj-close" onclick="closeThemePicker()">×</button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+      <button class="theme-pick-btn" onclick="setTheme('dark')" data-theme="dark">
+        <div class="tpb-preview" style="background:#0e0f11; border:2px solid #c0a050;"></div>
+        <div class="tpb-info">
+          <div class="tpb-name">007 · Noir & Or</div>
+          <div class="tpb-desc">Le thème original. Sombre, luxueux.</div>
+        </div>
+        <div class="tpb-check" id="check-dark">✓</div>
+      </button>
+      <button class="theme-pick-btn" onclick="setTheme('blanc')" data-theme="blanc">
+        <div class="tpb-preview" style="background:#ffffff; border:2px solid #111;"></div>
+        <div class="tpb-info">
+          <div class="tpb-name">White · Blanc épuré</div>
+          <div class="tpb-desc">Minimaliste, noir et blanc.</div>
+        </div>
+        <div class="tpb-check" id="check-blanc"></div>
+      </button>
+      <button class="theme-pick-btn" onclick="setTheme('desert')" data-theme="desert">
+        <div class="tpb-preview" style="background:#1a1208; border:2px solid #d4882a;"></div>
+        <div class="tpb-info">
+          <div class="tpb-name">Désert · Sable & Feu</div>
+          <div class="tpb-desc">Chaud, terracotta, ambiance dunes.</div>
+        </div>
+        <div class="tpb-check" id="check-desert"></div>
+      </button>
+      <button class="theme-pick-btn" onclick="setTheme('ocean')" data-theme="ocean">
+        <div class="tpb-preview" style="background:#060e1a; border:2px solid #30c8e8;"></div>
+        <div class="tpb-info">
+          <div class="tpb-name">Océan · Marine & Cyan</div>
+          <div class="tpb-desc">Profond, froid, immersif.</div>
+        </div>
+        <div class="tpb-check" id="check-ocean"></div>
+      </button>
+      <button class="theme-pick-btn" onclick="setTheme('foret')" data-theme="foret">
+        <div class="tpb-preview" style="background:#080e08; border:2px solid #70c840;"></div>
+        <div class="tpb-info">
+          <div class="tpb-name">Forêt · Nuit & Vert</div>
+          <div class="tpb-desc">Sombre, naturel, apaisant.</div>
+        </div>
+        <div class="tpb-check" id="check-foret"></div>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // ===== SPLASH 007 =====
-  (function() {
-    const splash = document.getElementById('splash007');
-    if (!splash) return;
+  // ===== FIN SPLASH SUPPRIMÉ =====
 
-    // Skip immédiat si déjà vu dans la session courante
-    if (sessionStorage.getItem('tfp_entered')) {
-      splash.hidden = true;
-      document.body.classList.remove('splash-active');
-      document.body.classList.add('splash-done');
-      return;
-    }
-
-    // Timestamp live (style horloge de mission)
-    const tsEl = document.getElementById('splashTimestamp');
-    function updateTimestamp() {
-      if (!tsEl) return;
-      const now = new Date();
-      const date = now.toLocaleDateString('fr-FR', {
-        day: '2-digit', month: '2-digit', year: 'numeric'
-      });
-      const time = now.toLocaleTimeString('fr-FR', {
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
-      });
-      tsEl.textContent = `${date} · ${time} UTC+1`;
-    }
-    updateTimestamp();
-    const tsInterval = setInterval(updateTimestamp, 1000);
-
-    // EXIT : seulement sur clic bouton (PAS sur clic global, PAS d'auto-dismiss)
-    function exitSplash() {
-      if (splash.classList.contains('exiting')) return;
-      splash.classList.add('exiting');
-      clearInterval(tsInterval);
-      sessionStorage.setItem('tfp_entered', '1');
-      setTimeout(() => {
-        document.body.classList.remove('splash-active');
-        document.body.classList.add('splash-done');
-      }, 150);
-      setTimeout(() => { splash.style.display = 'none'; }, 800);
-    }
-
-    const enterBtn = document.getElementById('splashEnterBtn');
-    if (enterBtn) {
-      enterBtn.addEventListener('click', exitSplash);
-    }
-
-    // Touche Entrée = équivalent clic bouton (accessibilité)
-    document.addEventListener('keydown', function handler(e) {
-      if (splash.classList.contains('exiting')) return;
-      if (e.key === 'Enter' || e.key === ' ') {
-        // N'active que quand le bouton est révélé (après l'anim)
-        const btnReady = enterBtn && getComputedStyle(enterBtn).opacity !== '0';
-        if (btnReady) {
-          e.preventDefault();
-          exitSplash();
-        }
-      }
-    });
-  })();
 </script>
 <script src="data.js"></script>
 <script src="fiches.js"></script>
 <script src="parcours.js"></script>
 <script src="definitions.js"></script>
 <script src="pomodoro.js"></script>
-<script src="bonus.js"></script>
-<script src="examen-officiel.js"></script>
 <script>
   const state = {
     quiz: [],
@@ -2589,14 +2750,34 @@
     } catch(e) {}
   }
 
-  function toggleTheme() {
-    const isLight = document.documentElement.classList.toggle('light');
-    const icon = document.getElementById('themeToggle').querySelector('.theme-toggle-icon');
-    const label = document.getElementById('themeToggleLabel');
-    icon.textContent = isLight ? '🌙' : '☀️';
-    label.textContent = isLight ? 'Sombre' : 'Clair';
-    try { localStorage.setItem('tfp_theme', isLight ? 'light' : 'dark'); } catch(e) {}
+  // ===== THEME SYSTEM =====
+  const THEMES = ['dark','blanc','desert','ocean','foret'];
+  const THEME_CLASSES = { blanc:'theme-blanc', desert:'theme-desert', ocean:'theme-ocean', foret:'theme-foret' };
+
+  function setTheme(theme) {
+    const html = document.documentElement;
+    // Remove all theme classes
+    html.classList.remove('light', ...Object.values(THEME_CLASSES));
+    if (theme === 'blanc') { html.classList.add('light', 'theme-blanc'); }
+    else if (THEME_CLASSES[theme]) { html.classList.add(THEME_CLASSES[theme]); }
+    // Update check marks
+    THEMES.forEach(t => {
+      const el = document.getElementById('check-' + t);
+      if (el) el.textContent = t === theme ? '✓' : '';
+    });
+    try { localStorage.setItem('tfp_theme', theme); } catch(e) {}
+    closeThemePicker();
   }
+
+  function openThemePicker() {
+    document.getElementById('themePickerModal').style.display = 'flex';
+  }
+
+  function closeThemePicker() {
+    document.getElementById('themePickerModal').style.display = 'none';
+  }
+
+  function toggleTheme() { openThemePicker(); } // legacy compat
 
   function toggleSound() {
     state.soundEnabled = !state.soundEnabled;
@@ -2643,6 +2824,9 @@
     } else {
       target.classList.add('active');
     }
+    // Scroll auto vers le haut de la section
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (target) target.scrollTop = 0;
   }
 
   function showHome() {
@@ -2652,6 +2836,33 @@
     updateHomeStats();
     renderChart();
     updateParcoursHero();
+  }
+
+  // ===== THÈME DU JOUR =====
+  function showThemeDuJour() {
+    const modal = document.getElementById('themeDuJourModal');
+    const grid = document.getElementById('tdjGrid');
+    // Get all unique themes with question counts
+    const themeCounts = {};
+    questionsQCM.forEach(q => {
+      themeCounts[q.theme] = (themeCounts[q.theme] || 0) + 1;
+    });
+    const themes = Object.entries(themeCounts).sort((a, b) => b[1] - a[1]);
+    grid.innerHTML = themes.map(([theme, count]) => `
+      <button class="tdj-btn" onclick="startThemeDuJour('${theme.replace(/'/g, "\\'")}'); closeThemeDuJour();">
+        ${theme}
+        <span class="tdj-count">${count} question${count > 1 ? 's' : ''}</span>
+      </button>
+    `).join('');
+    modal.style.display = 'flex';
+  }
+
+  function closeThemeDuJour() {
+    document.getElementById('themeDuJourModal').style.display = 'none';
+  }
+
+  function startThemeDuJour(theme) {
+    startQuiz('theme', theme);
   }
 
   function showThemes() { showScreen('themesScreen'); }
@@ -2724,7 +2935,7 @@
       pool = pool.filter(q => q.theme === theme);
     }
 
-    const count = mode === 'exam' ? 30 : Math.min(20, pool.length);
+    const count = mode === 'exam' ? 30 : mode === 'full' ? pool.length : Math.min(20, pool.length);
     state.quiz = shuffle(pool).slice(0, count);
 
     const timerEl = document.getElementById('timer');
@@ -2782,10 +2993,62 @@
     document.getElementById('explanationBox').innerHTML = '';
     document.getElementById('srsFeedback').classList.remove('active');
     document.getElementById('nextBtn').style.display = 'none';
-    
+
+    // Chrono par question (exam blanc uniquement)
+    startQuestionTimer();
+  }
+
+  // ===== CHRONO PAR QUESTION =====
+  const QUESTION_TIME = 45;
+  let questionTimerInterval = null;
+  let questionTimeLeft = QUESTION_TIME;
+
+  function startQuestionTimer() {
+    clearInterval(questionTimerInterval);
+    const bar = document.getElementById('questionTimerBar');
+    const fill = document.getElementById('questionTimerFill');
+    const txt = document.getElementById('questionTimerText');
+    if (state.mode !== 'exam') { bar.style.display = 'none'; return; }
+    bar.style.display = 'block';
+    questionTimeLeft = QUESTION_TIME;
+    fill.style.transition = 'none';
+    fill.style.width = '100%';
+    fill.style.background = 'var(--gold)';
+    txt.style.color = 'var(--gold)';
+    txt.textContent = `0:${String(QUESTION_TIME).padStart(2,'0')}`;
+    // Force reflow before starting transition
+    fill.getBoundingClientRect();
+    fill.style.transition = 'width 1s linear';
+
+    questionTimerInterval = setInterval(() => {
+      questionTimeLeft--;
+      const pct = (questionTimeLeft / QUESTION_TIME) * 100;
+      fill.style.width = pct + '%';
+      txt.textContent = `0:${String(Math.max(0,questionTimeLeft)).padStart(2,'0')}`;
+      // Color shifts: green→gold→red
+      if (questionTimeLeft <= 10) {
+        fill.style.background = 'var(--error, #fb8585)';
+        txt.style.color = 'var(--error, #fb8585)';
+      } else if (questionTimeLeft <= 20) {
+        fill.style.background = '#fcc864';
+        txt.style.color = '#fcc864';
+      }
+      if (questionTimeLeft <= 0) {
+        clearInterval(questionTimerInterval);
+        // Auto-submit as wrong if no answer given
+        const opts = document.querySelectorAll('.option');
+        const alreadyAnswered = [...opts].some(o => o.disabled);
+        if (!alreadyAnswered) selectAnswer(-1);
+      }
+    }, 1000);
+  }
+
+  function stopQuestionTimer() {
+    clearInterval(questionTimerInterval);
   }
 
   function selectAnswer(idx) {
+    stopQuestionTimer();
     const q = state.quiz[state.currentIndex];
     const options = document.querySelectorAll('.option');
     options.forEach((opt, i) => {
@@ -2879,6 +3142,7 @@
   // ========== RESULTS ==========
   function finishQuiz() {
     stopTimer();
+    stopQuestionTimer();
     const total = state.quiz.length;
     const percent = Math.round((state.score / total) * 100);
 
@@ -2887,11 +3151,40 @@
     document.getElementById('scorePercent').textContent = `${percent}%`;
 
     let msg = '';
-    if (percent >= 90) msg = "Excellent. Tu es prêt pour l'examen.";
-    else if (percent >= 70) msg = "Bon niveau. Continue à consolider.";
-    else if (percent >= 50) msg = "Moyen. Quelques thèmes à retravailler.";
-    else msg = "Revois les bases et recommence.";
+    if (percent >= 90) msg = "Excellent. Tu es prêt pour l'examen. 🏆";
+    else if (percent >= 70) msg = "Bon niveau. Continue à consolider. 💪";
+    else if (percent >= 50) msg = "Moyen. Quelques thèmes à retravailler. 📚";
+    else msg = "Revois les bases et recommence. 🔁";
     document.getElementById('scoreMessage').textContent = msg;
+
+    // ===== RÉSULTATS PAR THÈME =====
+    const themeStats = {};
+    state.answers.forEach(a => {
+      const t = a.question.theme;
+      if (!themeStats[t]) themeStats[t] = { correct: 0, total: 0 };
+      themeStats[t].total++;
+      if (a.correct) themeStats[t].correct++;
+    });
+    const themes = Object.entries(themeStats).sort((a, b) => {
+      const pa = a[1].correct / a[1].total;
+      const pb = b[1].correct / b[1].total;
+      return pa - pb; // worst first
+    });
+    const bdEl = document.getElementById('themeBreakdown');
+    if (themes.length > 1) {
+      bdEl.innerHTML = `<div class="theme-breakdown-title">Résultats par thème</div>` +
+        themes.map(([theme, s]) => {
+          const pct = Math.round((s.correct / s.total) * 100);
+          const color = pct >= 70 ? '#6ee7a8' : pct >= 50 ? '#fcc864' : '#fb8585';
+          return `<div class="theme-row">
+            <div class="theme-row-name">${theme}</div>
+            <div class="theme-row-bar"><div class="theme-row-fill" style="width:${pct}%;background:${color};"></div></div>
+            <div class="theme-row-score" style="color:${color};">${s.correct}/${s.total}</div>
+          </div>`;
+        }).join('');
+    } else {
+      bdEl.innerHTML = '';
+    }
 
     const wrong = state.answers.filter(a => !a.correct);
     const reviewEl = document.getElementById('wrongReview');
@@ -2899,7 +3192,7 @@
       reviewEl.innerHTML = `<h3>À retravailler (${wrong.length})</h3>` + wrong.map(a => `
         <div class="review-item">
           <div class="review-q">${a.question.q}</div>
-          <div class="review-given">Ta réponse : ${a.question.options[a.given]}</div>
+          <div class="review-given">Ta réponse : ${a.given === -1 ? 'Temps écoulé ⏱' : a.question.options[a.given]}</div>
           <div class="review-correct">Bonne réponse : ${a.question.options[a.question.correct]}</div>
           <div class="review-exp">${a.question.explanation}</div>
         </div>
@@ -2972,6 +3265,8 @@
     }
 
     document.getElementById('fichesDesc').textContent = `${fichesMemo.length} fiches synthèse : article 73, triangle du feu, SSI, palpation...`;
+    const fullDesc = document.getElementById('fullDesc');
+    if (fullDesc) fullDesc.textContent = `${questionsQCM.length} questions de la base · Correction immédiate · Sans limite de temps.`;
   }
 
   // ========== ERROR TRACKING ==========
@@ -3819,14 +4114,9 @@
 
   // Load saved theme
   try {
-    if (localStorage.getItem('tfp_theme') === 'light') {
-      document.documentElement.classList.add('light');
-      const icon = document.getElementById('themeToggle').querySelector('.theme-toggle-icon');
-      const label = document.getElementById('themeToggleLabel');
-      icon.textContent = '🌙';
-      label.textContent = 'Sombre';
-    }
-  } catch(e) {}
+    const saved = localStorage.getItem('tfp_theme') || 'dark';
+    setTheme(saved);
+  } catch(e) { setTheme('dark'); }
 
   buildThemes();
   buildFiches();

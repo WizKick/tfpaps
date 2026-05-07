@@ -57,23 +57,31 @@ const fichesMemo = [
     title: "SSI · Système de Sécurité Incendie",
     icon: "⚠",
     theme: "Incendie",
-    key: "Catégories et composants essentiels",
+    key: "Catégories, composants et voyants CMSI — souvent à l'examen",
     content: [
       {
         section: "Définition",
-        text: "Ensemble de matériel qui collecte les informations sur un incendie, les traite, et met en sécurité l'établissement."
+        text: "Ensemble de matériel qui collecte les informations sur un incendie, les traite, et met en sécurité l'établissement automatiquement."
       },
       {
         section: "5 catégories (du + sévère au - sévère)",
-        text: "• SSI A : le plus complet, avec DAI (Détecteurs Automatiques d'Incendie)\n• SSI B : sans DAI\n• SSI C, D, E : niveaux décroissants\n\nObligatoire en catégorie A : IGH + ERP avec locaux à sommeil (hôtels, hôpitaux)"
+        text: "• SSI A : le plus complet — avec DAI (Détecteurs Automatiques) → IGH + ERP locaux à sommeil (J, O, U)\n• SSI B : sans DAI, déclencheurs manuels uniquement\n• SSI C : alarme générale sélective\n• SSI D : alarme générale\n• SSI E : le plus simple, alarme locale uniquement\n\n⚠ Moyen mémo : « A = Automatique, E = Élémentaire »"
       },
       {
-        section: "Composants",
-        text: "• SDI : Système de Détection Incendie (détecteurs + DM)\n• SMSI : Système de Mise en Sécurité Incendie\n  - CMSI : Centralisateur de Mise en Sécurité Incendie\n  - UCMC : Unité de Commande Manuelle Centralisée (dans le CMSI)\n  - DAS : Dispositifs Actionnés de Sécurité (clapets, portes coupe-feu)\n  - UAE : Unité d'Aide à l'Exploitation"
+        section: "Composants — l'arbre SSI",
+        text: "SSI = SDI + SMSI\n\n📡 SDI (Système Détection Incendie)\n  • DAI : Détecteurs Automatiques (fumée, chaleur, flamme)\n  • DM : Déclencheurs Manuels (boîtiers rouges brisables)\n  • ECS : Équipement de Contrôle et Signalisation\n\n🔧 SMSI (Système Mise en Sécurité Incendie)\n  • CMSI : Centralisateur de Mise en Sécurité Incendie\n  • UCMC : Unité de Commande Manuelle Centralisée\n  • DAS : Dispositifs Actionnés de Sécurité\n    → Portes coupe-feu, clapets désenfumage, ascenseurs, ventilation\n  • UAE : Unité d'Aide à l'Exploitation"
       },
       {
-        section: "Voyants CMSI",
-        text: "• Vert fixe : sous tension, tout va bien\n• Jaune fixe : dérangement → noter MC + appeler technicien\n• Jaune clignotant : défaut position d'attente → réarmer le DAS\n• Rouge clignotant : utiliser UCMC + télécommander le DAS en position sécurité"
+        section: "🟢🟡🔴 Voyants CMSI — À SAVOIR PAR CŒUR",
+        text: "🟢 VERT fixe\n→ Alimentation secteur OK, système en veille normale\n→ Action : RAS, noter sur main courante à la prise de service\n\n🟡 JAUNE fixe\n→ DÉRANGEMENT technique\n→ Action : noter sur MC + aviser le technicien de maintenance\n\n🟡 JAUNE clignotant\n→ DÉFAUT DE POSITION D'ATTENTE d'un DAS\n→ Action : identifier le DAS concerné + le RÉARMER\n\n🔴 ROUGE fixe\n→ MISE EN SÉCURITÉ en cours ou effectuée (feu détecté)\n→ Action : lever du doute (ronde), lever alarme si fausse alerte\n\n🔴 ROUGE clignotant\n→ DAS non passé en position de sécurité\n→ Action : utiliser UCMC pour télécommander le DAS manuellement"
+      },
+      {
+        section: "DAS — Ce que commande le SMSI",
+        text: "En cas d'alarme, le SMSI commande automatiquement :\n• Fermeture des portes coupe-feu\n• Ouverture des exutoires de désenfumage\n• Mise hors service des ascenseurs (cabine au RDC)\n• Arrêt de la ventilation normale\n• Déclenchement de l'éclairage de sécurité\n• Ouverture des portes de compartimentage"
+      },
+      {
+        section: "Éclairage de sécurité",
+        text: "2 types :\n• Éclairage d'évacuation : balise les cheminements vers les sorties\n• Éclairage d'ambiance (antipanique) : maintient visibilité minimale\n\nAutonomie minimum : 1 heure en ERP\nAlimentation : batterie intégrée (BAES) ou groupe électrogène"
       }
     ]
   },
