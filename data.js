@@ -1613,6 +1613,271 @@ const questionsQCM = [
     correct: 1,
     explanation: "Passation de consignes complète : état du matériel et du SSI, anomalies constatées, consignes particulières, incidents survenus, tâches en cours. La traçabilité est assurée par la main courante."
   }
+,
+
+  // ========== COMMUNICATION (renfort) ==========
+  {
+    theme: "Communication",
+    q: "Quelle est la règle de base d'une communication radio professionnelle ?",
+    options: ["Parler le plus vite possible", "Identifier l'appelant et le destinataire, parler clairement, confirmer la réception", "Ne jamais couper l'interlocuteur", "Toujours utiliser le nom complet"],
+    correct: 1,
+    explanation: "Communication radio : s'identifier (ex : 'PC de Alpha 1'), message court et clair, confirmer réception ('reçu', 'bien reçu'). Éviter le jargon non convenu et les informations sensibles en clair."
+  },
+  {
+    theme: "Communication",
+    q: "Dans quel ordre transmet-on un message radio ?",
+    options: ["Message, destinataire, appelant", "Destinataire, appelant, message", "Appelant, message, destinataire", "Message uniquement"],
+    correct: 1,
+    explanation: "Ordre standard : 'PC (destinataire) de Alpha 1 (appelant), message.' On appelle d'abord celui qu'on veut joindre, puis on s'identifie, puis on délivre le message."
+  },
+  {
+    theme: "Communication",
+    q: "Que signifie 'accusé de réception' dans une communication radio ?",
+    options: ["Refuser un message", "Confirmer qu'on a bien reçu et compris le message", "Demander la répétition du message", "Terminer la communication"],
+    correct: 1,
+    explanation: "L'accusé de réception ('reçu', 'bien reçu', 'OK') confirme que le message a été entendu et compris. Sans accusé de réception, l'émetteur ne sait pas si son message est parvenu."
+  },
+  {
+    theme: "Communication",
+    q: "Un agent de sécurité peut-il divulguer des informations sur les incidents du site à des journalistes ?",
+    options: ["Oui, la liberté de la presse l'exige", "Non, le devoir de discrétion lui interdit de divulguer des informations confidentielles sans autorisation", "Oui, si les faits sont déjà publics", "Oui, uniquement les faits sans les noms"],
+    correct: 1,
+    explanation: "Non. Le devoir de discrétion professionnelle interdit à l'agent de divulguer des informations sur le site ou les incidents. Tout contact avec les médias doit être redirigé vers la direction."
+  },
+  {
+    theme: "Communication",
+    q: "Lors d'un appel téléphonique entrant au PC sécurité, comment décroche-t-on ?",
+    options: ["On dit uniquement 'allô'", "On s'identifie : nom du site, nom de l'agent", "On demande d'abord le nom de l'appelant", "On répond uniquement si on connaît le numéro"],
+    correct: 1,
+    explanation: "Décrocher professionnellement : s'identifier (ex : 'Sécurité Galeries Lafayette, Agent Martin, bonjour'). Cela rassure l'appelant et confirme qu'il a le bon interlocuteur."
+  },
+  {
+    theme: "Communication",
+    q: "Qu'est-ce qu'un compte rendu d'intervention ?",
+    options: ["Un rapport rédigé avant l'intervention", "Un document écrit décrivant le déroulement et les résultats d'une intervention, rédigé après les faits", "Un formulaire à remplir par le client", "Un résumé de la vacation entière"],
+    correct: 1,
+    explanation: "Compte rendu d'intervention = document factuel rédigé après une intervention. Il décrit les faits selon QQOQCP, les actions menées et les suites données."
+  },
+
+  // ========== PSC1 / PREMIERS SECOURS ==========
+  {
+    theme: "Premiers secours",
+    q: "Que signifie la méthode PAE face à une victime ?",
+    options: ["Prévenir, Alerter, Évacuer", "Protéger, Alerter, Secourir", "Protéger, Appeler, Évacuer", "Prévenir, Agir, Évacuer"],
+    correct: 1,
+    explanation: "PAE = Protéger (sécuriser la zone, éviter un sur-accident), Alerter (15, 18 ou 112), Secourir (gestes adaptés). L'ordre est impératif : on protège avant d'agir."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Quels sont les numéros d'urgence en France ?",
+    options: ["17 uniquement", "15 (SAMU), 18 (Pompiers), 17 (Police), 112 (Européen)", "18 et 112 uniquement", "15 et 18 uniquement"],
+    correct: 1,
+    explanation: "15 = SAMU, 18 = Pompiers, 17 = Police/Gendarmerie, 112 = numéro européen accessible depuis mobile même sans réseau. Le 112 redirige vers le bon service."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Qu'est-ce que la Position Latérale de Sécurité (PLS) ?",
+    options: ["La position pour le massage cardiaque", "La position sur le côté maintenant les voies aériennes libres chez une victime inconsciente qui respire", "La position debout pour évacuer une victime", "La position pour traiter une hémorragie"],
+    correct: 1,
+    explanation: "PLS = position sur le côté pour une victime inconsciente qui RESPIRE. Elle évite l'asphyxie en cas de vomissement. Ne pas mettre en PLS une victime qui ne respire pas (commencer la RCP)."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Comment vérifier si une victime est consciente ?",
+    options: ["En lui pinçant le nez", "En lui parlant fort et en lui touchant l'épaule", "En lui versant de l'eau sur le visage", "En vérifiant son pouls"],
+    correct: 1,
+    explanation: "Vérification conscience : parler fort ('vous m'entendez ?'), toucher les épaules. Si aucune réaction → inconsciente. Étape fondamentale avant tout geste de secours."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Comment vérifier si une victime inconsciente respire ?",
+    options: ["En lui cherchant le pouls", "LVS : regarder le ventre, écouter, sentir le souffle pendant 10 secondes maximum", "En lui mettant un miroir sous le nez", "En l'agitant fortement"],
+    correct: 1,
+    explanation: "LVS : basculer la tête en arrière, regarder le ventre, écouter le souffle, sentir l'air sur la joue pendant 10 secondes MAX. Au-delà de 10s sans respiration → commencer la RCP."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Qu'est-ce que la RCP ?",
+    options: ["La technique pour traiter une hémorragie", "30 compressions thoraciques alternées avec 2 insufflations pour remplacer le cœur et les poumons arrêtés", "La mise en PLS", "L'utilisation du défibrillateur uniquement"],
+    correct: 1,
+    explanation: "RCP = 30 compressions thoraciques (5-6cm, 100-120/min) + 2 insufflations. Recommencer 30/2 jusqu'à l'arrivée des secours. Commencer AVANT le défibrillateur s'il n'est pas encore disponible."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Qu'est-ce qu'un DAE ?",
+    options: ["Un appareil de massage cardiaque automatique", "Un appareil qui analyse le rythme cardiaque et délivre un choc électrique si nécessaire", "Un appareil de ventilation artificielle", "Un moniteur de surveillance"],
+    correct: 1,
+    explanation: "DAE = Défibrillateur Automatisé Externe. Analyse le rythme cardiaque et délivre un choc si fibrillation. Guidé par une voix, utilisable par tout le monde. Continuer la RCP entre les analyses."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Comment arrêter une hémorragie externe grave ?",
+    options: ["Appliquer de la glace", "Compression directe et forte sur la plaie avec un linge propre", "Surélever uniquement le membre", "Laver la plaie à l'eau"],
+    correct: 1,
+    explanation: "Hémorragie : COMPRESSION DIRECTE immédiate et forte sur la plaie (linge propre ou mains). Maintenir sans relâcher jusqu'aux secours. Garrot en dernier recours si compression impossible sur un membre."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Qu'est-ce que la manœuvre de Heimlich ?",
+    options: ["Le massage cardiaque", "La manœuvre pour désobstruer les voies aériennes d'une personne en train de s'étouffer", "La technique pour transporter une victime", "La méthode pour traiter un malaise vagal"],
+    correct: 1,
+    explanation: "Manœuvre de Heimlich : se placer derrière la victime, poing entre nombril et sternum, compressions sèches vers soi et vers le haut jusqu'à expulsion du corps étranger."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Face à une douleur thoracique irradiant dans le bras gauche, que fait-on ?",
+    options: ["Attendre que ça passe", "Appeler le 15 immédiatement — signes d'infarctus", "Donner de l'aspirine", "Allonger et surélever les jambes"],
+    correct: 1,
+    explanation: "Douleur thoracique + irradiation bras gauche = signes classiques d'infarctus. Appeler le 15 IMMÉDIATEMENT, installer en position demi-assise, ne pas faire d'effort, rester avec la victime."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Comment reconnaître un AVC avec la méthode FAST ?",
+    options: ["Fièvre, Agitation, Sueurs, Tremblements", "Face asymétrique, bras qui tombe, parole impossible, Time (appeler le 15 immédiatement)", "Froid, Angoisse, Syncope, Tachycardie", "Fatigue, Anxiété, Soif, Tremblements"],
+    correct: 1,
+    explanation: "FAST : Face (sourire asymétrique), Arms (un bras tombe), Speech (parole impossible), Time (appeler le 15 d'urgence). Chaque minute compte lors d'un AVC."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Comment réagir face à une crise d'épilepsie ?",
+    options: ["Mettre quelque chose dans la bouche pour éviter la morsure", "Écarter les objets, protéger la tête, ne pas retenir, appeler le 15 si crise > 5 min", "Le maintenir fermement au sol", "L'asperger d'eau froide"],
+    correct: 1,
+    explanation: "Épilepsie : NE PAS mettre d'objet dans la bouche, NE PAS retenir. Sécuriser l'environnement, protéger la tête, noter l'heure. Appeler le 15 si première crise ou crise > 5 minutes. Après : PLS."
+  },
+  {
+    theme: "Premiers secours",
+    q: "Un agent de sécurité est-il obligé de porter secours à une personne en danger ?",
+    options: ["Non, ce n'est pas son rôle", "Oui, tout citoyen a l'obligation légale de porter secours (art. 223-6 CP)", "Oui, mais uniquement dans son périmètre", "Seulement s'il est secouriste diplômé"],
+    correct: 1,
+    explanation: "Art. 223-6 CP : obligation de porter secours à toute personne en péril dans la mesure de ses possibilités et sans risque pour soi. Ne pas le faire = non-assistance à personne en danger (5 ans, 75 000€)."
+  },
+
+  // ========== CONTRÔLE D'ACCÈS (renfort) ==========
+  {
+    theme: "Contrôle d'accès",
+    q: "Qu'est-ce que le 'tailgating' en contrôle d'accès ?",
+    options: ["Une technique de surveillance", "Le fait pour une personne non autorisée de suivre une personne autorisée pour franchir un accès sans s'authentifier", "Une procédure de contrôle renforcé", "Une technique de palpation"],
+    correct: 1,
+    explanation: "Tailgating = une personne non autorisée profite de l'ouverture d'un accès pour entrer sans contrôle. L'agent doit veiller à ce que chaque personne s'authentifie individuellement."
+  },
+  {
+    theme: "Contrôle d'accès",
+    q: "Quelle est la procédure pour un visiteur extérieur ?",
+    options: ["Le laisser entrer librement", "Vérifier identité, enregistrer, contacter la personne visitée, remettre un badge visiteur temporaire", "Lui demander uniquement son nom", "L'escorter directement sans vérification"],
+    correct: 1,
+    explanation: "Procédure visiteur : 1) Vérifier pièce d'identité, 2) Enregistrer (nom, heure, personne visitée), 3) Contacter la personne visitée, 4) Remettre badge visiteur, 5) Accompagner selon consignes."
+  },
+  {
+    theme: "Contrôle d'accès",
+    q: "Que faire face à une personne qui refuse de présenter son badge ?",
+    options: ["La laisser passer pour éviter le conflit", "Refuser poliment l'accès, expliquer la procédure, appeler le responsable si persistance", "L'appréhender immédiatement", "Lui demander ses papiers d'identité"],
+    correct: 1,
+    explanation: "Refus de badge : rester calme, expliquer la règle, proposer d'appeler le service concerné. Si la personne insiste, appeler le responsable. Ne jamais forcer le passage ni créer de conflit."
+  },
+
+  // ========== PALPATION (renfort) ==========
+  {
+    theme: "Palpation / Fouille",
+    q: "La palpation de sécurité se fait-elle sous les vêtements ?",
+    options: ["Oui, pour être efficace", "Non, obligatoirement par-dessus les vêtements", "Uniquement pour les vêtements épais", "Selon les consignes du client"],
+    correct: 1,
+    explanation: "Palpation UNIQUEMENT par-dessus les vêtements. Glisser les mains sous les vêtements = fouille à corps, acte réservé aux OPJ. C'est une infraction pénale."
+  },
+  {
+    theme: "Palpation / Fouille",
+    q: "Peut-on confisquer un objet trouvé lors d'une palpation ?",
+    options: ["Oui, l'agent peut les confisquer", "Non, l'agent peut refuser l'accès ou remettre les objets à un OPJ, mais pas confisquer", "Oui, si les objets sont dangereux", "Seulement avec l'accord du directeur"],
+    correct: 1,
+    explanation: "L'APS n'a pas le droit de confisquer. Face à un objet illicite (arme, drogue) : refuser l'accès, appeler le 17, et maintenir la personne si flagrant délit art. 73 CPP."
+  },
+
+  // ========== MAIN COURANTE (renfort) ==========
+  {
+    theme: "Main courante / Rapports",
+    q: "Peut-on utiliser du blanc correcteur sur une main courante manuscrite ?",
+    options: ["Oui si c'est propre", "Non, on barre lisiblement l'erreur et on inscrit la correction avec ses initiales", "Oui si on paraphe", "Non, il faut recommencer la page"],
+    correct: 1,
+    explanation: "Ne JAMAIS utiliser de blanc. Barrer d'un trait (mention visible), écrire la correction, apposer ses initiales. Les corrections au blanc invalident le document légalement."
+  },
+  {
+    theme: "Main courante / Rapports",
+    q: "Un rapport doit-il contenir des opinions personnelles ?",
+    options: ["Oui, pour donner plus d'informations", "Non, un rapport doit être factuel et objectif uniquement", "Oui, uniquement en conclusion", "Selon le type de rapport"],
+    correct: 1,
+    explanation: "Rapport = FACTUEL et OBJECTIF. 'La personne courait' (fait) vs 'la personne semblait coupable' (opinion). Les opinions peuvent invalider un rapport en cas de litige."
+  },
+
+  // ========== DÉONTOLOGIE (renfort) ==========
+  {
+    theme: "Déontologie",
+    q: "Un agent peut-il accepter des cadeaux de personnes côtoyées en service ?",
+    options: ["Oui, si la valeur est modeste", "Non, accepter des avantages liés à ses fonctions est contraire à la déontologie", "Oui si spontané", "Selon le règlement de l'entreprise"],
+    correct: 1,
+    explanation: "Accepter des cadeaux liés à ses fonctions = risque de corruption ou de compromission. L'agent doit rester neutre et impartial en toutes circonstances."
+  },
+  {
+    theme: "Déontologie",
+    q: "Que doit faire un agent témoin d'une faute professionnelle d'un collègue ?",
+    options: ["Se taire par solidarité", "En informer sa hiérarchie selon la procédure interne", "Régler ça directement avec le collègue", "Prévenir le client directement"],
+    correct: 1,
+    explanation: "La solidarité ne doit pas primer sur l'éthique. Face à une faute grave d'un collègue, l'agent doit en informer sa hiérarchie. Se taire peut engager sa propre responsabilité."
+  },
+
+  // ========== ÉVÉNEMENTIEL (renfort) ==========
+  {
+    theme: "Événementiel",
+    q: "Que faire si une personne présente une ivresse manifeste à l'entrée d'un événement ?",
+    options: ["L'ignorer", "Refuser l'accès, la raccompagner en lieu sûr, appeler les secours si nécessaire", "Appeler la police immédiatement", "La laisser sortir seule"],
+    correct: 1,
+    explanation: "Ivresse manifeste : refuser l'accès poliment. Si danger pour elle-même ou autrui, appeler le 15 ou le 17. L'APS ne peut pas utiliser la force physique pour la faire partir."
+  },
+  {
+    theme: "Événementiel",
+    q: "Qu'est-ce qu'un dispatcher en sécurité événementielle ?",
+    options: ["Un agent en charge de la billetterie", "Le responsable du PC sécurité qui coordonne les équipes terrain via radio", "Un agent VIP", "Le responsable technique"],
+    correct: 1,
+    explanation: "Dispatcher = agent au PC sécurité qui coordonne les équipes terrain en temps réel (radio), gère les interventions et fait le lien avec les secours extérieurs."
+  },
+
+  // ========== DIVERS (renfort) ==========
+  {
+    theme: "Divers",
+    q: "Qu'est-ce que le registre de sécurité d'un établissement ?",
+    options: ["La main courante quotidienne", "Document obligatoire regroupant toutes les informations relatives à la sécurité incendie (vérifications, exercices, incidents)", "Le planning des agents", "La liste des EPI"],
+    correct: 1,
+    explanation: "Registre de sécurité = document obligatoire dans tout ERP. Il consigne : vérifications des équipements, exercices d'évacuation, travaux, incidents et observations de la commission de sécurité."
+  },
+  {
+    theme: "Divers",
+    q: "Quelle est la fréquence minimale des exercices d'évacuation dans un ERP ?",
+    options: ["Tous les mois", "1 fois par an minimum (2 fois pour les ERP avec locaux à sommeil)", "Tous les 2 ans", "Uniquement à l'ouverture"],
+    correct: 1,
+    explanation: "ERP : 1 exercice/an minimum. Pour ERP avec locaux à sommeil (hôtels, hôpitaux) : 2 fois/an minimum dont un de nuit. À consigner dans le registre de sécurité."
+  },
+  {
+    theme: "Divers",
+    q: "Peut-on dormir à son poste pendant une vacation de nuit ?",
+    options: ["Oui s'il n'y a rien à faire", "Non, l'agent doit rester vigilant pendant toute la vacation", "Oui pendant les pauses réglementaires", "Oui si un collègue est présent"],
+    correct: 1,
+    explanation: "Dormir à son poste = faute professionnelle grave pouvant entraîner un licenciement et engager la responsabilité de l'agent en cas d'incident. Les pauses doivent être organisées selon les consignes."
+  },
+
+  // ========== PLANS D'URGENCE (renfort) ==========
+  {
+    theme: "Plans d'urgence",
+    q: "Qu'est-ce qu'un point de rassemblement ?",
+    options: ["L'entrée principale", "Lieu prédéfini à l'extérieur où se regroupent les occupants après évacuation pour vérifier que tout le monde est sorti", "La salle de réunion", "Le parking"],
+    correct: 1,
+    explanation: "Point de rassemblement = zone extérieure prédéfinie, à distance suffisante. Permet de vérifier que tous ont évacué et de ne pas gêner l'intervention des secours."
+  },
+  {
+    theme: "Plans d'urgence",
+    q: "Que faire si une personne refuse d'évacuer lors d'une alerte incendie ?",
+    options: ["La forcer physiquement", "Persuader verbalement, noter sa localisation, prévenir les pompiers de sa présence", "L'ignorer et partir", "Attendre les pompiers"],
+    correct: 1,
+    explanation: "L'APS ne peut pas forcer physiquement. Il doit insister verbalement, noter la localisation précise et prévenir impérativement les pompiers pour qu'ils puissent intervenir."
+  }
+
 ];
 
 
