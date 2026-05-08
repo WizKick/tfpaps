@@ -83,6 +83,10 @@ function initPomodoroWidget() {
           <div id="pomodoroTypeLabel">Travail</div>
         </div>
       </div>
+      <div id="pomodoroPauseTimer" style="display:none; text-align:center; margin-bottom:0.5rem;">
+        <span style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-faint);">En pause · </span>
+        <span id="pomodoroPauseTime" style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.78rem; color:var(--error, #fb8585);">0:00</span>
+      </div>
       <div id="pomodoroControls">
         <button class="pomo-btn" onclick="changePomoDuration(-5)" title="-5 min">−5</button>
         <button class="pomo-btn pomo-main" id="pomodoroPlayBtn" onclick="togglePomodoro()">▶</button>
@@ -91,8 +95,6 @@ function initPomodoroWidget() {
       </div>
       <div id="pomodoroModes">
         <button class="pomo-mode-btn active" id="modeWork" onclick="setPomodoroMode('work')">Travail 25m</button>
-        <button class="pomo-mode-btn" id="modePause" onclick="setPomodoroMode('pause')">Pause 5m</button>
-        <button class="pomo-mode-btn" id="modeLong" onclick="setPomodoroMode('long')">Longue 15m</button>
       </div>
     </div>
   `;
@@ -240,7 +242,16 @@ function togglePomodoro() {
   pomodoroState.active ? pausePomodoro() : startPomodoro();
 }
 
+let pauseTimerInterval = null;
+let pauseSeconds = 0;
+
 function startPomodoro() {
+  // Arrêter le chrono pause si actif
+  clearInterval(pauseTimerInterval);
+  pauseSeconds = 0;
+  const pauseBar = document.getElementById('pomodoroPauseTimer');
+  if (pauseBar) pauseBar.style.display = 'none';
+
   pomodoroState.active = true;
   const btn = document.getElementById('pomodoroPlayBtn');
   if (btn) { btn.textContent = '⏸'; btn.classList.add('running'); }
@@ -266,6 +277,17 @@ function pausePomodoro() {
   pomodoroState.active = false;
   const btn = document.getElementById('pomodoroPlayBtn');
   if (btn) { btn.textContent = '▶'; btn.classList.remove('running'); }
+
+  // Démarrer le chrono de pause
+  pauseSeconds = 0;
+  const pauseBar = document.getElementById('pomodoroPauseTimer');
+  const pauseTimeEl = document.getElementById('pomodoroPauseTime');
+  if (pauseBar) pauseBar.style.display = 'block';
+  clearInterval(pauseTimerInterval);
+  pauseTimerInterval = setInterval(() => {
+    pauseSeconds++;
+    if (pauseTimeEl) pauseTimeEl.textContent = formatSeconds(pauseSeconds);
+  }, 1000);
 }
 
 function resetPomodoro() {
@@ -287,20 +309,14 @@ function resetPomodoroStats() {
 
 function setPomodoroMode(mode) {
   pausePomodoro();
-  pomodoroState.type = mode;
-  const durations = { work: pomodoroState.custom, pause: 5, long: 15 };
-  pomodoroState.seconds = (durations[mode] || 25) * 60;
-  ['modeWork','modePause','modeLong'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove('active');
-  });
-  const modeMap = { work: 'modeWork', pause: 'modePause', long: 'modeLong' };
-  const activeEl = document.getElementById(modeMap[mode]);
-  if (activeEl) activeEl.classList.add('active');
+  pomodoroState.type = 'work';
+  pomodoroState.seconds = pomodoroState.custom * 60;
+  const workBtn = document.getElementById('modeWork');
+  if (workBtn) workBtn.classList.add('active');
   const arc = document.getElementById('pomodoroArc');
-  if (arc) arc.style.stroke = mode === 'work' ? '#d9b98c' : mode === 'pause' ? '#6ee7a8' : '#fcc864';
+  if (arc) arc.style.stroke = '#d9b98c';
   const typeLabel = document.getElementById('pomodoroTypeLabel');
-  if (typeLabel) typeLabel.textContent = mode === 'work' ? 'Travail' : mode === 'pause' ? 'Pause' : 'Longue pause';
+  if (typeLabel) typeLabel.textContent = 'Travail';
   updatePomodoroDisplay();
 }
 
@@ -333,7 +349,7 @@ function onPomodoroEnd() {
       });
     }
   } catch(e) {}
-  setPomodoroMode(pomodoroState.type === 'work' ? 'pause' : 'work');
+  setPomodoroMode('work');
   savePomodoroState();
 }
 
@@ -347,8 +363,7 @@ function updatePomodoroDisplay() {
   timeEl.textContent = timeStr;
   if (widget && widget.classList.contains('collapsed')) widget.setAttribute('data-time', timeStr);
   if (arcEl) {
-    const durations = { work: pomodoroState.custom * 60, pause: 300, long: 900 };
-    const total = durations[pomodoroState.type] || 1500;
+    const total = pomodoroState.custom * 60;
     arcEl.style.strokeDashoffset = 276.46 * (1 - pomodoroState.seconds / total);
   }
   if (todayEl) todayEl.textContent = formatHours(pomodoroState.todayWorkSeconds);
