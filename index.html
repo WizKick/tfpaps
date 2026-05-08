@@ -3370,6 +3370,14 @@
     const data = getErrorData();
     data[qid] = { question: q, count: (data[qid]?.count || 0) + 1, lastWrong: Date.now() };
     saveErrorData(data);
+    // Mettre à jour le compteur en temps réel
+    const errDesc = document.getElementById('errorsDesc');
+    const errBtn = document.getElementById('errorsBtn');
+    if (errDesc) {
+      const count = Object.keys(data).length;
+      errDesc.textContent = `${count} question${count > 1 ? 's' : ''} ratée${count > 1 ? 's' : ''} à retravailler.`;
+    }
+    if (errBtn) errBtn.disabled = false;
   }
 
   function removeErrorQuestion(qid) {
