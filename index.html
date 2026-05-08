@@ -2353,6 +2353,13 @@
 
     <div class="section-heading">Apprentissage & Mémoire</div>
     <div class="modes">
+      <button class="mode-card mode-card-gold" onclick="startTop15()">
+        <div class="mode-number">⚡ Veille exam</div>
+        <div class="mode-title">Top 15 · Incontournables</div>
+        <div class="mode-desc">Les 15 questions les plus tombées au TFP. 5 minutes chrono. À faire le matin du 22.</div>
+        <div class="mode-meta">Go</div>
+      </button>
+
       <button class="mode-card" onclick="startSRS()">
         <div class="mode-number">05 / SRS</div>
         <div class="mode-title">Répétition Espacée</div>
@@ -2843,7 +2850,64 @@
     updateParcoursHero();
   }
 
-  // ===== THÈME DU JOUR =====
+  // ===== TOP 15 INCONTOURNABLES =====
+  const TOP15_KEYWORDS = [
+    // Article 73 — condition flagrant délit
+    q => q.theme === 'Appréhension / Droit' && q.q.toLowerCase().includes('73'),
+    // Palpation vs fouille
+    q => q.theme === 'Palpation / Fouille' && q.q.toLowerCase().includes('fouill'),
+    // Voyants CMSI rouge
+    q => q.theme === 'SSI' && q.q.toLowerCase().includes('rouge'),
+    // Voyants CMSI jaune fixe
+    q => q.theme === 'SSI' && q.q.toLowerCase().includes('jaune fixe'),
+    // Voyants CMSI jaune clignotant
+    q => q.theme === 'SSI' && q.q.toLowerCase().includes('clignotant'),
+    // Catégories SSI
+    q => q.theme === 'SSI' && q.q.toLowerCase().includes('catégorie'),
+    // Carte pro durée
+    q => q.theme === 'Carte pro / CNAPS' && q.q.toLowerCase().includes('durée'),
+    // CNAPS définition
+    q => q.theme === 'Carte pro / CNAPS' && q.q.toLowerCase().includes("qu'est-ce que le cnaps"),
+    // Triangle du feu
+    q => q.theme === 'Incendie' && q.q.toLowerCase().includes('triangle'),
+    // Classe feu B
+    q => q.theme === 'Incendie' && q.q.toLowerCase().includes('classe b'),
+    // Extincteur CO2
+    q => q.theme === 'Incendie' && q.q.toLowerCase().includes('co2'),
+    // PAE premiers secours
+    q => q.theme === 'Premiers secours' && (q.q.toLowerCase().includes('pae') || q.q.toLowerCase().includes('pas')),
+    // Numéros urgence
+    q => q.theme === 'Premiers secours' && q.q.toLowerCase().includes('urgence'),
+    // Droit de retrait
+    q => q.theme === 'Droit du travail' && q.q.toLowerCase().includes('retrait'),
+    // Main courante format
+    q => q.theme === 'Main courante / Rapports' && q.q.toLowerCase().includes('format'),
+  ];
+
+  function startTop15() {
+    const top15 = [];
+    TOP15_KEYWORDS.forEach(fn => {
+      const match = questionsQCM.find(q => fn(q) && !top15.includes(q));
+      if (match) top15.push(match);
+    });
+    // Fill to 15 if needed with high-importance themes
+    const important = ['Appréhension / Droit', 'SSI', 'Carte pro / CNAPS', 'Incendie', 'Premiers secours'];
+    questionsQCM.filter(q => important.includes(q.theme) && !top15.includes(q))
+      .slice(0, 15 - top15.length)
+      .forEach(q => top15.push(q));
+
+    state.quiz = top15.slice(0, 15);
+    state.mode = 'top15';
+    state.score = 0;
+    state.currentIndex = 0;
+    state.answers = [];
+    stopTimer();
+    document.getElementById('timer').style.display = 'none';
+    document.getElementById('questionTimerBar').style.display = 'none';
+    showScreen('quizScreen');
+    renderQuestion();
+  }
+
   function showThemeDuJour() {
     const modal = document.getElementById('themeDuJourModal');
     const grid = document.getElementById('tdjGrid');

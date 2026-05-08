@@ -67,6 +67,7 @@ function initPomodoroWidget() {
         <div id="pomodoroStats">
           <span id="pomodoroTodayLabel">Auj.</span>
           <span id="pomodoroTodayTime">0s</span>
+          <button id="pomodoroResetStats" onclick="resetPomodoroStats()" title="Réinitialiser le compteur" style="background:transparent;border:none;cursor:pointer;font-size:0.6rem;color:var(--text-faint);padding:0 0 0 4px;line-height:1;" onmouseover="this.style.color='var(--error)'" onmouseout="this.style.color='var(--text-faint)'">✕</button>
         </div>
         <button id="pomodoroClose" onclick="togglePomodoroWidget()" title="Réduire">−</button>
       </div>
@@ -271,6 +272,16 @@ function resetPomodoro() {
   pausePomodoro();
   const durations = { work: pomodoroState.custom, pause: 5, long: 15 };
   pomodoroState.seconds = (durations[pomodoroState.type] || 25) * 60;
+  updatePomodoroDisplay();
+}
+
+function resetPomodoroStats() {
+  if (!confirm('Réinitialiser le compteur de temps ?')) return;
+  pausePomodoro();
+  pomodoroState.totalWorkSeconds = 0;
+  pomodoroState.todayWorkSeconds = 0;
+  pomodoroState.lastWorkDate = new Date().toDateString();
+  savePomodoroState();
   updatePomodoroDisplay();
 }
 
