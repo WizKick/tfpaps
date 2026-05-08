@@ -3048,14 +3048,24 @@
     document.getElementById('progressText').textContent = `${state.currentIndex + 1} / ${state.quiz.length}`;
     document.getElementById('progressFill').style.width = `${((state.currentIndex) / state.quiz.length) * 100}%`;
 
+    // Mélanger les options tout en gardant la trace de la bonne réponse
+    const indices = q.options.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    // Stocker l'index shufflé de la bonne réponse pour selectAnswer
+    state.shuffledCorrect = indices.indexOf(q.correct);
+    state.shuffledIndices = indices;
+
     const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
     const optionsEl = document.getElementById('options');
     optionsEl.innerHTML = '';
-    q.options.forEach((opt, i) => {
+    indices.forEach((originalIdx, displayIdx) => {
       const btn = document.createElement('button');
       btn.className = 'option';
-      btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
-      btn.onclick = () => selectAnswer(i);
+      btn.innerHTML = `<span class="option-letter">${letters[displayIdx]}</span><span>${q.options[originalIdx]}</span>`;
+      btn.onclick = () => selectAnswer(displayIdx);
       optionsEl.appendChild(btn);
     });
 
@@ -3120,13 +3130,15 @@
     stopQuestionTimer();
     const q = state.quiz[state.currentIndex];
     const options = document.querySelectorAll('.option');
+    const shuffledCorrect = state.shuffledCorrect !== undefined ? state.shuffledCorrect : q.correct;
+
     options.forEach((opt, i) => {
       opt.disabled = true;
-      if (i === q.correct) opt.classList.add('correct');
-      if (i === idx && idx !== q.correct) opt.classList.add('wrong');
+      if (i === shuffledCorrect) opt.classList.add('correct');
+      if (i === idx && idx !== shuffledCorrect) opt.classList.add('wrong');
     });
 
-    const correct = idx === q.correct;
+    const correct = idx === shuffledCorrect;
     if (correct) {
       state.score++;
       playCorrect();
@@ -3141,7 +3153,9 @@
       addErrorQuestion(qid, q);
     }
 
-    state.answers.push({ question: q, given: idx, correct });
+    // Stocker la réponse avec l'index original pour les résultats
+    const givenOriginal = idx === -1 ? -1 : (state.shuffledIndices ? state.shuffledIndices[idx] : idx);
+    state.answers.push({ question: q, given: givenOriginal, correct });
 
     if (state.mode !== 'exam') {
       const expBox = document.getElementById('explanationBox');
