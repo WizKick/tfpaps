@@ -1878,6 +1878,323 @@ const questionsQCM = [
     explanation: "L'APS ne peut pas forcer physiquement. Il doit insister verbalement, noter la localisation précise et prévenir impérativement les pompiers pour qu'ils puissent intervenir."
   }
 
+,
+
+  // ========== TERRORISME (10 questions à l'exam) ==========
+  {
+    theme: "Terrorisme",
+    q: "Que signifie le plan Vigipirate ?",
+    options: ["Un plan d'évacuation des bâtiments publics", "Le plan national de prévention du terrorisme fixant les postures de sécurité selon le niveau de menace", "Un plan de surveillance des frontières uniquement", "Un protocole réservé aux forces armées"],
+    correct: 1,
+    explanation: "Vigipirate est le plan national de prévention du terrorisme. Il comporte plusieurs niveaux de vigilance et fixe les mesures de sécurité à appliquer par tous les acteurs (État, collectivités, entreprises, citoyens) selon la menace."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Quels sont les niveaux du plan Vigipirate actuellement en vigueur ?",
+    options: ["Vert, Orange, Rouge", "Vigilance renforcée, Urgence attentat, Alerte attentat", "Vigilance, Sécurité renforcée, Urgence attentat", "Bas, Modéré, Élevé, Critique"],
+    correct: 2,
+    explanation: "Le plan Vigipirate comporte 3 niveaux : Vigilance (socle permanent), Sécurité renforcée (menace élevée), Urgence attentat (après ou imminence d'attentat). Depuis 2021, le niveau 'Alerte attentat' a été supprimé."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Que signifie la procédure 'Attentat en cours' pour un APS ?",
+    options: ["Évacuer immédiatement tout le monde", "Appliquer le protocole SAFE : Sécuriser, Alerter, Faire secourir, Établir un périmètre", "Attendre les forces de l'ordre sans agir", "Neutraliser la menace"],
+    correct: 1,
+    explanation: "Attentat en cours : appliquer le protocole de gestion de crise. Priorités : mettre à l'abri les personnes (confinement ou évacuation selon la situation), alerter le 17 et le 15, ne pas s'exposer, rendre compte au PC sécurité, faciliter l'accès aux secours."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Qu'est-ce que la méthode 'Fuir, Se cacher, Alerter' face à une attaque terroriste ?",
+    options: ["Une procédure militaire", "Le comportement recommandé aux civils face à une attaque terroriste : fuir si possible, se cacher si on ne peut pas fuir, alerter le 17", "Une technique de self-défense", "Un protocole réservé aux agents de sécurité"],
+    correct: 1,
+    explanation: "Fuir, Se cacher, Alerter : conseils officiels du gouvernement. 1) FUIR en laissant ses affaires, 2) SE CACHER si impossible de fuir (barricader, éteindre les lumières, couper le son), 3) ALERTER le 17 dès qu'en sécurité. Ne jamais faire le héros."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Un APS doit-il tenter de neutraliser un terroriste armé ?",
+    options: ["Oui, c'est son rôle de protéger", "Non, il doit mettre à l'abri les personnes et alerter les forces de l'ordre. La neutralisation est réservée aux forces de l'ordre", "Oui, s'il est en supériorité numérique", "Oui, s'il possède une formation spéciale"],
+    correct: 1,
+    explanation: "Non. L'APS n'est pas formé ni équipé pour affronter un terroriste armé. Sa mission est de protéger les personnes (évacuation, confinement) et d'alerter le 17. Toute tentative de confrontation met des vies en danger."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Qu'est-ce qu'un attentat suicide ?",
+    options: ["Un attentat revendiqué après les faits", "Un acte terroriste dans lequel l'auteur se sacrifie délibérément lors de l'attaque (ceinture explosive, véhicule bélier...)", "Un attentat visant les forces de l'ordre", "Un attentat sans revendication"],
+    correct: 1,
+    explanation: "Attentat suicide = l'auteur intègre sa propre mort dans le plan d'attaque (ceinture explosive, voiture piégée...). Particulièrement dangereux car aucun instinct de survie n'inhibe l'acte. Face à une personne suspecte portant un colis ou vêtement volumineux : s'éloigner, ne pas toucher, alerter le 17."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Que faire face à une personne au comportement suspect dans votre site (nervosité excessive, reconnaissance des lieux, questions inhabituelles) ?",
+    options: ["L'interpeller directement et lui demander ses papiers", "Observer discrètement, noter les détails (signalement, direction), alerter sa hiérarchie et si nécessaire le 17", "L'ignorer pour ne pas créer d'incident", "L'appréhender immédiatement"],
+    correct: 1,
+    explanation: "Face à un comportement suspect : ne pas intervenir seul, observer discrètement et noter le signalement (description physique, vêtements, direction), alerter immédiatement la hiérarchie et le PC sécurité, qui décideront d'alerter le 17. La vigilance discète vaut mieux que l'intervention precipitée."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Qu'est-ce que le confinement en cas d'attaque terroriste ?",
+    options: ["Évacuer tout le monde vers l'extérieur", "Regrouper et mettre à l'abri les personnes dans un local sécurisé (portes barricadées, lumières éteintes, téléphones silencieux) en attendant les secours", "Fermer uniquement les portes d'entrée", "Appeler chaque personne une par une pour les informer"],
+    correct: 1,
+    explanation: "Confinement = alternative à l'évacuation quand la fuite est impossible. Rassembler les personnes dans une pièce solide, barricader les portes (meubles, coins), éteindre lumières, couper sons, s'allonger sous les fenêtres, ne pas ouvrir avant confirmation des forces de l'ordre."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Qu'est-ce qu'un colis suspect ?",
+    options: ["Tout colis non réclamé depuis plus d'une heure", "Tout objet abandonné dont on ne peut identifier le propriétaire et qui présente des caractéristiques inhabituelles (fils, odeur, suintement...)", "Un colis endommagé", "Un colis sans étiquette d'expéditeur"],
+    correct: 1,
+    explanation: "Colis suspect = objet abandonné sans propriétaire identifiable, avec ou sans caractéristiques suspectes. Règle : ne JAMAIS toucher, déplacer ou ouvrir. Évacuer la zone, appeler le 17, laisser agir les services spécialisés (NEDEX, démineurs)."
+  },
+  {
+    theme: "Terrorisme",
+    q: "Qu'est-ce que la radicalisation et pourquoi l'APS doit-il la connaître ?",
+    options: ["Un phénomène qui ne concerne pas la sécurité privée", "Un processus par lequel une personne adopte des idées extrémistes pouvant mener à la violence. L'APS peut être amené à détecter des signaux faibles sur son site", "Un comportement uniquement religieux", "Un phénomène uniquement présent chez les jeunes"],
+    correct: 1,
+    explanation: "La radicalisation est un processus progressif d'adoption d'idéologies extrémistes. Signaux d'alerte : isolement soudain, discours de haine, intérêt pour des zones de conflit, changement radical de comportement. L'APS doit signaler ces signaux à sa hiérarchie sans confronter directement la personne."
+  },
+
+  // ========== ÉLECTRONIQUE / SYSTÈMES (5 questions à l'exam) ==========
+  {
+    theme: "Électronique / Sécurité",
+    q: "Qu'est-ce qu'un système d'alarme anti-intrusion ?",
+    options: ["Un système uniquement pour les banques", "Un ensemble de détecteurs et de centrale qui signale toute intrusion non autorisée dans un bâtiment", "Uniquement les caméras de surveillance", "Un système de contrôle d'accès par badge"],
+    correct: 1,
+    explanation: "Système anti-intrusion = centrale d'alarme + détecteurs (volumétriques IRP, contacts de portes/fenêtres, bris de verre) + sirène + télétransmetteur. Il détecte et signale les intrusions par alarme sonore et/ou transmission vers une télésurveillance ou les forces de l'ordre."
+  },
+  {
+    theme: "Électronique / Sécurité",
+    q: "Qu'est-ce qu'un détecteur infrarouge passif (IRP) ?",
+    options: ["Un détecteur qui émet des rayons infrarouges", "Un détecteur qui reçoit les rayonnements infrarouges émis par les corps chauds (personnes) pour détecter les mouvements", "Un détecteur de chaleur uniquement", "Un détecteur de fumée"],
+    correct: 1,
+    explanation: "IRP (Infrarouge Passif) = détecteur de mouvement qui analyse les variations de rayonnement thermique dans sa zone de surveillance. Déclenche l'alarme quand un corps chaud (humain) traverse son champ de détection. Le plus courant en anti-intrusion."
+  },
+  {
+    theme: "Électronique / Sécurité",
+    q: "Qu'est-ce qu'une centrale de télésurveillance ?",
+    options: ["Un poste de police spécialisé", "Un centre de réception d'alarmes qui reçoit les signaux des systèmes de sécurité 24h/24 et dépêche une intervention si nécessaire", "Un système de vidéosurveillance centralisé", "Le PC sécurité d'un grand site"],
+    correct: 1,
+    explanation: "Centrale de télésurveillance = organisme privé qui reçoit les signaux d'alarme transmis par les systèmes de sécurité des sites clients. En cas d'alarme, il contacte le client, peut déclencher une intervention ou alerter les forces de l'ordre selon le protocole convenu."
+  },
+  {
+    theme: "Électronique / Sécurité",
+    q: "Que signifie une alarme intempestive (fausse alarme) ?",
+    options: ["Une alarme déclenchée intentionnellement pour un test", "Une alarme déclenchée sans cause réelle d'intrusion (animal, courant d'air, insecte...)", "Une alarme qui ne se déclenche pas en cas d'intrusion réelle", "Une alarme de niveau maximum"],
+    correct: 1,
+    explanation: "Alarme intempestive = déclenchement sans intrusion réelle. Causes fréquentes : animaux, courants d'air, vibrations, insectes dans le détecteur, variations de température. L'APS doit effectuer une levée de doute, noter sur la main courante et aviser la maintenance si répétitif."
+  },
+  {
+    theme: "Électronique / Sécurité",
+    q: "Qu'est-ce qu'un système de contrôle d'accès biométrique ?",
+    options: ["Un système de contrôle par badge uniquement", "Un système qui identifie les personnes par des caractéristiques physiques uniques (empreinte digitale, reconnaissance faciale, iris)", "Un système de contrôle par code PIN uniquement", "Un système réservé aux sites militaires"],
+    correct: 1,
+    explanation: "Biométrique = identification par caractéristiques physiques uniques : empreinte digitale, reconnaissance faciale, iris, réseau veineux. Plus sécurisé qu'un badge (qu'on peut perdre/voler) ou un code (qu'on peut oublier/voler). Soumis à autorisation CNIL pour les données biométriques."
+  },
+  {
+    theme: "Électronique / Sécurité",
+    q: "Que signifie l'acronyme PTI dans le contexte de la sécurité électronique ?",
+    options: ["Poste de Travail Informatisé", "Protection du Travailleur Isolé — dispositif électronique détectant l'absence de mouvement ou une chute", "Plan de Travail Intégré", "Protocole de Transmission d'Incident"],
+    correct: 1,
+    explanation: "PTI = Protection du Travailleur Isolé (aussi appelé DATI). Dispositif porté par l'agent travaillant seul qui déclenche une alarme automatique en cas d'immobilité prolongée, de chute ou de non-réponse à une sollicitation périodique. Obligatoire dans certaines situations de travail isolé."
+  },
+  {
+    theme: "Électronique / Sécurité",
+    q: "Lors d'une prise de service, comment vérifier qu'un système d'alarme anti-intrusion est correctement armé ?",
+    options: ["En déclenchant volontairement une alarme", "En vérifiant le voyant ou l'affichage de la centrale indiquant l'état armé/désarmé et l'absence de défaut", "En coupant l'alimentation et en la rétablissant", "En appelant la télésurveillance"],
+    correct: 1,
+    explanation: "Vérification centrale anti-intrusion en prise de service : voyant/affichage indiquant 'armé' ou 'en veille', absence de voyant défaut (zone ouverte, batterie faible, sabotage), noter l'état sur la main courante. Ne jamais déclencher une vraie alarme pour tester sans prévenir la télésurveillance."
+  },
+
+  // ========== UV11 — GESTION DES RISQUES / SITUATIONS DÉGRADÉES ==========
+  {
+    theme: "Gestion des risques",
+    q: "Qu'est-ce qu'une situation dégradée pour un agent de sécurité ?",
+    options: ["Une situation où l'agent est fatigué", "Une situation anormale dépassant le cadre habituel nécessitant une adaptation immédiate", "Une situation avec beaucoup de visiteurs", "Une situation de nuit uniquement"],
+    correct: 1,
+    explanation: "Situation dégradée = tout événement sortant du cadre normal : panne d'équipement, incident grave, agression, catastrophe. L'agent doit s'adapter, alerter sa hiérarchie et appliquer les procédures d'urgence prévues."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Qu'est-ce que l'analyse des risques sur un site de sécurité ?",
+    options: ["Une procédure réservée aux responsables sécurité", "L'identification des menaces, leur probabilité et leur impact pour définir les mesures de prévention adaptées", "Un document administratif annuel", "L'inspection des extincteurs uniquement"],
+    correct: 1,
+    explanation: "Analyse des risques : identifier les menaces (intrusion, incendie, vol, agression), évaluer leur probabilité et leur impact, puis définir les mesures préventives et curatives. L'APS contribue par ses observations terrain."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Comment gérer une panne du système de contrôle d'accès en pleine activité ?",
+    options: ["Laisser tout le monde entrer librement", "Passer en contrôle manuel, alerter la maintenance, noter tous les accès manuellement, informer la hiérarchie", "Fermer le site immédiatement", "Attendre que le système redémarre seul"],
+    correct: 1,
+    explanation: "Panne contrôle d'accès : basculer en mode dégradé (contrôle manuel), alerter la maintenance et la hiérarchie, noter tous les passages sur la main courante. La sécurité ne doit jamais s'arrêter."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Qu'est-ce que le principe de précaution en sécurité ?",
+    options: ["Attendre d'être sûr avant d'agir", "Prendre des mesures préventives face à un risque potentiel même sans certitude absolue", "Ne jamais intervenir seul", "Toujours appeler la police en premier"],
+    correct: 1,
+    explanation: "Principe de précaution : face à un risque potentiel (comportement suspect, objet inhabituel), l'APS doit agir préventivement sans attendre que le danger soit certain. Mieux vaut une fausse alerte qu'un incident évitable."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Face à une inondation soudaine dans un site, quelle est la priorité absolue ?",
+    options: ["Sauvegarder les équipements informatiques", "Évacuer les personnes vers les zones hautes ou l'extérieur et alerter les secours", "Couper l'électricité uniquement", "Photographier les dommages pour l'assurance"],
+    correct: 1,
+    explanation: "Inondation : priorité absolue = évacuer les personnes (risques d'électrocution, noyade). Couper l'électricité si possible sans danger. Alerter le 18 (pompiers) et la hiérarchie. Ne jamais entrer dans l'eau sans connaître les risques électriques."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Qu'est-ce qu'un retour d'expérience (REX) après un incident ?",
+    options: ["Un rapport d'accident de travail uniquement", "Une analyse après un incident pour identifier ce qui s'est passé et améliorer les procédures", "Un rapport destiné uniquement aux assurances", "Une réunion informelle entre agents"],
+    correct: 1,
+    explanation: "REX = analyse structurée après un incident grave. Objectifs : comprendre le déroulement, identifier les dysfonctionnements, améliorer les procédures et la formation pour éviter que l'incident ne se reproduise."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Qu'est-ce qu'un plan de continuité d'activité (PCA) en sécurité ?",
+    options: ["Le planning de rotation des agents", "Un document définissant les procédures pour maintenir la sécurité en cas d'événement perturbateur majeur", "Le contrat avec l'entreprise de sécurité", "Le plan d'évacuation du site"],
+    correct: 1,
+    explanation: "PCA = procédures permettant de maintenir la sécurité du site malgré un événement perturbateur (panne, sinistre, absence massive). Inclut les procédures dégradées, les contacts d'urgence et les priorités d'action."
+  },
+  {
+    theme: "Gestion des risques",
+    q: "Qu'est-ce que la gestion de crise pour un APS ?",
+    options: ["Gérer les conflits entre collègues", "Coordonner les actions immédiates face à un événement grave pour limiter les dommages et assurer la sécurité", "Rédiger un rapport après l'incident", "Appeler les secours et ne rien faire d'autre"],
+    correct: 1,
+    explanation: "Gestion de crise APS : alerter (hiérarchie + secours), protéger les personnes, appliquer les procédures d'urgence, maintenir la communication, noter tous les événements. L'APS est souvent le premier intervenant sur le terrain."
+  },
+
+  // ========== UV14 — MILIEU INDUSTRIEL / SITES SPÉCIFIQUES ==========
+  {
+    theme: "Milieu industriel",
+    q: "Qu'est-ce qu'une zone ATEX ?",
+    options: ["Une zone de stockage alimentaire", "Une zone à ATmosphère EXplosive où des gaz, vapeurs ou poussières peuvent former un mélange explosif", "Une zone administrative sécurisée", "Une zone de vidéosurveillance renforcée"],
+    correct: 1,
+    explanation: "ATEX = ATmosphère EXplosive. Zone où des substances inflammables peuvent former un mélange explosif. Réglementation stricte : matériels spéciaux, interdiction de fumer, pas d'étincelles. L'APS doit connaître et respecter les consignes ATEX."
+  },
+  {
+    theme: "Milieu industriel",
+    q: "Qu'est-ce qu'un permis de feu sur un site industriel ?",
+    options: ["L'autorisation d'embauche d'un agent", "Un document autorisant des travaux à risque (soudure, meulage) avec les mesures de sécurité à respecter", "L'autorisation de travailler la nuit", "Un document réservé aux zones classées secret défense"],
+    correct: 1,
+    explanation: "Permis de feu = autorisation formelle pour des travaux générant des risques (étincelles, chaleur). L'APS peut être chargé de vérifier la présence de ce permis avant de laisser des intervenants accéder à une zone sensible."
+  },
+  {
+    theme: "Milieu industriel",
+    q: "Qu'est-ce qu'un EPI ?",
+    options: ["Un équipement de surveillance électronique", "Un Équipement de Protection Individuelle porté par le travailleur (casque, gilet, lunettes, gants...)", "Un équipement collectif incendie", "Un système d'alarme individuelle"],
+    correct: 1,
+    explanation: "EPI = Équipement de Protection Individuelle. Sur un site industriel, l'APS peut être amené à porter ou vérifier le port des EPI obligatoires : casque, gilet haute visibilité, chaussures de sécurité, lunettes, bouchons d'oreilles selon les zones."
+  },
+  {
+    theme: "Milieu industriel",
+    q: "Sur un site industriel, que fait l'APS face à une fuite de gaz ?",
+    options: ["Chercher l'origine avec une lampe", "Évacuer la zone, ne pas créer d'étincelle, alerter le 18 et la direction, interdire l'accès", "Ouvrir les fenêtres et attendre", "Utiliser un extincteur CO2 sur la fuite"],
+    correct: 1,
+    explanation: "Fuite de gaz : NE PAS créer d'étincelle (pas de lumière, pas de téléphone dans la zone), évacuer immédiatement, alerter le 18 et la direction, interdire l'accès. Ne jamais tenter de colmater seul."
+  },
+  {
+    theme: "Milieu industriel",
+    q: "Qu'est-ce qu'un site classé Seveso ?",
+    options: ["Une zone de stockage alimentaire réglementée", "Un site industriel présentant des risques d'accidents majeurs liés à des substances dangereuses", "Une zone résidentielle protégée", "Un site classé monument historique"],
+    correct: 1,
+    explanation: "Site Seveso = établissement industriel présentant des risques d'accidents majeurs (explosion, incendie, pollution) liés à des substances dangereuses. Deux niveaux : seuil bas et seuil haut. Réglementation très stricte et plans d'urgence spécifiques (POI, PPI)."
+  },
+  {
+    theme: "Milieu industriel",
+    q: "Qu'est-ce qu'un PPI (Plan Particulier d'Intervention) ?",
+    options: ["Le planning des agents de sécurité", "Un plan établi par le préfet pour organiser les secours extérieurs en cas d'accident majeur sur un site dangereux", "Le plan intérieur d'évacuation du site", "Un contrat d'intervention avec une société de sécurité"],
+    correct: 1,
+    explanation: "PPI = Plan Particulier d'Intervention, établi par le Préfet pour les sites Seveso seuil haut. Organise l'intervention des secours extérieurs (pompiers, police, SAMU) en cas d'accident majeur. Complémentaire au POI (plan interne au site)."
+  },
+  {
+    theme: "Milieu industriel",
+    q: "Qu'est-ce qu'un plan de prévention entre une entreprise utilisatrice et une entreprise extérieure ?",
+    options: ["Un document commercial", "Un document définissant les mesures de prévention des risques lors de l'intervention d'une entreprise extérieure dans les locaux d'une entreprise utilisatrice", "Un plan d'évacuation commun", "Un accord de confidentialité"],
+    correct: 1,
+    explanation: "Plan de prévention = document obligatoire définissant les risques liés à l'interférence entre les activités et les mesures de prévention. L'APS doit vérifier que les intervenants extérieurs ont bien ce document avant d'accéder au site."
+  },
+
+  // ========== UV2 JURIDIQUE (complément) ==========
+  {
+    theme: "Appréhension / Droit",
+    q: "Qu'est-ce que le DRACAR ?",
+    options: ["Un registre de sécurité incendie", "Le fichier informatique pour la Délivrance Réglementaire des Autorisations et CARtes professionnelles des agents privés de sécurité", "Un diplôme de sécurité privée", "Un système de contrôle d'accès biométrique"],
+    correct: 1,
+    explanation: "DRACAR = Délivrance Réglementaire des Autorisations et CARtes professionnelles. Fichier informatique du CNAPS qui centralise les demandes et délivre les cartes professionnelles et autorisations pour les agents et entreprises de sécurité privée."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Qu'est-ce qu'une voie de fait ?",
+    options: ["Un chemin privé interdit au public", "Une atteinte illégale à la liberté ou à la propriété d'une personne par un acte matériel", "Une infraction commise sur la voie publique", "Un abus de pouvoir administratif"],
+    correct: 1,
+    explanation: "Voie de fait = atteinte illégale portée à la liberté ou à la propriété par un acte matériel. Ex : palper sans consentement, retenir quelqu'un illégalement. Un APS qui agit hors cadre légal commet une voie de fait engageant sa responsabilité pénale."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Quelles sont les obligations concernant la tenue d'un agent de sécurité ?",
+    options: ["L'agent peut porter n'importe quelle tenue", "La tenue doit être distinctive et ne pas prêter à confusion avec les uniformes des forces de l'ordre ou d'autres corps constitués", "La tenue doit ressembler à celle de la police", "Il n'y a aucune obligation réglementaire sur la tenue"],
+    correct: 1,
+    explanation: "La tenue de l'APS doit clairement se distinguer de celle des forces de l'ordre, pompiers ou autres corps constitués. Obligation réglementaire pour éviter toute usurpation de fonction ou tromperie du public."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Dans le Code pénal, comment est défini le vol ?",
+    options: ["L'appropriation frauduleuse de la chose d'autrui", "La soustraction frauduleuse de la chose d'autrui", "La dégradation volontaire d'un bien", "Le recel d'un bien volé"],
+    correct: 1,
+    explanation: "Le vol est défini à l'art. 311-1 CP comme 'la soustraction frauduleuse de la chose d'autrui'. 'Soustraction' implique une prise physique sans consentement. Distinct de l'escroquerie (tromperie) et de l'abus de confiance."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Qu'est-ce que la présomption d'innocence ?",
+    options: ["Toute personne est coupable jusqu'à preuve du contraire", "Toute personne suspectée est présumée innocente jusqu'à condamnation définitive par une décision de justice", "Un droit réservé aux mineurs", "Une présomption qui ne s'applique qu'aux crimes"],
+    correct: 1,
+    explanation: "Présomption d'innocence = principe fondamental : toute personne est présumée innocente jusqu'à condamnation définitive. L'APS ne peut pas traiter quelqu'un comme coupable avant jugement. Tout comportement contraire engage sa responsabilité."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Qu'est-ce qu'un flagrant délit au sens de l'article 53 du CPP ?",
+    options: ["Toute infraction commise dans les 24 heures précédentes", "L'infraction qui se commet actuellement, ou qui vient de se commettre, ou lorsque la personne est poursuivie par la clameur publique", "Uniquement les crimes punis de plus de 5 ans", "Toute infraction commise en présence d'un témoin"],
+    correct: 1,
+    explanation: "Art. 53 CPP : flagrant délit = infraction qui SE COMMET actuellement OU qui VIENT DE SE COMMETTRE, ou si la personne est poursuivie par clameur publique. Cette définition conditionne l'application de l'art. 73 CPP (appréhension citoyenne)."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Qu'est-ce que le bulletin n°2 du casier judiciaire ?",
+    options: ["Le relevé de toutes les condamnations", "Un extrait communiqué aux administrations pour certains emplois, excluant certaines condamnations légères", "Un document uniquement consulté par les tribunaux", "L'autorisation préalable du CNAPS"],
+    correct: 1,
+    explanation: "Le B2 est communiqué au CNAPS et à certains employeurs. Il mentionne la plupart des condamnations. L'absence de mentions incompatibles sur le B2 est une condition pour obtenir la carte professionnelle d'agent de sécurité."
+  },
+
+  // ========== UV3 CONFLITS (complément) ==========
+  {
+    theme: "Gestion de conflit",
+    q: "Quels sont les signes précurseurs d'une escalade vers la violence ?",
+    options: ["La politesse et le calme de l'interlocuteur", "Voix qui monte, agitation physique, invasion de l'espace personnel, gestes menaçants, regard fixe et agressif", "Le fait de se taire", "Le fait de partir sans un mot"],
+    correct: 1,
+    explanation: "Signaux d'alerte : voix qui monte et se tend, agitation motrice, invasion de l'espace personnel, poings serrés, mâchoires crispées, regard fixe menaçant. L'APS doit détecter ces signaux tôt pour intervenir avant la violence physique."
+  },
+  {
+    theme: "Gestion de conflit",
+    q: "Pourquoi faut-il éviter de hausser le ton face à une personne agressive ?",
+    options: ["Pour économiser sa voix", "Parce que hausser le ton aggrave la situation en entrant dans une surenchère verbale qui peut mener à la violence", "Parce que c'est interdit par le règlement", "Pour ne pas alerter les autres visiteurs"],
+    correct: 1,
+    explanation: "Hausser le ton = entrer dans la surenchère et valider le mode agressif. Cela aggrave la tension. L'APS doit maintenir une voix posée, ferme mais calme : paradoxalement plus efficace pour désamorcer qu'un ton autoritaire."
+  },
+
+  // ========== UV9 PALPATION (complément) ==========
+  {
+    theme: "Palpation / Fouille",
+    q: "Qu'est-ce que l'inspection visuelle des bagages ?",
+    options: ["L'agent ouvre et fouille lui-même le bagage", "Le propriétaire ouvre son bagage et présente le contenu à l'agent pour inspection visuelle, sans que l'agent y touche", "Un scan par rayon X uniquement", "L'agent confisque le bagage suspect"],
+    correct: 1,
+    explanation: "Inspection visuelle = le PROPRIÉTAIRE ouvre lui-même son bagage. L'agent regarde mais ne touche pas. Si refus, l'agent peut refuser l'accès mais ne peut pas fouiller de force. Nécessite le consentement et respecte les libertés individuelles."
+  },
+  {
+    theme: "Palpation / Fouille",
+    q: "La palpation de sécurité peut-elle être réalisée sur un mineur ?",
+    options: ["Oui, sans condition particulière", "Seulement en présence d'un représentant légal ou d'un adulte accompagnant, et avec leur consentement", "Non, jamais sur un mineur", "Oui, si le mineur consent seul"],
+    correct: 1,
+    explanation: "Palpation d'un mineur : exige la présence et le consentement d'un représentant légal ou d'un adulte accompagnant. Le consentement du seul mineur ne suffit pas juridiquement. Sans adulte référent consentant, la palpation est impossible."
+  }
+
 ];
 
 

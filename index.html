@@ -2332,7 +2332,7 @@
       <button class="mode-card" onclick="startQuiz('exam')">
         <div class="mode-number">03 / Évaluation</div>
         <div class="mode-title">Examen Blanc</div>
-        <div class="mode-desc">30 questions · 25 minutes · Conditions réelles. Pas de correction avant la fin.</div>
+        <div class="mode-desc">103 questions · 45s par question · Conditions réelles. Pas de correction avant la fin.</div>
         <div class="mode-meta">Démarrer</div>
       </button>
 
@@ -3007,13 +3007,13 @@
       pool = pool.filter(q => q.theme === theme);
     }
 
-    const count = mode === 'exam' ? 30 : mode === 'full' ? pool.length : Math.min(20, pool.length);
+    const count = mode === 'exam' ? 103 : mode === 'full' ? pool.length : Math.min(20, pool.length);
     state.quiz = shuffle(pool).slice(0, count);
 
     const timerEl = document.getElementById('timer');
     if (mode === 'exam') {
       timerEl.style.display = 'block';
-      state.timeLeft = 25 * 60;
+      state.timeLeft = 103 * 45; // 103 questions × 45s = 77min 15s
       updateTimer();
       state.timer = setInterval(tickTimer, 1000);
     } else {
