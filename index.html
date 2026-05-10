@@ -2342,61 +2342,24 @@
       <canvas id="chartCanvas"></canvas>
     </div>
 
-    <div class="parcours-hero" onclick="showParcours()">
-      <span class="parcours-badge">Parcours guidé · Pour débuter</span>
-      <h2 class="parcours-title">Apprends <em>dans l'ordre</em>,<br>étape par étape.</h2>
-      <p class="parcours-desc">13 étapes structurées par bloc thématique. Chaque étape : une fiche à lire, un mini-quiz pour valider. Aucune notion ne manque.</p>
-      <div class="parcours-progress">
-        <div class="parcours-progress-bar">
-          <div class="parcours-progress-fill" id="parcoursHeroFill" style="width: 0%"></div>
-        </div>
-        <div class="parcours-progress-text">
-          <span id="parcoursHeroText">Pas encore commencé</span>
-          <strong id="parcoursHeroPercent">0%</strong>
-        </div>
-      </div>
-      <div class="parcours-cta">Commencer le parcours</div>
-    </div>
-
     <div class="section-heading">Entraînement</div>
     <div class="modes">
-      <button class="mode-card" onclick="startQuiz('random')">
-        <div class="mode-number">01 / Libre</div>
-        <div class="mode-title">QCM Aléatoire</div>
-        <div class="mode-desc">20 questions au hasard. Correction immédiate, explications détaillées.</div>
-        <div class="mode-meta">Commencer</div>
-      </button>
-
-      <button class="mode-card" onclick="showThemes()">
-        <div class="mode-number">02 / Ciblé</div>
-        <div class="mode-title">Par Thème</div>
-        <div class="mode-desc">Révise un domaine précis : droit, incendie, appréhension, palpation...</div>
-        <div class="mode-meta">Choisir</div>
-      </button>
-
-      <button class="mode-card mode-card-gold" onclick="showThemeDuJour()">
-        <div class="mode-number">02b / Formation</div>
-        <div class="mode-title">📅 Thème du Jour</div>
-        <div class="mode-desc">Sélectionne le thème vu en formation aujourd'hui → toutes les questions dessus.</div>
-        <div class="mode-meta">Réviser</div>
-      </button>
-
       <button class="mode-card" onclick="startQuiz('exam')">
-        <div class="mode-number">03 / Évaluation</div>
+        <div class="mode-number">01 / Évaluation</div>
         <div class="mode-title">Examen Blanc</div>
         <div class="mode-desc">103 questions · 45s par question · Conditions réelles. Pas de correction avant la fin.</div>
         <div class="mode-meta">Démarrer</div>
       </button>
 
       <button class="mode-card" onclick="startQuiz('full')">
-        <div class="mode-number">03b / Complet</div>
+        <div class="mode-number">02 / Complet</div>
         <div class="mode-title">Toutes les questions</div>
         <div class="mode-desc" id="fullDesc">Toutes les questions de la base · Correction immédiate · Sans limite de temps.</div>
         <div class="mode-meta">Tout faire</div>
       </button>
 
       <button class="mode-card" id="errorsBtn" onclick="startErrorsMode()">
-        <div class="mode-number">04 / Correction</div>
+        <div class="mode-number">03 / Correction</div>
         <div class="mode-title">Mes Erreurs</div>
         <div class="mode-desc" id="errorsDesc">Rejoue uniquement les questions que tu as ratées.</div>
         <div class="mode-meta" style="display:flex; justify-content:space-between; align-items:center;">
@@ -2406,45 +2369,24 @@
       </button>
     </div>
 
-    <div class="section-heading">Apprentissage & Mémoire</div>
+    <div class="section-heading">Révision & Pratique</div>
     <div class="modes">
-      <button class="mode-card mode-card-gold" onclick="startTop15()">
-        <div class="mode-number">⚡ Veille exam</div>
-        <div class="mode-title">Top 15 · Incontournables</div>
-        <div class="mode-desc">Les 15 questions les plus tombées au TFP. 5 minutes chrono. À faire le matin du 22.</div>
-        <div class="mode-meta">Go</div>
-      </button>
-
-      <button class="mode-card" onclick="startSRS()">
-        <div class="mode-number">05 / SRS</div>
-        <div class="mode-title">Répétition Espacée</div>
-        <div class="mode-desc" id="srsDesc">Mémorisation long-terme façon Anki. Les questions ratées reviennent plus souvent.</div>
-        <div class="mode-meta">Étudier</div>
-      </button>
-
-      <button class="mode-card" onclick="showFiches()">
-        <div class="mode-number">06 / Synthèse</div>
-        <div class="mode-title">Fiches Mémo</div>
-        <div class="mode-desc" id="fichesDesc">Récap par thème : article 73, triangle du feu, SSI, palpation...</div>
-        <div class="mode-meta">Consulter</div>
-      </button>
-
       <button class="mode-card" onclick="startOral()">
-        <div class="mode-number">07 / Pratique</div>
+        <div class="mode-number">04 / Oral</div>
         <div class="mode-title">Oral TFP</div>
         <div class="mode-desc">Questions d'entretien classiques : SSI, CNAPS, missions, prise de service.</div>
         <div class="mode-meta">Réviser</div>
       </button>
 
       <button class="mode-card" onclick="showDefs()">
-        <div class="mode-number">08 / Lexique</div>
+        <div class="mode-number">05 / Lexique</div>
         <div class="mode-title">Définitions</div>
         <div class="mode-desc" id="defsDesc">Flashcards : sigles, concepts, articles de loi. Mémorise les termes du métier.</div>
         <div class="mode-meta">Apprendre</div>
       </button>
 
       <button class="mode-card mode-card-gold" onclick="showPratique()">
-        <div class="mode-number">09 / Pratique</div>
+        <div class="mode-number">06 / Pratique</div>
         <div class="mode-title">🎯 Épreuve Pratique</div>
         <div class="mode-desc">PC Sécurité ou Terrain · Procédures, vérifications, rapports · Prépare les 30 min devant jury.</div>
         <div class="mode-meta">S'entraîner</div>
