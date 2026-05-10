@@ -2546,31 +2546,69 @@
   </section>
 
   <!-- DÉFINITIONS : choix de catégorie -->
-  <!-- ===== ÉPREUVE PRATIQUE ===== -->
+  <!-- ===== ÉPREUVE PRATIQUE INTERACTIVE ===== -->
   <section id="pratiqueScreen" class="quiz-screen">
-    <div style="max-width:720px; margin:0 auto; padding: 0 0 4rem;">
-      <div class="hero-tag" style="margin-bottom:1.5rem;">Épreuve Pratique · 30 min · Jury</div>
-      <h2 class="section-title" style="margin-bottom:0.5rem;">Prépare l'épreuve <em>pratique</em></h2>
-      <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:2rem;">Le jury tire au sort entre 2 scénarios. Maîtrise les 2. Clique sur un scénario pour voir les procédures complètes.</p>
+    <div style="max-width:680px; margin:0 auto; padding:0 0 4rem;">
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
-        <button class="prat-scenario-btn active" id="btnPC" onclick="showScenario('pc')">
-          <div style="font-size:1.5rem; margin-bottom:0.5rem;">🖥</div>
-          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.95rem;">Scénario A</div>
-          <div style="font-size:0.78rem; color:var(--text-dim); margin-top:0.2rem;">Poste de Commandement</div>
+      <!-- Accueil simulateur -->
+      <div id="pratMenuView">
+        <div class="hero-tag" style="margin-bottom:1.5rem;">Simulateur · Épreuve Pratique</div>
+        <h2 class="section-title" style="margin-bottom:0.5rem;">Entraîne-toi comme <em>le jour J</em></h2>
+        <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:2rem;">Le jury te met face à une situation. Tu choisis comment réagir. Score et corrections à la fin.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+          <button class="prat-scenario-btn" onclick="startSimulator('pc')">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🖥</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;">Scénario A</div>
+            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem;">PC Sécurité</div>
+          </button>
+          <button class="prat-scenario-btn" onclick="startSimulator('terrain')">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🚶</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;">Scénario B</div>
+            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem;">Ronde Terrain</div>
+          </button>
+        </div>
+        <button class="prat-scenario-btn" style="width:100%;margin-bottom:2rem;" onclick="startSimulator('random')">
+          <div style="font-size:1.5rem;margin-bottom:0.3rem;">🎲</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;">Tirage au sort</div>
+          <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem;">Comme le vrai examen</div>
         </button>
-        <button class="prat-scenario-btn" id="btnTerrain" onclick="showScenario('terrain')">
-          <div style="font-size:1.5rem; margin-bottom:0.5rem;">🚶</div>
-          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.95rem;">Scénario B</div>
-          <div style="font-size:0.78rem; color:var(--text-dim); margin-top:0.2rem;">Ronde Terrain</div>
-        </button>
-      </div>
-
-      <div id="pratiqueContent"></div>
-
-      <div style="margin-top:3rem;">
         <button class="btn btn-ghost" onclick="showHome()">← Retour</button>
       </div>
+
+      <!-- Simulateur actif -->
+      <div id="pratSimView" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+          <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);" id="pratScenarioLabel">PC Sécurité</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:var(--gold);" id="pratProgress">Situation 1/8</div>
+        </div>
+
+        <div class="prat-block" style="border-color:var(--gold);margin-bottom:1.25rem;">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-faint);margin-bottom:0.6rem;" id="pratSituationType">Situation</div>
+          <div style="font-size:1rem;color:var(--text);line-height:1.6;font-weight:500;" id="pratSituationText"></div>
+        </div>
+
+        <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-bottom:0.75rem;">Que fais-tu ?</div>
+        <div id="pratChoices" style="display:flex;flex-direction:column;gap:0.6rem;"></div>
+
+        <div id="pratFeedback" style="display:none;margin-top:1.25rem;"></div>
+        <div id="pratNextBtn" style="display:none;margin-top:1rem;">
+          <button class="btn btn-primary" onclick="nextPratSituation()">Situation suivante →</button>
+        </div>
+      </div>
+
+      <!-- Résultats -->
+      <div id="pratResultsView" style="display:none;text-align:center;">
+        <div class="hero-tag" style="margin-bottom:1rem;">Simulation terminée</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:3.5rem;color:var(--gold);" id="pratScoreVal">0</div>
+        <div style="font-size:1rem;color:var(--text-dim);margin-bottom:0.5rem;" id="pratScoreLabel">/ 8</div>
+        <div style="font-size:0.9rem;color:var(--text-dim);margin-bottom:2rem;" id="pratScoreMsg"></div>
+        <div id="pratReview" style="text-align:left;margin-bottom:2rem;"></div>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="startSimulator(pratCurrentScenario)">Recommencer</button>
+          <button class="btn btn-ghost" onclick="showPratMenu()">← Menu</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2941,166 +2979,250 @@
   }
 
   // ===== ÉPREUVE PRATIQUE =====
-  const PRATIQUE_SCENARIOS = {
+  // ===== SIMULATEUR ÉPREUVE PRATIQUE =====
+  const PRAT_DATA = {
     pc: {
-      title: "Scénario A — Poste de Commandement Sécurité",
-      intro: "Tu es affecté au PC sécurité. Le jury te demande de prendre ton poste, gérer le matériel, puis fait survenir un incident que tu dois traiter et rapporter.",
-      blocks: [
+      label: "PC Sécurité · Scénario A",
+      situations: [
         {
-          title: "1 · PRISE DE SERVICE AU PC",
-          steps: [
-            "Se <strong>présenter</strong> à l'agent en poste et demander la passation de consignes",
-            "<strong>Lire la main courante</strong> : noter les événements, anomalies, consignes particulières de la vacation précédente",
-            "<strong>Vérifier le SSI</strong> : voyant vert = OK · jaune fixe = dérangement (noter + maintenance) · rouge = alarme",
-            "<strong>Vérifier la vidéosurveillance</strong> : toutes les caméras actives ? Image nette ? Enregistrement en cours ?",
-            "<strong>Vérifier le contrôle d'accès</strong> : système actif, lecteurs en ligne, aucune porte forcée signalée",
-            "<strong>Vérifier les moyens de communication</strong> : radio chargée et testée, téléphone opérationnel",
-            "<strong>Signer la main courante</strong> : heure de prise de service, nom, état général constaté"
+          type: "Prise de service",
+          text: "Tu arrives au PC sécurité pour prendre ton poste. Ton collègue est encore là. Quelle est ta première action ?",
+          choices: [
+            { text: "Je m'installe directement et je prends le contrôle du PC", correct: false, feedback: "❌ Mauvais. Tu dois d'abord demander la passation de consignes à ton collègue avant de prendre le poste." },
+            { text: "Je demande la passation de consignes et je lis la main courante depuis la dernière vacation", correct: true, feedback: "✅ Correct. Passation de consignes + lecture de la main courante = première étape obligatoire." },
+            { text: "Je vérifie d'abord le SSI avant toute chose", correct: false, feedback: "❌ Le SSI sera vérifié, mais la passation de consignes avec ton collègue vient en premier." },
+            { text: "J'appelle le PC pour signaler ma prise de service", correct: false, feedback: "❌ Tu ES au PC. La passation de consignes avec l'agent sortant est la priorité." }
           ]
         },
         {
-          title: "2 · INCIDENTS TYPES AU PC",
-          steps: [
-            "<strong>Alarme incendie :</strong> lever du doute (caméra ou radio terrain) → si feu réel : déclencher évacuation + 18 + noter heure. Si fausse alerte : réarmer SSI + noter main courante",
-            "<strong>Intrusion détectée :</strong> identifier sur caméra → alerter équipe terrain → appeler 17 si confirmé → noter toutes les actions horodatées",
-            "<strong>Colis suspect :</strong> ne pas toucher → évacuer la zone → appeler le 17 → informer hiérarchie → noter sur main courante",
-            "<strong>Personne en détresse :</strong> appeler le 15 → envoyer agent terrain → guider secours à l'entrée → rester en liaison",
-            "<strong>Panne contrôle d'accès :</strong> mode dégradé manuel → alerter maintenance → noter main courante → informer hiérarchie"
+          type: "Vérification SSI",
+          text: "Tu vérifies le tableau SSI en prise de service. Le voyant JAUNE FIXE est allumé. Que fais-tu ?",
+          choices: [
+            { text: "Je réarme le système immédiatement", correct: false, feedback: "❌ Le réarmement concerne le voyant jaune CLIGNOTANT (défaut de position d'un DAS), pas le jaune fixe." },
+            { text: "Je note le dérangement sur la main courante et j'avise le technicien de maintenance", correct: true, feedback: "✅ Correct. Voyant jaune fixe = dérangement technique. Action : noter sur main courante + appeler la maintenance." },
+            { text: "Je déclenche l'évacuation du bâtiment", correct: false, feedback: "❌ L'évacuation concerne le voyant ROUGE. Le jaune fixe est un dérangement technique, pas une alarme feu." },
+            { text: "J'ignore, c'est normal en début de vacation", correct: false, feedback: "❌ Aucune anomalie ne s'ignore. Tout dérangement doit être noté et signalé." }
           ]
         },
         {
-          title: "3 · RÉDACTION DU RAPPORT",
-          steps: [
-            "<strong>Méthode QQOQCP :</strong> Qui — Quoi — Où — Quand — Comment — Pourquoi",
-            "<strong>Contenu :</strong> heure exacte, nature de l\'incident, localisation, personnes impliquées, actions menées, suites données",
-            "<strong>Ton factuel uniquement :</strong> écrire ce qu\'on a VU et FAIT. Aucune opinion, aucune supposition",
-            "<strong>Signer et dater</strong> le rapport. Remettre à la hiérarchie."
+          type: "Alarme incendie",
+          text: "Une alarme incendie se déclenche au PC. Le voyant rouge s'allume. Quelle est ta séquence d'actions ?",
+          choices: [
+            { text: "J'appelle immédiatement le 18 sans vérification", correct: false, feedback: "❌ Tu dois d'abord effectuer un lever du doute (caméra ou radio terrain) pour confirmer s'il y a un feu réel." },
+            { text: "Lever du doute → si feu réel : déclencher évacuation + appeler 18 + noter heure sur main courante", correct: true, feedback: "✅ Parfait. Lever du doute d'abord, puis si confirmé : évacuation + 18 + traçabilité sur main courante." },
+            { text: "J'attends 5 minutes pour voir si c'est une fausse alarme", correct: false, feedback: "❌ En cas d'alarme, le lever du doute doit être immédiat. Attendre sans agir est une faute grave." },
+            { text: "Je réarme le SSI pour arrêter l'alarme sonore", correct: false, feedback: "❌ Réarmer sans lever du doute = désactiver l'alarme sans savoir s'il y a un feu. Dangereux et interdit." }
+          ]
+        },
+        {
+          type: "Intrusion",
+          text: "Tes caméras montrent une personne non identifiée dans une zone restreinte. Que fais-tu ?",
+          choices: [
+            { text: "Je quitte le PC pour aller confronter moi-même la personne", correct: false, feedback: "❌ Le PC ne doit jamais être laissé sans surveillance. Tu envoies une équipe terrain ou tu appelles le 17." },
+            { text: "J'identifie sur caméra, j'alerte une équipe terrain par radio, et j'appelle le 17 si l'intrusion est confirmée", correct: true, feedback: "✅ Correct. Identifier → alerter terrain → 17 si confirmé → noter toutes les actions horodatées sur main courante." },
+            { text: "J'appelle directement le 17 sans vérifier davantage", correct: false, feedback: "❌ Vérifier d'abord via les caméras. Appeler le 17 pour une présence autorisée non reconnue serait une erreur." },
+            { text: "Je coupe les caméras pour protéger la vie privée de la personne", correct: false, feedback: "❌ Jamais. Les caméras sont là pour la sécurité du site. Les couper lors d'une intrusion est une faute grave." }
+          ]
+        },
+        {
+          type: "Rapport",
+          text: "Un incident vient de se produire. Le jury te demande de rédiger un rapport. Quel contenu est correct ?",
+          choices: [
+            { text: "Je décris les faits, j'ajoute mon opinion sur ce qui s'est passé et je conclus sur la culpabilité de la personne", correct: false, feedback: "❌ Un rapport doit être 100% factuel. Aucune opinion, aucune conclusion sur la culpabilité. Tu décris ce que tu as VU et FAIT." },
+            { text: "Je rédige selon la méthode QQOQCP : Qui/Quoi/Où/Quand/Comment/Pourquoi, faits uniquement, signé et daté", correct: true, feedback: "✅ Parfait. QQOQCP + faits objectifs + signature + date = rapport conforme. Pas d'opinion, pas de supposition." },
+            { text: "Je note uniquement l'heure et le type d'incident pour aller vite", correct: false, feedback: "❌ Un rapport incomplet n'a pas de valeur légale. Il faut les 6 éléments QQOQCP minimum." },
+            { text: "Je rédige le rapport le lendemain pour avoir le recul nécessaire", correct: false, feedback: "❌ Le rapport se rédige immédiatement après l'incident pour garantir l'exactitude des faits et l'horodatage." }
           ]
         }
-      ],
-      alert: "<strong>Erreurs éliminatoires :</strong> ne pas noter l\'heure sur la main courante · oublier d\'appeler les secours · agir seul sans alerter · rapport avec des opinions",
-      tip: "<strong>Astuce jury :</strong> verbalisez tout à voix haute. \'Je vérifie le SSI... voyant vert, système en veille normale, je note sur la main courante à 14h32.\' Le silence = l\'oubli.",
-      terms: [
-        { k: "PC Sécurité", v: "Poste de Commandement" },
-        { k: "Main courante", v: "Registre chronologique horodaté" },
-        { k: "Voyant vert", v: "Système en veille normale" },
-        { k: "Voyant jaune fixe", v: "Dérangement → appeler maintenance" },
-        { k: "Voyant rouge", v: "Alarme feu / mise en sécurité" },
-        { k: "QQOQCP", v: "Qui/Quoi/Où/Quand/Comment/Pourquoi" },
-        { k: "Lever du doute", v: "Vérifier si l\'alarme est réelle" },
-        { k: "Réarmer", v: "Remettre le SSI en veille" },
-        { k: "Passation consignes", v: "Transmission entre agents" },
-        { k: "Mode dégradé", v: "Procédure alternative en cas de panne" }
       ]
     },
     terrain: {
-      title: "Scénario B — Ronde Terrain",
-      intro: "Tu effectues une ronde dans un site. Le jury fait survenir des incidents (porte ouverte, personne suspecte, feu, malaise...) que tu dois gérer et rapporter.",
-      blocks: [
+      label: "Ronde Terrain · Scénario B",
+      situations: [
         {
-          title: "1 · AVANT LA RONDE — ÉQUIPEMENT OBLIGATOIRE",
-          steps: [
-            "<strong>Radio</strong> chargée et testée — communication avec le PC avant de partir",
-            "<strong>DATI</strong> (Dispositif Alarme Travailleur Isolé) si travailleur isolé",
-            "<strong>Lampe torche</strong> fonctionnelle (obligatoire de nuit)",
-            "<strong>Carnet de ronde</strong> et stylo pour noter les anomalies",
-            "<strong>Clés du site</strong> et badge d\'accès aux zones à vérifier",
-            "Prévenir le PC : <strong>\'Je pars en ronde à 14h15\'</strong> — noter sur la main courante"
+          type: "Départ en ronde",
+          text: "Tu dois partir en ronde. Tu as ta radio. Qu'est-ce que tu vérifies encore avant de partir ?",
+          choices: [
+            { text: "Je pars directement, j'ai déjà ma radio", correct: false, feedback: "❌ Avant de partir : DATI si travailleur isolé, lampe torche, carnet de ronde, clés. ET tu préviens le PC de ton départ." },
+            { text: "Je vérifie DATI, lampe torche, carnet + stylo, clés du site, et je préviens le PC de l'heure de départ", correct: true, feedback: "✅ Correct. Équipement complet + information du PC avant départ. La main courante doit mentionner l'heure de départ." },
+            { text: "Je prends uniquement mes clés et mon carnet", correct: false, feedback: "❌ La radio, le DATI (si isolé), la lampe torche sont obligatoires. Et il faut prévenir le PC." },
+            { text: "Je demande d'abord l'autorisation écrite au responsable", correct: false, feedback: "❌ Il n'y a pas d'autorisation écrite à demander. Tu appliques les consignes du site et préviens le PC." }
           ]
         },
         {
-          title: "2 · POINTS DE CONTRÔLE EN RONDE",
-          steps: [
-            "<strong>Portes et fenêtres :</strong> fermeture correcte, absence d\'effraction, serrures intactes",
-            "<strong>Extincteurs :</strong> présents, accessibles, goupille intacte, date de vérif valide, signalétique correcte",
-            "<strong>Issues de secours :</strong> dégagées, non condamnées, signalétique visible, ouverture facile",
-            "<strong>Éclairage :</strong> fonctionnel dans toutes les zones y compris éclairage de sécurité (BAES)",
-            "<strong>Zones sensibles :</strong> serveur, coffre, stock — accès sécurisé, aucune anomalie",
-            "<strong>Badger les contrôleurs de ronde</strong> à chaque point (preuve horodatée de passage)",
-            "Rendre compte au PC en fin de ronde : <strong>\'Ronde terminée à 14h45, RAS\'</strong>"
+          type: "Anomalie en ronde",
+          text: "En ronde, tu trouves une porte normalement fermée à clé qui est grande ouverte, sans personne visible. Que fais-tu ?",
+          choices: [
+            { text: "J'entre immédiatement pour vérifier si quelqu'un est à l'intérieur", correct: false, feedback: "❌ Entrer seul dans une zone suspecte est dangereux. Tu sécurises le périmètre et tu alertes le PC." },
+            { text: "Je ferme la porte et je continue ma ronde sans noter", correct: false, feedback: "❌ Toute anomalie doit être notée avec l'heure et signalée au PC. Ne jamais ignorer une anomalie." },
+            { text: "Je sécurise le périmètre, j'alerte le PC par radio, je note l'heure et la localisation, j'attends les instructions", correct: true, feedback: "✅ Parfait. Sécuriser → alerter PC → noter → attendre instructions. Si intrusion suspectée : appeler le 17." },
+            { text: "J'appelle directement le 17 sans informer le PC", correct: false, feedback: "❌ Le PC doit toujours être informé en premier. C'est lui qui coordonne et qui décide d'alerter le 17 si nécessaire." }
           ]
         },
         {
-          title: "3 · INCIDENTS TYPES EN RONDE",
-          steps: [
-            "<strong>Porte normalement fermée ouverte :</strong> ne pas entrer seul → sécuriser périmètre → alerter PC → attendre renfort ou forces de l\'ordre (17)",
-            "<strong>Personne suspecte :</strong> observer sans confronter → noter signalement précis → alerter PC → appeler 17 si nécessaire",
-            "<strong>Début d\'incendie :</strong> déclencher DM (boîtier rouge) → alerter PC + 18 → extinction si feu naissant sans danger → évacuer",
-            "<strong>Malaise d\'une personne :</strong> sécuriser zone → appeler 15 → gestes de secours si formé → rester avec la victime → guider les secours",
-            "<strong>Dégradation / vol constaté :</strong> NE PAS toucher la scène → noter heure et localisation → alerter PC → appeler 17"
+          type: "Incendie en ronde",
+          text: "Tu découvres un début d'incendie (poubelle qui fume) dans un couloir. Le feu est petit et tu as un extincteur à portée. Quelle est ta séquence ?",
+          choices: [
+            { text: "J'attrape l'extincteur et j'attaque le feu immédiatement sans rien faire d'autre", correct: false, feedback: "❌ Avant d'attaquer : déclencher le DM (boîtier rouge) et alerter le PC + 18. Sinon personne n'est prévenu si ça s'emballe." },
+            { text: "Je déclenche le DM (boîtier rouge) → j'alerte le PC + 18 → si feu encore maîtrisable, j'attaque avec l'extincteur", correct: true, feedback: "✅ Correct. DM d'abord pour l'alarme, alerter les secours, PUIS attaquer si c'est sans danger. L'alerte prime toujours." },
+            { text: "J'évacue tout le monde et je n'essaie pas d'éteindre", correct: false, feedback: "❌ Sur un feu naissant et maîtrisable, une première attaque peut l'éteindre. Mais l'alerte doit toujours être donnée avant." },
+            { text: "J'attends les pompiers sans toucher à quoi que ce soit", correct: false, feedback: "❌ Sur un feu naissant et maîtrisable avec extincteur adapté, tu peux et dois tenter de l'éteindre, après avoir alerté." }
           ]
         },
         {
-          title: "4 · RAPPORT DE RONDE",
-          steps: [
-            "<strong>Heure de départ</strong> et heure de retour",
-            "<strong>Parcours effectué</strong> (zones visitées dans l\'ordre)",
-            "<strong>Anomalies</strong> avec localisation précise et heure exacte",
-            "<strong>Actions menées</strong> et personnes contactées",
-            "Si tout normal : noter <strong>RAS</strong> avec heure et signature"
+          type: "Malaise en ronde",
+          text: "Tu trouves une personne inconsciente au sol dans un bureau. Elle ne répond pas quand tu lui parles. Que fais-tu ?",
+          choices: [
+            { text: "Je la déplace vers l'entrée pour faciliter l'accès aux secours", correct: false, feedback: "❌ Ne jamais déplacer une victime inconsciente (risque de blessures graves). Sécuriser sur place et appeler le 15." },
+            { text: "Je sécurise la zone → j'appelle le 15 → je vérifie si elle respire → PLS si elle respire, RCP si elle ne respire pas → je reste avec elle jusqu'aux secours", correct: true, feedback: "✅ Parfait. Sécuriser → 15 → LVS → gestes adaptés → rester jusqu'aux secours. Ne jamais laisser la victime seule." },
+            { text: "J'appelle le PC et j'attends ses instructions avant de faire quoi que ce soit", correct: false, feedback: "❌ Face à un malaise, le 15 prime sur toute autre communication. Chaque seconde compte." },
+            { text: "Je lui mets de l'eau sur le visage pour la réveiller", correct: false, feedback: "❌ Jamais. Une personne inconsciente peut avoir une blessure grave. Les gestes de premiers secours sont les seuls adaptés." }
+          ]
+        },
+        {
+          type: "Fin de ronde",
+          text: "Ta ronde est terminée, tout était normal. Que dois-tu faire impérativement ?",
+          choices: [
+            { text: "Je retourne au PC et c'est tout", correct: false, feedback: "❌ Il faut rendre compte au PC (heure de retour) ET noter sur la main courante : heure départ, heure retour, parcours, RAS ou anomalies." },
+            { text: "Je rends compte au PC par radio : ronde terminée à [heure] + noter sur main courante : heure départ, retour, parcours effectué, RAS", correct: true, feedback: "✅ Parfait. La traçabilité est obligatoire. Même si tout est normal, la main courante doit le mentionner avec les horaires." },
+            { text: "Je note sur la main courante uniquement si j'ai trouvé des anomalies", correct: false, feedback: "❌ La main courante se tient TOUJOURS, même quand tout va bien. 'RAS' avec heure et signature est obligatoire." },
+            { text: "Je remplis le rapport d'anomalie pour chaque zone vérifiée", correct: false, feedback: "❌ Le rapport d'anomalie est réservé aux dysfonctionnements. Pour une ronde sans incident, c'est la main courante (RAS)." }
           ]
         }
-      ],
-      alert: "<strong>Erreurs éliminatoires :</strong> partir sans prévenir le PC · ronde sans radio · entrer seul dans une zone suspecte · ne pas appeler les secours face à un malaise · toucher une scène de crime",
-      tip: "<strong>Astuce jury :</strong> commentez chaque vérification à voix haute. \'Je vérifie la porte de secours 2 — fermée, pas d\'anomalie.\' Le jury ne voit que ce que vous verbalisez. Silence = oubli.",
-      terms: [
-        { k: "DATI / PTI", v: "Dispositif Alarme Travailleur Isolé" },
-        { k: "Ronde aléatoire", v: "Parcours/horaires variables" },
-        { k: "RAS", v: "Rien À Signaler" },
-        { k: "DM", v: "Déclencheur Manuel incendie (boîtier rouge)" },
-        { k: "Contrôleur de ronde", v: "Badge horodatant les passages" },
-        { k: "BAES", v: "Bloc Autonome Éclairage Sécurité" },
-        { k: "Périmètre de sécurité", v: "Zone d\'exclusion autour d\'un danger" },
-        { k: "Issue de secours", v: "Sortie obligatoirement dégagée" },
-        { k: "Rapport d\'anomalie", v: "Signalement d\'un dysfonctionnement" },
-        { k: "Rapport d\'incident", v: "Signalement d\'un fait grave" }
       ]
     }
   };
 
-  let currentScenario = 'pc';
+  let pratCurrentScenario = 'pc';
+  let pratCurrentIdx = 0;
+  let pratScore = 0;
+  let pratAnswers = [];
+  let pratData = null;
 
   function showPratique() {
     showScreen('pratiqueScreen');
-    showScenario('pc');
+    showPratMenu();
   }
 
-  function showScenario(type) {
-    currentScenario = type;
-    document.getElementById('btnPC').classList.toggle('active', type === 'pc');
-    document.getElementById('btnTerrain').classList.toggle('active', type === 'terrain');
-    const s = PRATIQUE_SCENARIOS[type];
-    const el = document.getElementById('pratiqueContent');
-    el.innerHTML =
-      '<div class="prat-block" style="border-color:var(--gold);margin-bottom:1.5rem;">' +
-        '<div style="font-family:Syne,sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:0.4rem;">' + s.title + '</div>' +
-        '<div style="font-size:0.85rem;color:var(--text-dim);line-height:1.5;">' + s.intro + '</div>' +
-      '</div>' +
-      s.blocks.map(function(b) {
-        return '<div class="prat-block">' +
-          '<div class="prat-block-title">' + b.title + '</div>' +
-          b.steps.map(function(step, i) {
-            return '<div class="prat-step">' +
-              '<div class="prat-step-num">' + (i+1) + '</div>' +
-              '<div class="prat-step-text">' + step + '</div>' +
-            '</div>';
-          }).join('') +
-        '</div>';
-      }).join('') +
-      '<div class="prat-alert">⚠ ' + s.alert + '</div>' +
-      '<div class="prat-tip">💡 ' + s.tip + '</div>' +
-      '<div class="prat-block">' +
-        '<div class="prat-block-title">Termes clés à maîtriser</div>' +
-        '<div class="prat-terms">' +
-          s.terms.map(function(t) {
-            return '<div class="prat-term">' +
-              '<div class="prat-term-key">' + t.k + '</div>' +
-              '<div class="prat-term-val">' + t.v + '</div>' +
-            '</div>';
-          }).join('') +
-        '</div>' +
-      '</div>';
+  function showPratMenu() {
+    document.getElementById('pratMenuView').style.display = 'block';
+    document.getElementById('pratSimView').style.display = 'none';
+    document.getElementById('pratResultsView').style.display = 'none';
   }
+
+  function startSimulator(scenario) {
+    if (scenario === 'random') {
+      scenario = Math.random() < 0.5 ? 'pc' : 'terrain';
+    }
+    pratCurrentScenario = scenario;
+    pratCurrentIdx = 0;
+    pratScore = 0;
+    pratAnswers = [];
+    pratData = PRAT_DATA[scenario];
+
+    document.getElementById('pratMenuView').style.display = 'none';
+    document.getElementById('pratSimView').style.display = 'block';
+    document.getElementById('pratResultsView').style.display = 'none';
+
+    renderPratSituation();
+  }
+
+  function renderPratSituation() {
+    const sit = pratData.situations[pratCurrentIdx];
+    const total = pratData.situations.length;
+
+    document.getElementById('pratScenarioLabel').textContent = pratData.label;
+    document.getElementById('pratProgress').textContent = `Situation ${pratCurrentIdx + 1}/${total}`;
+    document.getElementById('pratSituationType').textContent = sit.type;
+    document.getElementById('pratSituationText').textContent = sit.text;
+    document.getElementById('pratFeedback').style.display = 'none';
+    document.getElementById('pratNextBtn').style.display = 'none';
+
+    // Shuffle choices
+    const indices = sit.choices.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    const choicesEl = document.getElementById('pratChoices');
+    choicesEl.innerHTML = '';
+    indices.forEach(ci => {
+      const ch = sit.choices[ci];
+      const btn = document.createElement('button');
+      btn.className = 'option';
+      btn.style.cssText = 'text-align:left;padding:0.9rem 1.1rem;font-size:0.88rem;';
+      btn.textContent = ch.text;
+      btn.onclick = () => selectPratChoice(ci, sit, btn);
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  function selectPratChoice(choiceIdx, sit, clickedBtn) {
+    // Disable all buttons
+    document.querySelectorAll('#pratChoices .option').forEach(b => {
+      b.disabled = true;
+      if (b.textContent === sit.choices.find(c => c.correct).text) b.classList.add('correct');
+    });
+    const ch = sit.choices[choiceIdx];
+    if (!ch.correct) clickedBtn.classList.add('wrong');
+
+    if (ch.correct) pratScore++;
+    pratAnswers.push({ sit, chosen: ch });
+
+    // Show feedback
+    const fb = document.getElementById('pratFeedback');
+    fb.style.display = 'block';
+    fb.className = ch.correct ? 'prat-tip' : 'prat-alert';
+    fb.innerHTML = ch.feedback + (ch.correct ? '' : `<br><br><strong style="color:var(--gold)">Bonne réponse :</strong> ${sit.choices.find(c => c.correct).text}`);
+
+    // Next or finish
+    const nextBtn = document.getElementById('pratNextBtn');
+    nextBtn.style.display = 'block';
+    if (pratCurrentIdx >= pratData.situations.length - 1) {
+      nextBtn.innerHTML = '<button class="btn btn-primary" onclick="showPratResults()">Voir les résultats →</button>';
+    }
+  }
+
+  function nextPratSituation() {
+    pratCurrentIdx++;
+    if (pratCurrentIdx >= pratData.situations.length) {
+      showPratResults();
+    } else {
+      renderPratSituation();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function showPratResults() {
+    document.getElementById('pratSimView').style.display = 'none';
+    document.getElementById('pratResultsView').style.display = 'block';
+    const total = pratData.situations.length;
+    const pct = Math.round((pratScore / total) * 100);
+    document.getElementById('pratScoreVal').textContent = pratScore;
+    document.getElementById('pratScoreLabel').textContent = `/ ${total} — ${pct}%`;
+    let msg = '';
+    if (pct >= 80) msg = "Excellent ! Tu gères la situation comme un pro. 🏆";
+    else if (pct >= 60) msg = "Bon niveau. Revois les situations ratées. 💪";
+    else msg = "À retravailler. Lis bien les corrections et recommence. 📚";
+    document.getElementById('pratScoreMsg').textContent = msg;
+
+    const wrong = pratAnswers.filter(a => !a.chosen.correct);
+    const rev = document.getElementById('pratReview');
+    if (wrong.length > 0) {
+      rev.innerHTML = '<div style="font-family:Syne,sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:1rem;">À retravailler</div>' +
+        wrong.map(a => `<div class="prat-block" style="margin-bottom:0.75rem;">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-bottom:0.4rem;">${a.sit.type}</div>
+          <div style="font-size:0.82rem;color:var(--text-dim);margin-bottom:0.5rem;">${a.sit.text}</div>
+          <div style="font-size:0.8rem;color:var(--error,#fb8585);">Réponse choisie : ${a.chosen.text}</div>
+          <div style="font-size:0.8rem;color:var(--gold);margin-top:0.3rem;">✓ Correcte : ${a.sit.choices.find(c => c.correct).text}</div>
+        </div>`).join('');
+    } else {
+      rev.innerHTML = '<div class="prat-tip">💡 Parfait score ! Tu maîtrises ce scénario.</div>';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 
   function showThemeDuJour() {
     const modal = document.getElementById('themeDuJourModal');
