@@ -3307,7 +3307,7 @@
 
     const title = document.createElement('div');
     title.style.cssText = 'font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.85rem;';
-    title.textContent = '✓ Coche les étapes dans l'ordre';
+    title.textContent = "✓ Coche les étapes dans l'ordre";
     checklist.appendChild(title);
 
     let checked = 0;
@@ -3333,7 +3333,7 @@
     const validateBtn = document.createElement('button');
     validateBtn.className = 'btn btn-primary';
     validateBtn.style.cssText = 'margin-top:0.75rem;width:100%;opacity:0.5;transition:opacity 0.2s;';
-    validateBtn.textContent = 'J'ai coché les étapes → Valider';
+    validateBtn.textContent = "J'ai coché les étapes → Valider";
     validateBtn.onclick = () => {
       const score = checked / sit.tips.length;
       const isGood = score >= 0.6;
