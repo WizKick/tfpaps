@@ -3171,8 +3171,14 @@
     }
 
     document.getElementById('srsFeedback').classList.remove('active');
-    document.getElementById('nextBtn').style.display = 'inline-block';
-    document.getElementById('nextBtn').textContent = state.currentIndex === state.quiz.length - 1 ? 'Voir résultats →' : 'Question suivante →';
+
+    if (state.mode === 'exam') {
+      // Mode exam : avance automatiquement après 1.2s (juste le temps de voir la bonne réponse)
+      setTimeout(() => nextQuestion(), 1200);
+    } else {
+      document.getElementById('nextBtn').style.display = 'inline-block';
+      document.getElementById('nextBtn').textContent = state.currentIndex === state.quiz.length - 1 ? 'Voir résultats →' : 'Question suivante →';
+    }
   }
 
   function nextQuestion() {

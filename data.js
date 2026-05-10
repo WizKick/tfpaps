@@ -2193,6 +2193,129 @@ const questionsQCM = [
     options: ["Oui, sans condition particulière", "Seulement en présence d'un représentant légal ou d'un adulte accompagnant, et avec leur consentement", "Non, jamais sur un mineur", "Oui, si le mineur consent seul"],
     correct: 1,
     explanation: "Palpation d'un mineur : exige la présence et le consentement d'un représentant légal ou d'un adulte accompagnant. Le consentement du seul mineur ne suffit pas juridiquement. Sans adulte référent consentant, la palpation est impossible."
+  },
+
+  // ========== CHIFFRES CLÉS & DÉLAIS RÉGLEMENTAIRES ==========
+  {
+    theme: "Chiffres clés",
+    q: "Quelle est la durée de validité de la carte professionnelle APS ?",
+    options: ["1 an", "3 ans", "5 ans", "10 ans"],
+    correct: 2,
+    explanation: "La carte professionnelle est valable 5 ans. Son renouvellement nécessite une formation continue et une nouvelle vérification du casier judiciaire par le CNAPS."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quelle est la durée maximale de conservation des images de vidéosurveillance ?",
+    options: ["8 jours", "1 mois (30 jours)", "3 mois", "6 mois"],
+    correct: 1,
+    explanation: "Durée maximale légale : 1 mois (30 jours). Au-delà, les images doivent être automatiquement effacées, sauf réquisition judiciaire en cours."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Dans quel délai l'employeur doit-il déclarer un accident du travail à la CPAM ?",
+    options: ["24 heures", "48 heures ouvrables", "72 heures", "8 jours"],
+    correct: 1,
+    explanation: "L'employeur dispose de 48 heures ouvrables (jours ouvrés) pour déclarer l'accident du travail à la CPAM. Le salarié doit en informer son employeur dans les 24 heures."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quelle est la distance maximale à parcourir pour atteindre un déclencheur manuel d'alarme incendie ?",
+    options: ["10 mètres", "20 mètres", "30 mètres", "50 mètres"],
+    correct: 2,
+    explanation: "Aucun point d'un ERP ne doit être à plus de 30 mètres d'un déclencheur manuel (boîtier rouge brisable). Cette distance maximale est fixée par la réglementation incendie."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quelle est l'autonomie minimale de l'éclairage de sécurité en ERP ?",
+    options: ["30 minutes", "1 heure", "2 heures", "4 heures"],
+    correct: 1,
+    explanation: "L'éclairage de sécurité (BAES) doit avoir une autonomie minimale d'1 heure en ERP. Il doit s'allumer automatiquement en cas de coupure d'alimentation électrique."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "À quelle fréquence les extincteurs doivent-ils être vérifiés par une société agréée ?",
+    options: ["Tous les 6 mois", "Tous les ans", "Tous les 2 ans", "Tous les 5 ans"],
+    correct: 1,
+    explanation: "Vérification annuelle obligatoire par une société agréée. L'APS effectue un contrôle visuel quotidien (5 points), mais la vérification technique approfondie est annuelle et doit être consignée dans le registre de sécurité."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quel est le rythme de compression lors d'un massage cardiaque (RCP) ?",
+    options: ["60 à 80 compressions par minute", "100 à 120 compressions par minute", "140 à 160 compressions par minute", "30 compressions par minute"],
+    correct: 1,
+    explanation: "Rythme RCP : 100 à 120 compressions par minute, profondeur 5 à 6 cm, alternées avec 2 insufflations (30/2). Ce rythme est validé par les recommandations internationales de réanimation."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quel est le montant maximum de l'amende pour exercice illégal d'une activité de sécurité privée ?",
+    options: ["3 750 €", "15 000 €", "30 000 €", "75 000 €"],
+    correct: 2,
+    explanation: "Exercice illégal : jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende. Cette sanction s'applique à l'agent sans carte professionnelle ET à l'employeur qui l'emploie en connaissance de cause."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quelle est la durée minimale d'un exercice d'évacuation obligatoire par an dans un ERP ?",
+    options: ["1 exercice par an minimum", "2 exercices par an minimum", "4 exercices par an minimum", "1 exercice tous les 2 ans"],
+    correct: 0,
+    explanation: "1 exercice d'évacuation minimum par an dans tout ERP. Exception : 2 fois par an pour les ERP avec locaux à sommeil (hôtels, hôpitaux, internats), dont au moins un de nuit. À consigner obligatoirement dans le registre de sécurité."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "À quelle distance minimum se placer pour utiliser un extincteur CO2 ?",
+    options: ["0,5 mètre", "1 mètre", "2 mètres", "5 mètres"],
+    correct: 1,
+    explanation: "Distance minimum 1 mètre pour le CO2. Le jet de CO2 à -78°C peut provoquer des brûlures par le froid et des asphyxies à courte portée. Pour l'eau pulvérisée : attaquer à 2-3 mètres minimum."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Combien de temps peut-on retenir une personne appréhendée au titre de l'article 73 CPP ?",
+    options: ["30 minutes maximum", "2 heures maximum", "4 heures maximum", "Le temps strictement nécessaire pour la remettre à un OPJ — aucune limite fixe mais doit être immédiat"],
+    correct: 3,
+    explanation: "Aucune durée maximale fixée, mais la remise doit être IMMÉDIATE. Toute rétention prolongée constitue une séquestration (délit pénal). En pratique, l'agent doit appeler le 17 dès l'appréhension et attendre l'arrivée des forces de l'ordre."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Quelle est la note minimale pour valider une UV à l'examen TFP APS ?",
+    options: ["8/20", "10/20", "12/20", "14/20"],
+    correct: 2,
+    explanation: "Note minimale : 12/20 par UV pour la valider. Entre 8 et 12 : ajourné, peut se représenter à une nouvelle session. En dessous de 8 : doit refaire la formation correspondante. Chaque UV est évaluée indépendamment."
+  },
+  {
+    theme: "Chiffres clés",
+    q: "Combien de personnes minimum sont nécessaires pour utiliser un RIA (Robinet d'Incendie Armé) ?",
+    options: ["1 seule personne suffit", "2 personnes minimum", "3 personnes minimum", "4 personnes minimum"],
+    correct: 1,
+    explanation: "2 personnes minimum pour un RIA : une pour tenir la lance et diriger le jet, une autre pour ouvrir le robinet et dérouler/contrôler le tuyau. Utiliser seul un RIA est dangereux et inefficace."
+  },
+
+  // ========== UNIFORME & IDENTIFICATION ==========
+  {
+    theme: "Appréhension / Droit",
+    q: "Que doit obligatoirement porter un agent de sécurité en service pour s'identifier ?",
+    options: ["Uniquement son badge photo", "Sa carte professionnelle + un badge d'identification visible avec son nom, prénom et le nom de l'entreprise", "Uniquement le nom de l'entreprise sur l'uniforme", "Aucune obligation d'identification visuelle"],
+    correct: 1,
+    explanation: "L'APS doit porter visiblement : sa carte professionnelle (à présenter sur demande) et un badge d'identification indiquant nom, prénom et entreprise. L'identification permet au public de savoir à qui il s'adresse et de vérifier la légitimité de l'agent."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Un agent de sécurité peut-il exercer en civil (sans uniforme) ?",
+    options: ["Non, l'uniforme est toujours obligatoire", "Oui, dans certaines missions spécifiques (surveillance discrète, protection rapprochée) avec autorisation", "Oui, uniquement de nuit", "Non, c'est interdit dans tous les cas"],
+    correct: 1,
+    explanation: "Dans certaines missions spécifiques (surveillance discrète en magasin, protection rapprochée), l'agent peut exercer en civil. Cette dérogation doit être prévue dans le contrat et autorisée. Dans ce cas, la carte professionnelle reste obligatoire."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "Que risque un agent qui se présente faussement comme policier ou gendarme ?",
+    options: ["Un simple avertissement", "Une infraction pénale pour usurpation de titre ou de fonctions (art. 433-15 CP)", "La suspension de sa carte professionnelle uniquement", "Aucune sanction si c'était pour une bonne raison"],
+    correct: 1,
+    explanation: "Usurpation de titre ou de fonctions (art. 433-15 CP) : délit pénal pouvant être puni d'un an d'emprisonnement et 15 000 € d'amende. Se présenter comme policier alors qu'on est APS, même verbalement, constitue ce délit."
+  },
+  {
+    theme: "Appréhension / Droit",
+    q: "L'agent de sécurité doit-il présenter sa carte professionnelle sur simple demande ?",
+    options: ["Non, seulement aux forces de l'ordre", "Oui, à toute personne qui en fait la demande (forces de l'ordre, agents du CNAPS, et toute personne concernée par sa mission)", "Seulement à son employeur", "Non, c'est un document confidentiel"],
+    correct: 1,
+    explanation: "L'APS doit présenter sa carte professionnelle sur simple demande des forces de l'ordre, des agents du CNAPS en contrôle, et de toute personne directement concernée par son intervention. Refuser de la présenter est une infraction."
   }
 
 ];
