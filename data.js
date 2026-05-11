@@ -20,7 +20,7 @@ const questionsQCM = [
   {
     theme: "Contrôle d'accès",
     q: "Dans quel cadre un agent de sécurité peut-il demander une pièce d'identité à une personne ?",
-    options: ["En cas de comportement suspect ou pour l'accès à un site sécurisé", "À tout moment, sans justification", "Uniquement sur ordre des forces de l'ordre", "Pour vérifier l'âge de la personne"],
+    options: ["En cas de comportement suspect ou pour l'accès à un site sécurisé", "À tout moment et sans avoir à fournir la moindre justification légale", "Uniquement sur ordre des forces de l'ordre", "Pour vérifier l'âge de la personne"],
     correct: 0,
     explanation: "L'APS peut demander une pièce d'identité dans le cadre d'un contrôle d'accès sécurisé, ou face à un comportement suspect, mais pas de manière arbitraire."
   },
@@ -34,14 +34,14 @@ const questionsQCM = [
   {
     theme: "Contrôle d'accès",
     q: "Quel est l'intérêt de la biométrie dans le contrôle d'accès ?",
-    options: ["Identifier les personnes par leurs caractéristiques physiques uniques", "Mesurer la température corporelle", "Remplacer les caméras de surveillance", "Accélérer le passage aux portiques de sécurité"],
+    options: ["Identifier les personnes par leurs caractéristiques physiques uniques", "Mesurer la température corporelle, selon les dispositions légales applicables", "Remplacer les caméras de surveillance", "Accélérer le passage aux portiques de sécurité"],
     correct: 0,
     explanation: "La biométrie identifie les personnes via des caractéristiques physiques uniques (empreinte, iris, visage)."
   },
   {
     theme: "Contrôle d'accès",
     q: "Dans quel cas un agent de sécurité est-il en droit de refuser l'accès à une personne ?",
-    options: ["Lorsque la personne refuse de se soumettre aux contrôles de sécurité", "Lorsque la personne est mal habillée", "Lorsque la personne semble nerveuse", "Lorsque la personne ne parle pas la langue du pays"],
+    options: ["Lorsque la personne refuse de se soumettre aux contrôles de sécurité", "Lorsque la personne est mal habillée", "Lorsque la personne semble nerveuse, selon les dispositions légales applicables", "Lorsque la personne ne parle pas la langue du pays"],
     correct: 0,
     explanation: "Le refus d'accès est légitime quand la personne refuse les contrôles prévus par les consignes du site."
   },
@@ -131,7 +131,7 @@ const questionsQCM = [
   {
     theme: "Appréhension / Droit",
     q: "Pouvez-vous appréhender un individu en surface de vente ?",
-    options: ["Non, sauf si l'infraction n'a aucun lien avec la vente", "Oui, peut être", "Aucune des autres réponses", "Non dans tous les cas", "Oui dans tous les cas"],
+    options: ["Non, sauf si l'infraction n'a aucun lien avec la vente", "Oui, peut être, selon la réglementation actuellement en vigueur", "Aucune des autres réponses, selon les dispositions légales applicables", "Non dans tous les cas, selon la réglementation actuellement en vigueur", "Oui dans tous les cas, selon la réglementation actuellement en vigueur"],
     correct: 0,
     explanation: "L'appréhension en surface de vente n'est possible que pour une infraction étrangère au processus de vente (ex : agression)."
   },
@@ -259,7 +259,7 @@ const questionsQCM = [
   {
     theme: "Gestion de conflit",
     q: "Comment un agent de sécurité doit-il réagir face à une personne agressive ?",
-    options: ["Utiliser immédiatement la force", "Ignorer la personne", "Tenter de calmer la situation en parlant doucement et en gardant ses distances", "Appeler la police et fuir"],
+    options: ["Intervenir physiquement sans attendre pour maîtriser la personne", "Ignorer la personne", "Tenter de calmer la situation en parlant doucement et en gardant ses distances", "Appeler la police et fuir"],
     correct: 2,
     explanation: "La désescalade verbale avec distance de sécurité est la règle d'or."
   },
@@ -296,7 +296,7 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "Quand y a-t-il inflammation ?",
-    options: ["Quand l'incandescence est atteinte", "Lorsque la température est suffisante, les vapeurs s'enflamment au contact de l'oxygène", "Quand les fumées sont suffisamment chaudes", "Aucune des réponses précédentes"],
+    options: ["Quand l'incandescence est atteinte, selon les dispositions légales applicables", "Lorsque la température est suffisante, les vapeurs s'enflamment au contact de l'oxygène", "Quand les fumées sont suffisamment chaudes", "Aucune des réponses précédentes, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "L'inflammation survient quand les vapeurs de combustible atteignent leur température d'inflammation au contact de l'O₂."
   },
@@ -331,14 +331,14 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "Un agent de sécurité doit savoir lire un plan pour repérer :",
-    options: ["Les moyens de secours, les accès", "Les divers locaux à risques du site, les accès, les moyens de secours, les circuits de rondes", "Les issues, les extincteurs, les téléphones d'alerte", "Aucune des réponses précédentes"],
+    options: ["Les moyens de secours, les accès, selon les dispositions légales applicables", "Les divers locaux à risques du site, les accès, les moyens de secours, les circuits de rondes", "Les issues, les extincteurs, les téléphones d'alerte", "Aucune des réponses précédentes, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "La lecture de plan doit être complète : locaux à risques, accès, moyens de secours ET circuits de ronde."
   },
   {
     theme: "Incendie",
     q: "L'unité de signalisation sur votre CMSI présente un voyant rouge clignotant que devez-vous faire immédiatement et dans tous les cas ?",
-    options: ["Déclencher l'alarme générale", "Informer dès son arrivée le commandant des opérations de secours", "Appeler vos agents en ronde pour qu'ils regagnent le PC immédiatement", "Attendre les consignes de votre chef de service", "Utiliser la fonction de l'UCMC et télécommander le DAS, à distance, afin de le mettre en position de sécurité"],
+    options: ["Déclencher l'alarme générale, selon les dispositions légales applicables", "Informer dès son arrivée le commandant des opérations de secours", "Appeler vos agents en ronde pour qu'ils regagnent le PC immédiatement", "Attendre les consignes de votre chef de service", "Utiliser la fonction de l'UCMC et télécommander le DAS, à distance, afin de le mettre en position de sécurité"],
     correct: 4,
     explanation: "Voyant rouge clignotant = défaut de position d'attente. On télécommande le DAS pour le mettre en position de sécurité via l'UCMC."
   },
@@ -366,7 +366,7 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "Quelle est la première chose à faire lors de la découverte d'un incendie ?",
-    options: ["Courir chercher de l'aide", "Utiliser un extincteur", "Déclencher l'alarme incendie", "Prendre des photos"],
+    options: ["Courir chercher de l'aide", "Utiliser un extincteur", "Déclencher l'alarme incendie", "Photographier la scène sans toucher aux éléments avant l'arrivée des autorités"],
     correct: 2,
     explanation: "Ordre : alerter (déclencher l'alarme) > alarmer les secours > attaquer le feu si possible sans se mettre en danger."
   },
@@ -426,14 +426,14 @@ const questionsQCM = [
   {
     theme: "Rondes",
     q: "Le but d'une ronde aléatoire c'est :",
-    options: ["De piéger le personnel", "De surveiller la température extérieure", "De prévenir les risques incendie et les actes de malveillance", "De faire une ronde à heure fixe", "Aucune des réponses précédentes"],
+    options: ["De piéger le personnel, cette option ne correspond pas à la procédure réglementaire", "De surveiller la température extérieure", "De prévenir les risques incendie et les actes de malveillance", "De faire une ronde à heure fixe, selon les dispositions légales applicables", "Aucune des réponses précédentes, selon les dispositions légales applicables"],
     correct: 2,
     explanation: "L'objectif d'une ronde : prévention des risques incendie et détection des actes de malveillance."
   },
   {
     theme: "Rondes",
     q: "Quelle est la principale responsabilité d'un agent lors d'une ronde de sécurité ?",
-    options: ["Dormir entre les rondes", "Chercher des objets de valeur", "Vérifier la sécurité des installations et signaler tout problème", "Appréhender tout intrus rencontré"],
+    options: ["Dormir entre les rondes, cette option ne correspond pas à la procédure réglementaire", "Chercher des objets de valeur, selon les dispositions légales applicables", "Vérifier la sécurité des installations et signaler tout problème", "Appréhender tout intrus rencontré, selon les dispositions légales applicables"],
     correct: 2,
     explanation: "Une ronde = vérification préventive + signalement des anomalies. On n'appréhende pas par défaut."
   },
@@ -479,7 +479,7 @@ const questionsQCM = [
   {
     theme: "Palpation / Fouille",
     q: "Dans quel cas un agent de sécurité est-il autorisé à effectuer une palpation de sécurité ?",
-    options: ["Toujours, dès qu'il en ressent le besoin", "Lorsqu'il y a un soupçon raisonnable de possession d'objets dangereux", "Après avoir informé la police", "Lorsque la personne refuse de coopérer"],
+    options: ["Toujours, dès qu'il en ressent le besoin", "Lorsqu'il y a un soupçon raisonnable de possession d'objets dangereux", "Après avoir informé la police, selon les dispositions légales applicables", "Lorsque la personne refuse de coopérer"],
     correct: 1,
     explanation: "La palpation suppose un soupçon raisonnable et le consentement. Dans les cas prévus : Vigipirate, grands événements."
   },
@@ -500,7 +500,7 @@ const questionsQCM = [
   {
     theme: "Palpation / Fouille",
     q: "Quelle est la différence entre une palpation de sécurité et une fouille ?",
-    options: ["Une fouille est plus invasive et nécessite l'intervention des forces de l'ordre", "Une palpation se fait sans contact physique", "Une fouille est effectuée uniquement sur les véhicules", "Il n'y a pas de différence"],
+    options: ["Une fouille est plus invasive et nécessite l'intervention des forces de l'ordre", "Une palpation se fait sans contact physique", "Une fouille est effectuée uniquement sur les véhicules", "Il n'y a pas de différence, selon les dispositions légales applicables"],
     correct: 0,
     explanation: "Palpation = tapotage par-dessus les vêtements par APS formé. Fouille = inspection approfondie réservée aux OPJ."
   },
@@ -514,7 +514,7 @@ const questionsQCM = [
   {
     theme: "Palpation / Fouille",
     q: "Que signifie \"fouille au corps\" ?",
-    options: ["Un examen médical complet", "Une vérification physique des vêtements et des effets personnels d'une personne", "Une analyse des empreintes digitales", "Une inspection des chaussures"],
+    options: ["Un examen médical complet, selon les dispositions légales applicables", "Une vérification physique des vêtements et des effets personnels d'une personne", "Une analyse des empreintes digitales, selon les dispositions légales applicables", "Une inspection des chaussures, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "La fouille au corps = inspection physique des vêtements et effets personnels. Réservée aux forces de l'ordre."
   },
@@ -597,7 +597,7 @@ const questionsQCM = [
   {
     theme: "Déontologie",
     q: "Quelle est la principale obligation d'un agent de sécurité concernant le respect de la vie privée des individus surveillés ?",
-    options: ["Il n'a aucune obligation spécifique", "Il doit signaler toutes les infractions à son supérieur", "Il doit s'assurer que les informations personnelles recueillies ne sont pas divulguées", "Il peut partager les informations avec ses collègues"],
+    options: ["Il n'a aucune obligation spécifique, selon les dispositions légales applicables", "Il doit signaler toutes les infractions à son supérieur", "Il doit s'assurer que les informations personnelles recueillies ne sont pas divulguées", "Il peut partager les informations avec ses collègues"],
     correct: 2,
     explanation: "Obligation de discrétion et de confidentialité sur toutes les informations recueillies en service."
   },
@@ -641,7 +641,7 @@ const questionsQCM = [
   {
     theme: "Équipement / Intervention",
     q: "Quelle est la première étape d'une intervention en cas de crise ?",
-    options: ["Comprendre la situation en recueillant toutes les informations disponibles", "Appeler les médias", "Bloquer toutes les sorties", "Prendre des photos de la scène"],
+    options: ["Comprendre la situation en recueillant toutes les informations disponibles", "Appeler les médias", "Bloquer toutes les sorties", "Photographier la scène et collecter les témoignages avant d'alerter"],
     correct: 0,
     explanation: "La méthode SAFER : S'informer avant d'agir. Collecter un maximum d'infos pour une réponse adaptée."
   },
@@ -662,7 +662,7 @@ const questionsQCM = [
   {
     theme: "Équipement / Intervention",
     q: "Quelle est la meilleure façon de prévenir les risques d'intrusion dans un bâtiment ?",
-    options: ["Laisser toutes les lumières allumées", "Installer des systèmes de contrôle d'accès efficaces et surveiller les points d'entrée", "Fermer toutes les fenêtres", "Augmenter le nombre de visiteurs"],
+    options: ["Laisser toutes les lumières allumées, selon les dispositions légales applicables", "Installer des systèmes de contrôle d'accès efficaces et surveiller les points d'entrée", "Fermer toutes les fenêtres, selon les dispositions légales applicables", "Augmenter le nombre de visiteurs, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Prévention intrusion = combinaison contrôle d'accès + surveillance active des points d'entrée."
   },
@@ -678,21 +678,21 @@ const questionsQCM = [
   {
     theme: "Vidéosurveillance / CNIL",
     q: "Pendant combien de temps des enregistrements vidéo peuvent-ils être gardés ?",
-    options: ["Un mois minimum", "Un an", "Il n'y a pas de durée imposée", "Un mois maximum ou plus s'il y a enquête judiciaire"],
+    options: ["Un mois minimum, utilisé uniquement dans des cas très spécifiques", "Un an, utilisé uniquement dans des cas très spécifiques", "Il n'y a pas de durée imposée", "Un mois maximum ou plus s'il y a enquête judiciaire"],
     correct: 3,
     explanation: "Durée de conservation : 1 mois maximum, sauf réquisition judiciaire prolongeant la conservation."
   },
   {
     theme: "Vidéosurveillance / CNIL",
     q: "Quel est le rôle de la CNIL concernant les systèmes de vidéosurveillance ?",
-    options: ["Installer les caméras", "Contrôler la conformité des systèmes de vidéosurveillance avec la réglementation sur la protection des données personnelles", "Former les agents de sécurité à l'utilisation des caméras", "Distribuer des autorisations pour les installations de vidéosurveillance"],
+    options: ["Installer les caméras, cette option ne correspond pas à la procédure réglementaire", "Contrôler la conformité des systèmes de vidéosurveillance avec la réglementation sur la protection des données personnelles", "Former les agents de sécurité à l'utilisation des caméras", "Distribuer des autorisations pour les installations de vidéosurveillance"],
     correct: 1,
     explanation: "La CNIL contrôle la conformité des systèmes avec le RGPD et le respect des données personnelles."
   },
   {
     theme: "Vidéosurveillance / CNIL",
     q: "Quelle est la fonction principale d'un détecteur de mouvement ?",
-    options: ["Détecter les variations de température", "Détecter les mouvements suspects dans une zone protégée", "Enregistrer les conversations", "Surveiller le niveau sonore"],
+    options: ["Détecter les variations de température", "Détecter les mouvements suspects dans une zone protégée", "Enregistrer les conversations", "Surveiller le niveau sonore, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Détecteur de mouvement = détection d'intrusion dans une zone protégée (IR, volumétrique)."
   },
@@ -751,7 +751,7 @@ const questionsQCM = [
   {
     theme: "Divers",
     q: "Quelle est la principale mission d'un agent de sécurité en zone portuaire ?",
-    options: ["Assurer la sécurité des navires", "Contrôler l'accès des personnes et des marchandises", "Surveiller la météo", "Réparer les bateaux"],
+    options: ["Assurer la sécurité des navires", "Contrôler l'accès des personnes et des marchandises", "Surveiller la météo, cette option ne correspond pas à la procédure réglementaire", "Réparer les bateaux, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "En zone portuaire : contrôle des accès aux zones réglementées (code ISPS)."
   },
@@ -759,7 +759,7 @@ const questionsQCM = [
   {
     theme: "Divers",
     q: "Quelle est la définition d'un \"plan de prévention des risques\" ?",
-    options: ["Un document décrivant les mesures à prendre pour limiter les risques sur un site", "Un plan de construction d'un bâtiment sécurisé", "Une liste de numéros d'urgence", "Un rapport sur les incidents passés"],
+    options: ["Un document décrivant les mesures à prendre pour limiter les risques sur un site", "Un plan de construction d'un bâtiment sécurisé", "Une liste de numéros d'urgence, selon les dispositions légales applicables", "Un rapport sur les incidents passés, selon les dispositions légales applicables"],
     correct: 0,
     explanation: "Le plan de prévention des risques est un document réglementaire décrivant les mesures à prendre pour limiter les risques identifiés sur un site, notamment en cas de coactivité entre entreprises."
   },
@@ -860,14 +860,14 @@ const questionsQCM = [
   {
     theme: "SSI",
     q: "Un voyant jaune clignotant sur le CMSI signifie :",
-    options: ["Feu en cours", "Défaut de position d'attente d'un DAS", "Coupure secteur", "Test en cours"],
+    options: ["Un feu en cours détecté automatiquement par les capteurs du système", "Défaut de position d'attente d'un DAS", "Une coupure d'alimentation secteur affectant l'ensemble du tableau SSI", "Un test de fonctionnement en cours réalisé par un technicien de maintenance"],
     correct: 1,
     explanation: "Voyant jaune clignotant = défaut de position d'attente d'un DAS. Un dispositif actionné de sécurité n'est pas en position normale. Il faut réarmer le DAS concerné."
   },
   {
     theme: "SSI",
     q: "Un voyant vert sur le CMSI indique :",
-    options: ["Alarme feu", "Dérangement", "Alimentation secteur présente, système en veille", "Essai en cours"],
+    options: ["Une alarme feu déclenchée par la détection d'un incendie en cours", "Un dérangement technique signalant une anomalie sur le système", "Alimentation secteur présente, système en veille", "Un essai technique en cours effectué par un technicien agréé"],
     correct: 2,
     explanation: "Voyant vert = alimentation secteur présente, le SSI est sous tension et en veille normale. C'est l'état normal de fonctionnement."
   },
@@ -902,7 +902,7 @@ const questionsQCM = [
   {
     theme: "SSI",
     q: "Qu'est-ce qu'un déclencheur manuel (DM) ?",
-    options: ["Un extincteur automatique", "Un boîtier rouge permettant à toute personne de déclencher l'alarme incendie manuellement", "Un système de désenfumage", "Un détecteur de fumée automatique"],
+    options: ["Un extincteur automatique, selon les dispositions légales applicables", "Un boîtier rouge permettant à toute personne de déclencher l'alarme incendie manuellement", "Un système de désenfumage, selon les dispositions légales applicables", "Un détecteur de fumée automatique, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Le déclencheur manuel (DM) est le boîtier rouge brisable (bris de glace) installé près des issues et dans les couloirs. Il permet à toute personne de déclencher manuellement l'alarme incendie."
   },
@@ -923,7 +923,7 @@ const questionsQCM = [
   {
     theme: "SSI",
     q: "Qu'est-ce que l'alarme restreinte ?",
-    options: ["L'alarme qui déclenche l'évacuation partielle", "Le signal qui alerte uniquement le personnel de sécurité sans déclencher l'évacuation générale", "L'alarme des parkings souterrains uniquement", "Un test silencieux du SSI"],
+    options: ["L'alarme qui déclenche l'évacuation partielle", "Le signal qui alerte uniquement le personnel de sécurité sans déclencher l'évacuation générale", "L'alarme des parkings souterrains uniquement", "Un test silencieux du SSI, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "L'alarme restreinte alerte discrètement le personnel de sécurité (PC sécurité, SSIAP) sans déclencher l'évacuation générale. Elle permet de vérifier la réalité d'un sinistre avant d'évacuer."
   },
@@ -937,7 +937,7 @@ const questionsQCM = [
   {
     theme: "SSI",
     q: "Que fait-on si on constate un voyant jaune fixe sur le CMSI en prise de service ?",
-    options: ["On réarme immédiatement sans noter", "On note l'anomalie sur la main courante et on avise le technicien de maintenance", "On déclenche l'évacuation", "On ignore, c'est normal"],
+    options: ["On réarme immédiatement sans noter, selon les dispositions légales applicables", "On note l'anomalie sur la main courante et on avise le technicien de maintenance", "On déclenche l'évacuation, selon les dispositions légales applicables", "On ignore, c'est normal, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "Voyant jaune fixe = dérangement technique. Procédure : noter l'heure et la nature du défaut sur la main courante, puis aviser le technicien de maintenance ou le responsable."
   },
@@ -953,35 +953,35 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "Les feux de classe A concernent :",
-    options: ["Les liquides inflammables", "Les feux de matières solides (bois, papier, tissu)", "Les feux de gaz", "Les feux de métaux"],
+    options: ["Les liquides inflammables, selon les dispositions légales applicables", "Les feux de matières solides (bois, papier, tissu)", "Les feux de gaz, sans aucune obligation réglementaire particulière", "Les feux de métaux, sans aucune obligation réglementaire particulière"],
     correct: 1,
     explanation: "Classe A = feux de matières solides ordinaires laissant des braises : bois, papier, carton, tissu, plastiques. Ce sont les feux les plus courants."
   },
   {
     theme: "Incendie",
     q: "Les feux de classe B concernent :",
-    options: ["Les feux de matières solides", "Les feux de gaz", "Les liquides inflammables et solides liquéfiables (essence, huile, cire)", "Les feux de métaux"],
+    options: ["Les feux de matières solides, selon les dispositions légales applicables", "Les feux de gaz, sans aucune obligation réglementaire particulière", "Les liquides inflammables et solides liquéfiables (essence, huile, cire)", "Les feux de métaux, sans aucune obligation réglementaire particulière"],
     correct: 2,
     explanation: "Classe B = feux de liquides inflammables ou solides liquéfiables : essence, gazole, alcool, huiles, graisses, cires. Ils ne laissent pas de braises."
   },
   {
     theme: "Incendie",
     q: "Les feux de classe C concernent :",
-    options: ["Les feux électriques", "Les feux de gaz (butane, propane, méthane)", "Les feux de cuisine", "Les feux de métaux"],
+    options: ["Les feux d'origine électrique survenant sur des installations sous tension", "Les feux de gaz (butane, propane, méthane)", "Les feux liés aux équipements de cuisson et aux matières grasses alimentaires", "Les feux impliquant des métaux combustibles comme l'aluminium ou le magnésium"],
     correct: 1,
     explanation: "Classe C = feux de gaz inflammables : butane, propane, méthane, gaz naturel. La règle : couper l'alimentation en gaz avant d'éteindre."
   },
   {
     theme: "Incendie",
     q: "Les feux de classe D concernent :",
-    options: ["Les feux de déchets", "Les feux de liquides", "Les feux de métaux (magnésium, sodium, potassium)", "Les feux de dépôts"],
+    options: ["Les feux de déchets, sans aucune obligation réglementaire particulière", "Les feux de liquides, sans aucune obligation réglementaire particulière", "Les feux de métaux (magnésium, sodium, potassium)", "Les feux de dépôts, sans aucune obligation réglementaire particulière"],
     correct: 2,
     explanation: "Classe D = feux de métaux spéciaux : magnésium, sodium, potassium, aluminium en poudre. Très dangereux, nécessitent des agents extincteurs spéciaux (poudre spéciale D)."
   },
   {
     theme: "Incendie",
     q: "Les feux de classe F concernent :",
-    options: ["Les feux de forêt", "Les feux de friteuses et huiles de cuisson à haute température", "Les feux de fibres textiles", "Les feux de façades"],
+    options: ["Les feux de forêt, sans aucune obligation réglementaire particulière", "Les feux de friteuses et huiles de cuisson à haute température", "Les feux de fibres textiles, selon les dispositions légales applicables", "Les feux de façades, sans aucune obligation réglementaire particulière"],
     correct: 1,
     explanation: "Classe F = feux d'huiles et graisses de cuisson à très haute température (friteuses, woks). Très dangereux : ne jamais utiliser d'eau (explosion de vapeur)."
   },
@@ -1002,21 +1002,21 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "Quelle est la méthode d'extinction par refroidissement ?",
-    options: ["Souffler le feu", "Projeter de l'eau sur le foyer pour abaisser la température", "Couvrir les flammes avec une couverture", "Couper l'alimentation en gaz"],
+    options: ["Souffler le feu, cette option ne correspond pas à la procédure réglementaire", "Projeter de l'eau sur le foyer pour abaisser la température", "Couvrir les flammes avec une couverture", "Couper l'alimentation en gaz, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Extinction par refroidissement = projeter de l'eau pour abaisser la température en dessous du point d'inflammation. C'est la méthode la plus courante pour les feux de classe A."
   },
   {
     theme: "Incendie",
     q: "Quelle est la méthode d'extinction par étouffement ?",
-    options: ["Projeter de l'eau", "Priver le feu d'oxygène en le couvrant ou en saturant l'air de gaz inerte", "Abaisser la température", "Utiliser de la poudre chimique"],
+    options: ["Projeter de l'eau, cette option ne correspond pas à la procédure réglementaire", "Priver le feu d'oxygène en le couvrant ou en saturant l'air de gaz inerte", "Abaisser la température, cette option ne correspond pas à la procédure réglementaire", "Utiliser de la poudre chimique, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Extinction par étouffement = priver le feu de comburant (oxygène). Méthodes : couverture anti-feu, CO2, mousse. Utilisé notamment sur les feux de classe B et F."
   },
   {
     theme: "Incendie",
     q: "Que vérifie-t-on lors du contrôle quotidien d'un extincteur ?",
-    options: ["Sa date de fabrication et sa couleur", "Sa présence, sa signalétique, sa goupille, son état général et sa date de vérification", "Uniquement sa pression interne", "Son poids et sa marque"],
+    options: ["Sa date de fabrication et sa couleur, selon les dispositions légales applicables", "Sa présence, sa signalétique, sa goupille, son état général et sa date de vérification", "Uniquement sa pression interne, et dans aucun autre cas prévu par la loi", "Son poids et sa marque, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "Contrôle quotidien extincteur (5 points) : 1-Présent et accessible, 2-Signalétique correcte, 3-Goupille et scellé intacts, 4-État général (corps et flexible), 5-Date de vérification réglementaire."
   },
@@ -1044,14 +1044,14 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "Qu'est-ce que le désenfumage naturel ?",
-    options: ["L'utilisation de ventilateurs mécaniques pour évacuer la fumée", "L'évacuation de la fumée par des ouvertures hautes (exutoires) grâce à la différence de pression", "L'extinction automatique par sprinklers", "La ventilation naturelle du bâtiment en permanence"],
+    options: ["L'utilisation de ventilateurs mécaniques pour évacuer la fumée", "L'évacuation de la fumée par des ouvertures hautes (exutoires) grâce à la différence de pression", "L'extinction automatique par sprinklers, selon les dispositions légales applicables", "La ventilation naturelle du bâtiment en permanence"],
     correct: 1,
     explanation: "Désenfumage naturel = évacuation des fumées par tirage thermique à travers des exutoires (ouvrants en toiture ou en partie haute des façades). Pas de moteur, fonctionne par différence de pression et de température."
   },
   {
     theme: "Incendie",
     q: "Quelle est la différence entre une porte pare-flammes (E) et une porte coupe-feu (REI) ?",
-    options: ["Il n'y a aucune différence", "Pare-flammes (E) = résiste aux flammes uniquement. Coupe-feu (REI) = résiste aux flammes, à la chaleur rayonnée et à la fumée", "Coupe-feu est moins résistant que pare-flammes", "Pare-flammes est réservé aux cuisines"],
+    options: ["Il n'existe aucune distinction entre ces deux notions dans la pratique", "Pare-flammes (E) = résiste aux flammes uniquement. Coupe-feu (REI) = résiste aux flammes, à la chaleur rayonnée et à la fumée", "Coupe-feu est moins résistant que pare-flammes", "Pare-flammes est réservé aux cuisines, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "E (étanchéité) = pare-flammes, résiste aux flammes et gaz chauds. REI (Résistance + Étanchéité + Isolation) = coupe-feu, résiste aussi à la transmission de chaleur. REI est la classification la plus complète."
   },
@@ -1072,7 +1072,7 @@ const questionsQCM = [
   {
     theme: "Incendie",
     q: "En cas d'incendie, quelle est la priorité absolue de l'APS ?",
-    options: ["Éteindre le feu coûte que coûte", "Sauvegarder les biens de valeur", "Assurer la sécurité des personnes et déclencher l'évacuation", "Attendre les consignes du directeur"],
+    options: ["Éteindre le feu coûte que coûte, selon les dispositions légales applicables", "Sauvegarder les biens de valeur, selon les dispositions légales applicables", "Assurer la sécurité des personnes et déclencher l'évacuation", "Attendre les consignes du directeur"],
     correct: 2,
     explanation: "Priorité absolue : les personnes avant les biens. L'APS doit déclencher l'alarme, lancer l'évacuation et appeler les secours (18/112) avant toute tentative d'extinction."
   },
@@ -1095,7 +1095,7 @@ const questionsQCM = [
   {
     theme: "Rondes",
     q: "Pourquoi effectue-t-on des rondes aléatoires plutôt que des rondes à horaires fixes ?",
-    options: ["Pour fatiguer moins l'agent", "Pour éviter que des personnes malveillantes anticipent les passages de l'agent", "C'est une obligation légale", "Pour couvrir plus de terrain"],
+    options: ["Pour fatiguer moins l'agent, selon les dispositions légales applicables", "Pour éviter que des personnes malveillantes anticipent les passages de l'agent", "C'est une obligation légale, selon les dispositions légales applicables", "Pour couvrir plus de terrain, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Les rondes à horaires fixes permettent à un intrus d'apprendre les habitudes de l'agent et d'agir entre deux passages. L'aléatoire supprime cette prévisibilité."
   },
@@ -1109,7 +1109,7 @@ const questionsQCM = [
   {
     theme: "Rondes",
     q: "Quel équipement est indispensable pour une ronde de nuit ?",
-    options: ["Un chien de garde", "Une lampe torche et un moyen de communication (radio ou téléphone)", "Une arme de défense", "Un véhicule motorisé"],
+    options: ["Un chien de garde spécialement dressé pour la surveillance nocturne", "Une lampe torche et un moyen de communication (radio ou téléphone)", "Une arme de défense homologuée portée avec autorisation préfectorale", "Un véhicule motorisé de patrouille avec gyrophare et équipement radio"],
     correct: 1,
     explanation: "Pour une ronde de nuit : lampe torche (visibilité), moyen de communication (radio, téléphone - lien avec le PC sécurité), DATI si travailleur isolé, et les clés du site."
   },
@@ -1123,21 +1123,21 @@ const questionsQCM = [
   {
     theme: "Rondes",
     q: "Que doit faire l'agent s'il découvre une porte normalement fermée qui est ouverte lors d'une ronde ?",
-    options: ["La fermer et ne rien noter", "Ne pas y toucher et continuer la ronde", "Signaler l'anomalie sur la main courante, en informer le PC sécurité et sécuriser si possible", "Appeler immédiatement la police"],
+    options: ["La fermer et ne rien noter, selon les dispositions légales applicables", "Ne pas y toucher et continuer la ronde, selon les dispositions légales applicables", "Signaler l'anomalie sur la main courante, en informer le PC sécurité et sécuriser si possible", "Appeler immédiatement la police, selon les dispositions légales applicables"],
     correct: 2,
     explanation: "Procédure : ne pas toucher si risque d'intrusion, signaler immédiatement au PC sécurité, noter l'heure et la localisation sur la main courante, et agir selon les consignes (sécuriser ou attendre les secours)."
   },
   {
     theme: "Rondes",
     q: "À quoi sert le contrôleur de ronde (badge de ronde) ?",
-    options: ["À ouvrir les portes sécurisées du site", "À enregistrer le passage de l'agent à des points définis, preuve de la réalisation de la ronde", "À communiquer avec le PC sécurité", "À identifier l'agent auprès des visiteurs"],
+    options: ["À ouvrir les portes sécurisées du site, selon les dispositions légales applicables", "À enregistrer le passage de l'agent à des points définis, preuve de la réalisation de la ronde", "À communiquer avec le PC sécurité, selon les dispositions légales applicables", "À identifier l'agent auprès des visiteurs"],
     correct: 1,
     explanation: "Le contrôleur de ronde (ou badge de ronde) est un dispositif électronique placé en des points stratégiques. L'agent le bipe à chaque passage, créant une trace horodatée prouvant que la ronde a bien été effectuée."
   },
   {
     theme: "Rondes",
     q: "Que note-t-on obligatoirement sur la main courante après chaque ronde ?",
-    options: ["Uniquement les anomalies graves", "L'heure de départ, l'heure de retour, le parcours effectué, les anomalies constatées", "Seulement l'heure de retour", "Rien si tout est normal"],
+    options: ["Uniquement les anomalies graves, et dans aucun autre cas prévu par la loi", "L'heure de départ, l'heure de retour, le parcours effectué, les anomalies constatées", "Seulement l'heure de retour, et dans aucun autre cas prévu par la loi", "Rien si tout est normal, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "Après chaque ronde : noter l'heure de départ, l'heure de retour, le parcours (ou 'RAS' si conforme), et toutes les anomalies constatées avec leur localisation précise."
   },
@@ -1146,14 +1146,14 @@ const questionsQCM = [
   {
     theme: "Déontologie",
     q: "Qu'est-ce que la déontologie professionnelle pour un APS ?",
-    options: ["L'ensemble des règles techniques du métier", "L'ensemble des règles morales et éthiques qui guident le comportement professionnel de l'agent", "Le règlement intérieur de l'entreprise de sécurité", "Les règles de présentation et d'hygiène"],
+    options: ["L'ensemble des règles techniques du métier", "L'ensemble des règles morales et éthiques qui guident le comportement professionnel de l'agent", "Le règlement intérieur de l'entreprise de sécurité", "Les règles de présentation et d'hygiène, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "La déontologie = ensemble des devoirs et règles de conduite éthiques propres à la profession. Pour l'APS : discrétion, intégrité, neutralité, respect des personnes, usage proportionné de la force."
   },
   {
     theme: "Déontologie",
     q: "Le principe de proportionnalité dans l'exercice du métier d'APS signifie :",
-    options: ["Agir plus fortement que la menace pour la dissuader", "Adapter sa réponse à la menace : n'utiliser que la force strictement nécessaire", "Toujours appeler les forces de l'ordre avant d'agir", "Ne jamais intervenir physiquement"],
+    options: ["Agir plus fortement que la menace pour la dissuader", "Adapter sa réponse à la menace : n'utiliser que la force strictement nécessaire", "Toujours appeler les forces de l'ordre avant d'agir", "Ne jamais intervenir physiquement, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Proportionnalité = la réponse de l'agent doit être strictement proportionnelle à la menace. Un agent ne peut pas utiliser plus de force que nécessaire pour neutraliser le danger. Tout excès engage sa responsabilité pénale."
   },
@@ -1167,7 +1167,7 @@ const questionsQCM = [
   {
     theme: "Déontologie",
     q: "Un agent de sécurité peut-il porter un uniforme qui ressemble à celui de la police ?",
-    options: ["Oui, pour plus d'autorité", "Non, c'est interdit par la loi (usurpation de titre ou de fonctions)", "Oui, si le client le demande", "Seulement pour les événements privés"],
+    options: ["Oui, pour plus d'autorité, conformément à la réglementation en vigueur", "Non, c'est interdit par la loi (usurpation de titre ou de fonctions)", "Oui, si le client le demande, conformément à la réglementation en vigueur", "Seulement pour les événements privés"],
     correct: 1,
     explanation: "Formellement interdit. L'uniforme de l'APS doit clairement se distinguer de celui des forces de l'ordre. Toute ressemblance intentionnelle constitue une usurpation de fonctions, délit pénal."
   },
@@ -1181,7 +1181,7 @@ const questionsQCM = [
   {
     theme: "Déontologie",
     q: "La discrétion professionnelle de l'APS signifie :",
-    options: ["Se taire en toutes circonstances", "Ne pas divulguer les informations confidentielles liées au site ou aux personnes dont il a connaissance dans l'exercice de ses fonctions", "Ne pas parler aux visiteurs", "Travailler sans être vu"],
+    options: ["Maintenir un silence total et ne jamais communiquer avec quiconque dans l'exercice des fonctions", "Ne pas divulguer les informations confidentielles liées au site ou aux personnes dont il a connaissance dans l'exercice de ses fonctions", "Éviter toute communication orale ou écrite avec les visiteurs et usagers du site", "Travailler de manière discrète et sans jamais révéler son identité ni sa qualité d'agent"],
     correct: 1,
     explanation: "La discrétion professionnelle oblige l'agent à garder confidentielles toutes les informations auxquelles il accède dans l'exercice de ses missions (plans du site, codes d'accès, informations sur les personnalités, incidents...)."
   },
@@ -1197,7 +1197,7 @@ const questionsQCM = [
   {
     theme: "Droit du travail",
     q: "Qu'est-ce que le droit de retrait ?",
-    options: ["Le droit de quitter son poste avant la fin de la vacation", "Le droit pour un salarié de se retirer d'une situation de travail présentant un danger grave et imminent pour sa vie ou sa santé", "Le droit de refuser une mission", "Le droit de ne pas faire d'heures supplémentaires"],
+    options: ["Le droit de quitter son poste avant la fin de la vacation", "Le droit pour un salarié de se retirer d'une situation de travail présentant un danger grave et imminent pour sa vie ou sa santé", "Le droit de refuser une mission, selon les dispositions légales applicables", "Le droit de ne pas faire d'heures supplémentaires"],
     correct: 1,
     explanation: "Droit de retrait (art. L4131-1 Code du travail) : tout salarié peut se retirer d'une situation dont il a un motif raisonnable de penser qu'elle présente un danger grave et imminent. Il doit en alerter son employeur immédiatement."
   },
@@ -1211,28 +1211,28 @@ const questionsQCM = [
   {
     theme: "Droit du travail",
     q: "Dans quel délai l'employeur doit-il déclarer un accident du travail à la CPAM ?",
-    options: ["24 heures", "48 heures", "Dans les 48 heures (jours ouvrables) suivant l'accident", "Dans les 5 jours ouvrables"],
+    options: ["24 heures, cette option ne correspond pas à la procédure réglementaire", "48 heures, cette option ne correspond pas à la procédure réglementaire", "Dans les 48 heures (jours ouvrables) suivant l'accident", "Dans les 5 jours ouvrables, selon les dispositions légales applicables"],
     correct: 2,
     explanation: "L'employeur doit déclarer l'accident du travail à la CPAM dans les 48 heures (jours ouvrables) suivant l'accident. Le salarié doit informer son employeur dans les 24 heures."
   },
   {
     theme: "Droit du travail",
     q: "Quelle convention collective s'applique aux agents de sécurité privée ?",
-    options: ["Convention collective de la métallurgie", "Convention collective des entreprises de prévention et de sécurité (IDCC 1351)", "Convention collective du gardiennage", "Convention collective des services à la personne"],
+    options: ["Convention collective de la métallurgie, selon les dispositions légales applicables", "Convention collective des entreprises de prévention et de sécurité (IDCC 1351)", "Convention collective du gardiennage, selon les dispositions légales applicables", "Convention collective des services à la personne"],
     correct: 1,
     explanation: "Les agents de sécurité privée relèvent de la Convention Collective Nationale des Entreprises de Prévention et de Sécurité (IDCC 1351), qui fixe les salaires minima, les coefficients, les primes et les conditions de travail."
   },
   {
     theme: "Droit du travail",
     q: "Qu'est-ce qu'une vacation en sécurité privée ?",
-    options: ["Les congés payés de l'agent", "La période de travail effectué par l'agent sur un site donné (poste de travail)", "Une prime de nuit", "Une mission exceptionnelle"],
+    options: ["Les congés payés de l'agent, selon les dispositions légales applicables", "La période de travail effectué par l'agent sur un site donné (poste de travail)", "Une prime de nuit, utilisé uniquement dans des cas très spécifiques", "Une mission exceptionnelle, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Vacation = période de travail effectif d'un agent de sécurité sur un poste donné. Correspond à un shift ou une période de garde (ex : vacation de 12h, vacation de nuit)."
   },
   {
     theme: "Droit du travail",
     q: "Qu'est-ce que la prime de paniers ?",
-    options: ["Une prime liée aux résultats de l'entreprise", "Une indemnité versée pour les repas lorsque l'agent travaille à des horaires décalés ou de nuit", "Une prime de risque", "Une indemnité kilométrique"],
+    options: ["Une prime liée aux résultats de l'entreprise", "Une indemnité versée pour les repas lorsque l'agent travaille à des horaires décalés ou de nuit", "Une prime de risque, utilisé uniquement dans des cas très spécifiques", "Une indemnité kilométrique, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "La prime de panier (ou indemnité de repas) est versée à l'agent lorsque ses horaires de travail ne lui permettent pas de prendre son repas dans des conditions normales (travail de nuit, horaires décalés)."
   },
@@ -1241,35 +1241,35 @@ const questionsQCM = [
   {
     theme: "Événementiel",
     q: "Lors d'un événement (concert, match), quelle est la priorité de l'agent de sécurité à l'entrée ?",
-    options: ["Accélérer le flux d'entrée", "Contrôler les billets et les accès, vérifier l'absence d'objets dangereux", "Prendre des photos", "Vendre des programmes"],
+    options: ["Accélérer le flux d'entrée", "Contrôler les billets et les accès, vérifier l'absence d'objets dangereux", "Photographier la scène sans toucher aux éléments avant l'arrivée des autorités", "Vendre des programmes"],
     correct: 1,
     explanation: "À l'entrée d'un événement : contrôler les titres d'accès, vérifier visuellement (et par palpation si autorisé) l'absence d'objets interdits ou dangereux, et filtrer les personnes non autorisées."
   },
   {
     theme: "Événementiel",
     q: "En événementiel, qu'est-ce qu'un plan de masse ?",
-    options: ["Le planning du personnel de sécurité", "Le plan du site montrant l'emplacement des équipes, des issues, des points sensibles et des accès secours", "La liste des équipements de sécurité", "Le nombre de spectateurs attendus"],
+    options: ["Le planning du personnel de sécurité, selon les dispositions légales applicables", "Le plan du site montrant l'emplacement des équipes, des issues, des points sensibles et des accès secours", "La liste des équipements de sécurité, selon les dispositions légales applicables", "Le nombre de spectateurs attendus, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Le plan de masse est une représentation cartographique du site événementiel indiquant : les zones, les accès (public, secours, artistes), les positions des agents, les issues de secours, et les équipements de sécurité."
   },
   {
     theme: "Événementiel",
     q: "Qu'est-ce qu'un mouvement de foule dangereux (effet de vague) ?",
-    options: ["Un déplacement ordonné du public", "Une compression incontrôlée de la foule pouvant provoquer des blessures graves ou des décès par écrasement", "Une danse collective", "Une fuite organisée en cas d'alerte"],
+    options: ["Un déplacement ordonné du public, selon les dispositions légales applicables", "Une compression incontrôlée de la foule pouvant provoquer des blessures graves ou des décès par écrasement", "Une danse collective, utilisé uniquement dans des cas très spécifiques", "Une fuite organisée en cas d'alerte, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Mouvement de foule (crowd crush) : compression incontrôlée pouvant provoquer des décès par asphyxie ou écrasement. Signes avant-coureurs : vagues de balancement, cris, personnes qui tombent. Action : dégager immédiatement des espaces, ne pas laisser la compression s'aggraver."
   },
   {
     theme: "Événementiel",
     q: "Lors d'une évacuation d'urgence d'un événement, que fait l'agent de sécurité ?",
-    options: ["Il se met en sécurité en premier", "Il guide calmement le public vers les sorties de secours en évitant la panique", "Il bloque les sorties pour vérifier les billets", "Il attend les instructions de la police avant d'agir"],
+    options: ["Il se met en sécurité en premier, selon les dispositions légales applicables", "Il guide calmement le public vers les sorties de secours en évitant la panique", "Il bloque les sorties pour vérifier les billets", "Il attend les instructions de la police avant d'agir"],
     correct: 1,
     explanation: "Lors d'une évacuation d'urgence : guider calmement le public vers les sorties de secours pré-identifiées, utiliser une voix ferme et rassurante, éviter de déclencher la panique, ouvrir toutes les issues de secours, et faciliter l'accès aux secours."
   },
   {
     theme: "Événementiel",
     q: "Qu'est-ce qu'un sas de sécurité à l'entrée d'un événement ?",
-    options: ["Un vestiaire pour les spectateurs", "Un espace intermédiaire entre l'extérieur et le site permettant de contrôler les entrées et de gérer le flux", "Une zone VIP", "Un poste de premiers secours"],
+    options: ["Un vestiaire où les spectateurs déposent leurs affaires personnelles", "Un espace intermédiaire entre l'extérieur et le site permettant de contrôler les entrées et de gérer le flux", "Une zone réservée aux personnalités et invités prioritaires de l'événement", "Un poste de premiers secours géré par des secouristes diplômés"],
     correct: 1,
     explanation: "Sas de sécurité = zone de filtrage entre l'extérieur et le site. Permet de contrôler les accès, d'effectuer les vérifications (billets, palpations) tout en régulant le flux sans bloquer complètement l'entrée."
   },
@@ -1285,28 +1285,28 @@ const questionsQCM = [
   {
     theme: "Gestion de conflit",
     q: "Qu'est-ce que l'écoute active dans la gestion d'un conflit ?",
-    options: ["Écouter la radio pendant l'intervention", "Prêter une attention totale à l'interlocuteur, reformuler ses propos et montrer qu'on le comprend sans forcément l'approuver", "Enregistrer la conversation", "Faire répéter la personne pour gagner du temps"],
+    options: ["Écouter la radio pendant l'intervention, selon les dispositions légales applicables", "Prêter une attention totale à l'interlocuteur, reformuler ses propos et montrer qu'on le comprend sans forcément l'approuver", "Enregistrer la conversation, selon les dispositions légales applicables", "Faire répéter la personne pour gagner du temps"],
     correct: 1,
     explanation: "Écoute active = technique de communication : contact visuel, reformulation ('Si je comprends bien, vous dites que...'), acquiescements, questions ouvertes. Permet à l'interlocuteur de se sentir entendu, ce qui désamorce souvent le conflit."
   },
   {
     theme: "Gestion de conflit",
     q: "Face à une personne qui menace verbalement sans passer à l'acte, que fait l'APS ?",
-    options: ["Répondre avec la même agressivité", "Tenter de désamorcer verbalement, se positionner en sécurité, appeler du renfort si nécessaire", "L'empoigner immédiatement", "Ignorer et continuer sa mission"],
+    options: ["Répondre avec la même agressivité, selon les dispositions légales applicables", "Tenter de désamorcer verbalement, se positionner en sécurité, appeler du renfort si nécessaire", "L'empoigner immédiatement, selon les dispositions légales applicables", "Ignorer et continuer sa mission, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Procédure : rester calme, ne pas provoquer, maintenir une distance de sécurité, tenter la désescalade verbale, noter mentalement les témoins, appeler du renfort via radio, et n'intervenir physiquement qu'en légitime défense si attaque réelle."
   },
   {
     theme: "Gestion de conflit",
     q: "L'APS peut-il utiliser la force physique pour maîtriser une personne ?",
-    options: ["Jamais, quelles que soient les circonstances", "Oui, seulement dans le cadre de la légitime défense ou de l'article 73 CPP (appréhension en flagrant délit)", "Oui, sur ordre de son supérieur", "Oui, dès qu'une personne est agressive verbalement"],
+    options: ["Jamais, quelles que soient les circonstances", "Oui, seulement dans le cadre de la légitime défense ou de l'article 73 CPP (appréhension en flagrant délit)", "Oui, sur ordre de son supérieur, conformément à la réglementation en vigueur", "Oui, dès qu'une personne est agressive verbalement"],
     correct: 1,
     explanation: "L'usage de la force est strictement encadré : légitime défense (art. 122-5 CP - réponse proportionnée à une attaque injuste et actuelle) ou appréhension en flagrant délit (art. 73 CPP). Tout autre usage engage la responsabilité pénale de l'agent."
   },
   {
     theme: "Gestion de conflit",
     q: "Que signifie 'ne pas se substituer aux forces de l'ordre' pour un APS ?",
-    options: ["Ne jamais appeler la police", "Ne pas exercer des pouvoirs de police judiciaire (garde à vue, enquête, poursuites) qui sont réservés aux OPJ", "Ne pas porter un uniforme", "Ne pas intervenir dans les espaces publics"],
+    options: ["Ne jamais appeler la police, selon les dispositions légales applicables", "Ne pas exercer des pouvoirs de police judiciaire (garde à vue, enquête, poursuites) qui sont réservés aux OPJ", "Ne pas porter un uniforme, selon les dispositions légales applicables", "Ne pas intervenir dans les espaces publics"],
     correct: 1,
     explanation: "L'APS n'a pas de pouvoir de police. Il ne peut pas : garder quelqu'un en détention (sauf flagrant délit temporaire jusqu'à l'OPJ), mener une enquête, procéder à une perquisition, ou prononcer une sanction. Ces actes sont réservés aux OPJ/APJ."
   },
@@ -1329,28 +1329,28 @@ const questionsQCM = [
   {
     theme: "Carte pro / CNAPS",
     q: "Qui délivre la carte professionnelle d'agent de sécurité ?",
-    options: ["L'employeur de l'agent", "La Préfecture directement", "Le CNAPS (Conseil National des Activités Privées de Sécurité)", "Le ministère de la Justice"],
+    options: ["L'employeur qui recrute et rémunère l'agent dans le cadre de son contrat", "La Préfecture du département, qui délivre elle-même l'autorisation", "Le CNAPS (Conseil National des Activités Privées de Sécurité)", "Le ministère de la Justice, qui supervise les professions réglementées"],
     correct: 2,
     explanation: "La carte professionnelle est délivrée par le CNAPS. C'est une autorisation individuelle d'exercer les activités de sécurité privée. Sans elle, l'exercice du métier est illégal."
   },
   {
     theme: "Carte pro / CNAPS",
     q: "Un agent de sécurité peut-il exercer sans sa carte professionnelle sur lui ?",
-    options: ["Oui, si elle est à son domicile", "Non, il doit être en mesure de la présenter à tout moment lors de sa mission", "Oui, si son employeur en a une copie", "Oui, pendant les 3 premiers mois suivant l'embauche"],
+    options: ["Oui, si elle est à son domicile, conformément à la réglementation en vigueur", "Non, il doit être en mesure de la présenter à tout moment lors de sa mission", "Oui, si son employeur en a une copie, conformément à la réglementation en vigueur", "Oui, pendant les 3 premiers mois suivant l'embauche"],
     correct: 1,
     explanation: "L'agent doit avoir sa carte professionnelle sur lui pendant toute sa mission et être capable de la présenter à tout moment (contrôle du CNAPS, forces de l'ordre, client). L'absence de carte est une infraction."
   },
   {
     theme: "Carte pro / CNAPS",
     q: "Quelle condition est indispensable pour obtenir la carte professionnelle ?",
-    options: ["Avoir plus de 21 ans", "Ne pas avoir de condamnations incompatibles avec l'exercice de la profession (casier judiciaire)", "Être de nationalité française", "Avoir un diplôme de niveau Bac minimum"],
+    options: ["Avoir plus de 21 ans, cette option ne correspond pas à la procédure réglementaire", "Ne pas avoir de condamnations incompatibles avec l'exercice de la profession (casier judiciaire)", "Être de nationalité française, selon les dispositions légales applicables", "Avoir un diplôme de niveau Bac minimum, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Conditions principales : avoir la TFP APS ou équivalent, avoir un casier judiciaire vierge de condamnations incompatibles (liste fixée par le CNAPS), être en situation régulière sur le territoire, avoir un contrat de travail."
   },
   {
     theme: "Carte pro / CNAPS",
     q: "Que risque un agent qui exerce sans carte professionnelle valide ?",
-    options: ["Un simple avertissement", "Une amende de 30 000€ et 2 ans d'emprisonnement (exercice illégal d'une activité de sécurité privée)", "La perte de son emploi uniquement", "Un rappel à l'ordre du CNAPS"],
+    options: ["Un simple avertissement oral sans aucune conséquence administrative", "Une amende de 30 000€ et 2 ans d'emprisonnement (exercice illégal d'une activité de sécurité privée)", "La perte de son emploi uniquement, et dans aucun autre cas prévu par la loi", "Un rappel à l'ordre du CNAPS, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Exercer sans carte professionnelle valide est un délit pénal : jusqu'à 2 ans d'emprisonnement et 30 000€ d'amende. L'employeur qui emploie un agent sans carte encourt les mêmes peines."
   },
@@ -1359,42 +1359,42 @@ const questionsQCM = [
   {
     theme: "Appréhension / Droit",
     q: "Quelles sont les 3 conditions cumulatives de l'article 73 CPP pour appréhender quelqu'un ?",
-    options: ["Flagrant délit + Mineur + Témoin présent", "Flagrant délit + Crime ou délit puni d'emprisonnement + Remise immédiate à un OPJ", "Ordre du directeur + Flagrant délit + Témoin", "Crime + Nuit + Appel police préalable"],
+    options: ["Flagrant délit + Mineur + Témoin présent", "Flagrant délit + Crime ou délit puni d'emprisonnement + Remise immédiate à un OPJ", "Ordre du directeur + Flagrant délit + Témoin", "Crime + Nuit + Appel police préalable, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Article 73 CPP - 3 conditions CUMULATIVES : 1) Flagrant délit (infraction en train de se commettre ou venant de se commettre), 2) Crime OU délit puni d'emprisonnement (pas une simple contravention), 3) Remise IMMÉDIATE à un OPJ (pas de rétention prolongée)."
   },
   {
     theme: "Appréhension / Droit",
     q: "Peut-on appréhender une personne pour une contravention (ex : stationnement interdit) ?",
-    options: ["Oui, toute infraction justifie l'appréhension", "Non, l'article 73 CPP ne s'applique qu'aux crimes et délits punis d'emprisonnement", "Oui, si c'est prévu dans les consignes", "Seulement si le préfet l'autorise"],
+    options: ["Oui, toute infraction justifie l'appréhension", "Non, l'article 73 CPP ne s'applique qu'aux crimes et délits punis d'emprisonnement", "Oui, si c'est prévu dans les consignes, conformément à la réglementation en vigueur", "Seulement si le préfet l'autorise, et dans aucun autre cas prévu par la loi"],
     correct: 1,
     explanation: "Non. L'article 73 CPP exige que l'infraction soit un crime ou un délit puni d'emprisonnement. Une contravention (stationnement, bruit...) ne justifie pas l'appréhension citoyenne."
   },
   {
     theme: "Appréhension / Droit",
     q: "Après avoir appréhendé quelqu'un au titre de l'art. 73 CPP, combien de temps peut-on le retenir ?",
-    options: ["24 heures maximum", "Le temps de le remettre à l'OPJ le plus proche (immédiatement)", "4 heures maximum", "Jusqu'à l'arrivée de la police, sans limite de temps"],
+    options: ["Le délai de 24 heures comme pour une garde à vue classique", "Le temps de le remettre à l'OPJ le plus proche (immédiatement)", "Le délai de 4 heures maximum autorisé par le code de procédure", "Jusqu'à l'arrivée de la police, sans limite de temps"],
     correct: 1,
     explanation: "La remise doit être IMMÉDIATE. L'agent n'a pas le droit de priver quelqu'un de liberté au-delà du strict délai nécessaire pour remettre la personne à un OPJ. Toute rétention prolongée constitue une séquestration (délit pénal)."
   },
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce que la légitime défense (art. 122-5 du Code pénal) ?",
-    options: ["Le droit de frapper quelqu'un qui nous a insultés", "Le droit de se défendre ou de défendre autrui face à une attaque injuste, actuelle ou imminente, par une réponse proportionnée", "Le droit de poursuivre quelqu'un qui a volé", "Le droit de fouiller quelqu'un de suspect"],
+    options: ["Le droit de frapper quelqu'un qui a proféré des insultes ou des menaces verbales", "Le droit de se défendre ou de défendre autrui face à une attaque injuste, actuelle ou imminente, par une réponse proportionnée", "Le droit de poursuivre et de rattraper physiquement une personne suspectée de vol", "Le droit de procéder à une fouille corporelle de toute personne paraissant suspecte"],
     correct: 1,
     explanation: "Légitime défense : acte autorisé par la loi pour se défendre ou défendre autrui. Conditions : attaque INJUSTE + ACTUELLE ou imminente (pas terminée) + réponse PROPORTIONNÉE. Un excès engage la responsabilité pénale."
   },
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce que la loi du 12 juillet 1983 (dite 'loi Sécurité privée') ?",
-    options: ["La loi qui crée le CNAPS", "La loi fondatrice qui réglemente les activités privées de sécurité en France (conditions d'exercice, obligations, interdictions)", "La loi qui impose le port de l'uniforme", "La loi qui fixe les salaires des agents"],
+    options: ["La loi qui a institué le CNAPS comme autorité de contrôle en 2011", "La loi fondatrice qui réglemente les activités privées de sécurité en France (conditions d'exercice, obligations, interdictions)", "La loi imposant le port obligatoire d'un uniforme distinctif pour tous les agents", "La loi fixant les grilles de salaires et les classifications conventionnelles"],
     correct: 1,
     explanation: "La loi du 12 juillet 1983 (codifiée dans le Code de la sécurité intérieure) est le texte fondateur de la sécurité privée en France. Elle définit les activités autorisées, les conditions d'exercice, les obligations et les interdictions pour les entreprises et les agents."
   },
   {
     theme: "Appréhension / Droit",
     q: "Un APS peut-il porter une arme dans l'exercice de ses fonctions ?",
-    options: ["Oui, toujours pour se défendre", "Non, jamais", "Seulement avec une autorisation préfectorale spécifique et une formation adaptée", "Oui, si le client l'exige"],
+    options: ["Oui, toujours pour se défendre", "Non, cette action est totalement interdite quelle que soit la situation", "Seulement avec une autorisation préfectorale spécifique et une formation adaptée", "Oui, si le client l'exige"],
     correct: 2,
     explanation: "Le port d'arme par un APS est soumis à autorisation préfectorale stricte et nécessite une formation spécifique (aptitude au port d'arme). Sans cette autorisation, le port d'arme est interdit et constitue un délit."
   },
@@ -1403,7 +1403,7 @@ const questionsQCM = [
   {
     theme: "Vidéosurveillance / CNIL",
     q: "Quelle est la durée maximale de conservation des images de vidéosurveillance dans un lieu privé ouvert au public ?",
-    options: ["8 jours", "1 mois", "3 mois", "6 mois"],
+    options: ["Un délai de conservation limité à 8 jours ouvrés après la captation", "1 mois", "Une conservation de 3 mois permettant les vérifications trimestrielles", "Une conservation de 6 mois couvrant une demi-période annuelle d'exploitation"],
     correct: 1,
     explanation: "La durée maximale de conservation des images est de 1 mois (30 jours). Au-delà, les images doivent être effacées automatiquement. Des dérogations existent si les images font l'objet d'une réquisition judiciaire."
   },
@@ -1424,7 +1424,7 @@ const questionsQCM = [
   {
     theme: "Vidéosurveillance / CNIL",
     q: "Peut-on installer une caméra de vidéosurveillance pointant vers la voie publique ?",
-    options: ["Oui, sans restriction", "Seulement avec une autorisation préfectorale", "Non, c'est toujours interdit", "Oui, si la caméra n'enregistre pas"],
+    options: ["Oui, l'agent peut procéder librement sans aucune contrainte légale", "Seulement avec une autorisation préfectorale", "Non, c'est toujours interdit", "Oui, si la caméra n'enregistre pas"],
     correct: 1,
     explanation: "La vidéosurveillance de la voie publique nécessite une autorisation préfectorale. Les caméras privées ne peuvent filmer que les abords immédiats du bâtiment (entrées, issues) mais pas la voie publique sans autorisation."
   },
@@ -1447,14 +1447,14 @@ const questionsQCM = [
   {
     theme: "Plans d'urgence",
     q: "En cas de découverte d'un colis suspect, quelle est la procédure ?",
-    options: ["L'ouvrir pour vérifier son contenu", "Ne pas y toucher, évacuer la zone, alerter les forces de l'ordre (17) et le PC sécurité", "Le déplacer vers l'extérieur", "L'arroser avec de l'eau"],
+    options: ["Ouvrir et inspecter soigneusement le contenu du colis pour identifier la menace", "Ne pas y toucher, évacuer la zone, alerter les forces de l'ordre (17) et le PC sécurité", "Le déplacer vers l'extérieur", "Arroser abondamment le colis avec de l'eau pour neutraliser un éventuel danger"],
     correct: 1,
     explanation: "Colis suspect : ne JAMAIS toucher, déplacer ou ouvrir. Évacuer la zone de sécurité (périmètre de sécurité). Alerter immédiatement le PC sécurité et les forces de l'ordre (17). Attendre les démineurs (NEDEX/BSPP)."
   },
   {
     theme: "Plans d'urgence",
     q: "Lors d'un appel à la bombe, quelles informations tenter de recueillir ?",
-    options: ["Uniquement l'heure de l'appel", "L'heure, la nature de la menace, la localisation prétendue, les caractéristiques vocales de l'appelant, et noter le numéro affiché", "Raccrocher immédiatement et appeler la police", "Demander à l'appelant de rappeler plus tard"],
+    options: ["Uniquement l'heure de l'appel, et dans aucun autre cas prévu par la loi", "L'heure, la nature de la menace, la localisation prétendue, les caractéristiques vocales de l'appelant, et noter le numéro affiché", "Raccrocher immédiatement et appeler la police", "Demander à l'appelant de rappeler plus tard"],
     correct: 1,
     explanation: "Lors d'un appel à la bombe : rester en ligne, ne pas raccrocher, noter l'heure, écouter attentivement (accent, bruit de fond), demander 'où est la bombe ? quand explosera-t-elle ?', noter le numéro affiché, puis alerter immédiatement le 17 et le PC sécurité."
   },
@@ -1468,7 +1468,7 @@ const questionsQCM = [
   {
     theme: "Plans d'urgence",
     q: "En cas d'accident corporel sur le site, quelle est la première action de l'APS ?",
-    options: ["Remplir le rapport d'incident", "Sécuriser les lieux, appeler les secours (15/18/112) et ne pas déplacer la victime sauf danger immédiat", "Prévenir le directeur", "Prendre des photos de la scène"],
+    options: ["Remplir immédiatement le rapport d'incident avant toute autre intervention", "Sécuriser les lieux, appeler les secours (15/18/112) et ne pas déplacer la victime sauf danger immédiat", "Contacter le directeur de l'établissement avant d'appeler les secours", "Photographier la scène et collecter les témoignages avant d'alerter"],
     correct: 1,
     explanation: "Accident corporel : 1) Sécuriser la zone (éviter un sur-accident), 2) Alerter les secours (15 SAMU, 18 pompiers, ou 112 depuis un mobile), 3) Protéger la victime sans la déplacer sauf danger vital immédiat, 4) Rester auprès d'elle jusqu'à l'arrivée des secours."
   },
@@ -1477,21 +1477,21 @@ const questionsQCM = [
   {
     theme: "Équipement / Intervention",
     q: "Qu'est-ce qu'un portique de détection à l'entrée d'un site ?",
-    options: ["Un portique servant à mesurer la taille des visiteurs", "Un dispositif électromagnétique qui détecte la présence de métaux sur une personne", "Un tourniquet pour compter les entrées", "Un système de reconnaissance faciale"],
+    options: ["Un portique servant à mesurer la taille des visiteurs", "Un dispositif électromagnétique qui détecte la présence de métaux sur une personne", "Un tourniquet pour compter les entrées, selon les dispositions légales applicables", "Un système de reconnaissance faciale, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Le portique de détection de métaux (PDM) est un cadre électromagnétique qui émet une alarme sonore et/ou visuelle lorsqu'une personne portant des objets métalliques (armes, outils) le franchit."
   },
   {
     theme: "Équipement / Intervention",
     q: "Qu'est-ce qu'un détecteur de métaux à main (DMM) ?",
-    options: ["Un outil pour détecter les mines enterrées", "Un appareil portatif permettant de localiser précisément un objet métallique sur une personne après le passage au portique", "Un système de verrouillage magnétique", "Un détecteur de présence"],
+    options: ["Un outil pour détecter les mines enterrées", "Un appareil portatif permettant de localiser précisément un objet métallique sur une personne après le passage au portique", "Un système de verrouillage magnétique, selon les dispositions légales applicables", "Un détecteur de présence, utilisé uniquement dans des cas très spécifiques"],
     correct: 1,
     explanation: "Le DMM (ou baguette de détection) est utilisé en complément du portique pour localiser précisément l'objet métallique qui a déclenché l'alarme. Il se passe autour du corps de la personne sans contact direct."
   },
   {
     theme: "Équipement / Intervention",
     q: "Quelle est la différence entre une radio et un téléphone pour les communications sur un site de sécurité ?",
-    options: ["Il n'y a aucune différence", "La radio permet une communication instantanée avec tout le groupe simultanément, le téléphone permet une communication bilatérale privée", "Le téléphone est plus sécurisé que la radio", "La radio ne fonctionne qu'en extérieur"],
+    options: ["Il n'existe aucune distinction entre ces deux notions dans la pratique", "La radio permet une communication instantanée avec tout le groupe simultanément, le téléphone permet une communication bilatérale privée", "Le téléphone est plus sécurisé que la radio", "La radio ne fonctionne qu'en extérieur, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Radio (talkie-walkie) = communication instantanée en push-to-talk, tout le groupe entend (canal commun). Téléphone = communication privée bilatérale. En sécurité, la radio est utilisée pour les communications opérationnelles, le téléphone pour les contacts externes."
   },
@@ -1507,42 +1507,42 @@ const questionsQCM = [
   {
     theme: "Divers",
     q: "Que doit faire un APS qui constate une situation de malaise d'une personne sur le site ?",
-    options: ["Ne pas intervenir, ce n'est pas son rôle", "Alerter les secours (15/18/112), sécuriser la zone, pratiquer les gestes de premiers secours si formé, rester avec la victime", "Demander à la victime de quitter le site", "Appeler le directeur avant les secours"],
+    options: ["Ne pas intervenir, ce n'est pas son rôle", "Alerter les secours (15/18/112), sécuriser la zone, pratiquer les gestes de premiers secours si formé, rester avec la victime", "Demander à la victime de quitter le site", "Appeler le directeur avant les secours, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Face à un malaise : alerter immédiatement les secours (15 ou 18 ou 112), sécuriser la zone, pratiquer les gestes de premiers secours si formé (PLS, RCP si nécessaire), ne pas laisser la victime seule, faciliter l'accès aux secours."
   },
   {
     theme: "Divers",
     q: "Qu'est-ce que la mission de surveillance humaine ?",
-    options: ["La surveillance par caméra", "La présence physique d'un agent sur site pour observer, prévenir et intervenir", "La surveillance par drone", "Le gardiennage d'animaux"],
+    options: ["La surveillance par caméra, selon les dispositions légales applicables", "La présence physique d'un agent sur site pour observer, prévenir et intervenir", "La surveillance par drone, selon les dispositions légales applicables", "Le gardiennage d'animaux, sans aucune obligation réglementaire particulière"],
     correct: 1,
     explanation: "Surveillance humaine = présence physique d'un agent formé pour observer (détecter les anomalies), prévenir (dissuader par sa présence) et intervenir (agir selon les consignes et la loi) sur un site."
   },
   {
     theme: "Divers",
     q: "Combien de temps à l'avance un agent doit-il se présenter à son poste ?",
-    options: ["Exactement à l'heure", "5 à 10 minutes avant pour assurer une bonne passation de consignes", "30 minutes avant minimum", "Cela dépend uniquement de l'employeur"],
+    options: ["Exactement à l'heure, cette option ne correspond pas à la procédure réglementaire", "5 à 10 minutes avant pour assurer une bonne passation de consignes", "30 minutes avant minimum, cette option ne correspond pas à la procédure réglementaire", "Cela dépend uniquement de l'employeur"],
     correct: 1,
     explanation: "L'agent doit arriver 5 à 10 minutes avant sa prise de poste pour assurer une passation de consignes complète avec son collègue : lecture de la main courante, état du matériel, incidents survenus, consignes particulières."
   },
   {
     theme: "Divers",
     q: "Que signifie 'travail dissimulé' dans le contexte de la sécurité privée ?",
-    options: ["Travailler de nuit sans lumière", "Exercer une activité de sécurité privée sans déclaration légale (sans contrat, sans carte professionnelle, sans inscription au CNAPS)", "Faire de la surveillance en civil", "Travailler dans des zones cachées"],
+    options: ["Exercer ses fonctions de nuit sans équipement d'éclairage réglementaire", "Exercer une activité de sécurité privée sans déclaration légale (sans contrat, sans carte professionnelle, sans inscription au CNAPS)", "Effectuer des missions de surveillance en tenue civile non réglementaire", "Exercer ses missions dans des zones dissimulées ou non déclarées au client"],
     correct: 1,
     explanation: "Travail dissimulé = exercice illégal d'activités de sécurité privée sans les autorisations requises. Concerne : les agents sans carte professionnelle, les entreprises non agréées par le CNAPS. Sanctions pénales pour l'agent et l'employeur."
   },
   {
     theme: "Armes",
     q: "Quelles armes un APS peut-il porter sans autorisation particulière ?",
-    options: ["Un pistolet semi-automatique", "Aucune arme, même les matraques nécessitent une autorisation et formation", "Une matraque télescopique", "Un aérosol lacrymogène"],
+    options: ["Un pistolet semi-automatique, selon les dispositions légales applicables", "Aucune arme, même les matraques nécessitent une autorisation et formation", "Une matraque télescopique, selon les dispositions légales applicables", "Un aérosol lacrymogène, utilisé uniquement dans des cas très spécifiques"],
     correct: 1,
     explanation: "Sans autorisation spécifique, l'APS ne peut porter aucune arme. Les matraques, tonfa, aérosols lacrymogènes sont classés armes de catégorie D et nécessitent une formation et une autorisation de l'employeur. Le port d'arme à feu nécessite une autorisation préfectorale."
   },
   {
     theme: "Armes",
     q: "Qu'est-ce qu'une arme de catégorie D ?",
-    options: ["Les armes à feu de guerre", "Les armes blanches et outils de défense (matraques, tonfa, aérosols, couteaux) dont le port nécessite un motif légitime", "Les explosifs", "Les armes de collection"],
+    options: ["Les armes à feu de guerre et matériels militaires réservés aux forces armées", "Les armes blanches et outils de défense (matraques, tonfa, aérosols, couteaux) dont le port nécessite un motif légitime", "Les explosifs et munitions classés en catégorie A par la réglementation", "Les armes de collection datant d'avant 1900 conservées à titre patrimonial"],
     correct: 1,
     explanation: "Catégorie D = armes blanches, outils de défense et certains aérosols. Le port nécessite un motif légitime (profession). Pour les APS : autorisation de l'employeur + formation obligatoire. Inclut matraques, tonfa, lacrymogènes."
   },
@@ -1551,28 +1551,28 @@ const questionsQCM = [
   {
     theme: "Agent cynophile",
     q: "Quelle formation spécifique doit posséder un agent cynophile ?",
-    options: ["La TFP APS classique suffit", "Une carte professionnelle cynophile délivrée par le CNAPS en plus de la carte APS", "Un diplôme vétérinaire", "Une formation de dresseur canin civil"],
+    options: ["La TFP APS classique suffit, selon les dispositions légales applicables", "Une carte professionnelle cynophile délivrée par le CNAPS en plus de la carte APS", "Un diplôme vétérinaire, utilisé uniquement dans des cas très spécifiques", "Une formation de dresseur canin civil, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "L'agent cynophile doit posséder une carte professionnelle spécifique 'cynophile' délivrée par le CNAPS, en plus de la carte APS classique. Les deux sont obligatoires pour exercer."
   },
   {
     theme: "Agent cynophile",
     q: "Dans quels types de missions un agent cynophile peut-il intervenir ?",
-    options: ["Uniquement la garde statique", "Rondes de sécurité, surveillance périmétrique, dissuasion, détection (stupéfiants, explosifs selon spécialité)", "Uniquement la détection de drogues", "Uniquement les interventions de nuit"],
+    options: ["Uniquement la garde statique, et dans aucun autre cas prévu par la loi", "Rondes de sécurité, surveillance périmétrique, dissuasion, détection (stupéfiants, explosifs selon spécialité)", "Uniquement la détection de drogues, et dans aucun autre cas prévu par la loi", "Uniquement les interventions de nuit, et dans aucun autre cas prévu par la loi"],
     correct: 1,
     explanation: "L'agent cynophile peut être employé pour : rondes de surveillance, gardiennage périmétrique, dissuasion d'intrusion, et selon la spécialisation du chien : détection de stupéfiants, d'explosifs ou de billets de banque."
   },
   {
     theme: "Agent cynophile",
     q: "L'agent cynophile est-il responsable des actes de son chien ?",
-    options: ["Non, c'est l'employeur qui est responsable", "Oui, le maître-chien est responsable pénalement et civilement des actes de son animal", "Non, le chien n'a pas de statut légal", "Oui, seulement en cas de morsure grave"],
+    options: ["Non, c'est l'employeur qui est responsable", "Oui, le maître-chien est responsable pénalement et civilement des actes de son animal", "Non, le chien n'a pas de statut légal, conformément à la réglementation en vigueur", "Oui, seulement en cas de morsure grave, conformément à la réglementation en vigueur"],
     correct: 1,
     explanation: "Le maître-chien est pleinement responsable de son animal. En cas de morsure ou dommage causé par le chien, sa responsabilité civile et pénale est engagée. Il doit maîtriser son animal en toutes circonstances."
   },
   {
     theme: "Agent cynophile",
     q: "Quelle est la catégorie du chien le plus souvent utilisé en sécurité privée ?",
-    options: ["Chien de 1ère catégorie (chien d'attaque)", "Chien de 2ème catégorie (chien de garde et de défense) avec dressage sécurité", "Chien de 3ème catégorie", "Tout chien peut être utilisé sans restriction"],
+    options: ["Chien de 1ère catégorie (chien d'attaque)", "Chien de 2ème catégorie (chien de garde et de défense) avec dressage sécurité", "Chien de 3ème catégorie, cette option ne correspond pas à la procédure réglementaire", "Tout chien peut être utilisé sans restriction"],
     correct: 1,
     explanation: "Les chiens utilisés en sécurité privée sont généralement des chiens de 2ème catégorie (défense) avec un dressage spécifique sécurité. Les chiens de 1ère catégorie (attaque) sont interdits en sécurité privée."
   },
@@ -1588,28 +1588,28 @@ const questionsQCM = [
   {
     theme: "Consignes",
     q: "Quelle est la différence entre une consigne générale et une consigne particulière ?",
-    options: ["Il n'y a pas de différence", "Consigne générale = règles communes à tous les postes. Consigne particulière = règles spécifiques à un poste ou une situation donnée", "Consigne générale = écrite, particulière = orale", "Consigne générale = permanente, particulière = annuelle"],
+    options: ["Il n'y a pas de différence, selon les dispositions légales applicables", "Consigne générale = règles communes à tous les postes. Consigne particulière = règles spécifiques à un poste ou une situation donnée", "Consigne générale = écrite, particulière = orale", "Consigne générale = permanente, particulière = annuelle"],
     correct: 1,
     explanation: "Consignes générales = règles s'appliquant à l'ensemble des agents du site. Consignes particulières = règles propres à un poste précis ou une situation spécifique."
   },
   {
     theme: "Consignes",
     q: "Que doit faire un agent qui ne comprend pas une consigne ?",
-    options: ["L'ignorer et agir selon son bon sens", "Demander des clarifications à son responsable hiérarchique avant de prendre son poste", "L'interpréter librement", "Attendre que la situation se présente pour décider"],
+    options: ["L'ignorer et agir selon son bon sens, selon les dispositions légales applicables", "Demander des clarifications à son responsable hiérarchique avant de prendre son poste", "L'interpréter librement, sans aucune obligation réglementaire particulière", "Attendre que la situation se présente pour décider"],
     correct: 1,
     explanation: "Un agent qui ne comprend pas une consigne doit impérativement demander des clarifications à son supérieur AVANT de prendre son poste. Appliquer une consigne mal comprise peut engager sa responsabilité."
   },
   {
     theme: "Consignes",
     q: "Une consigne donnée par le client peut-elle contredire la loi ?",
-    options: ["Oui, le client est prioritaire", "Non, aucune consigne ne peut être contraire à la loi. L'agent doit refuser et en informer sa hiérarchie", "Oui, si elle est écrite et signée", "Cela dépend de la gravité de la contradiction"],
+    options: ["Oui, le client est prioritaire, conformément à la réglementation en vigueur", "Non, aucune consigne ne peut être contraire à la loi. L'agent doit refuser et en informer sa hiérarchie", "Oui, si elle est écrite et signée, conformément à la réglementation en vigueur", "Cela dépend de la gravité de la contradiction"],
     correct: 1,
     explanation: "Aucune consigne, même du client, ne peut être contraire à la loi. Si une consigne est illégale, l'agent doit la refuser et en informer immédiatement sa hiérarchie. L'exécution d'une consigne illégale engage sa responsabilité pénale personnelle."
   },
   {
     theme: "Consignes",
     q: "Lors d'une passation de consignes entre deux agents, que doit-on obligatoirement transmettre ?",
-    options: ["Uniquement les incidents graves", "L'état du matériel, les anomalies, les consignes particulières du jour, les événements survenus et les tâches en cours", "Uniquement l'heure de prise de service", "Rien si tout s'est bien passé"],
+    options: ["Uniquement les incidents graves, et dans aucun autre cas prévu par la loi", "L'état du matériel, les anomalies, les consignes particulières du jour, les événements survenus et les tâches en cours", "Uniquement l'heure de prise de service, et dans aucun autre cas prévu par la loi", "Rien si tout s'est bien passé, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Passation de consignes complète : état du matériel et du SSI, anomalies constatées, consignes particulières, incidents survenus, tâches en cours. La traçabilité est assurée par la main courante."
   }
@@ -1619,7 +1619,7 @@ const questionsQCM = [
   {
     theme: "Communication",
     q: "Quelle est la règle de base d'une communication radio professionnelle ?",
-    options: ["Parler le plus vite possible", "Identifier l'appelant et le destinataire, parler clairement, confirmer la réception", "Ne jamais couper l'interlocuteur", "Toujours utiliser le nom complet"],
+    options: ["Parler le plus vite possible, selon les dispositions légales applicables", "Identifier l'appelant et le destinataire, parler clairement, confirmer la réception", "Ne jamais couper l'interlocuteur, selon les dispositions légales applicables", "Toujours utiliser le nom complet, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Communication radio : s'identifier (ex : 'PC de Alpha 1'), message court et clair, confirmer réception ('reçu', 'bien reçu'). Éviter le jargon non convenu et les informations sensibles en clair."
   },
@@ -1633,14 +1633,14 @@ const questionsQCM = [
   {
     theme: "Communication",
     q: "Que signifie 'accusé de réception' dans une communication radio ?",
-    options: ["Refuser un message", "Confirmer qu'on a bien reçu et compris le message", "Demander la répétition du message", "Terminer la communication"],
+    options: ["Refuser un message, cette option ne correspond pas à la procédure réglementaire", "Confirmer qu'on a bien reçu et compris le message", "Demander la répétition du message", "Terminer la communication, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "L'accusé de réception ('reçu', 'bien reçu', 'OK') confirme que le message a été entendu et compris. Sans accusé de réception, l'émetteur ne sait pas si son message est parvenu."
   },
   {
     theme: "Communication",
     q: "Un agent de sécurité peut-il divulguer des informations sur les incidents du site à des journalistes ?",
-    options: ["Oui, la liberté de la presse l'exige", "Non, le devoir de discrétion lui interdit de divulguer des informations confidentielles sans autorisation", "Oui, si les faits sont déjà publics", "Oui, uniquement les faits sans les noms"],
+    options: ["Oui, la liberté de la presse l'exige, conformément à la réglementation en vigueur", "Non, le devoir de discrétion lui interdit de divulguer des informations confidentielles sans autorisation", "Oui, si les faits sont déjà publics, conformément à la réglementation en vigueur", "Oui, uniquement les faits sans les noms, conformément à la réglementation en vigueur"],
     correct: 1,
     explanation: "Non. Le devoir de discrétion professionnelle interdit à l'agent de divulguer des informations sur le site ou les incidents. Tout contact avec les médias doit être redirigé vers la direction."
   },
@@ -1654,7 +1654,7 @@ const questionsQCM = [
   {
     theme: "Communication",
     q: "Qu'est-ce qu'un compte rendu d'intervention ?",
-    options: ["Un rapport rédigé avant l'intervention", "Un document écrit décrivant le déroulement et les résultats d'une intervention, rédigé après les faits", "Un formulaire à remplir par le client", "Un résumé de la vacation entière"],
+    options: ["Un rapport rédigé avant l'intervention, selon les dispositions légales applicables", "Un document écrit décrivant le déroulement et les résultats d'une intervention, rédigé après les faits", "Un formulaire à remplir par le client, selon les dispositions légales applicables", "Un résumé de la vacation entière, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Compte rendu d'intervention = document factuel rédigé après une intervention. Il décrit les faits selon QQOQCP, les actions menées et les suites données."
   },
@@ -1670,14 +1670,14 @@ const questionsQCM = [
   {
     theme: "Premiers secours",
     q: "Quels sont les numéros d'urgence en France ?",
-    options: ["17 uniquement", "15 (SAMU), 18 (Pompiers), 17 (Police), 112 (Européen)", "18 et 112 uniquement", "15 et 18 uniquement"],
+    options: ["17 uniquement, sans aucune restriction légale applicable", "15 (SAMU), 18 (Pompiers), 17 (Police), 112 (Européen)", "18 et 112 uniquement, sans aucune restriction légale applicable", "15 et 18 uniquement, sans aucune restriction légale applicable"],
     correct: 1,
     explanation: "15 = SAMU, 18 = Pompiers, 17 = Police/Gendarmerie, 112 = numéro européen accessible depuis mobile même sans réseau. Le 112 redirige vers le bon service."
   },
   {
     theme: "Premiers secours",
     q: "Qu'est-ce que la Position Latérale de Sécurité (PLS) ?",
-    options: ["La position pour le massage cardiaque", "La position sur le côté maintenant les voies aériennes libres chez une victime inconsciente qui respire", "La position debout pour évacuer une victime", "La position pour traiter une hémorragie"],
+    options: ["La position pour le massage cardiaque, selon les dispositions légales applicables", "La position sur le côté maintenant les voies aériennes libres chez une victime inconsciente qui respire", "La position debout pour évacuer une victime", "La position pour traiter une hémorragie, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "PLS = position sur le côté pour une victime inconsciente qui RESPIRE. Elle évite l'asphyxie en cas de vomissement. Ne pas mettre en PLS une victime qui ne respire pas (commencer la RCP)."
   },
@@ -1691,63 +1691,63 @@ const questionsQCM = [
   {
     theme: "Premiers secours",
     q: "Comment vérifier si une victime inconsciente respire ?",
-    options: ["En lui cherchant le pouls", "LVS : regarder le ventre, écouter, sentir le souffle pendant 10 secondes maximum", "En lui mettant un miroir sous le nez", "En l'agitant fortement"],
+    options: ["En lui cherchant le pouls, selon les dispositions légales applicables", "LVS : regarder le ventre, écouter, sentir le souffle pendant 10 secondes maximum", "En lui mettant un miroir sous le nez, selon les dispositions légales applicables", "En l'agitant fortement, sans aucune restriction légale applicable"],
     correct: 1,
     explanation: "LVS : basculer la tête en arrière, regarder le ventre, écouter le souffle, sentir l'air sur la joue pendant 10 secondes MAX. Au-delà de 10s sans respiration → commencer la RCP."
   },
   {
     theme: "Premiers secours",
     q: "Qu'est-ce que la RCP ?",
-    options: ["La technique pour traiter une hémorragie", "30 compressions thoraciques alternées avec 2 insufflations pour remplacer le cœur et les poumons arrêtés", "La mise en PLS", "L'utilisation du défibrillateur uniquement"],
+    options: ["La technique pour traiter une hémorragie", "30 compressions thoraciques alternées avec 2 insufflations pour remplacer le cœur et les poumons arrêtés", "La mise en PLS, sans aucune obligation réglementaire particulière", "L'utilisation du défibrillateur uniquement"],
     correct: 1,
     explanation: "RCP = 30 compressions thoraciques (5-6cm, 100-120/min) + 2 insufflations. Recommencer 30/2 jusqu'à l'arrivée des secours. Commencer AVANT le défibrillateur s'il n'est pas encore disponible."
   },
   {
     theme: "Premiers secours",
     q: "Qu'est-ce qu'un DAE ?",
-    options: ["Un appareil de massage cardiaque automatique", "Un appareil qui analyse le rythme cardiaque et délivre un choc électrique si nécessaire", "Un appareil de ventilation artificielle", "Un moniteur de surveillance"],
+    options: ["Un appareil de massage cardiaque automatique", "Un appareil qui analyse le rythme cardiaque et délivre un choc électrique si nécessaire", "Un appareil de ventilation artificielle, selon les dispositions légales applicables", "Un moniteur de surveillance, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "DAE = Défibrillateur Automatisé Externe. Analyse le rythme cardiaque et délivre un choc si fibrillation. Guidé par une voix, utilisable par tout le monde. Continuer la RCP entre les analyses."
   },
   {
     theme: "Premiers secours",
     q: "Comment arrêter une hémorragie externe grave ?",
-    options: ["Appliquer de la glace", "Compression directe et forte sur la plaie avec un linge propre", "Surélever uniquement le membre", "Laver la plaie à l'eau"],
+    options: ["Appliquer de la glace, cette option ne correspond pas à la procédure réglementaire", "Compression directe et forte sur la plaie avec un linge propre", "Surélever uniquement le membre, et dans aucun autre cas prévu par la loi", "Laver la plaie à l'eau, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "Hémorragie : COMPRESSION DIRECTE immédiate et forte sur la plaie (linge propre ou mains). Maintenir sans relâcher jusqu'aux secours. Garrot en dernier recours si compression impossible sur un membre."
   },
   {
     theme: "Premiers secours",
     q: "Qu'est-ce que la manœuvre de Heimlich ?",
-    options: ["Le massage cardiaque", "La manœuvre pour désobstruer les voies aériennes d'une personne en train de s'étouffer", "La technique pour transporter une victime", "La méthode pour traiter un malaise vagal"],
+    options: ["Le massage cardiaque, sans aucune obligation réglementaire particulière", "La manœuvre pour désobstruer les voies aériennes d'une personne en train de s'étouffer", "La technique pour transporter une victime", "La méthode pour traiter un malaise vagal"],
     correct: 1,
     explanation: "Manœuvre de Heimlich : se placer derrière la victime, poing entre nombril et sternum, compressions sèches vers soi et vers le haut jusqu'à expulsion du corps étranger."
   },
   {
     theme: "Premiers secours",
     q: "Face à une douleur thoracique irradiant dans le bras gauche, que fait-on ?",
-    options: ["Attendre que ça passe", "Appeler le 15 immédiatement — signes d'infarctus", "Donner de l'aspirine", "Allonger et surélever les jambes"],
+    options: ["Attendre que ça passe, cette option ne correspond pas à la procédure réglementaire", "Appeler le 15 immédiatement — signes d'infarctus", "Donner de l'aspirine, cette option ne correspond pas à la procédure réglementaire", "Allonger et surélever les jambes"],
     correct: 1,
     explanation: "Douleur thoracique + irradiation bras gauche = signes classiques d'infarctus. Appeler le 15 IMMÉDIATEMENT, installer en position demi-assise, ne pas faire d'effort, rester avec la victime."
   },
   {
     theme: "Premiers secours",
     q: "Comment reconnaître un AVC avec la méthode FAST ?",
-    options: ["Fièvre, Agitation, Sueurs, Tremblements", "Face asymétrique, bras qui tombe, parole impossible, Time (appeler le 15 immédiatement)", "Froid, Angoisse, Syncope, Tachycardie", "Fatigue, Anxiété, Soif, Tremblements"],
+    options: ["Fièvre, Agitation, Sueurs, Tremblements, selon les dispositions légales applicables", "Face asymétrique, bras qui tombe, parole impossible, Time (appeler le 15 immédiatement)", "Froid, Angoisse, Syncope, Tachycardie, selon les dispositions légales applicables", "Fatigue, Anxiété, Soif, Tremblements, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "FAST : Face (sourire asymétrique), Arms (un bras tombe), Speech (parole impossible), Time (appeler le 15 d'urgence). Chaque minute compte lors d'un AVC."
   },
   {
     theme: "Premiers secours",
     q: "Comment réagir face à une crise d'épilepsie ?",
-    options: ["Mettre quelque chose dans la bouche pour éviter la morsure", "Écarter les objets, protéger la tête, ne pas retenir, appeler le 15 si crise > 5 min", "Le maintenir fermement au sol", "L'asperger d'eau froide"],
+    options: ["Mettre quelque chose dans la bouche pour éviter la morsure", "Écarter les objets, protéger la tête, ne pas retenir, appeler le 15 si crise > 5 min", "Le maintenir fermement au sol, selon les dispositions légales applicables", "L'asperger d'eau froide, sans aucune obligation réglementaire particulière"],
     correct: 1,
     explanation: "Épilepsie : NE PAS mettre d'objet dans la bouche, NE PAS retenir. Sécuriser l'environnement, protéger la tête, noter l'heure. Appeler le 15 si première crise ou crise > 5 minutes. Après : PLS."
   },
   {
     theme: "Premiers secours",
     q: "Un agent de sécurité est-il obligé de porter secours à une personne en danger ?",
-    options: ["Non, ce n'est pas son rôle", "Oui, tout citoyen a l'obligation légale de porter secours (art. 223-6 CP)", "Oui, mais uniquement dans son périmètre", "Seulement s'il est secouriste diplômé"],
+    options: ["Non, ce n'est pas son rôle, conformément à la réglementation en vigueur", "Oui, tout citoyen a l'obligation légale de porter secours (art. 223-6 CP)", "Oui, mais uniquement dans son périmètre", "Seulement s'il est secouriste diplômé, et dans aucun autre cas prévu par la loi"],
     correct: 1,
     explanation: "Art. 223-6 CP : obligation de porter secours à toute personne en péril dans la mesure de ses possibilités et sans risque pour soi. Ne pas le faire = non-assistance à personne en danger (5 ans, 75 000€)."
   },
@@ -1756,21 +1756,21 @@ const questionsQCM = [
   {
     theme: "Contrôle d'accès",
     q: "Qu'est-ce que le 'tailgating' en contrôle d'accès ?",
-    options: ["Une technique de surveillance", "Le fait pour une personne non autorisée de suivre une personne autorisée pour franchir un accès sans s'authentifier", "Une procédure de contrôle renforcé", "Une technique de palpation"],
+    options: ["Une technique de surveillance électronique par caméras dissimulées", "Le fait pour une personne non autorisée de suivre une personne autorisée pour franchir un accès sans s'authentifier", "Une procédure de contrôle renforcé appliquée dans les zones à risque élevé", "Une technique de palpation spécifique utilisée pour les fouilles de sécurité"],
     correct: 1,
     explanation: "Tailgating = une personne non autorisée profite de l'ouverture d'un accès pour entrer sans contrôle. L'agent doit veiller à ce que chaque personne s'authentifie individuellement."
   },
   {
     theme: "Contrôle d'accès",
     q: "Quelle est la procédure pour un visiteur extérieur ?",
-    options: ["Le laisser entrer librement", "Vérifier identité, enregistrer, contacter la personne visitée, remettre un badge visiteur temporaire", "Lui demander uniquement son nom", "L'escorter directement sans vérification"],
+    options: ["Le laisser entrer librement, selon les dispositions légales applicables", "Vérifier identité, enregistrer, contacter la personne visitée, remettre un badge visiteur temporaire", "Lui demander uniquement son nom, et dans aucun autre cas prévu par la loi", "L'escorter directement sans vérification"],
     correct: 1,
     explanation: "Procédure visiteur : 1) Vérifier pièce d'identité, 2) Enregistrer (nom, heure, personne visitée), 3) Contacter la personne visitée, 4) Remettre badge visiteur, 5) Accompagner selon consignes."
   },
   {
     theme: "Contrôle d'accès",
     q: "Que faire face à une personne qui refuse de présenter son badge ?",
-    options: ["La laisser passer pour éviter le conflit", "Refuser poliment l'accès, expliquer la procédure, appeler le responsable si persistance", "L'appréhender immédiatement", "Lui demander ses papiers d'identité"],
+    options: ["La laisser passer pour éviter le conflit", "Refuser poliment l'accès, expliquer la procédure, appeler le responsable si persistance", "L'appréhender immédiatement, selon les dispositions légales applicables", "Lui demander ses papiers d'identité, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Refus de badge : rester calme, expliquer la règle, proposer d'appeler le service concerné. Si la personne insiste, appeler le responsable. Ne jamais forcer le passage ni créer de conflit."
   },
@@ -1786,7 +1786,7 @@ const questionsQCM = [
   {
     theme: "Palpation / Fouille",
     q: "Peut-on confisquer un objet trouvé lors d'une palpation ?",
-    options: ["Oui, l'agent peut les confisquer", "Non, l'agent peut refuser l'accès ou remettre les objets à un OPJ, mais pas confisquer", "Oui, si les objets sont dangereux", "Seulement avec l'accord du directeur"],
+    options: ["Oui, l'agent peut les confisquer, conformément à la réglementation en vigueur", "Non, l'agent peut refuser l'accès ou remettre les objets à un OPJ, mais pas confisquer", "Oui, si les objets sont dangereux, conformément à la réglementation en vigueur", "Seulement avec l'accord du directeur, et dans aucun autre cas prévu par la loi"],
     correct: 1,
     explanation: "L'APS n'a pas le droit de confisquer. Face à un objet illicite (arme, drogue) : refuser l'accès, appeler le 17, et maintenir la personne si flagrant délit art. 73 CPP."
   },
@@ -1795,14 +1795,14 @@ const questionsQCM = [
   {
     theme: "Main courante / Rapports",
     q: "Peut-on utiliser du blanc correcteur sur une main courante manuscrite ?",
-    options: ["Oui si c'est propre", "Non, on barre lisiblement l'erreur et on inscrit la correction avec ses initiales", "Oui si on paraphe", "Non, il faut recommencer la page"],
+    options: ["Oui si c'est propre, selon la réglementation actuellement en vigueur", "Non, on barre lisiblement l'erreur et on inscrit la correction avec ses initiales", "Oui si on paraphe, selon la réglementation actuellement en vigueur", "Non, il faut recommencer la page, conformément à la réglementation en vigueur"],
     correct: 1,
     explanation: "Ne JAMAIS utiliser de blanc. Barrer d'un trait (mention visible), écrire la correction, apposer ses initiales. Les corrections au blanc invalident le document légalement."
   },
   {
     theme: "Main courante / Rapports",
     q: "Un rapport doit-il contenir des opinions personnelles ?",
-    options: ["Oui, pour donner plus d'informations", "Non, un rapport doit être factuel et objectif uniquement", "Oui, uniquement en conclusion", "Selon le type de rapport"],
+    options: ["Oui, pour donner plus d'informations", "Non, un rapport doit être factuel et objectif uniquement", "Oui, uniquement en conclusion, conformément à la réglementation en vigueur", "Selon le type de rapport, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "Rapport = FACTUEL et OBJECTIF. 'La personne courait' (fait) vs 'la personne semblait coupable' (opinion). Les opinions peuvent invalider un rapport en cas de litige."
   },
@@ -1811,14 +1811,14 @@ const questionsQCM = [
   {
     theme: "Déontologie",
     q: "Un agent peut-il accepter des cadeaux de personnes côtoyées en service ?",
-    options: ["Oui, si la valeur est modeste", "Non, accepter des avantages liés à ses fonctions est contraire à la déontologie", "Oui si spontané", "Selon le règlement de l'entreprise"],
+    options: ["Oui, si la valeur est modeste, conformément à la réglementation en vigueur", "Non, accepter des avantages liés à ses fonctions est contraire à la déontologie", "Oui si spontané, selon la réglementation actuellement en vigueur", "Selon le règlement de l'entreprise, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Accepter des cadeaux liés à ses fonctions = risque de corruption ou de compromission. L'agent doit rester neutre et impartial en toutes circonstances."
   },
   {
     theme: "Déontologie",
     q: "Que doit faire un agent témoin d'une faute professionnelle d'un collègue ?",
-    options: ["Se taire par solidarité", "En informer sa hiérarchie selon la procédure interne", "Régler ça directement avec le collègue", "Prévenir le client directement"],
+    options: ["Se taire par solidarité, cette option ne correspond pas à la procédure réglementaire", "En informer sa hiérarchie selon la procédure interne", "Régler ça directement avec le collègue", "Prévenir le client directement"],
     correct: 1,
     explanation: "La solidarité ne doit pas primer sur l'éthique. Face à une faute grave d'un collègue, l'agent doit en informer sa hiérarchie. Se taire peut engager sa propre responsabilité."
   },
@@ -1827,14 +1827,14 @@ const questionsQCM = [
   {
     theme: "Événementiel",
     q: "Que faire si une personne présente une ivresse manifeste à l'entrée d'un événement ?",
-    options: ["L'ignorer", "Refuser l'accès, la raccompagner en lieu sûr, appeler les secours si nécessaire", "Appeler la police immédiatement", "La laisser sortir seule"],
+    options: ["Ignorer complètement la situation et poursuivre sa mission sans intervenir", "Refuser l'accès, la raccompagner en lieu sûr, appeler les secours si nécessaire", "Appeler la police immédiatement", "La laisser sortir seule"],
     correct: 1,
     explanation: "Ivresse manifeste : refuser l'accès poliment. Si danger pour elle-même ou autrui, appeler le 15 ou le 17. L'APS ne peut pas utiliser la force physique pour la faire partir."
   },
   {
     theme: "Événementiel",
     q: "Qu'est-ce qu'un dispatcher en sécurité événementielle ?",
-    options: ["Un agent en charge de la billetterie", "Le responsable du PC sécurité qui coordonne les équipes terrain via radio", "Un agent VIP", "Le responsable technique"],
+    options: ["Un agent en charge de la billetterie, selon les dispositions légales applicables", "Le responsable du PC sécurité qui coordonne les équipes terrain via radio", "Un agent VIP, utilisé uniquement dans des cas très spécifiques", "Le responsable technique, sans aucune obligation réglementaire particulière"],
     correct: 1,
     explanation: "Dispatcher = agent au PC sécurité qui coordonne les équipes terrain en temps réel (radio), gère les interventions et fait le lien avec les secours extérieurs."
   },
@@ -1843,21 +1843,21 @@ const questionsQCM = [
   {
     theme: "Divers",
     q: "Qu'est-ce que le registre de sécurité d'un établissement ?",
-    options: ["La main courante quotidienne", "Document obligatoire regroupant toutes les informations relatives à la sécurité incendie (vérifications, exercices, incidents)", "Le planning des agents", "La liste des EPI"],
+    options: ["La main courante remplie quotidiennement par l'agent en service", "Document obligatoire regroupant toutes les informations relatives à la sécurité incendie (vérifications, exercices, incidents)", "Le planning de rotation et de présence des agents de sécurité", "La liste des Équipements de Protection Individuelle disponibles sur site"],
     correct: 1,
     explanation: "Registre de sécurité = document obligatoire dans tout ERP. Il consigne : vérifications des équipements, exercices d'évacuation, travaux, incidents et observations de la commission de sécurité."
   },
   {
     theme: "Divers",
     q: "Quelle est la fréquence minimale des exercices d'évacuation dans un ERP ?",
-    options: ["Tous les mois", "1 fois par an minimum (2 fois pour les ERP avec locaux à sommeil)", "Tous les 2 ans", "Uniquement à l'ouverture"],
+    options: ["Un exercice mensuel obligatoire organisé par la direction de l'établissement", "1 fois par an minimum (2 fois pour les ERP avec locaux à sommeil)", "Une vérification biennale réalisée par un technicien certifié", "Uniquement lors de l'ouverture initiale de l'établissement au public"],
     correct: 1,
     explanation: "ERP : 1 exercice/an minimum. Pour ERP avec locaux à sommeil (hôtels, hôpitaux) : 2 fois/an minimum dont un de nuit. À consigner dans le registre de sécurité."
   },
   {
     theme: "Divers",
     q: "Peut-on dormir à son poste pendant une vacation de nuit ?",
-    options: ["Oui s'il n'y a rien à faire", "Non, l'agent doit rester vigilant pendant toute la vacation", "Oui pendant les pauses réglementaires", "Oui si un collègue est présent"],
+    options: ["Oui s'il n'y a rien à faire, conformément à la réglementation en vigueur", "Non, l'agent doit rester vigilant pendant toute la vacation", "Oui pendant les pauses réglementaires", "Oui si un collègue est présent, conformément à la réglementation en vigueur"],
     correct: 1,
     explanation: "Dormir à son poste = faute professionnelle grave pouvant entraîner un licenciement et engager la responsabilité de l'agent en cas d'incident. Les pauses doivent être organisées selon les consignes."
   },
@@ -1866,14 +1866,14 @@ const questionsQCM = [
   {
     theme: "Plans d'urgence",
     q: "Qu'est-ce qu'un point de rassemblement ?",
-    options: ["L'entrée principale", "Lieu prédéfini à l'extérieur où se regroupent les occupants après évacuation pour vérifier que tout le monde est sorti", "La salle de réunion", "Le parking"],
+    options: ["L'entrée principale du bâtiment, accessible à tous sans filtrage", "Lieu prédéfini à l'extérieur où se regroupent les occupants après évacuation pour vérifier que tout le monde est sorti", "La salle de réunion principale désignée par la direction", "Le parking extérieur du site, zone de stationnement des véhicules"],
     correct: 1,
     explanation: "Point de rassemblement = zone extérieure prédéfinie, à distance suffisante. Permet de vérifier que tous ont évacué et de ne pas gêner l'intervention des secours."
   },
   {
     theme: "Plans d'urgence",
     q: "Que faire si une personne refuse d'évacuer lors d'une alerte incendie ?",
-    options: ["La forcer physiquement", "Persuader verbalement, noter sa localisation, prévenir les pompiers de sa présence", "L'ignorer et partir", "Attendre les pompiers"],
+    options: ["La saisir physiquement et la forcer à quitter les lieux par la contrainte", "Persuader verbalement, noter sa localisation, prévenir les pompiers de sa présence", "L'ignorer complètement et quitter les lieux sans en informer les secours", "Attendre passivement l'arrivée des pompiers sans rien faire ni signaler"],
     correct: 1,
     explanation: "L'APS ne peut pas forcer physiquement. Il doit insister verbalement, noter la localisation précise et prévenir impérativement les pompiers pour qu'ils puissent intervenir."
   }
@@ -1884,7 +1884,7 @@ const questionsQCM = [
   {
     theme: "Terrorisme",
     q: "Que signifie le plan Vigipirate ?",
-    options: ["Un plan d'évacuation des bâtiments publics", "Le plan national de prévention du terrorisme fixant les postures de sécurité selon le niveau de menace", "Un plan de surveillance des frontières uniquement", "Un protocole réservé aux forces armées"],
+    options: ["Un plan d'évacuation des bâtiments publics", "Le plan national de prévention du terrorisme fixant les postures de sécurité selon le niveau de menace", "Un plan de surveillance des frontières uniquement", "Un protocole réservé aux forces armées, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Vigipirate est le plan national de prévention du terrorisme. Il comporte plusieurs niveaux de vigilance et fixe les mesures de sécurité à appliquer par tous les acteurs (État, collectivités, entreprises, citoyens) selon la menace."
   },
@@ -1898,56 +1898,56 @@ const questionsQCM = [
   {
     theme: "Terrorisme",
     q: "Que signifie la procédure 'Attentat en cours' pour un APS ?",
-    options: ["Évacuer immédiatement tout le monde", "Appliquer le protocole SAFE : Sécuriser, Alerter, Faire secourir, Établir un périmètre", "Attendre les forces de l'ordre sans agir", "Neutraliser la menace"],
+    options: ["Évacuer immédiatement tout le monde, selon les dispositions légales applicables", "Appliquer le protocole SAFE : Sécuriser, Alerter, Faire secourir, Établir un périmètre", "Attendre les forces de l'ordre sans agir", "Neutraliser la menace, cette option ne correspond pas à la procédure réglementaire"],
     correct: 1,
     explanation: "Attentat en cours : appliquer le protocole de gestion de crise. Priorités : mettre à l'abri les personnes (confinement ou évacuation selon la situation), alerter le 17 et le 15, ne pas s'exposer, rendre compte au PC sécurité, faciliter l'accès aux secours."
   },
   {
     theme: "Terrorisme",
     q: "Qu'est-ce que la méthode 'Fuir, Se cacher, Alerter' face à une attaque terroriste ?",
-    options: ["Une procédure militaire", "Le comportement recommandé aux civils face à une attaque terroriste : fuir si possible, se cacher si on ne peut pas fuir, alerter le 17", "Une technique de self-défense", "Un protocole réservé aux agents de sécurité"],
+    options: ["Une procédure militaire, utilisé uniquement dans des cas très spécifiques", "Le comportement recommandé aux civils face à une attaque terroriste : fuir si possible, se cacher si on ne peut pas fuir, alerter le 17", "Une technique de self-défense, selon les dispositions légales applicables", "Un protocole réservé aux agents de sécurité"],
     correct: 1,
     explanation: "Fuir, Se cacher, Alerter : conseils officiels du gouvernement. 1) FUIR en laissant ses affaires, 2) SE CACHER si impossible de fuir (barricader, éteindre les lumières, couper le son), 3) ALERTER le 17 dès qu'en sécurité. Ne jamais faire le héros."
   },
   {
     theme: "Terrorisme",
     q: "Un APS doit-il tenter de neutraliser un terroriste armé ?",
-    options: ["Oui, c'est son rôle de protéger", "Non, il doit mettre à l'abri les personnes et alerter les forces de l'ordre. La neutralisation est réservée aux forces de l'ordre", "Oui, s'il est en supériorité numérique", "Oui, s'il possède une formation spéciale"],
+    options: ["Oui, c'est son rôle de protéger, conformément à la réglementation en vigueur", "Non, il doit mettre à l'abri les personnes et alerter les forces de l'ordre. La neutralisation est réservée aux forces de l'ordre", "Oui, s'il est en supériorité numérique, conformément à la réglementation en vigueur", "Oui, s'il possède une formation spéciale"],
     correct: 1,
     explanation: "Non. L'APS n'est pas formé ni équipé pour affronter un terroriste armé. Sa mission est de protéger les personnes (évacuation, confinement) et d'alerter le 17. Toute tentative de confrontation met des vies en danger."
   },
   {
     theme: "Terrorisme",
     q: "Qu'est-ce qu'un attentat suicide ?",
-    options: ["Un attentat revendiqué après les faits", "Un acte terroriste dans lequel l'auteur se sacrifie délibérément lors de l'attaque (ceinture explosive, véhicule bélier...)", "Un attentat visant les forces de l'ordre", "Un attentat sans revendication"],
+    options: ["Un attentat revendiqué après les faits, selon les dispositions légales applicables", "Un acte terroriste dans lequel l'auteur se sacrifie délibérément lors de l'attaque (ceinture explosive, véhicule bélier...)", "Un attentat visant les forces de l'ordre", "Un attentat sans revendication, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Attentat suicide = l'auteur intègre sa propre mort dans le plan d'attaque (ceinture explosive, voiture piégée...). Particulièrement dangereux car aucun instinct de survie n'inhibe l'acte. Face à une personne suspecte portant un colis ou vêtement volumineux : s'éloigner, ne pas toucher, alerter le 17."
   },
   {
     theme: "Terrorisme",
     q: "Que faire face à une personne au comportement suspect dans votre site (nervosité excessive, reconnaissance des lieux, questions inhabituelles) ?",
-    options: ["L'interpeller directement et lui demander ses papiers", "Observer discrètement, noter les détails (signalement, direction), alerter sa hiérarchie et si nécessaire le 17", "L'ignorer pour ne pas créer d'incident", "L'appréhender immédiatement"],
+    options: ["L'interpeller directement et lui demander ses papiers", "Observer discrètement, noter les détails (signalement, direction), alerter sa hiérarchie et si nécessaire le 17", "L'ignorer pour ne pas créer d'incident, selon les dispositions légales applicables", "L'appréhender immédiatement, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Face à un comportement suspect : ne pas intervenir seul, observer discrètement et noter le signalement (description physique, vêtements, direction), alerter immédiatement la hiérarchie et le PC sécurité, qui décideront d'alerter le 17. La vigilance discète vaut mieux que l'intervention precipitée."
   },
   {
     theme: "Terrorisme",
     q: "Qu'est-ce que le confinement en cas d'attaque terroriste ?",
-    options: ["Évacuer tout le monde vers l'extérieur", "Regrouper et mettre à l'abri les personnes dans un local sécurisé (portes barricadées, lumières éteintes, téléphones silencieux) en attendant les secours", "Fermer uniquement les portes d'entrée", "Appeler chaque personne une par une pour les informer"],
+    options: ["Évacuer tout le monde vers l'extérieur, selon les dispositions légales applicables", "Regrouper et mettre à l'abri les personnes dans un local sécurisé (portes barricadées, lumières éteintes, téléphones silencieux) en attendant les secours", "Fermer uniquement les portes d'entrée, et dans aucun autre cas prévu par la loi", "Appeler chaque personne une par une pour les informer"],
     correct: 1,
     explanation: "Confinement = alternative à l'évacuation quand la fuite est impossible. Rassembler les personnes dans une pièce solide, barricader les portes (meubles, coins), éteindre lumières, couper sons, s'allonger sous les fenêtres, ne pas ouvrir avant confirmation des forces de l'ordre."
   },
   {
     theme: "Terrorisme",
     q: "Qu'est-ce qu'un colis suspect ?",
-    options: ["Tout colis non réclamé depuis plus d'une heure", "Tout objet abandonné dont on ne peut identifier le propriétaire et qui présente des caractéristiques inhabituelles (fils, odeur, suintement...)", "Un colis endommagé", "Un colis sans étiquette d'expéditeur"],
+    options: ["Tout colis non réclamé depuis plus d'une heure", "Tout objet abandonné dont on ne peut identifier le propriétaire et qui présente des caractéristiques inhabituelles (fils, odeur, suintement...)", "Un colis endommagé, utilisé uniquement dans des cas très spécifiques", "Un colis sans étiquette d'expéditeur, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Colis suspect = objet abandonné sans propriétaire identifiable, avec ou sans caractéristiques suspectes. Règle : ne JAMAIS toucher, déplacer ou ouvrir. Évacuer la zone, appeler le 17, laisser agir les services spécialisés (NEDEX, démineurs)."
   },
   {
     theme: "Terrorisme",
     q: "Qu'est-ce que la radicalisation et pourquoi l'APS doit-il la connaître ?",
-    options: ["Un phénomène qui ne concerne pas la sécurité privée", "Un processus par lequel une personne adopte des idées extrémistes pouvant mener à la violence. L'APS peut être amené à détecter des signaux faibles sur son site", "Un comportement uniquement religieux", "Un phénomène uniquement présent chez les jeunes"],
+    options: ["Un phénomène extérieur à la sécurité privée, relevant uniquement des services de renseignement", "Un processus par lequel une personne adopte des idées extrémistes pouvant mener à la violence. L'APS peut être amené à détecter des signaux faibles sur son site", "Un comportement uniquement religieux, et dans aucun autre cas prévu par la loi", "Un phénomène touchant exclusivement les individus de moins de 25 ans selon les études"],
     correct: 1,
     explanation: "La radicalisation est un processus progressif d'adoption d'idéologies extrémistes. Signaux d'alerte : isolement soudain, discours de haine, intérêt pour des zones de conflit, changement radical de comportement. L'APS doit signaler ces signaux à sa hiérarchie sans confronter directement la personne."
   },
@@ -1956,49 +1956,49 @@ const questionsQCM = [
   {
     theme: "Électronique / Sécurité",
     q: "Qu'est-ce qu'un système d'alarme anti-intrusion ?",
-    options: ["Un système uniquement pour les banques", "Un ensemble de détecteurs et de centrale qui signale toute intrusion non autorisée dans un bâtiment", "Uniquement les caméras de surveillance", "Un système de contrôle d'accès par badge"],
+    options: ["Un système uniquement pour les banques, et dans aucun autre cas prévu par la loi", "Un ensemble de détecteurs et de centrale qui signale toute intrusion non autorisée dans un bâtiment", "Uniquement les caméras de surveillance, et dans aucun autre cas prévu par la loi", "Un système de contrôle d'accès par badge"],
     correct: 1,
     explanation: "Système anti-intrusion = centrale d'alarme + détecteurs (volumétriques IRP, contacts de portes/fenêtres, bris de verre) + sirène + télétransmetteur. Il détecte et signale les intrusions par alarme sonore et/ou transmission vers une télésurveillance ou les forces de l'ordre."
   },
   {
     theme: "Électronique / Sécurité",
     q: "Qu'est-ce qu'un détecteur infrarouge passif (IRP) ?",
-    options: ["Un détecteur qui émet des rayons infrarouges", "Un détecteur qui reçoit les rayonnements infrarouges émis par les corps chauds (personnes) pour détecter les mouvements", "Un détecteur de chaleur uniquement", "Un détecteur de fumée"],
+    options: ["Un détecteur qui émet des rayons infrarouges", "Un détecteur qui reçoit les rayonnements infrarouges émis par les corps chauds (personnes) pour détecter les mouvements", "Un détecteur de chaleur uniquement, et dans aucun autre cas prévu par la loi", "Un détecteur de fumée, utilisé uniquement dans des cas très spécifiques"],
     correct: 1,
     explanation: "IRP (Infrarouge Passif) = détecteur de mouvement qui analyse les variations de rayonnement thermique dans sa zone de surveillance. Déclenche l'alarme quand un corps chaud (humain) traverse son champ de détection. Le plus courant en anti-intrusion."
   },
   {
     theme: "Électronique / Sécurité",
     q: "Qu'est-ce qu'une centrale de télésurveillance ?",
-    options: ["Un poste de police spécialisé", "Un centre de réception d'alarmes qui reçoit les signaux des systèmes de sécurité 24h/24 et dépêche une intervention si nécessaire", "Un système de vidéosurveillance centralisé", "Le PC sécurité d'un grand site"],
+    options: ["Un poste de police spécialisé, selon les dispositions légales applicables", "Un centre de réception d'alarmes qui reçoit les signaux des systèmes de sécurité 24h/24 et dépêche une intervention si nécessaire", "Un système de vidéosurveillance centralisé", "Le PC sécurité d'un grand site, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Centrale de télésurveillance = organisme privé qui reçoit les signaux d'alarme transmis par les systèmes de sécurité des sites clients. En cas d'alarme, il contacte le client, peut déclencher une intervention ou alerter les forces de l'ordre selon le protocole convenu."
   },
   {
     theme: "Électronique / Sécurité",
     q: "Que signifie une alarme intempestive (fausse alarme) ?",
-    options: ["Une alarme déclenchée intentionnellement pour un test", "Une alarme déclenchée sans cause réelle d'intrusion (animal, courant d'air, insecte...)", "Une alarme qui ne se déclenche pas en cas d'intrusion réelle", "Une alarme de niveau maximum"],
+    options: ["Une alarme déclenchée intentionnellement pour un test", "Une alarme déclenchée sans cause réelle d'intrusion (animal, courant d'air, insecte...)", "Une alarme qui ne se déclenche pas en cas d'intrusion réelle", "Une alarme de niveau maximum, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Alarme intempestive = déclenchement sans intrusion réelle. Causes fréquentes : animaux, courants d'air, vibrations, insectes dans le détecteur, variations de température. L'APS doit effectuer une levée de doute, noter sur la main courante et aviser la maintenance si répétitif."
   },
   {
     theme: "Électronique / Sécurité",
     q: "Qu'est-ce qu'un système de contrôle d'accès biométrique ?",
-    options: ["Un système de contrôle par badge uniquement", "Un système qui identifie les personnes par des caractéristiques physiques uniques (empreinte digitale, reconnaissance faciale, iris)", "Un système de contrôle par code PIN uniquement", "Un système réservé aux sites militaires"],
+    options: ["Un système de contrôle par badge uniquement", "Un système qui identifie les personnes par des caractéristiques physiques uniques (empreinte digitale, reconnaissance faciale, iris)", "Un système de contrôle par code PIN uniquement", "Un système réservé aux sites militaires, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Biométrique = identification par caractéristiques physiques uniques : empreinte digitale, reconnaissance faciale, iris, réseau veineux. Plus sécurisé qu'un badge (qu'on peut perdre/voler) ou un code (qu'on peut oublier/voler). Soumis à autorisation CNIL pour les données biométriques."
   },
   {
     theme: "Électronique / Sécurité",
     q: "Que signifie l'acronyme PTI dans le contexte de la sécurité électronique ?",
-    options: ["Poste de Travail Informatisé", "Protection du Travailleur Isolé — dispositif électronique détectant l'absence de mouvement ou une chute", "Plan de Travail Intégré", "Protocole de Transmission d'Incident"],
+    options: ["Poste de Travail Informatisé, selon les dispositions légales applicables", "Protection du Travailleur Isolé — dispositif électronique détectant l'absence de mouvement ou une chute", "Plan de Travail Intégré, cette option ne correspond pas à la procédure réglementaire", "Protocole de Transmission d'Incident, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "PTI = Protection du Travailleur Isolé (aussi appelé DATI). Dispositif porté par l'agent travaillant seul qui déclenche une alarme automatique en cas d'immobilité prolongée, de chute ou de non-réponse à une sollicitation périodique. Obligatoire dans certaines situations de travail isolé."
   },
   {
     theme: "Électronique / Sécurité",
     q: "Lors d'une prise de service, comment vérifier qu'un système d'alarme anti-intrusion est correctement armé ?",
-    options: ["En déclenchant volontairement une alarme", "En vérifiant le voyant ou l'affichage de la centrale indiquant l'état armé/désarmé et l'absence de défaut", "En coupant l'alimentation et en la rétablissant", "En appelant la télésurveillance"],
+    options: ["En déclenchant volontairement une alarme", "En vérifiant le voyant ou l'affichage de la centrale indiquant l'état armé/désarmé et l'absence de défaut", "En coupant l'alimentation et en la rétablissant", "En appelant la télésurveillance, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Vérification centrale anti-intrusion en prise de service : voyant/affichage indiquant 'armé' ou 'en veille', absence de voyant défaut (zone ouverte, batterie faible, sabotage), noter l'état sur la main courante. Ne jamais déclencher une vraie alarme pour tester sans prévenir la télésurveillance."
   },
@@ -2007,56 +2007,56 @@ const questionsQCM = [
   {
     theme: "Gestion des risques",
     q: "Qu'est-ce qu'une situation dégradée pour un agent de sécurité ?",
-    options: ["Une situation où l'agent est fatigué", "Une situation anormale dépassant le cadre habituel nécessitant une adaptation immédiate", "Une situation avec beaucoup de visiteurs", "Une situation de nuit uniquement"],
+    options: ["Une situation où l'agent est fatigué, selon les dispositions légales applicables", "Une situation anormale dépassant le cadre habituel nécessitant une adaptation immédiate", "Une situation avec beaucoup de visiteurs", "Une situation de nuit uniquement, et dans aucun autre cas prévu par la loi"],
     correct: 1,
     explanation: "Situation dégradée = tout événement sortant du cadre normal : panne d'équipement, incident grave, agression, catastrophe. L'agent doit s'adapter, alerter sa hiérarchie et appliquer les procédures d'urgence prévues."
   },
   {
     theme: "Gestion des risques",
     q: "Qu'est-ce que l'analyse des risques sur un site de sécurité ?",
-    options: ["Une procédure réservée aux responsables sécurité", "L'identification des menaces, leur probabilité et leur impact pour définir les mesures de prévention adaptées", "Un document administratif annuel", "L'inspection des extincteurs uniquement"],
+    options: ["Une procédure réservée aux responsables sécurité", "L'identification des menaces, leur probabilité et leur impact pour définir les mesures de prévention adaptées", "Un document administratif annuel, selon les dispositions légales applicables", "L'inspection des extincteurs uniquement, et dans aucun autre cas prévu par la loi"],
     correct: 1,
     explanation: "Analyse des risques : identifier les menaces (intrusion, incendie, vol, agression), évaluer leur probabilité et leur impact, puis définir les mesures préventives et curatives. L'APS contribue par ses observations terrain."
   },
   {
     theme: "Gestion des risques",
     q: "Comment gérer une panne du système de contrôle d'accès en pleine activité ?",
-    options: ["Laisser tout le monde entrer librement", "Passer en contrôle manuel, alerter la maintenance, noter tous les accès manuellement, informer la hiérarchie", "Fermer le site immédiatement", "Attendre que le système redémarre seul"],
+    options: ["Laisser tout le monde entrer librement, selon les dispositions légales applicables", "Passer en contrôle manuel, alerter la maintenance, noter tous les accès manuellement, informer la hiérarchie", "Fermer le site immédiatement, selon les dispositions légales applicables", "Attendre que le système redémarre seul, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Panne contrôle d'accès : basculer en mode dégradé (contrôle manuel), alerter la maintenance et la hiérarchie, noter tous les passages sur la main courante. La sécurité ne doit jamais s'arrêter."
   },
   {
     theme: "Gestion des risques",
     q: "Qu'est-ce que le principe de précaution en sécurité ?",
-    options: ["Attendre d'être sûr avant d'agir", "Prendre des mesures préventives face à un risque potentiel même sans certitude absolue", "Ne jamais intervenir seul", "Toujours appeler la police en premier"],
+    options: ["Attendre d'être sûr avant d'agir, selon les dispositions légales applicables", "Prendre des mesures préventives face à un risque potentiel même sans certitude absolue", "Ne jamais intervenir seul, selon les dispositions légales applicables", "Toujours appeler la police en premier, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Principe de précaution : face à un risque potentiel (comportement suspect, objet inhabituel), l'APS doit agir préventivement sans attendre que le danger soit certain. Mieux vaut une fausse alerte qu'un incident évitable."
   },
   {
     theme: "Gestion des risques",
     q: "Face à une inondation soudaine dans un site, quelle est la priorité absolue ?",
-    options: ["Sauvegarder les équipements informatiques", "Évacuer les personnes vers les zones hautes ou l'extérieur et alerter les secours", "Couper l'électricité uniquement", "Photographier les dommages pour l'assurance"],
+    options: ["Sauvegarder les équipements informatiques", "Évacuer les personnes vers les zones hautes ou l'extérieur et alerter les secours", "Couper l'électricité uniquement, et dans aucun autre cas prévu par la loi", "Photographier les dommages pour l'assurance"],
     correct: 1,
     explanation: "Inondation : priorité absolue = évacuer les personnes (risques d'électrocution, noyade). Couper l'électricité si possible sans danger. Alerter le 18 (pompiers) et la hiérarchie. Ne jamais entrer dans l'eau sans connaître les risques électriques."
   },
   {
     theme: "Gestion des risques",
     q: "Qu'est-ce qu'un retour d'expérience (REX) après un incident ?",
-    options: ["Un rapport d'accident de travail uniquement", "Une analyse après un incident pour identifier ce qui s'est passé et améliorer les procédures", "Un rapport destiné uniquement aux assurances", "Une réunion informelle entre agents"],
+    options: ["Un rapport d'accident de travail uniquement", "Une analyse après un incident pour identifier ce qui s'est passé et améliorer les procédures", "Un rapport destiné uniquement aux assurances", "Une réunion informelle entre agents, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "REX = analyse structurée après un incident grave. Objectifs : comprendre le déroulement, identifier les dysfonctionnements, améliorer les procédures et la formation pour éviter que l'incident ne se reproduise."
   },
   {
     theme: "Gestion des risques",
     q: "Qu'est-ce qu'un plan de continuité d'activité (PCA) en sécurité ?",
-    options: ["Le planning de rotation des agents", "Un document définissant les procédures pour maintenir la sécurité en cas d'événement perturbateur majeur", "Le contrat avec l'entreprise de sécurité", "Le plan d'évacuation du site"],
+    options: ["Le planning de rotation des agents, selon les dispositions légales applicables", "Un document définissant les procédures pour maintenir la sécurité en cas d'événement perturbateur majeur", "Le contrat avec l'entreprise de sécurité", "Le plan d'évacuation du site, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "PCA = procédures permettant de maintenir la sécurité du site malgré un événement perturbateur (panne, sinistre, absence massive). Inclut les procédures dégradées, les contacts d'urgence et les priorités d'action."
   },
   {
     theme: "Gestion des risques",
     q: "Qu'est-ce que la gestion de crise pour un APS ?",
-    options: ["Gérer les conflits entre collègues", "Coordonner les actions immédiates face à un événement grave pour limiter les dommages et assurer la sécurité", "Rédiger un rapport après l'incident", "Appeler les secours et ne rien faire d'autre"],
+    options: ["Gérer les conflits entre collègues, selon les dispositions légales applicables", "Coordonner les actions immédiates face à un événement grave pour limiter les dommages et assurer la sécurité", "Rédiger un rapport après l'incident, selon les dispositions légales applicables", "Appeler les secours et ne rien faire d'autre"],
     correct: 1,
     explanation: "Gestion de crise APS : alerter (hiérarchie + secours), protéger les personnes, appliquer les procédures d'urgence, maintenir la communication, noter tous les événements. L'APS est souvent le premier intervenant sur le terrain."
   },
@@ -2065,49 +2065,49 @@ const questionsQCM = [
   {
     theme: "Milieu industriel",
     q: "Qu'est-ce qu'une zone ATEX ?",
-    options: ["Une zone de stockage alimentaire", "Une zone à ATmosphère EXplosive où des gaz, vapeurs ou poussières peuvent former un mélange explosif", "Une zone administrative sécurisée", "Une zone de vidéosurveillance renforcée"],
+    options: ["Une zone de stockage alimentaire, selon les dispositions légales applicables", "Une zone à ATmosphère EXplosive où des gaz, vapeurs ou poussières peuvent former un mélange explosif", "Une zone administrative sécurisée, selon les dispositions légales applicables", "Une zone de vidéosurveillance renforcée, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "ATEX = ATmosphère EXplosive. Zone où des substances inflammables peuvent former un mélange explosif. Réglementation stricte : matériels spéciaux, interdiction de fumer, pas d'étincelles. L'APS doit connaître et respecter les consignes ATEX."
   },
   {
     theme: "Milieu industriel",
     q: "Qu'est-ce qu'un permis de feu sur un site industriel ?",
-    options: ["L'autorisation d'embauche d'un agent", "Un document autorisant des travaux à risque (soudure, meulage) avec les mesures de sécurité à respecter", "L'autorisation de travailler la nuit", "Un document réservé aux zones classées secret défense"],
+    options: ["L'autorisation d'embauche d'un agent, selon les dispositions légales applicables", "Un document autorisant des travaux à risque (soudure, meulage) avec les mesures de sécurité à respecter", "L'autorisation de travailler la nuit, selon les dispositions légales applicables", "Un document réservé aux zones classées secret défense"],
     correct: 1,
     explanation: "Permis de feu = autorisation formelle pour des travaux générant des risques (étincelles, chaleur). L'APS peut être chargé de vérifier la présence de ce permis avant de laisser des intervenants accéder à une zone sensible."
   },
   {
     theme: "Milieu industriel",
     q: "Qu'est-ce qu'un EPI ?",
-    options: ["Un équipement de surveillance électronique", "Un Équipement de Protection Individuelle porté par le travailleur (casque, gilet, lunettes, gants...)", "Un équipement collectif incendie", "Un système d'alarme individuelle"],
+    options: ["Un équipement de surveillance électronique", "Un Équipement de Protection Individuelle porté par le travailleur (casque, gilet, lunettes, gants...)", "Un équipement collectif incendie, selon les dispositions légales applicables", "Un système d'alarme individuelle, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "EPI = Équipement de Protection Individuelle. Sur un site industriel, l'APS peut être amené à porter ou vérifier le port des EPI obligatoires : casque, gilet haute visibilité, chaussures de sécurité, lunettes, bouchons d'oreilles selon les zones."
   },
   {
     theme: "Milieu industriel",
     q: "Sur un site industriel, que fait l'APS face à une fuite de gaz ?",
-    options: ["Chercher l'origine avec une lampe", "Évacuer la zone, ne pas créer d'étincelle, alerter le 18 et la direction, interdire l'accès", "Ouvrir les fenêtres et attendre", "Utiliser un extincteur CO2 sur la fuite"],
+    options: ["Chercher l'origine avec une lampe, selon les dispositions légales applicables", "Évacuer la zone, ne pas créer d'étincelle, alerter le 18 et la direction, interdire l'accès", "Ouvrir les fenêtres et attendre, selon les dispositions légales applicables", "Utiliser un extincteur CO2 sur la fuite, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Fuite de gaz : NE PAS créer d'étincelle (pas de lumière, pas de téléphone dans la zone), évacuer immédiatement, alerter le 18 et la direction, interdire l'accès. Ne jamais tenter de colmater seul."
   },
   {
     theme: "Milieu industriel",
     q: "Qu'est-ce qu'un site classé Seveso ?",
-    options: ["Une zone de stockage alimentaire réglementée", "Un site industriel présentant des risques d'accidents majeurs liés à des substances dangereuses", "Une zone résidentielle protégée", "Un site classé monument historique"],
+    options: ["Une zone de stockage alimentaire réglementée", "Un site industriel présentant des risques d'accidents majeurs liés à des substances dangereuses", "Une zone résidentielle protégée, selon les dispositions légales applicables", "Un site classé monument historique, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Site Seveso = établissement industriel présentant des risques d'accidents majeurs (explosion, incendie, pollution) liés à des substances dangereuses. Deux niveaux : seuil bas et seuil haut. Réglementation très stricte et plans d'urgence spécifiques (POI, PPI)."
   },
   {
     theme: "Milieu industriel",
     q: "Qu'est-ce qu'un PPI (Plan Particulier d'Intervention) ?",
-    options: ["Le planning des agents de sécurité", "Un plan établi par le préfet pour organiser les secours extérieurs en cas d'accident majeur sur un site dangereux", "Le plan intérieur d'évacuation du site", "Un contrat d'intervention avec une société de sécurité"],
+    options: ["Le planning des agents de sécurité, selon les dispositions légales applicables", "Un plan établi par le préfet pour organiser les secours extérieurs en cas d'accident majeur sur un site dangereux", "Le plan intérieur d'évacuation du site, selon les dispositions légales applicables", "Un contrat d'intervention avec une société de sécurité"],
     correct: 1,
     explanation: "PPI = Plan Particulier d'Intervention, établi par le Préfet pour les sites Seveso seuil haut. Organise l'intervention des secours extérieurs (pompiers, police, SAMU) en cas d'accident majeur. Complémentaire au POI (plan interne au site)."
   },
   {
     theme: "Milieu industriel",
     q: "Qu'est-ce qu'un plan de prévention entre une entreprise utilisatrice et une entreprise extérieure ?",
-    options: ["Un document commercial", "Un document définissant les mesures de prévention des risques lors de l'intervention d'une entreprise extérieure dans les locaux d'une entreprise utilisatrice", "Un plan d'évacuation commun", "Un accord de confidentialité"],
+    options: ["Un document commercial régissant les relations financières entre sociétés", "Un document définissant les mesures de prévention des risques lors de l'intervention d'une entreprise extérieure dans les locaux d'une entreprise utilisatrice", "Un plan d'évacuation partagé entre les deux entreprises concernées", "Un accord de confidentialité portant sur les informations sensibles échangées"],
     correct: 1,
     explanation: "Plan de prévention = document obligatoire définissant les risques liés à l'interférence entre les activités et les mesures de prévention. L'APS doit vérifier que les intervenants extérieurs ont bien ce document avant d'accéder au site."
   },
@@ -2116,21 +2116,21 @@ const questionsQCM = [
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce que le DRACAR ?",
-    options: ["Un registre de sécurité incendie", "Le fichier informatique pour la Délivrance Réglementaire des Autorisations et CARtes professionnelles des agents privés de sécurité", "Un diplôme de sécurité privée", "Un système de contrôle d'accès biométrique"],
+    options: ["Un registre de sécurité incendie, selon les dispositions légales applicables", "Le fichier informatique pour la Délivrance Réglementaire des Autorisations et CARtes professionnelles des agents privés de sécurité", "Un diplôme de sécurité privée, selon les dispositions légales applicables", "Un système de contrôle d'accès biométrique"],
     correct: 1,
     explanation: "DRACAR = Délivrance Réglementaire des Autorisations et CARtes professionnelles. Fichier informatique du CNAPS qui centralise les demandes et délivre les cartes professionnelles et autorisations pour les agents et entreprises de sécurité privée."
   },
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce qu'une voie de fait ?",
-    options: ["Un chemin privé interdit au public", "Une atteinte illégale à la liberté ou à la propriété d'une personne par un acte matériel", "Une infraction commise sur la voie publique", "Un abus de pouvoir administratif"],
+    options: ["Un chemin privé interdit au public, selon les dispositions légales applicables", "Une atteinte illégale à la liberté ou à la propriété d'une personne par un acte matériel", "Une infraction commise sur la voie publique", "Un abus de pouvoir administratif, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Voie de fait = atteinte illégale portée à la liberté ou à la propriété par un acte matériel. Ex : palper sans consentement, retenir quelqu'un illégalement. Un APS qui agit hors cadre légal commet une voie de fait engageant sa responsabilité pénale."
   },
   {
     theme: "Appréhension / Droit",
     q: "Quelles sont les obligations concernant la tenue d'un agent de sécurité ?",
-    options: ["L'agent peut porter n'importe quelle tenue", "La tenue doit être distinctive et ne pas prêter à confusion avec les uniformes des forces de l'ordre ou d'autres corps constitués", "La tenue doit ressembler à celle de la police", "Il n'y a aucune obligation réglementaire sur la tenue"],
+    options: ["L'agent est libre de choisir n'importe quelle tenue vestimentaire pour sa mission", "La tenue doit être distinctive et ne pas prêter à confusion avec les uniformes des forces de l'ordre ou d'autres corps constitués", "La tenue doit ressembler à celle de la police pour renforcer l'autorité de l'agent", "Il n'existe aucune obligation réglementaire précise concernant la tenue vestimentaire de l'agent"],
     correct: 1,
     explanation: "La tenue de l'APS doit clairement se distinguer de celle des forces de l'ordre, pompiers ou autres corps constitués. Obligation réglementaire pour éviter toute usurpation de fonction ou tromperie du public."
   },
@@ -2144,21 +2144,21 @@ const questionsQCM = [
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce que la présomption d'innocence ?",
-    options: ["Toute personne est coupable jusqu'à preuve du contraire", "Toute personne suspectée est présumée innocente jusqu'à condamnation définitive par une décision de justice", "Un droit réservé aux mineurs", "Une présomption qui ne s'applique qu'aux crimes"],
+    options: ["Toute personne est coupable jusqu'à preuve du contraire", "Toute personne suspectée est présumée innocente jusqu'à condamnation définitive par une décision de justice", "Un droit réservé aux mineurs, selon les dispositions légales applicables", "Une présomption qui ne s'applique qu'aux crimes"],
     correct: 1,
     explanation: "Présomption d'innocence = principe fondamental : toute personne est présumée innocente jusqu'à condamnation définitive. L'APS ne peut pas traiter quelqu'un comme coupable avant jugement. Tout comportement contraire engage sa responsabilité."
   },
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce qu'un flagrant délit au sens de l'article 53 du CPP ?",
-    options: ["Toute infraction commise dans les 24 heures précédentes", "L'infraction qui se commet actuellement, ou qui vient de se commettre, ou lorsque la personne est poursuivie par la clameur publique", "Uniquement les crimes punis de plus de 5 ans", "Toute infraction commise en présence d'un témoin"],
+    options: ["Toute infraction constatée dans les 24 heures précédant l'intervention de l'agent", "L'infraction qui se commet actuellement, ou qui vient de se commettre, ou lorsque la personne est poursuivie par la clameur publique", "Uniquement les crimes passibles d'une peine d'emprisonnement supérieure à 5 ans", "Toute infraction constatée par au moins un témoin présent au moment des faits"],
     correct: 1,
     explanation: "Art. 53 CPP : flagrant délit = infraction qui SE COMMET actuellement OU qui VIENT DE SE COMMETTRE, ou si la personne est poursuivie par clameur publique. Cette définition conditionne l'application de l'art. 73 CPP (appréhension citoyenne)."
   },
   {
     theme: "Appréhension / Droit",
     q: "Qu'est-ce que le bulletin n°2 du casier judiciaire ?",
-    options: ["Le relevé de toutes les condamnations", "Un extrait communiqué aux administrations pour certains emplois, excluant certaines condamnations légères", "Un document uniquement consulté par les tribunaux", "L'autorisation préalable du CNAPS"],
+    options: ["Le relevé de toutes les condamnations, selon les dispositions légales applicables", "Un extrait communiqué aux administrations pour certains emplois, excluant certaines condamnations légères", "Un document uniquement consulté par les tribunaux", "L'autorisation préalable du CNAPS, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Le B2 est communiqué au CNAPS et à certains employeurs. Il mentionne la plupart des condamnations. L'absence de mentions incompatibles sur le B2 est une condition pour obtenir la carte professionnelle d'agent de sécurité."
   },
@@ -2167,14 +2167,14 @@ const questionsQCM = [
   {
     theme: "Gestion de conflit",
     q: "Quels sont les signes précurseurs d'une escalade vers la violence ?",
-    options: ["La politesse et le calme de l'interlocuteur", "Voix qui monte, agitation physique, invasion de l'espace personnel, gestes menaçants, regard fixe et agressif", "Le fait de se taire", "Le fait de partir sans un mot"],
+    options: ["La politesse et le calme de l'interlocuteur", "Voix qui monte, agitation physique, invasion de l'espace personnel, gestes menaçants, regard fixe et agressif", "Le fait de se taire, sans aucune obligation réglementaire particulière", "Le fait de partir sans un mot, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Signaux d'alerte : voix qui monte et se tend, agitation motrice, invasion de l'espace personnel, poings serrés, mâchoires crispées, regard fixe menaçant. L'APS doit détecter ces signaux tôt pour intervenir avant la violence physique."
   },
   {
     theme: "Gestion de conflit",
     q: "Pourquoi faut-il éviter de hausser le ton face à une personne agressive ?",
-    options: ["Pour économiser sa voix", "Parce que hausser le ton aggrave la situation en entrant dans une surenchère verbale qui peut mener à la violence", "Parce que c'est interdit par le règlement", "Pour ne pas alerter les autres visiteurs"],
+    options: ["Pour économiser sa voix, cette option ne correspond pas à la procédure réglementaire", "Parce que hausser le ton aggrave la situation en entrant dans une surenchère verbale qui peut mener à la violence", "Parce que c'est interdit par le règlement", "Pour ne pas alerter les autres visiteurs"],
     correct: 1,
     explanation: "Hausser le ton = entrer dans la surenchère et valider le mode agressif. Cela aggrave la tension. L'APS doit maintenir une voix posée, ferme mais calme : paradoxalement plus efficace pour désamorcer qu'un ton autoritaire."
   },
@@ -2183,14 +2183,14 @@ const questionsQCM = [
   {
     theme: "Palpation / Fouille",
     q: "Qu'est-ce que l'inspection visuelle des bagages ?",
-    options: ["L'agent ouvre et fouille lui-même le bagage", "Le propriétaire ouvre son bagage et présente le contenu à l'agent pour inspection visuelle, sans que l'agent y touche", "Un scan par rayon X uniquement", "L'agent confisque le bagage suspect"],
+    options: ["L'agent ouvre et fouille lui-même le bagage", "Le propriétaire ouvre son bagage et présente le contenu à l'agent pour inspection visuelle, sans que l'agent y touche", "Un scan par rayon X uniquement, et dans aucun autre cas prévu par la loi", "L'agent confisque le bagage suspect, selon les dispositions légales applicables"],
     correct: 1,
     explanation: "Inspection visuelle = le PROPRIÉTAIRE ouvre lui-même son bagage. L'agent regarde mais ne touche pas. Si refus, l'agent peut refuser l'accès mais ne peut pas fouiller de force. Nécessite le consentement et respecte les libertés individuelles."
   },
   {
     theme: "Palpation / Fouille",
     q: "La palpation de sécurité peut-elle être réalisée sur un mineur ?",
-    options: ["Oui, sans condition particulière", "Seulement en présence d'un représentant légal ou d'un adulte accompagnant, et avec leur consentement", "Non, jamais sur un mineur", "Oui, si le mineur consent seul"],
+    options: ["Oui, sans condition particulière, conformément à la réglementation en vigueur", "Seulement en présence d'un représentant légal ou d'un adulte accompagnant, et avec leur consentement", "Non, jamais sur un mineur, conformément à la réglementation en vigueur", "Oui, si le mineur consent seul, conformément à la réglementation en vigueur"],
     correct: 1,
     explanation: "Palpation d'un mineur : exige la présence et le consentement d'un représentant légal ou d'un adulte accompagnant. Le consentement du seul mineur ne suffit pas juridiquement. Sans adulte référent consentant, la palpation est impossible."
   },
@@ -2206,14 +2206,14 @@ const questionsQCM = [
   {
     theme: "Chiffres clés",
     q: "Quelle est la durée maximale de conservation des images de vidéosurveillance ?",
-    options: ["8 jours", "1 mois (30 jours)", "3 mois", "6 mois"],
+    options: ["Un délai de conservation limité à 8 jours ouvrés après la captation", "1 mois (30 jours)", "Une conservation de 3 mois permettant les vérifications trimestrielles", "Une conservation de 6 mois couvrant une demi-période annuelle d'exploitation"],
     correct: 1,
     explanation: "Durée maximale légale : 1 mois (30 jours). Au-delà, les images doivent être automatiquement effacées, sauf réquisition judiciaire en cours."
   },
   {
     theme: "Chiffres clés",
     q: "Dans quel délai l'employeur doit-il déclarer un accident du travail à la CPAM ?",
-    options: ["24 heures", "48 heures ouvrables", "72 heures", "8 jours"],
+    options: ["Un délai de 24 heures calendaires à compter de la survenue du sinistre", "48 heures ouvrables", "Un délai de 72 heures ouvrées accordé à l'employeur pour effectuer la déclaration", "Un délai de conservation limité à 8 jours ouvrés après la captation"],
     correct: 1,
     explanation: "L'employeur dispose de 48 heures ouvrables (jours ouvrés) pour déclarer l'accident du travail à la CPAM. Le salarié doit en informer son employeur dans les 24 heures."
   },
@@ -2269,7 +2269,7 @@ const questionsQCM = [
   {
     theme: "Chiffres clés",
     q: "Combien de temps peut-on retenir une personne appréhendée au titre de l'article 73 CPP ?",
-    options: ["30 minutes maximum", "2 heures maximum", "4 heures maximum", "Le temps strictement nécessaire pour la remettre à un OPJ — aucune limite fixe mais doit être immédiat"],
+    options: ["Le délai de 30 minutes maximum avant remise à l'autorité", "Le délai de 2 heures maximum fixé par la jurisprudence française", "Le délai de 4 heures maximum autorisé par le code de procédure", "Le temps strictement nécessaire pour la remettre à un OPJ — aucune limite fixe mais doit être immédiat"],
     correct: 3,
     explanation: "Aucune durée maximale fixée, mais la remise doit être IMMÉDIATE. Toute rétention prolongée constitue une séquestration (délit pénal). En pratique, l'agent doit appeler le 17 dès l'appréhension et attendre l'arrivée des forces de l'ordre."
   },
@@ -2292,28 +2292,28 @@ const questionsQCM = [
   {
     theme: "Appréhension / Droit",
     q: "Que doit obligatoirement porter un agent de sécurité en service pour s'identifier ?",
-    options: ["Uniquement son badge photo", "Sa carte professionnelle + un badge d'identification visible avec son nom, prénom et le nom de l'entreprise", "Uniquement le nom de l'entreprise sur l'uniforme", "Aucune obligation d'identification visuelle"],
+    options: ["Uniquement son badge photo, et dans aucun autre cas prévu par la loi", "Sa carte professionnelle + un badge d'identification visible avec son nom, prénom et le nom de l'entreprise", "Uniquement le nom de l'entreprise sur l'uniforme", "Aucune obligation d'identification visuelle"],
     correct: 1,
     explanation: "L'APS doit porter visiblement : sa carte professionnelle (à présenter sur demande) et un badge d'identification indiquant nom, prénom et entreprise. L'identification permet au public de savoir à qui il s'adresse et de vérifier la légitimité de l'agent."
   },
   {
     theme: "Appréhension / Droit",
     q: "Un agent de sécurité peut-il exercer en civil (sans uniforme) ?",
-    options: ["Non, l'uniforme est toujours obligatoire", "Oui, dans certaines missions spécifiques (surveillance discrète, protection rapprochée) avec autorisation", "Oui, uniquement de nuit", "Non, c'est interdit dans tous les cas"],
+    options: ["Non, l'uniforme est toujours obligatoire", "Oui, dans certaines missions spécifiques (surveillance discrète, protection rapprochée) avec autorisation", "Oui, uniquement de nuit, selon la réglementation actuellement en vigueur", "Non, c'est interdit dans tous les cas, conformément à la réglementation en vigueur"],
     correct: 1,
     explanation: "Dans certaines missions spécifiques (surveillance discrète en magasin, protection rapprochée), l'agent peut exercer en civil. Cette dérogation doit être prévue dans le contrat et autorisée. Dans ce cas, la carte professionnelle reste obligatoire."
   },
   {
     theme: "Appréhension / Droit",
     q: "Que risque un agent qui se présente faussement comme policier ou gendarme ?",
-    options: ["Un simple avertissement", "Une infraction pénale pour usurpation de titre ou de fonctions (art. 433-15 CP)", "La suspension de sa carte professionnelle uniquement", "Aucune sanction si c'était pour une bonne raison"],
+    options: ["Un simple avertissement oral sans aucune conséquence administrative", "Une infraction pénale pour usurpation de titre ou de fonctions (art. 433-15 CP)", "La suspension de sa carte professionnelle uniquement", "Aucune sanction si c'était pour une bonne raison"],
     correct: 1,
     explanation: "Usurpation de titre ou de fonctions (art. 433-15 CP) : délit pénal pouvant être puni d'un an d'emprisonnement et 15 000 € d'amende. Se présenter comme policier alors qu'on est APS, même verbalement, constitue ce délit."
   },
   {
     theme: "Appréhension / Droit",
     q: "L'agent de sécurité doit-il présenter sa carte professionnelle sur simple demande ?",
-    options: ["Non, seulement aux forces de l'ordre", "Oui, à toute personne qui en fait la demande (forces de l'ordre, agents du CNAPS, et toute personne concernée par sa mission)", "Seulement à son employeur", "Non, c'est un document confidentiel"],
+    options: ["Non, seulement aux forces de l'ordre, conformément à la réglementation en vigueur", "Oui, à toute personne qui en fait la demande (forces de l'ordre, agents du CNAPS, et toute personne concernée par sa mission)", "Uniquement à l'employeur lors de l'embauche et jamais en cours de mission", "Non, la carte professionnelle est un document strictement confidentiel et privé"],
     correct: 1,
     explanation: "L'APS doit présenter sa carte professionnelle sur simple demande des forces de l'ordre, des agents du CNAPS en contrôle, et de toute personne directement concernée par son intervention. Refuser de la présenter est une infraction."
   }
