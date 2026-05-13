@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <title>TFP APS · Révision</title>
 
+<!-- Fail-safe splash : appliqué inline avant tout CSS externe pour éviter le FOUC
+     si theme-007.css tarde/échoue/est écrasé. -->
+<style>
+  #splash007 {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #splash007[hidden],
+  body.splash-done #splash007 {
+    display: none !important;
+  }
+</style>
 
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
@@ -46,99 +64,23 @@
     --header-bg: rgba(14, 15, 17, 0.85);
   }
 
-  /* ===== THÈME : BLANC (Bond White) ===== */
-  html.theme-blanc {
-    --bg: #ffffff;
-    --bg-soft: #f5f5f5;
-    --surface: #fafafa;
-    --surface-hover: #f0f0f0;
-    --border: #e0e0e0;
-    --border-strong: #c0c0c0;
-    --text: #111111;
-    --text-dim: #555555;
-    --text-faint: #aaaaaa;
-    --accent: #111111;
+  /* ===== MODE CLAIR ===== */
+  html.light {
+    --bg: #f3f0e8;
+    --bg-soft: #ede9de;
+    --surface: #f8f5ec;
+    --surface-hover: #f0ede3;
+    --border: #d8d2c2;
+    --border-strong: #b8b0a0;
+    --text: #2a2820;
+    --text-dim: #605c50;
+    --text-faint: #a8a498;
+    --accent: #2a2820;
     --success: #1a7a4a;
     --error: #c0392b;
     --warning: #b07a10;
-    --gold: #8a6010;
-    --header-bg: rgba(255,255,255,0.92);
-  }
-
-  /* ===== THÈME : DÉSERT ===== */
-  html.theme-desert {
-    --bg: #1a1208;
-    --bg-soft: #201608;
-    --surface: #261c0e;
-    --surface-hover: #302210;
-    --border: #3d2e14;
-    --border-strong: #54401c;
-    --text: #f0ddb0;
-    --text-dim: #a08860;
-    --text-faint: #4a3820;
-    --accent: #f0ddb0;
-    --success: #8ab870;
-    --error: #e05030;
-    --warning: #d4a030;
-    --gold: #d4882a;
-    --header-bg: rgba(26,18,8,0.88);
-  }
-
-  /* ===== THÈME : OCÉAN ===== */
-  html.theme-ocean {
-    --bg: #060e1a;
-    --bg-soft: #0a1420;
-    --surface: #0d1a28;
-    --surface-hover: #122030;
-    --border: #1a2e42;
-    --border-strong: #244060;
-    --text: #c8e8f8;
-    --text-dim: #6898b8;
-    --text-faint: #2a4060;
-    --accent: #c8e8f8;
-    --success: #40d0a0;
-    --error: #f06080;
-    --warning: #f0c040;
-    --gold: #30c8e8;
-    --header-bg: rgba(6,14,26,0.88);
-  }
-
-  /* ===== THÈME : FORÊT ===== */
-  html.theme-foret {
-    --bg: #080e08;
-    --bg-soft: #0c120c;
-    --surface: #101810;
-    --surface-hover: #162016;
-    --border: #1e2e1e;
-    --border-strong: #2a402a;
-    --text: #c8e0c0;
-    --text-dim: #6a9060;
-    --text-faint: #2a4028;
-    --accent: #c8e0c0;
-    --success: #50d870;
-    --error: #e05050;
-    --warning: #d4c040;
-    --gold: #70c840;
-    --header-bg: rgba(8,14,8,0.88);
-  }
-
-  /* ===== MODE CLAIR (legacy compat) ===== */
-  html.light, html.theme-blanc {
-    --bg: #ffffff;
-    --bg-soft: #f5f5f5;
-    --surface: #fafafa;
-    --surface-hover: #f0f0f0;
-    --border: #e0e0e0;
-    --border-strong: #c0c0c0;
-    --text: #111111;
-    --text-dim: #555555;
-    --text-faint: #aaaaaa;
-    --accent: #111111;
-    --success: #1a7a4a;
-    --error: #c0392b;
-    --warning: #b07a10;
-    --gold: #8a6010;
-    --header-bg: rgba(255,255,255,0.92);
+    --gold: #8a6820;
+    --header-bg: rgba(243, 240, 232, 0.9);
   }
 
   html.light body {
@@ -452,91 +394,6 @@
     text-align: left;
     color: var(--text);
     font-family: inherit;
-  }
-
-  .mode-card-gold {
-    border-color: rgba(217,185,140,0.4);
-    background: linear-gradient(135deg, var(--surface), rgba(217,185,140,0.06));
-  }
-  .mode-card-gold .mode-number { color: var(--gold); }
-  .mode-card-gold:hover { border-color: var(--gold) !important; }
-
-  /* ===== THÈME DU JOUR MODAL ===== */
-  .tdj-overlay {
-    position: fixed; inset: 0; z-index: 9998;
-    background: rgba(0,0,0,0.75);
-    display: flex; align-items: center; justify-content: center;
-    padding: 1rem;
-    backdrop-filter: blur(4px);
-  }
-  .tdj-modal {
-    background: var(--surface);
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    padding: 2rem;
-    width: 100%; max-width: 560px;
-    max-height: 85vh; overflow-y: auto;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-    position: relative;
-  }
-  .tdj-header { margin-bottom: 1.5rem; }
-  .tdj-title {
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 1.3rem; color: var(--text); margin-bottom: 0.3rem;
-  }
-  .tdj-subtitle { font-size: 0.85rem; color: var(--text-dim); }
-  .tdj-close {
-    position: absolute; top: 1rem; right: 1rem;
-    background: transparent; border: 1px solid var(--border);
-    color: var(--text-dim); width: 30px; height: 30px;
-    border-radius: 50%; cursor: pointer; font-size: 1.1rem;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  .tdj-close:hover { border-color: var(--gold); color: var(--gold); }
-  .tdj-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-  }
-
-  /* ===== THEME PICKER ===== */
-  .theme-pick-btn {
-    display: flex; align-items: center; gap: 0.85rem;
-    background: var(--surface-hover); border: 1px solid var(--border);
-    border-radius: 8px; padding: 0.75rem 1rem;
-    cursor: pointer; text-align: left; transition: all 0.2s;
-    font-family: 'Outfit', sans-serif; color: var(--text);
-    width: 100%;
-  }
-  .theme-pick-btn:hover { border-color: var(--gold); background: rgba(217,185,140,0.05); }
-  .tpb-preview {
-    width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
-  }
-  .tpb-info { flex: 1; min-width: 0; }
-  .tpb-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text); }
-  .tpb-desc { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.1rem; }
-  .tpb-check {
-    font-size: 0.9rem; color: var(--gold); font-weight: 700;
-    min-width: 16px; text-align: center;
-  }
-  .tdj-btn {
-    background: var(--surface-hover);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.75rem 1rem;
-    cursor: pointer; text-align: left;
-    font-family: 'Outfit', sans-serif;
-    color: var(--text-dim); font-size: 0.82rem;
-    transition: all 0.2s; line-height: 1.3;
-  }
-  .tdj-btn:hover {
-    border-color: var(--gold); color: var(--gold);
-    background: rgba(217,185,140,0.07);
-  }
-  .tdj-count {
-    display: block; font-size: 0.65rem; color: var(--text-faint);
-    margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.08em;
   }
 
   .mode-card::before {
@@ -1075,10 +932,9 @@
   }
 
   .btn-primary:hover {
-    background: #c0a050;
-    color: #ffffff;
-    border-color: #c0a050;
-  }
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
   }
 
   .btn-ghost {
@@ -1129,85 +985,6 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-  }
-
-  /* ===== ÉPREUVE PRATIQUE ===== */
-  .prat-scenario-btn {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 1.25rem; cursor: pointer;
-    text-align: center; transition: all 0.2s;
-    font-family: 'Outfit', sans-serif; color: var(--text);
-  }
-  .prat-scenario-btn:hover, .prat-scenario-btn.active {
-    border-color: var(--gold); background: rgba(217,185,140,0.06);
-  }
-  .prat-block {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;
-  }
-  .prat-block-title {
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--gold); margin-bottom: 1rem;
-  }
-  .prat-step {
-    display: flex; gap: 1rem; margin-bottom: 0.85rem;
-    align-items: flex-start;
-  }
-  .prat-step-num {
-    background: var(--gold); color: var(--bg);
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 0.7rem; width: 22px; height: 22px;
-    border-radius: 50%; display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0; margin-top: 2px;
-  }
-  .prat-step-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.5; }
-  .prat-step-text strong { color: var(--text); }
-  .prat-alert {
-    background: rgba(251,133,133,0.08); border: 1px solid rgba(251,133,133,0.3);
-    border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1rem;
-    font-size: 0.83rem; color: var(--text-dim); line-height: 1.5;
-  }
-  .prat-alert strong { color: var(--error, #fb8585); }
-  .prat-tip {
-    background: rgba(217,185,140,0.08); border: 1px solid rgba(217,185,140,0.25);
-    border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1rem;
-    font-size: 0.83rem; color: var(--text-dim); line-height: 1.5;
-  }
-  .prat-tip strong { color: var(--gold); }
-  .prat-terms {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
-  }
-  .prat-term {
-    background: var(--surface-hover); border-radius: 4px;
-    padding: 0.6rem 0.75rem; font-size: 0.8rem;
-  }
-  .prat-term-key { color: var(--gold); font-weight: 600; font-size: 0.75rem; }
-  .prat-term-val { color: var(--text-dim); font-size: 0.75rem; margin-top: 0.15rem; }
-  .theme-breakdown-title {
-    font-family: 'Syne', sans-serif; font-weight: 600;
-    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--text-faint); margin-bottom: 1rem; text-align: left;
-  }
-  .theme-row {
-    display: flex; align-items: center; gap: 0.75rem;
-    margin-bottom: 0.6rem; text-align: left;
-  }
-  .theme-row-name {
-    font-size: 0.8rem; color: var(--text-dim);
-    min-width: 160px; flex-shrink: 0;
-  }
-  .theme-row-bar {
-    flex: 1; height: 6px; background: var(--border);
-    border-radius: 3px; overflow: hidden;
-  }
-  .theme-row-fill {
-    height: 100%; border-radius: 3px;
-    transition: width 0.6s ease;
-  }
-  .theme-row-score {
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 0.78rem; min-width: 40px; text-align: right;
   }
 
   .wrong-review {
@@ -2294,8 +2071,47 @@
   }
 </style>
 </head>
-<body>
+<body class="splash-active">
 
+<!-- ===== SPLASH 007 ===== -->
+<div id="splash007">
+  <!-- Top bar : agent + timestamp -->
+  <div class="top-bar">
+    <span class="classified">Agent 007</span>
+    <span class="timestamp" id="splashTimestamp">—</span>
+  </div>
+
+  <!-- Corners -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Gun barrel opening animation -->
+  <div class="barrel-stage">
+    <div class="crosshair h"></div>
+    <div class="crosshair v"></div>
+    <div class="barrel-dot"></div>
+    <div class="barrel-ring"></div>
+    <div class="barrel-ring-2"></div>
+    <div class="blood"></div>
+  </div>
+
+  <!-- Main content (révélé après la séquence) -->
+  <div class="splash-content">
+    <div class="welcome-line">Bienvenue</div>
+    <div class="agent-name">Agent <span class="gold-accent">007</span></div>
+    <div class="mission-brief">Mission · Réussir le TFP APS</div>
+    <div class="splash-enter-wrap">
+      <button type="button" class="splash-enter" id="splashEnterBtn">
+        <span>Réviser le TFP APS</span>
+        <span class="arrow">→</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="scanline">Niveau d'accréditation requis · Carte pro valide</div>
+</div>
 
 <header>
   <div class="header-inner">
@@ -2321,7 +2137,7 @@
           <span class="stat-label">Moyenne</span>
         </div>
       </div>
-      <button class="theme-toggle" id="themeToggle" onclick="openThemePicker()" title="Changer de thème"><span class="theme-toggle-icon">🎨</span><span id="themeToggleLabel">Thème</span></button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Changer de thème"><span class="theme-toggle-icon">☀️</span><span id="themeToggleLabel">Clair</span></button>
       <button class="sound-toggle" id="soundToggle" onclick="toggleSound()" title="Sons activés">🔊</button>
     </div>
   </div>
@@ -2343,54 +2159,81 @@
       <canvas id="chartCanvas"></canvas>
     </div>
 
+    <div class="parcours-hero" onclick="showParcours()">
+      <span class="parcours-badge">Parcours guidé · Pour débuter</span>
+      <h2 class="parcours-title">Apprends <em>dans l'ordre</em>,<br>étape par étape.</h2>
+      <p class="parcours-desc">13 étapes structurées par bloc thématique. Chaque étape : une fiche à lire, un mini-quiz pour valider. Aucune notion ne manque.</p>
+      <div class="parcours-progress">
+        <div class="parcours-progress-bar">
+          <div class="parcours-progress-fill" id="parcoursHeroFill" style="width: 0%"></div>
+        </div>
+        <div class="parcours-progress-text">
+          <span id="parcoursHeroText">Pas encore commencé</span>
+          <strong id="parcoursHeroPercent">0%</strong>
+        </div>
+      </div>
+      <div class="parcours-cta">Commencer le parcours</div>
+    </div>
+
     <div class="section-heading">Entraînement</div>
     <div class="modes">
+      <button class="mode-card" onclick="startQuiz('random')">
+        <div class="mode-number">01 / Libre</div>
+        <div class="mode-title">QCM Aléatoire</div>
+        <div class="mode-desc">20 questions au hasard. Correction immédiate, explications détaillées.</div>
+        <div class="mode-meta">Commencer</div>
+      </button>
+
+      <button class="mode-card" onclick="showThemes()">
+        <div class="mode-number">02 / Ciblé</div>
+        <div class="mode-title">Par Thème</div>
+        <div class="mode-desc">Révise un domaine précis : droit, incendie, appréhension, palpation...</div>
+        <div class="mode-meta">Choisir</div>
+      </button>
+
       <button class="mode-card" onclick="startQuiz('exam')">
-        <div class="mode-number">01 / Évaluation</div>
+        <div class="mode-number">03 / Évaluation</div>
         <div class="mode-title">Examen Blanc</div>
-        <div class="mode-desc">103 questions · 45s par question · Conditions réelles. Pas de correction avant la fin.</div>
+        <div class="mode-desc">30 questions · 25 minutes · Conditions réelles. Pas de correction avant la fin.</div>
         <div class="mode-meta">Démarrer</div>
       </button>
 
-      <button class="mode-card" onclick="startQuiz('full')">
-        <div class="mode-number">02 / Complet</div>
-        <div class="mode-title">Toutes les questions</div>
-        <div class="mode-desc" id="fullDesc">Toutes les questions de la base · Correction immédiate · Sans limite de temps.</div>
-        <div class="mode-meta">Tout faire</div>
-      </button>
-
       <button class="mode-card" id="errorsBtn" onclick="startErrorsMode()">
-        <div class="mode-number">03 / Correction</div>
+        <div class="mode-number">04 / Correction</div>
         <div class="mode-title">Mes Erreurs</div>
         <div class="mode-desc" id="errorsDesc">Rejoue uniquement les questions que tu as ratées.</div>
-        <div class="mode-meta" style="display:flex; justify-content:space-between; align-items:center;">
-          <span>Rejouer</span>
-          <span onclick="event.stopPropagation(); clearAllErrors()" style="font-size:0.62rem; color:var(--text-faint); text-decoration:underline; text-transform:uppercase; letter-spacing:0.08em; cursor:pointer;" onmouseover="this.style.color='var(--error)'" onmouseout="this.style.color='var(--text-faint)'">Réinitialiser</span>
-        </div>
+        <div class="mode-meta">Rejouer</div>
       </button>
     </div>
 
-    <div class="section-heading">Révision & Pratique</div>
+    <div class="section-heading">Apprentissage & Mémoire</div>
     <div class="modes">
+      <button class="mode-card" onclick="startSRS()">
+        <div class="mode-number">05 / SRS</div>
+        <div class="mode-title">Répétition Espacée</div>
+        <div class="mode-desc" id="srsDesc">Mémorisation long-terme façon Anki. Les questions ratées reviennent plus souvent.</div>
+        <div class="mode-meta">Étudier</div>
+      </button>
+
+      <button class="mode-card" onclick="showFiches()">
+        <div class="mode-number">06 / Synthèse</div>
+        <div class="mode-title">Fiches Mémo</div>
+        <div class="mode-desc" id="fichesDesc">Récap par thème : article 73, triangle du feu, SSI, palpation...</div>
+        <div class="mode-meta">Consulter</div>
+      </button>
+
       <button class="mode-card" onclick="startOral()">
-        <div class="mode-number">04 / Oral</div>
+        <div class="mode-number">07 / Pratique</div>
         <div class="mode-title">Oral TFP</div>
         <div class="mode-desc">Questions d'entretien classiques : SSI, CNAPS, missions, prise de service.</div>
         <div class="mode-meta">Réviser</div>
       </button>
 
       <button class="mode-card" onclick="showDefs()">
-        <div class="mode-number">05 / Lexique</div>
+        <div class="mode-number">08 / Lexique</div>
         <div class="mode-title">Définitions</div>
         <div class="mode-desc" id="defsDesc">Flashcards : sigles, concepts, articles de loi. Mémorise les termes du métier.</div>
         <div class="mode-meta">Apprendre</div>
-      </button>
-
-      <button class="mode-card mode-card-gold" onclick="showPratique()">
-        <div class="mode-number">06 / Pratique</div>
-        <div class="mode-title">🎯 Épreuve Pratique</div>
-        <div class="mode-desc">PC Sécurité ou Terrain · Procédures, vérifications, rapports · Prépare les 30 min devant jury.</div>
-        <div class="mode-meta">S'entraîner</div>
       </button>
     </div>
   </section>
@@ -2432,16 +2275,6 @@
         <div class="progress-text" id="progressText">1 / 20</div>
       </div>
       <div class="timer" id="timer" style="display: none;">25:00</div>
-    </div>
-    <!-- Chrono par question (exam blanc uniquement) -->
-    <div id="questionTimerBar" style="display:none; margin-bottom: 1rem;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
-        <span style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint);">Temps par question</span>
-        <span id="questionTimerText" style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.85rem; color:var(--gold);">0:45</span>
-      </div>
-      <div style="height:3px; background:var(--border); border-radius:2px; overflow:hidden;">
-        <div id="questionTimerFill" style="height:100%; width:100%; background:var(--gold); transition:width 1s linear; border-radius:2px;"></div>
-      </div>
     </div>
 
     <div class="question-theme" id="questionTheme"></div>
@@ -2488,8 +2321,6 @@
       <button class="btn btn-primary" onclick="showHome()">Nouvelle session</button>
       <button class="btn" id="retryBtn" onclick="retryQuiz()">Recommencer</button>
     </div>
-    <!-- Résultats par thème -->
-    <div id="themeBreakdown" style="margin: 2rem 0;"></div>
     <div id="wrongReview" class="wrong-review"></div>
   </section>
 
@@ -2547,95 +2378,6 @@
   </section>
 
   <!-- DÉFINITIONS : choix de catégorie -->
-  <!-- ===== ÉPREUVE PRATIQUE INTERACTIVE ===== -->
-  <section id="pratiqueScreen" class="quiz-screen">
-    <div style="max-width:680px; margin:0 auto; padding:0 0 4rem;">
-
-      <!-- Menu -->
-      <div id="pratMenuView">
-        <div class="hero-tag" style="margin-bottom:1.5rem;">Simulateur · Épreuve Pratique</div>
-        <h2 class="section-title" style="margin-bottom:0.5rem;">Entraîne-toi comme <em>le jour J</em></h2>
-        <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:2rem;">Le jury te décrit une situation. Tu écris ce que tu ferais. Il évalue et corrige en temps réel.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-          <button class="prat-scenario-btn" onclick="startSimulator('pc')">
-            <div style="font-size:2rem;margin-bottom:0.5rem;">🖥</div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;">Scénario A</div>
-            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem;">PC Sécurité</div>
-          </button>
-          <button class="prat-scenario-btn" onclick="startSimulator('terrain')">
-            <div style="font-size:2rem;margin-bottom:0.5rem;">🚶</div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;">Scénario B</div>
-            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem;">Ronde Terrain</div>
-          </button>
-          <button class="prat-scenario-btn" onclick="startSimulator('acces')">
-            <div style="font-size:2rem;margin-bottom:0.5rem;">🚪</div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;">Scénario C</div>
-            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem;">Contrôle d'accès</div>
-          </button>
-          <button class="prat-scenario-btn" onclick="startSimulator('secours')">
-            <div style="font-size:2rem;margin-bottom:0.5rem;">🚑</div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;">Scénario D</div>
-            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem;">Premiers Secours</div>
-          </button>
-        </div>
-        <button class="prat-scenario-btn" style="width:100%;margin-bottom:1rem;" onclick="startSimulator('random')">
-          <div style="font-size:1.5rem;margin-bottom:0.3rem;">🎲</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:700;">Tirage au sort</div>
-          <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem;">Comme le vrai examen — 1 scénario parmi 4</div>
-        </button>
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;padding:0.85rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
-          <div style="flex:1;">
-            <div style="font-size:0.82rem;color:var(--text);font-weight:600;">Mode Checklist</div>
-            <div style="font-size:0.72rem;color:var(--text-dim);margin-top:0.15rem;">Coche les étapes dans l'ordre au lieu d'écrire — idéal pour mémoriser les procédures</div>
-          </div>
-          <button id="pratModeToggle" onclick="togglePratMode()" style="background:var(--border);border:none;border-radius:999px;width:44px;height:24px;cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
-            <div id="pratModeKnob" style="position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:transform 0.2s;"></div>
-          </button>
-        </div>
-        <button class="btn btn-ghost" onclick="showHome()">← Retour</button>
-      </div>
-
-      <!-- Simulateur conversation -->
-      <div id="pratSimView" style="display:none;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
-          <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);" id="pratScenarioLabel"></div>
-          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;color:var(--gold);" id="pratProgress"></div>
-        </div>
-        <!-- Chat feed -->
-        <div id="pratChat" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.25rem;"></div>
-        <!-- Input zone -->
-        <div id="pratInputZone" style="display:none;">
-          <textarea id="pratInput" placeholder="Décris ce que tu ferais..." style="width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--border-strong);border-radius:8px;padding:0.9rem 1rem;font-family:'Outfit',sans-serif;font-size:0.9rem;color:var(--text);resize:vertical;min-height:90px;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-strong)'" onkeydown="if(event.key==='Enter'&&(event.ctrlKey||event.metaKey))submitPratAnswer()"></textarea>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;">
-            <div style="font-size:0.7rem;color:var(--text-faint);">Ctrl+Entrée pour valider</div>
-            <button class="btn btn-primary" onclick="submitPratAnswer()" style="padding:0.6rem 1.25rem;font-size:0.82rem;">Valider →</button>
-          </div>
-        </div>
-        <!-- Next button -->
-        <div id="pratNextBtn" style="display:none;margin-top:1rem;">
-          <button class="btn btn-primary" onclick="nextPratSituation()">Situation suivante →</button>
-        </div>
-        <div id="pratFinishBtn" style="display:none;margin-top:1rem;">
-          <button class="btn btn-primary" onclick="showPratResults()">Voir mes résultats →</button>
-        </div>
-      </div>
-
-      <!-- Résultats -->
-      <div id="pratResultsView" style="display:none;text-align:center;">
-        <div class="hero-tag" style="margin-bottom:1rem;">Simulation terminée</div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:3.5rem;color:var(--gold);" id="pratScoreVal">0</div>
-        <div style="font-size:1rem;color:var(--text-dim);margin-bottom:0.5rem;" id="pratScoreLabel"></div>
-        <div style="font-size:0.9rem;color:var(--text-dim);margin-bottom:2rem;" id="pratScoreMsg"></div>
-        <div id="pratReview" style="text-align:left;margin-bottom:2rem;"></div>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="startSimulator(pratCurrentScenario)">Recommencer</button>
-          <button class="btn btn-ghost" onclick="showPratMenu()">← Menu</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <section id="defsScreen" class="defs-screen">
     <h2 class="section-title">Lexique <em>TFP APS</em></h2>
     <p class="defs-intro">Maîtrise les sigles, concepts et articles de loi indispensables. <strong style="color: var(--gold);" id="defsTotal">0</strong> flashcards · Choisis une catégorie ou lance-les toutes d'un coup.</p>
@@ -2698,79 +2440,76 @@
 
 <footer>TFP·APS Révision — Bon courage pour l'examen</footer>
 
-<!-- ===== MODAL THÈME DU JOUR ===== -->
-<div id="themeDuJourModal" class="tdj-overlay" style="display:none;" onclick="if(event.target===this)closeThemeDuJour()">
-  <div class="tdj-modal">
-    <div class="tdj-header">
-      <div class="tdj-title">📅 Thème du Jour</div>
-      <div class="tdj-subtitle">Quel thème tu viens de voir en formation ?</div>
-      <button class="tdj-close" onclick="closeThemeDuJour()">×</button>
-    </div>
-    <div class="tdj-grid" id="tdjGrid"></div>
-  </div>
-</div>
-
-<!-- ===== MODAL THÈME VISUEL ===== -->
-<div id="themePickerModal" class="tdj-overlay" style="display:none;" onclick="if(event.target===this)closeThemePicker()">
-  <div class="tdj-modal" style="max-width:420px;">
-    <div class="tdj-header">
-      <div class="tdj-title">🎨 Choisir un thème</div>
-      <button class="tdj-close" onclick="closeThemePicker()">×</button>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:0.6rem;">
-      <button class="theme-pick-btn" onclick="setTheme('dark')" data-theme="dark">
-        <div class="tpb-preview" style="background:#0e0f11; border:2px solid #c0a050;"></div>
-        <div class="tpb-info">
-          <div class="tpb-name">007 · Noir & Or</div>
-          <div class="tpb-desc">Le thème original. Sombre, luxueux.</div>
-        </div>
-        <div class="tpb-check" id="check-dark">✓</div>
-      </button>
-      <button class="theme-pick-btn" onclick="setTheme('blanc')" data-theme="blanc">
-        <div class="tpb-preview" style="background:#ffffff; border:2px solid #111;"></div>
-        <div class="tpb-info">
-          <div class="tpb-name">White · Blanc épuré</div>
-          <div class="tpb-desc">Minimaliste, noir et blanc.</div>
-        </div>
-        <div class="tpb-check" id="check-blanc"></div>
-      </button>
-      <button class="theme-pick-btn" onclick="setTheme('desert')" data-theme="desert">
-        <div class="tpb-preview" style="background:#1a1208; border:2px solid #d4882a;"></div>
-        <div class="tpb-info">
-          <div class="tpb-name">Désert · Sable & Feu</div>
-          <div class="tpb-desc">Chaud, terracotta, ambiance dunes.</div>
-        </div>
-        <div class="tpb-check" id="check-desert"></div>
-      </button>
-      <button class="theme-pick-btn" onclick="setTheme('ocean')" data-theme="ocean">
-        <div class="tpb-preview" style="background:#060e1a; border:2px solid #30c8e8;"></div>
-        <div class="tpb-info">
-          <div class="tpb-name">Océan · Marine & Cyan</div>
-          <div class="tpb-desc">Profond, froid, immersif.</div>
-        </div>
-        <div class="tpb-check" id="check-ocean"></div>
-      </button>
-      <button class="theme-pick-btn" onclick="setTheme('foret')" data-theme="foret">
-        <div class="tpb-preview" style="background:#080e08; border:2px solid #70c840;"></div>
-        <div class="tpb-info">
-          <div class="tpb-name">Forêt · Nuit & Vert</div>
-          <div class="tpb-desc">Sombre, naturel, apaisant.</div>
-        </div>
-        <div class="tpb-check" id="check-foret"></div>
-      </button>
-    </div>
-  </div>
-</div>
-
 <script>
-  // ===== FIN SPLASH SUPPRIMÉ =====
+  // ===== SPLASH 007 =====
+  (function() {
+    const splash = document.getElementById('splash007');
+    if (!splash) return;
 
+    // Skip immédiat si déjà vu dans la session courante
+    if (sessionStorage.getItem('tfp_entered')) {
+      splash.hidden = true;
+      document.body.classList.remove('splash-active');
+      document.body.classList.add('splash-done');
+      return;
+    }
+
+    // Timestamp live (style horloge de mission)
+    const tsEl = document.getElementById('splashTimestamp');
+    function updateTimestamp() {
+      if (!tsEl) return;
+      const now = new Date();
+      const date = now.toLocaleDateString('fr-FR', {
+        day: '2-digit', month: '2-digit', year: 'numeric'
+      });
+      const time = now.toLocaleTimeString('fr-FR', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+      tsEl.textContent = `${date} · ${time} UTC+1`;
+    }
+    updateTimestamp();
+    const tsInterval = setInterval(updateTimestamp, 1000);
+
+    // EXIT : seulement sur clic bouton (PAS sur clic global, PAS d'auto-dismiss)
+    function exitSplash() {
+      if (splash.classList.contains('exiting')) return;
+      splash.classList.add('exiting');
+      clearInterval(tsInterval);
+      sessionStorage.setItem('tfp_entered', '1');
+      setTimeout(() => {
+        document.body.classList.remove('splash-active');
+        document.body.classList.add('splash-done');
+      }, 150);
+      setTimeout(() => { splash.style.display = 'none'; }, 800);
+    }
+
+    const enterBtn = document.getElementById('splashEnterBtn');
+    if (enterBtn) {
+      enterBtn.addEventListener('click', exitSplash);
+    }
+
+    // Touche Entrée = équivalent clic bouton (accessibilité)
+    document.addEventListener('keydown', function handler(e) {
+      if (splash.classList.contains('exiting')) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        // N'active que quand le bouton est révélé (après l'anim)
+        const btnReady = enterBtn && getComputedStyle(enterBtn).opacity !== '0';
+        if (btnReady) {
+          e.preventDefault();
+          exitSplash();
+        }
+      }
+    });
+  })();
 </script>
 <script src="data.js"></script>
 <script src="fiches.js"></script>
 <script src="parcours.js"></script>
 <script src="definitions.js"></script>
 <script src="pomodoro.js"></script>
+<script src="bonus.js"></script>
+<script src="examen-officiel.js"></script>
+<script src="alphabet-game.js"></script>
 <script>
   const state = {
     quiz: [],
@@ -2851,34 +2590,14 @@
     } catch(e) {}
   }
 
-  // ===== THEME SYSTEM =====
-  const THEMES = ['dark','blanc','desert','ocean','foret'];
-  const THEME_CLASSES = { blanc:'theme-blanc', desert:'theme-desert', ocean:'theme-ocean', foret:'theme-foret' };
-
-  function setTheme(theme) {
-    const html = document.documentElement;
-    // Remove all theme classes
-    html.classList.remove('light', ...Object.values(THEME_CLASSES));
-    if (theme === 'blanc') { html.classList.add('light', 'theme-blanc'); }
-    else if (THEME_CLASSES[theme]) { html.classList.add(THEME_CLASSES[theme]); }
-    // Update check marks
-    THEMES.forEach(t => {
-      const el = document.getElementById('check-' + t);
-      if (el) el.textContent = t === theme ? '✓' : '';
-    });
-    try { localStorage.setItem('tfp_theme', theme); } catch(e) {}
-    closeThemePicker();
+  function toggleTheme() {
+    const isLight = document.documentElement.classList.toggle('light');
+    const icon = document.getElementById('themeToggle').querySelector('.theme-toggle-icon');
+    const label = document.getElementById('themeToggleLabel');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    label.textContent = isLight ? 'Sombre' : 'Clair';
+    try { localStorage.setItem('tfp_theme', isLight ? 'light' : 'dark'); } catch(e) {}
   }
-
-  function openThemePicker() {
-    document.getElementById('themePickerModal').style.display = 'flex';
-  }
-
-  function closeThemePicker() {
-    document.getElementById('themePickerModal').style.display = 'none';
-  }
-
-  function toggleTheme() { openThemePicker(); } // legacy compat
 
   function toggleSound() {
     state.soundEnabled = !state.soundEnabled;
@@ -2912,7 +2631,7 @@
 
   // ========== NAVIGATION ==========
   function showScreen(id) {
-    ['homeScreen', 'themesScreen', 'fichesScreen', 'ficheDetailScreen', 'quizScreen', 'resultsScreen', 'oralScreen', 'parcoursScreen', 'stepDetailScreen', 'defsScreen', 'flashcardScreen', 'flashcardDoneScreen', 'pratiqueScreen'].forEach(s => {
+    ['homeScreen', 'themesScreen', 'fichesScreen', 'ficheDetailScreen', 'quizScreen', 'resultsScreen', 'oralScreen', 'parcoursScreen', 'stepDetailScreen', 'defsScreen', 'flashcardScreen', 'flashcardDoneScreen'].forEach(s => {
       const el = document.getElementById(s);
       if (el) {
         el.classList.remove('active');
@@ -2925,14 +2644,6 @@
     } else {
       target.classList.add('active');
     }
-    // Scroll vers le contenu de la section (pas le tout haut de page)
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-      }
-    }, 30);
   }
 
   function showHome() {
@@ -2942,540 +2653,6 @@
     updateHomeStats();
     renderChart();
     updateParcoursHero();
-  }
-
-  // ===== TOP 15 INCONTOURNABLES =====
-  const TOP15_KEYWORDS = [
-    // Article 73 — condition flagrant délit
-    q => q.theme === 'Appréhension / Droit' && q.q.toLowerCase().includes('73'),
-    // Palpation vs fouille
-    q => q.theme === 'Palpation / Fouille' && q.q.toLowerCase().includes('fouill'),
-    // Voyants CMSI rouge
-    q => q.theme === 'SSI' && q.q.toLowerCase().includes('rouge'),
-    // Voyants CMSI jaune fixe
-    q => q.theme === 'SSI' && q.q.toLowerCase().includes('jaune fixe'),
-    // Voyants CMSI jaune clignotant
-    q => q.theme === 'SSI' && q.q.toLowerCase().includes('clignotant'),
-    // Catégories SSI
-    q => q.theme === 'SSI' && q.q.toLowerCase().includes('catégorie'),
-    // Carte pro durée
-    q => q.theme === 'Carte pro / CNAPS' && q.q.toLowerCase().includes('durée'),
-    // CNAPS définition
-    q => q.theme === 'Carte pro / CNAPS' && q.q.toLowerCase().includes("qu'est-ce que le cnaps"),
-    // Triangle du feu
-    q => q.theme === 'Incendie' && q.q.toLowerCase().includes('triangle'),
-    // Classe feu B
-    q => q.theme === 'Incendie' && q.q.toLowerCase().includes('classe b'),
-    // Extincteur CO2
-    q => q.theme === 'Incendie' && q.q.toLowerCase().includes('co2'),
-    // PAE premiers secours
-    q => q.theme === 'Premiers secours' && (q.q.toLowerCase().includes('pae') || q.q.toLowerCase().includes('pas')),
-    // Numéros urgence
-    q => q.theme === 'Premiers secours' && q.q.toLowerCase().includes('urgence'),
-    // Droit de retrait
-    q => q.theme === 'Droit du travail' && q.q.toLowerCase().includes('retrait'),
-    // Main courante format
-    q => q.theme === 'Main courante / Rapports' && q.q.toLowerCase().includes('format'),
-  ];
-
-  function startTop15() {
-    const top15 = [];
-    TOP15_KEYWORDS.forEach(fn => {
-      const match = questionsQCM.find(q => fn(q) && !top15.includes(q));
-      if (match) top15.push(match);
-    });
-    // Fill to 15 if needed with high-importance themes
-    const important = ['Appréhension / Droit', 'SSI', 'Carte pro / CNAPS', 'Incendie', 'Premiers secours'];
-    questionsQCM.filter(q => important.includes(q.theme) && !top15.includes(q))
-      .slice(0, 15 - top15.length)
-      .forEach(q => top15.push(q));
-
-    state.quiz = top15.slice(0, 15);
-    state.mode = 'top15';
-    state.score = 0;
-    state.currentIndex = 0;
-    state.answers = [];
-    stopTimer();
-    document.getElementById('timer').style.display = 'none';
-    document.getElementById('questionTimerBar').style.display = 'none';
-    showScreen('quizScreen');
-    renderQuestion();
-  }
-
-  // ===== ÉPREUVE PRATIQUE =====
-  // ===== SIMULATEUR ÉPREUVE PRATIQUE (conversationnel + IA) =====
-  const PRAT_DATA = {
-    pc: {
-      label: "Scénario A · PC Sécurité",
-      intro: "Tu es en poste au PC Sécurité. Je suis le jury. Je vais te soumettre des situations réelles. Décris à voix haute (par écrit) ce que tu ferais exactement, dans l'ordre.",
-      situations: [
-        {
-          type: "Prise de service",
-          jury: "Tu arrives au PC Sécurité pour prendre ton poste. Ton collègue est encore là. Comment tu procèdes ?",
-          keywords: ["passation","consigne","main courante","ssi","caméra","radio","vérifi","signer","noter"],
-          mustHave: ["passation","consigne","main courante"],
-          idealAnswer: "Je demande la passation de consignes à mon collègue. Je lis la main courante pour connaître les événements de la vacation précédente. Ensuite je vérifie le SSI (voyants), la vidéosurveillance, les communications radio, et je signe la main courante avec l'heure de prise de service.",
-          tips: ["Passation de consignes en premier", "Lecture de la main courante obligatoire", "Vérification SSI : voyant vert = OK, jaune fixe = dérangement, rouge = alarme", "Signer la main courante avec l'heure"]
-        },
-        {
-          type: "SSI — Voyant jaune fixe",
-          jury: "En prenant ton poste, tu constates que le voyant JAUNE FIXE est allumé sur le tableau SSI. Qu'est-ce que ça signifie et que fais-tu ?",
-          keywords: ["dérangement","technique","maintenance","technicien","main courante","noter","signaler","jaune fixe"],
-          mustHave: ["dérangement","maintenance"],
-          idealAnswer: "Voyant jaune fixe = dérangement technique. Je note l'anomalie sur la main courante avec l'heure, et j'avise le technicien de maintenance. Je ne réarme pas — le réarmement concerne le voyant jaune clignotant (défaut de position d'un DAS).",
-          tips: ["Jaune fixe = dérangement technique → noter + appeler maintenance", "Jaune clignotant = défaut position DAS → réarmer le DAS", "Rouge = alarme feu → lever du doute immédiat"]
-        },
-        {
-          type: "Alarme incendie",
-          jury: "Une alarme incendie se déclenche. Le voyant rouge s'allume sur le CMSI. Décris exactement ta séquence d'actions.",
-          keywords: ["lever","doute","caméra","radio","18","pompier","évacuation","noter","heure","main courante","réarmer"],
-          mustHave: ["lever","doute","18"],
-          idealAnswer: "Je fais un lever du doute immédiatement : je vérifie sur les caméras ou par radio avec un agent terrain si un feu est réel. Si feu confirmé : je déclenche l'évacuation, j'appelle le 18, et je note l'heure et la localisation sur la main courante. Si fausse alerte : je réarme le SSI et je note sur la main courante.",
-          tips: ["TOUJOURS lever du doute avant d'appeler le 18", "Si feu réel : évacuation + 18 + traçabilité main courante", "Si fausse alerte : réarmer + noter sur main courante", "Ne jamais réarmer sans lever du doute"]
-        },
-        {
-          type: "Intrusion",
-          jury: "Une de tes caméras montre une personne non identifiée dans une zone restreinte. Le PC est devant toi. Que fais-tu ?",
-          keywords: ["caméra","radio","terrain","17","noter","heure","PC","alerter","signalement"],
-          mustHave: ["radio","terrain","noter"],
-          idealAnswer: "Je reste au PC — je ne quitte jamais mon poste. J'identifie la personne sur les caméras et je note son signalement. J'alerte une équipe terrain par radio pour aller vérifier. Si l'intrusion est confirmée, j'appelle le 17. Je note toutes les actions avec les heures sur la main courante.",
-          tips: ["Ne jamais quitter le PC seul pour intervenir", "Identifier sur caméra → alerter terrain → 17 si confirmé", "Noter TOUTES les actions horodatées sur la main courante"]
-        },
-        {
-          type: "Colis suspect",
-          jury: "Un agent terrain te signale par radio qu'il a trouvé un sac à dos abandonné dans le hall. Personne pour le revendiquer. Tu fais quoi ?",
-          keywords: ["toucher","déplacer","évacuer","périmètre","17","police","main courante","noter","hiérarchie"],
-          mustHave: ["toucher","évacuer","17"],
-          idealAnswer: "Je lui dis de ne surtout pas toucher ni déplacer le colis. J'ordonne l'évacuation de la zone et j'établis un périmètre de sécurité. J'appelle le 17 immédiatement et j'informe ma hiérarchie. Je note toutes les actions horodatées sur la main courante.",
-          tips: ["Ne JAMAIS toucher, déplacer ou ouvrir un colis suspect", "Évacuer la zone → périmètre de sécurité", "Appeler le 17 → informer la hiérarchie", "Laisser agir les démineurs (NEDEX)"]
-        },
-        {
-          type: "Rédaction du rapport",
-          jury: "L'incident est terminé. Le jury te dit : 'Rédigez maintenant votre rapport d'incident.' Comment tu le structures ?",
-          keywords: ["qqoqcp","qui","quoi","où","quand","comment","pourquoi","factuel","objectif","signer","dater","heure"],
-          mustHave: ["qqoqcp","factuel"],
-          idealAnswer: "Je rédige selon la méthode QQOQCP : Qui (personnes impliquées), Quoi (nature de l'incident), Où (localisation précise), Quand (heure exacte), Comment (déroulement), Pourquoi (causes si connues). Le rapport est factuel et objectif — aucune opinion, aucune supposition. Je signe et date.",
-          tips: ["QQOQCP = structure obligatoire", "Factuel uniquement : ce qu'on a VU et FAIT, pas ce qu'on pense", "Heure exacte sur chaque action", "Signer et dater, remettre à la hiérarchie"]
-        }
-      ]
-    },
-    terrain: {
-      label: "Scénario B · Ronde Terrain",
-      intro: "Tu es en mission terrain. Je suis le jury. Je vais te placer face à des situations que tu peux rencontrer en ronde. Décris ce que tu ferais exactement, dans l'ordre.",
-      situations: [
-        {
-          type: "Départ en ronde",
-          jury: "Tu dois partir effectuer une ronde. Avant de quitter le PC, qu'est-ce que tu vérifies et que fais-tu ?",
-          keywords: ["radio","dati","lampe","torche","clé","carnet","PC","prévenir","informer","heure","main courante"],
-          mustHave: ["radio","PC","prévenir"],
-          idealAnswer: "Je vérifie mon équipement : radio chargée et testée, DATI si je suis seul, lampe torche, carnet de ronde et stylo, clés du site. Je préviens le PC de mon départ en précisant l'heure. La main courante doit mentionner l'heure de départ de ronde.",
-          tips: ["Radio + DATI + lampe torche = équipement de base", "Toujours prévenir le PC avant de partir", "Noter l'heure de départ sur la main courante"]
-        },
-        {
-          type: "Contrôle extincteur",
-          jury: "Pendant ta ronde, tu dois vérifier les extincteurs. Cite les 5 points de contrôle.",
-          keywords: ["présent","accessible","signalétique","goupille","scellé","état","flexible","date","vérification"],
-          mustHave: ["présent","goupille","date"],
-          idealAnswer: "Les 5 points : 1. Présent et accessible (non obstrué), 2. Signalétique correcte (correspond à la classe de feu), 3. Goupille et scellé intacts, 4. État général correct (corps, flexible sans dommage), 5. Date de vérification réglementaire valide.",
-          tips: ["5 points : Présence → Signalétique → Goupille/Scellé → État général → Date", "Vérification quotidienne par l'APS, annuelle par société agréée", "Tout manquement noté sur main courante"]
-        },
-        {
-          type: "Porte ouverte",
-          jury: "En ronde, tu trouves une porte normalement fermée à clé qui est grande ouverte. Il fait sombre derrière. Que fais-tu ?",
-          keywords: ["entrer","seul","périmètre","PC","radio","alerter","17","noter","heure","attendre","renfort"],
-          mustHave: ["PC","radio","noter"],
-          idealAnswer: "Je n'entre pas seul dans la zone — c'est dangereux. Je sécurise le périmètre autour de la porte. J'alerte le PC immédiatement par radio en précisant la localisation exacte. Je note l'heure et l'anomalie sur mon carnet. J'attends les instructions du PC ou du renfort. Si intrusion confirmée, le PC appellera le 17.",
-          tips: ["Ne jamais entrer seul dans une zone suspecte", "Sécuriser le périmètre → alerter PC → attendre instructions", "Noter heure + localisation précise", "Le PC décide d'appeler le 17 si nécessaire"]
-        },
-        {
-          type: "Incendie découvert",
-          jury: "Tu découvres un début d'incendie dans une zone technique. Il y a un extincteur à 2 mètres. Décris ta séquence EXACTE.",
-          keywords: ["dm","boîtier","rouge","déclencher","alarme","18","PC","alerter","extincteur","évacuer"],
-          mustHave: ["dm","18","alerter"],
-          idealAnswer: "Ma séquence : 1. Je déclenche le DM (boîtier rouge brisable) pour déclencher l'alarme. 2. J'alerte le PC par radio et j'appelle le 18. 3. Seulement si le feu est encore maîtrisable et sans danger pour moi, j'utilise l'extincteur adapté. 4. Je fais évacuer les personnes alentour.",
-          tips: ["DM d'abord pour l'alarme — TOUJOURS avant d'attaquer", "Alerter PC + 18 AVANT d'utiliser l'extincteur", "N'attaquer que si feu naissant et sans danger", "Évacuer les personnes à proximité"]
-        },
-        {
-          type: "Personne en malaise",
-          jury: "Tu trouves une personne inconsciente au sol. Elle ne réagit pas à tes appels. Que fais-tu dans l'ordre ?",
-          keywords: ["15","sécuriser","conscience","respire","lvs","pls","rcp","rester","secours","main courante"],
-          mustHave: ["15","respire","rester"],
-          idealAnswer: "Je sécurise la zone pour éviter un sur-accident. J'appelle le 15 (SAMU) immédiatement. Je vérifie la conscience (je lui parle, je touche ses épaules) puis la respiration (LVS : regarder le ventre, écouter, sentir pendant 10 secondes max). Si elle respire : PLS. Si elle ne respire pas : RCP (30 compressions / 2 insufflations). Je reste avec elle jusqu'à l'arrivée des secours et je note tout sur la main courante.",
-          tips: ["Sécuriser → 15 → LVS → PLS ou RCP", "Ne jamais déplacer une victime inconsciente", "Rester avec la victime jusqu'aux secours", "LVS max 10 secondes pour décider PLS ou RCP"]
-        },
-        {
-          type: "Fin de ronde",
-          jury: "Ta ronde est terminée, tout était normal. Qu'est-ce que tu fais obligatoirement avant de passer à autre chose ?",
-          keywords: ["PC","rendre compte","main courante","ras","heure","retour","signer","noter","parcours"],
-          mustHave: ["PC","main courante","ras"],
-          idealAnswer: "Je rends compte au PC par radio : 'Ronde terminée à [heure], RAS.' Je note sur la main courante : heure de départ, heure de retour, parcours effectué, et RAS (Rien À Signaler) avec ma signature. Même sans anomalie, la traçabilité est obligatoire.",
-          tips: ["Rendre compte au PC = obligatoire", "Main courante : heure départ + retour + parcours + RAS ou anomalies", "RAS avec signature même quand tout va bien", "La traçabilité protège l'agent en cas de litige"]
-        }
-      ]
-    },
-    acces: {
-      label: "Scénario C · Contrôle d'Accès",
-      intro: "Tu es en poste filtrage à l'entrée du site. Je suis le jury. Des personnes se présentent. Tu dois gérer chaque situation en appliquant les procédures correctes.",
-      situations: [
-        {
-          type: "Visiteur sans badge",
-          jury: "Une personne se présente à l'accueil. Elle dit travailler dans l'entreprise mais n'a pas son badge. Elle est pressée et insiste pour entrer. Que fais-tu ?",
-          keywords: ["identité","pièce","contacter","responsable","registre","badge","visiteur","noter","consigne","refus"],
-          mustHave: ["identité","contacter","noter"],
-          idealAnswer: "Je reste courtois mais ferme. Je demande à vérifier son identité (pièce d'identité). Je contacte le service ou la personne qu'elle dit rejoindre pour confirmer son identité et son autorisation d'accès. Si confirmé, je lui remets un badge visiteur temporaire et je l'inscris sur le registre des visiteurs avec l'heure d'entrée. Si non confirmé, je lui refuse poliment l'accès.",
-          tips: ["Vérifier identité en premier — toujours", "Contacter le service concerné pour confirmation", "Badge visiteur temporaire si accès autorisé", "Inscrire sur le registre : nom, heure, personne visitée", "Refus poli et ferme si non confirmé — jamais d'agressivité"]
-        },
-        {
-          type: "Personne qui force l'entrée",
-          jury: "Une personne tente de forcer le passage sans s'arrêter au poste de contrôle. Tu lui demandes de s'arrêter mais elle continue. Que fais-tu ?",
-          keywords: ["radio","PC","alerter","17","noter","signalement","poursuivre","force","retenir"],
-          mustHave: ["radio","PC","noter"],
-          idealAnswer: "Je n'essaie pas de la retenir physiquement — je n'ai pas ce droit hors flagrant délit. J'alerte immédiatement le PC par radio avec son signalement (description physique, direction prise, heure). Je note le signalement précis et l'heure sur la main courante. Si intrusion confirmée dans une zone sensible, le PC appelle le 17.",
-          tips: ["Ne jamais retenir physiquement hors flagrant délit art.73", "Alerter le PC par radio immédiatement avec signalement", "Noter : description physique, vêtements, direction, heure", "C'est le PC qui décide d'appeler le 17", "Mémoriser le signalement : taille, vêtements, cheveux, direction"]
-        },
-        {
-          type: "Livraison suspecte",
-          jury: "Un livreur se présente avec un colis pour le site. Il n'est pas référencé dans vos consignes et ne peut pas prouver qui l'a commandé. Que fais-tu ?",
-          keywords: ["contacter","responsable","vérifi","attendre","colis","consigne","noter","entrée","refus","liste"],
-          mustHave: ["contacter","vérifi","noter"],
-          idealAnswer: "Je ne laisse pas entrer le livreur sans vérification. Je contacte le service ou le responsable susceptible d'avoir commandé cette livraison pour confirmer. En attendant, je fais patienter le livreur à l'extérieur du poste de contrôle. Je note ses coordonnées et le numéro de suivi du colis. Si personne ne confirme la commande, je refuse l'entrée poliment et je note l'incident sur la main courante.",
-          tips: ["Toujours vérifier avant de laisser entrer", "Faire patienter le livreur à l'extérieur pendant la vérification", "Contacter le service concerné — ne pas décider seul", "Noter coordonnées du livreur et numéro de suivi", "Refus poli si pas de confirmation — noter sur main courante"]
-        },
-        {
-          type: "Palpation de sécurité",
-          jury: "Tu dois effectuer une palpation de sécurité à l'entrée d'un événement. Une personne refuse catégoriquement. Que fais-tu ?",
-          keywords: ["consentement","refus","accès","expliquer","règle","force","palpation","droit"],
-          mustHave: ["consentement","refus","accès"],
-          idealAnswer: "La palpation nécessite le consentement exprès de la personne. Si elle refuse, je lui explique calmement que la palpation est une condition d'entrée à l'événement et qu'elle s'applique à tous. Si elle maintient son refus, je lui refuse l'accès poliment — je ne peux pas la palper de force. Je note le refus sur la main courante.",
-          tips: ["Palpation = consentement obligatoire", "Refus de palpation = refus d'accès — jamais de force", "Expliquer la règle calmement : elle s'applique à tous", "Même sexe obligatoire pour la palpation", "Par-dessus les vêtements uniquement — jamais dessous"]
-        },
-        {
-          type: "Fin de vacation filtrage",
-          jury: "Ta vacation au poste de filtrage se termine. Que dois-tu transmettre à ton remplaçant ?",
-          keywords: ["passation","consigne","main courante","badge","visiteur","anomalie","incident","matériel","registre"],
-          mustHave: ["passation","consigne","main courante"],
-          idealAnswer: "Je fais une passation de consignes complète : je lui transmets l'état du registre des visiteurs (badges en circulation), les anomalies ou incidents survenus pendant ma vacation, les consignes particulières du jour, l'état du matériel (portique, lecteur de badges). Je signe la main courante avec mon heure de fin de service.",
-          tips: ["Passation de consignes complète : incidents + badges en circulation + consignes", "État du registre visiteurs : qui est encore dans le site ?", "Matériel : portique, lecteur de badges, état général", "Signer la main courante : heure de fin de service", "Ne jamais partir sans passation complète"]
-        }
-      ]
-    },
-    secours: {
-      label: "Scénario D · Premiers Secours",
-      intro: "Tu es en mission. Des situations d'urgence médicale surviennent sur ton site. Je suis le jury. Décris exactement ce que tu ferais pour chaque situation.",
-      situations: [
-        {
-          type: "Victime inconsciente qui respire",
-          jury: "Tu trouves une personne inconsciente au sol dans un couloir. Tu l'interpelles, elle ne répond pas. Tu vérifies : elle respire. Que fais-tu dans l'ordre exact ?",
-          keywords: ["15","sécuriser","pls","côté","respire","rester","secours","main courante","bouche","voies"],
-          mustHave: ["15","pls","rester"],
-          idealAnswer: "Je sécurise la zone. J'appelle le 15 (SAMU) immédiatement en donnant ma localisation précise. Je bascule délicatement la tête en arrière pour libérer les voies aériennes. Je la mets en Position Latérale de Sécurité (PLS) côté gauche. Je reste avec elle, je surveille sa respiration jusqu'à l'arrivée des secours. Je ne la déplace pas sauf danger immédiat.",
-          tips: ["Sécuriser → 15 → LVS → PLS si respire", "PLS = position sur le côté gauche, tête basculée en arrière", "Ne jamais laisser la victime seule", "Ne jamais déplacer sauf danger immédiat", "Surveiller la respiration en permanence jusqu'aux secours"]
-        },
-        {
-          type: "Victime inconsciente qui ne respire pas",
-          jury: "Même situation mais cette fois-ci la victime ne respire pas. Tu as attendu 10 secondes. Que fais-tu ?",
-          keywords: ["rcp","30","compression","insufflation","dae","défibrillateur","15","18","112","thorax"],
-          mustHave: ["rcp","30","compression","dae"],
-          idealAnswer: "Je commence la RCP immédiatement : 30 compressions thoraciques (talon de la main au centre du thorax, 5 à 6 cm de profondeur, rythme 100-120 par minute) alternées avec 2 insufflations. Je crie pour qu'on appelle le 15 et qu'on aille chercher le DAE. Dès que le DAE arrive, je l'allume et je suis ses instructions vocales. Je continue la RCP jusqu'à l'arrivée des secours ou la récupération.",
-          tips: ["Pas de respiration après 10 secondes → RCP immédiate", "30 compressions / 2 insufflations — rythme 100-120/min", "Profondeur 5-6 cm au centre du thorax", "Demander à quelqu'un d'appeler le 15 ET d'aller chercher le DAE", "Ne jamais s'arrêter jusqu'aux secours ou récupération"]
-        },
-        {
-          type: "Hémorragie grave",
-          jury: "Un employé vient te voir : il s'est coupé sévèrement la main avec du matériel. La plaie saigne abondamment. Que fais-tu ?",
-          keywords: ["compression","directe","appuyer","linge","15","18","garrot","relâcher","saigner"],
-          mustHave: ["compression","directe","15"],
-          idealAnswer: "Je fais une compression directe et forte sur la plaie immédiatement avec un linge propre, une compresse ou mes mains gantées. Je maintiens la pression sans relâcher. J'appelle le 15. Si le saignement ne s'arrête pas et que c'est un membre, je pose un garrot en dernier recours (noter l'heure de pose). Je reste avec lui jusqu'aux secours.",
-          tips: ["Compression directe et forte — IMMÉDIATEMENT", "Ne jamais relâcher la pression", "Appeler le 15 tout en comprimant", "Garrot = dernier recours si compression impossible sur un membre", "Si garrot : noter l'heure de pose obligatoirement"]
-        },
-        {
-          type: "Malaise cardiaque",
-          jury: "Un visiteur se plaint d'une forte douleur dans la poitrine qui irradie dans le bras gauche. Il est pâle et transpire. Que fais-tu ?",
-          keywords: ["15","demi-assise","position","effort","aspirin","infarctus","secours","rester","calme"],
-          mustHave: ["15","demi-assise","effort"],
-          idealAnswer: "Je suspecte un infarctus du myocarde. J'appelle le 15 immédiatement en décrivant les symptômes. J'installe la personne en position demi-assise (ni allongée ni debout). Je lui dis de ne faire aucun effort. Je la rassure et je reste avec elle. Je ne lui donne rien à avaler. Je prépare l'accès aux secours (ouvrir les portes, envoyer quelqu'un guider les secours).",
-          tips: ["Douleur thoracique + bras gauche = suspecter infarctus → 15 immédiat", "Position demi-assise — ni allongée ni debout", "Aucun effort physique — rester calme", "Ne rien donner à avaler sans avis médical", "Préparer l'accès aux secours : portes, guidage"]
-        },
-        {
-          type: "Personne qui s'étouffe",
-          jury: "Dans la cafétéria du site, un employé s'étouffe avec de la nourriture. Il ne peut plus parler ni tousser. Son visage devient rouge. Que fais-tu ?",
-          keywords: ["heimlich","ventre","compressions","poing","dos","tousser","15","étouffement"],
-          mustHave: ["heimlich","compressions","15"],
-          idealAnswer: "C'est une obstruction totale des voies aériennes. Je me place derrière lui. Je mets mon poing entre son nombril et son sternum, l'autre main par-dessus. Je fais des compressions sèches vers moi et vers le haut (manœuvre de Heimlich) jusqu'à expulsion du corps étranger. Si inconscient : j'allonge et appelle le 15, je commence la RCP. Si ça fonctionne et qu'il reprend son souffle, j'appelle quand même le 15 par sécurité.",
-          tips: ["Obstruction totale → Heimlich immédiat (ne peut pas parler ni tousser)", "Se placer derrière, poing entre nombril et sternum", "Compressions sèches vers soi et vers le haut", "Si inconscient : allonger + 15 + RCP", "Toujours appeler le 15 après une manœuvre de Heimlich réussie"]
-        }
-      ]
-    }
-  };
-
-  let pratCurrentScenario = 'pc';
-  let pratChecklistMode = false;
-
-  function togglePratMode() {
-    pratChecklistMode = !pratChecklistMode;
-    const btn = document.getElementById('pratModeToggle');
-    const knob = document.getElementById('pratModeKnob');
-    if (pratChecklistMode) {
-      btn.style.background = 'var(--gold)';
-      knob.style.transform = 'translateX(20px)';
-    } else {
-      btn.style.background = 'var(--border)';
-      knob.style.transform = 'translateX(0)';
-    }
-  }
-  let pratCurrentIdx = 0;
-  let pratScore = 0;
-  let pratAnswers = [];
-  let pratData = null;
-  let pratChatEl = null;
-
-  function showPratique() {
-    showScreen('pratiqueScreen');
-    showPratMenu();
-  }
-
-  function showPratMenu() {
-    document.getElementById('pratMenuView').style.display = 'block';
-    document.getElementById('pratSimView').style.display = 'none';
-    document.getElementById('pratResultsView').style.display = 'none';
-  }
-
-  function startSimulator(scenario) {
-    if (scenario === 'random') { const opts = ['pc','terrain','acces','secours']; scenario = opts[Math.floor(Math.random()*opts.length)]; }
-    pratCurrentScenario = scenario;
-    pratCurrentIdx = 0;
-    pratScore = 0;
-    pratAnswers = [];
-    pratData = PRAT_DATA[scenario];
-
-    document.getElementById('pratMenuView').style.display = 'none';
-    document.getElementById('pratSimView').style.display = 'block';
-    document.getElementById('pratResultsView').style.display = 'none';
-    pratChatEl = document.getElementById('pratChat');
-    pratChatEl.innerHTML = '';
-
-    document.getElementById('pratScenarioLabel').textContent = pratData.label;
-    document.getElementById('pratProgress').textContent = `Situation 1/${pratData.situations.length}`;
-
-    // Intro message du jury
-    addChatMsg('jury', '👮 ' + pratData.intro);
-    setTimeout(() => {
-      addJurySituation();
-    }, 600);
-  }
-
-  function addChatMsg(who, text, cls) {
-    const div = document.createElement('div');
-    if (who === 'jury') {
-      div.style.cssText = 'background:var(--surface);border:1px solid var(--border-strong);border-radius:12px 12px 12px 2px;padding:1rem 1.1rem;font-size:0.88rem;color:var(--text);line-height:1.6;';
-    } else if (who === 'agent') {
-      div.style.cssText = 'background:rgba(217,185,140,0.1);border:1px solid rgba(217,185,140,0.3);border-radius:12px 12px 2px 12px;padding:1rem 1.1rem;font-size:0.88rem;color:var(--text);line-height:1.6;align-self:flex-end;';
-    } else if (who === 'feedback-ok') {
-      div.style.cssText = 'background:rgba(110,231,168,0.08);border:1px solid rgba(110,231,168,0.3);border-radius:8px;padding:0.9rem 1.1rem;font-size:0.85rem;color:var(--text-dim);line-height:1.6;';
-    } else {
-      div.style.cssText = 'background:rgba(251,133,133,0.08);border:1px solid rgba(251,133,133,0.3);border-radius:8px;padding:0.9rem 1.1rem;font-size:0.85rem;color:var(--text-dim);line-height:1.6;';
-    }
-    div.innerHTML = text;
-    pratChatEl.appendChild(div);
-    // Scroll to new message
-    setTimeout(() => div.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
-    return div;
-  }
-
-  function addJurySituation() {
-    const sit = pratData.situations[pratCurrentIdx];
-    document.getElementById('pratProgress').textContent = `Situation ${pratCurrentIdx + 1}/${pratData.situations.length}`;
-    addChatMsg('jury', `<span style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);display:block;margin-bottom:0.4rem;">${sit.type}</span>${sit.jury}`);
-
-    if (pratChecklistMode) {
-      // Mode checklist : afficher les étapes à cocher
-      setTimeout(() => showChecklist(sit), 400);
-    } else {
-      setTimeout(() => {
-        const inputZone = document.getElementById('pratInputZone');
-        inputZone.style.display = 'block';
-        document.getElementById('pratInput').value = '';
-        document.getElementById('pratInput').focus();
-        setTimeout(() => inputZone.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
-      }, 400);
-    }
-  }
-
-  function showChecklist(sit) {
-    // Build checklist from tips
-    const checklist = document.createElement('div');
-    checklist.id = 'pratChecklist';
-    checklist.style.cssText = 'background:var(--surface);border:1px solid var(--border-strong);border-radius:10px;padding:1.1rem;margin-bottom:1rem;';
-
-    const title = document.createElement('div');
-    title.style.cssText = 'font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.85rem;';
-    title.textContent = "✓ Coche les étapes dans l'ordre";
-    checklist.appendChild(title);
-
-    let checked = 0;
-    sit.tips.forEach((tip, i) => {
-      const row = document.createElement('label');
-      row.style.cssText = 'display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.65rem;cursor:pointer;';
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.style.cssText = 'margin-top:3px;flex-shrink:0;accent-color:var(--gold);width:16px;height:16px;cursor:pointer;';
-      cb.onchange = () => {
-        span.style.color = cb.checked ? 'var(--gold)' : 'var(--text-dim)';
-        span.style.textDecoration = cb.checked ? 'line-through' : 'none';
-        checked += cb.checked ? 1 : -1;
-        validateBtn.style.opacity = checked >= Math.ceil(sit.tips.length * 0.6) ? '1' : '0.5';
-      };
-      const span = document.createElement('span');
-      span.style.cssText = 'font-size:0.85rem;color:var(--text-dim);line-height:1.5;transition:all 0.2s;';
-      span.textContent = tip;
-      row.appendChild(cb); row.appendChild(span);
-      checklist.appendChild(row);
-    });
-
-    const validateBtn = document.createElement('button');
-    validateBtn.className = 'btn btn-primary';
-    validateBtn.style.cssText = 'margin-top:0.75rem;width:100%;opacity:0.5;transition:opacity 0.2s;';
-    validateBtn.textContent = "J'ai coché les étapes → Valider";
-    validateBtn.onclick = () => {
-      const score = checked / sit.tips.length;
-      const isGood = score >= 0.6;
-      if (isGood) pratScore++;
-      pratAnswers.push({ sit, answer: `[Checklist: ${checked}/${sit.tips.length} étapes cochées]`, isGood, score });
-      checklist.remove();
-      addChatMsg(isGood ? 'feedback-ok' : 'feedback-bad',
-        (isGood ? '✅ <strong style="color:var(--success,#6ee7a8)">Bien !</strong>' : '⚠ <strong style="color:var(--error,#fb8585)">Incomplet.</strong>') +
-        ` ${checked}/${sit.tips.length} étapes cochées.<br><br><strong>Réponse idéale :</strong><br><em style="color:var(--text-dim)">${sit.idealAnswer}</em>`
-      );
-      const isLast = pratCurrentIdx >= pratData.situations.length - 1;
-      setTimeout(() => {
-        if (isLast) { document.getElementById('pratFinishBtn').style.display = 'block'; setTimeout(() => document.getElementById('pratFinishBtn').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50); }
-        else { document.getElementById('pratNextBtn').style.display = 'block'; setTimeout(() => document.getElementById('pratNextBtn').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50); }
-      }, 400);
-    };
-    checklist.appendChild(validateBtn);
-    pratChatEl.appendChild(checklist);
-    setTimeout(() => checklist.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
-  }
-
-  function submitPratAnswer() {
-    const input = document.getElementById('pratInput');
-    const answer = input.value.trim();
-    if (!answer || answer.length < 10) {
-      input.style.borderColor = 'var(--error)';
-      setTimeout(() => input.style.borderColor = 'var(--border-strong)', 1000);
-      return;
-    }
-
-    // Hide input
-    document.getElementById('pratInputZone').style.display = 'none';
-
-    // Show agent response
-    addChatMsg('agent', '🧑 ' + answer);
-
-    // Evaluate
-    const sit = pratData.situations[pratCurrentIdx];
-    const answerLower = answer.toLowerCase();
-    const found = sit.mustHave.filter(kw => answerLower.includes(kw.toLowerCase()));
-    const score = found.length / sit.mustHave.length;
-    const isGood = score >= 0.6;
-
-    if (isGood) pratScore++;
-    pratAnswers.push({ sit, answer, isGood, score });
-
-    setTimeout(() => {
-      if (isGood) {
-        addChatMsg('feedback-ok',
-          `✅ <strong style="color:var(--success,#6ee7a8)">Bonne approche !</strong> ${score < 1 ? 'Tu as les éléments essentiels.' : 'Réponse complète.'}<br><br>` +
-          `<strong>Points clés :</strong><br>` +
-          sit.tips.map(t => `• ${t}`).join('<br>')
-        );
-      } else {
-        addChatMsg('feedback-bad',
-          `⚠ <strong style="color:var(--error,#fb8585)">Réponse incomplète.</strong> Il manque des éléments essentiels.<br><br>` +
-          `<strong>Ce qui manquait :</strong> ${sit.mustHave.filter(kw => !answerLower.includes(kw)).join(', ')}<br><br>` +
-          `<strong>Réponse idéale :</strong><br><em style="color:var(--text-dim)">${sit.idealAnswer}</em><br><br>` +
-          `<strong>À retenir :</strong><br>` +
-          sit.tips.map(t => `• ${t}`).join('<br>')
-        );
-      }
-
-      setTimeout(() => {
-        const isLast = pratCurrentIdx >= pratData.situations.length - 1;
-        if (isLast) {
-          document.getElementById('pratFinishBtn').style.display = 'block';
-          document.getElementById('pratFinishBtn').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-          document.getElementById('pratNextBtn').style.display = 'block';
-          document.getElementById('pratNextBtn').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 500);
-    }, 400);
-  }
-
-  function nextPratSituation() {
-    document.getElementById('pratNextBtn').style.display = 'none';
-    pratCurrentIdx++;
-    // Separator
-    const sep = document.createElement('div');
-    sep.style.cssText = 'border-top:1px solid var(--border);margin:0.5rem 0;';
-    pratChatEl.appendChild(sep);
-    setTimeout(() => addJurySituation(), 300);
-  }
-
-  function showPratResults() {
-    document.getElementById('pratSimView').style.display = 'none';
-    document.getElementById('pratResultsView').style.display = 'block';
-    const total = pratData.situations.length;
-    const pct = Math.round((pratScore / total) * 100);
-    document.getElementById('pratScoreVal').textContent = pratScore;
-    document.getElementById('pratScoreLabel').textContent = `/ ${total} situations — ${pct}%`;
-    let msg = pct >= 80 ? "Excellent ! Tu gères comme un pro. 🏆" :
-              pct >= 60 ? "Bon niveau. Revois les situations ratées. 💪" :
-              "À retravailler sérieusement. Recommence jusqu'à 80%+. 📚";
-    document.getElementById('pratScoreMsg').textContent = msg;
-
-    const wrong = pratAnswers.filter(a => !a.isGood);
-    const rev = document.getElementById('pratReview');
-    if (wrong.length > 0) {
-      rev.innerHTML = '<div style="font-family:Syne,sans-serif;font-weight:700;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:1rem;">Situations à retravailler</div>' +
-        wrong.map(a =>
-          '<div class="prat-block" style="margin-bottom:0.75rem;text-align:left;">' +
-          `<div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-bottom:0.4rem;">${a.sit.type}</div>` +
-          `<div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.6rem;">${a.sit.jury}</div>` +
-          `<div style="font-size:0.78rem;color:var(--gold);margin-bottom:0.3rem;font-weight:600;">Réponse idéale :</div>` +
-          `<div style="font-size:0.8rem;color:var(--text-dim);line-height:1.5;">${a.sit.idealAnswer}</div>` +
-          '</div>'
-        ).join('');
-    } else {
-      rev.innerHTML = '<div class="prat-tip" style="text-align:left;">💡 Parfait score ! Tu maîtrises ce scénario. Essaie l\'autre.</div>';
-    }
-    document.getElementById('pratResultsView').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-
-  function showThemeDuJour() {
-    const modal = document.getElementById('themeDuJourModal');
-    const grid = document.getElementById('tdjGrid');
-    // Get all unique themes with question counts
-    const themeCounts = {};
-    questionsQCM.forEach(q => {
-      themeCounts[q.theme] = (themeCounts[q.theme] || 0) + 1;
-    });
-    const themes = Object.entries(themeCounts).sort((a, b) => b[1] - a[1]);
-    grid.innerHTML = themes.map(([theme, count]) => `
-      <button class="tdj-btn" onclick="startThemeDuJour('${theme.replace(/'/g, "\\'")}'); closeThemeDuJour();">
-        ${theme}
-        <span class="tdj-count">${count} question${count > 1 ? 's' : ''}</span>
-      </button>
-    `).join('');
-    modal.style.display = 'flex';
-  }
-
-  function closeThemeDuJour() {
-    document.getElementById('themeDuJourModal').style.display = 'none';
-  }
-
-  function startThemeDuJour(theme) {
-    startQuiz('theme', theme);
   }
 
   function showThemes() { showScreen('themesScreen'); }
@@ -3548,13 +2725,13 @@
       pool = pool.filter(q => q.theme === theme);
     }
 
-    const count = mode === 'exam' ? 103 : mode === 'full' ? pool.length : Math.min(20, pool.length);
+    const count = mode === 'exam' ? 30 : Math.min(20, pool.length);
     state.quiz = shuffle(pool).slice(0, count);
 
     const timerEl = document.getElementById('timer');
     if (mode === 'exam') {
       timerEl.style.display = 'block';
-      state.timeLeft = 103 * 45; // 103 questions × 45s = 77min 15s
+      state.timeLeft = 25 * 60;
       updateTimer();
       state.timer = setInterval(tickTimer, 1000);
     } else {
@@ -3592,97 +2769,33 @@
     document.getElementById('progressText').textContent = `${state.currentIndex + 1} / ${state.quiz.length}`;
     document.getElementById('progressFill').style.width = `${((state.currentIndex) / state.quiz.length) * 100}%`;
 
-    // Mélanger les options tout en gardant la trace de la bonne réponse
-    const indices = q.options.map((_, i) => i);
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
-    // Stocker l'index shufflé de la bonne réponse pour selectAnswer
-    state.shuffledCorrect = indices.indexOf(q.correct);
-    state.shuffledIndices = indices;
-
     const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
     const optionsEl = document.getElementById('options');
     optionsEl.innerHTML = '';
-    indices.forEach((originalIdx, displayIdx) => {
+    q.options.forEach((opt, i) => {
       const btn = document.createElement('button');
       btn.className = 'option';
-      btn.innerHTML = `<span class="option-letter">${letters[displayIdx]}</span><span>${q.options[originalIdx]}</span>`;
-      btn.onclick = () => selectAnswer(displayIdx);
+      btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
+      btn.onclick = () => selectAnswer(i);
       optionsEl.appendChild(btn);
     });
 
     document.getElementById('explanationBox').innerHTML = '';
     document.getElementById('srsFeedback').classList.remove('active');
     document.getElementById('nextBtn').style.display = 'none';
-
-    // Chrono par question (exam blanc uniquement)
-    startQuestionTimer();
-  }
-
-  // ===== CHRONO PAR QUESTION =====
-  const QUESTION_TIME = 45;
-  let questionTimerInterval = null;
-  let questionTimeLeft = QUESTION_TIME;
-
-  function startQuestionTimer() {
-    clearInterval(questionTimerInterval);
-    const bar = document.getElementById('questionTimerBar');
-    const fill = document.getElementById('questionTimerFill');
-    const txt = document.getElementById('questionTimerText');
-    if (state.mode !== 'exam') { bar.style.display = 'none'; return; }
-    bar.style.display = 'block';
-    questionTimeLeft = QUESTION_TIME;
-    fill.style.transition = 'none';
-    fill.style.width = '100%';
-    fill.style.background = 'var(--gold)';
-    txt.style.color = 'var(--gold)';
-    txt.textContent = `0:${String(QUESTION_TIME).padStart(2,'0')}`;
-    // Force reflow before starting transition
-    fill.getBoundingClientRect();
-    fill.style.transition = 'width 1s linear';
-
-    questionTimerInterval = setInterval(() => {
-      questionTimeLeft--;
-      const pct = (questionTimeLeft / QUESTION_TIME) * 100;
-      fill.style.width = pct + '%';
-      txt.textContent = `0:${String(Math.max(0,questionTimeLeft)).padStart(2,'0')}`;
-      // Color shifts: green→gold→red
-      if (questionTimeLeft <= 10) {
-        fill.style.background = 'var(--error, #fb8585)';
-        txt.style.color = 'var(--error, #fb8585)';
-      } else if (questionTimeLeft <= 20) {
-        fill.style.background = '#fcc864';
-        txt.style.color = '#fcc864';
-      }
-      if (questionTimeLeft <= 0) {
-        clearInterval(questionTimerInterval);
-        // Auto-submit as wrong if no answer given
-        const opts = document.querySelectorAll('.option');
-        const alreadyAnswered = [...opts].some(o => o.disabled);
-        if (!alreadyAnswered) selectAnswer(-1);
-      }
-    }, 1000);
-  }
-
-  function stopQuestionTimer() {
-    clearInterval(questionTimerInterval);
+    
   }
 
   function selectAnswer(idx) {
-    stopQuestionTimer();
     const q = state.quiz[state.currentIndex];
     const options = document.querySelectorAll('.option');
-    const shuffledCorrect = state.shuffledCorrect !== undefined ? state.shuffledCorrect : q.correct;
-
     options.forEach((opt, i) => {
       opt.disabled = true;
-      if (i === shuffledCorrect) opt.classList.add('correct');
-      if (i === idx && idx !== shuffledCorrect) opt.classList.add('wrong');
+      if (i === q.correct) opt.classList.add('correct');
+      if (i === idx && idx !== q.correct) opt.classList.add('wrong');
     });
 
-    const correct = idx === shuffledCorrect;
+    const correct = idx === q.correct;
     if (correct) {
       state.score++;
       playCorrect();
@@ -3697,9 +2810,7 @@
       addErrorQuestion(qid, q);
     }
 
-    // Stocker la réponse avec l'index original pour les résultats
-    const givenOriginal = idx === -1 ? -1 : (state.shuffledIndices ? state.shuffledIndices[idx] : idx);
-    state.answers.push({ question: q, given: givenOriginal, correct });
+    state.answers.push({ question: q, given: idx, correct });
 
     if (state.mode !== 'exam') {
       const expBox = document.getElementById('explanationBox');
@@ -3712,14 +2823,8 @@
     }
 
     document.getElementById('srsFeedback').classList.remove('active');
-
-    if (state.mode === 'exam') {
-      // Mode exam : avance automatiquement après 1.2s (juste le temps de voir la bonne réponse)
-      setTimeout(() => nextQuestion(), 1200);
-    } else {
-      document.getElementById('nextBtn').style.display = 'inline-block';
-      document.getElementById('nextBtn').textContent = state.currentIndex === state.quiz.length - 1 ? 'Voir résultats →' : 'Question suivante →';
-    }
+    document.getElementById('nextBtn').style.display = 'inline-block';
+    document.getElementById('nextBtn').textContent = state.currentIndex === state.quiz.length - 1 ? 'Voir résultats →' : 'Question suivante →';
   }
 
   function nextQuestion() {
@@ -3775,7 +2880,6 @@
   // ========== RESULTS ==========
   function finishQuiz() {
     stopTimer();
-    stopQuestionTimer();
     const total = state.quiz.length;
     const percent = Math.round((state.score / total) * 100);
 
@@ -3784,40 +2888,11 @@
     document.getElementById('scorePercent').textContent = `${percent}%`;
 
     let msg = '';
-    if (percent >= 90) msg = "Excellent. Tu es prêt pour l'examen. 🏆";
-    else if (percent >= 70) msg = "Bon niveau. Continue à consolider. 💪";
-    else if (percent >= 50) msg = "Moyen. Quelques thèmes à retravailler. 📚";
-    else msg = "Revois les bases et recommence. 🔁";
+    if (percent >= 90) msg = "Excellent. Tu es prêt pour l'examen.";
+    else if (percent >= 70) msg = "Bon niveau. Continue à consolider.";
+    else if (percent >= 50) msg = "Moyen. Quelques thèmes à retravailler.";
+    else msg = "Revois les bases et recommence.";
     document.getElementById('scoreMessage').textContent = msg;
-
-    // ===== RÉSULTATS PAR THÈME =====
-    const themeStats = {};
-    state.answers.forEach(a => {
-      const t = a.question.theme;
-      if (!themeStats[t]) themeStats[t] = { correct: 0, total: 0 };
-      themeStats[t].total++;
-      if (a.correct) themeStats[t].correct++;
-    });
-    const themes = Object.entries(themeStats).sort((a, b) => {
-      const pa = a[1].correct / a[1].total;
-      const pb = b[1].correct / b[1].total;
-      return pa - pb; // worst first
-    });
-    const bdEl = document.getElementById('themeBreakdown');
-    if (themes.length > 1) {
-      bdEl.innerHTML = `<div class="theme-breakdown-title">Résultats par thème</div>` +
-        themes.map(([theme, s]) => {
-          const pct = Math.round((s.correct / s.total) * 100);
-          const color = pct >= 70 ? '#6ee7a8' : pct >= 50 ? '#fcc864' : '#fb8585';
-          return `<div class="theme-row">
-            <div class="theme-row-name">${theme}</div>
-            <div class="theme-row-bar"><div class="theme-row-fill" style="width:${pct}%;background:${color};"></div></div>
-            <div class="theme-row-score" style="color:${color};">${s.correct}/${s.total}</div>
-          </div>`;
-        }).join('');
-    } else {
-      bdEl.innerHTML = '';
-    }
 
     const wrong = state.answers.filter(a => !a.correct);
     const reviewEl = document.getElementById('wrongReview');
@@ -3825,7 +2900,7 @@
       reviewEl.innerHTML = `<h3>À retravailler (${wrong.length})</h3>` + wrong.map(a => `
         <div class="review-item">
           <div class="review-q">${a.question.q}</div>
-          <div class="review-given">Ta réponse : ${a.given === -1 ? 'Temps écoulé ⏱' : a.question.options[a.given]}</div>
+          <div class="review-given">Ta réponse : ${a.question.options[a.given]}</div>
           <div class="review-correct">Bonne réponse : ${a.question.options[a.question.correct]}</div>
           <div class="review-exp">${a.question.explanation}</div>
         </div>
@@ -3898,8 +2973,6 @@
     }
 
     document.getElementById('fichesDesc').textContent = `${fichesMemo.length} fiches synthèse : article 73, triangle du feu, SSI, palpation...`;
-    const fullDesc = document.getElementById('fullDesc');
-    if (fullDesc) fullDesc.textContent = `${questionsQCM.length} questions de la base · Correction immédiate · Sans limite de temps.`;
   }
 
   // ========== ERROR TRACKING ==========
@@ -3917,14 +2990,6 @@
     const data = getErrorData();
     data[qid] = { question: q, count: (data[qid]?.count || 0) + 1, lastWrong: Date.now() };
     saveErrorData(data);
-    // Mettre à jour le compteur en temps réel
-    const errDesc = document.getElementById('errorsDesc');
-    const errBtn = document.getElementById('errorsBtn');
-    if (errDesc) {
-      const count = Object.keys(data).length;
-      errDesc.textContent = `${count} question${count > 1 ? 's' : ''} ratée${count > 1 ? 's' : ''} à retravailler.`;
-    }
-    if (errBtn) errBtn.disabled = false;
   }
 
   function removeErrorQuestion(qid) {
@@ -3933,12 +2998,6 @@
       delete data[qid];
       saveErrorData(data);
     }
-  }
-
-  function clearAllErrors() {
-    if (!confirm('Réinitialiser toutes les erreurs enregistrées ?')) return;
-    saveErrorData({});
-    updateHomeStats();
   }
 
   function getErrorQuestions() {
@@ -4761,9 +3820,14 @@
 
   // Load saved theme
   try {
-    const saved = localStorage.getItem('tfp_theme') || 'dark';
-    setTheme(saved);
-  } catch(e) { setTheme('dark'); }
+    if (localStorage.getItem('tfp_theme') === 'light') {
+      document.documentElement.classList.add('light');
+      const icon = document.getElementById('themeToggle').querySelector('.theme-toggle-icon');
+      const label = document.getElementById('themeToggleLabel');
+      icon.textContent = '🌙';
+      label.textContent = 'Sombre';
+    }
+  } catch(e) {}
 
   buildThemes();
   buildFiches();

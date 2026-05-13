@@ -182,6 +182,18 @@ const definitions = [
     definition: "Établissement Recevant du Public.\n\nTout bâtiment accueillant du public (magasins, cinémas, écoles, hôtels).\n\nClassement :\n• Par type (lettres) : J, L, M, N, O, P, R, S, T, U, V, W, X, Y\n• Par catégorie (1 à 5, selon effectif)\n\nExemples :\n• Type M = Magasin\n• Type L = Salle de spectacle\n• Type U = Établissement de soins\n• Type J = Structures d'accueil (sommeil)"
   },
   {
+    id: "def-erp-types",
+    category: "Bâtiment",
+    term: "Types ERP (J à Y)",
+    definition: "Les 14 TYPES d'ERP par activité (lettre) — à ne pas confondre avec les CATÉGORIES (1 à 5, selon effectif).\n\n━━━ AVEC LOCAUX À SOMMEIL ━━━\n\n• J — Structures d'accueil pour personnes âgées ou handicapées (EHPAD, MAS, foyers)\n• O — Hôtels et pensions de famille\n• R — Établissements d'enseignement, colonies de vacances (avec ou sans sommeil)\n• U — Établissements de soins (hôpitaux, cliniques)\n\n━━━ SANS LOCAUX À SOMMEIL ━━━\n\n• L — Salles d'auditions, conférences, spectacles, multimédia\n• M — Magasins de vente, centres commerciaux\n• N — Restaurants et débits de boissons\n• P — Salles de danse, salles de jeux\n• S — Bibliothèques, centres de documentation, archives\n• T — Salles d'exposition (foires, salons)\n• V — Établissements de culte (églises, mosquées, temples)\n• W — Administrations, banques, bureaux\n• X — Établissements sportifs couverts (gymnases, piscines)\n• Y — Musées\n\n━━━ ASTUCE MNÉMO ━━━\n\nLes types avec LOCAUX À SOMMEIL (J, O, R, U) imposent un SSI catégorie A (le plus complet, avec DAI). Les IGH aussi.\n\n━━━ PIÈGE EXAMEN ━━━\n\nIl n'y a PAS de type A, B, C, D, E, F, G, H, I, K, Q, Z dans les ERP. Si on te propose ces lettres = faux."
+  },
+  {
+    id: "def-erp-categories",
+    category: "Bâtiment",
+    term: "Catégories ERP (1 à 5)",
+    definition: "Les 5 CATÉGORIES d'ERP selon l'EFFECTIF (public + personnel) — à ne pas confondre avec les TYPES (lettres J à Y).\n\n• 1re catégorie : plus de 1 500 personnes\n• 2e catégorie : de 701 à 1 500 personnes\n• 3e catégorie : de 301 à 700 personnes\n• 4e catégorie : 300 personnes et moins (sauf 5e)\n• 5e catégorie : petits établissements sous certains seuils (selon le type)\n\nLes 4 premières catégories sont dites du « 1er groupe ». La 5e est seule dans le « 2e groupe » avec des règles allégées.\n\nLe DAE (défibrillateur) est obligatoire dans les ERP de catégorie 1, 2 et 3."
+  },
+  {
     id: "def-igh",
     category: "Bâtiment",
     term: "IGH",
@@ -275,7 +287,7 @@ const definitions = [
     id: "def-triangle-feu",
     category: "Incendie",
     term: "Triangle du feu",
-    definition: "COMBINAISON de 3 éléments nécessaires à la combustion :\n1. Combustible (matière qui brûle)\n2. Comburant (oxygène de l'air - 21%)\n3. Énergie d'activation (chaleur, étincelle)\n\nRetirer un seul des 3 = éteindre le feu."
+    definition: "COMBINAISON de 3 éléments INDISPENSABLES à la combustion :\n\n1. COMBUSTIBLE (matière qui brûle) : bois, papier, essence, gaz, métaux...\n2. COMBURANT (oxygène de l'air, 21%)\n3. ÉNERGIE D'ACTIVATION (chaleur, étincelle, flamme, friction)\n\nRetirer UN SEUL des 3 = éteindre le feu. C'est le principe de toute extinction.\n\nMéthodes d'extinction correspondantes :\n• Retirer le combustible → ISOLEMENT (couper l'arrivée de gaz)\n• Retirer le comburant → ÉTOUFFEMENT (couverture anti-feu, CO2, mousse)\n• Retirer l'énergie → REFROIDISSEMENT (eau)\n\nÀ NE PAS CONFONDRE avec le tétraèdre du feu (4 éléments) :\n• Combustible + Comburant + Énergie + RÉACTION CHIMIQUE EN CHAÎNE\n• Le 4e élément permet la propagation\n• Extinction par INHIBITION → poudre ABC (interrompt la réaction chimique)\n\nPiège classique de l'examen : si on parle de POUDRE ABC, c'est par inhibition + étouffement (tétraèdre), pas seulement triangle."
   },
   {
     id: "def-classes-feu",
@@ -406,10 +418,22 @@ const definitions = [
     definition: "Définit le FLAGRANT DÉLIT (Code de Procédure Pénale).\n\nEst qualifié flagrant :\n• Le crime ou délit qui se commet actuellement\n• Celui qui vient de se commettre\n• Celui où la personne est poursuivie par la clameur publique\n• Celui où la personne est trouvée en possession d'objets/indices qui la rattachent à l'infraction (temps voisin de l'action)"
   },
   {
+    id: "def-art-55",
+    category: "Articles de loi",
+    term: "Article 55 CPP",
+    definition: "PROTECTION DES LIEUX DU CRIME (Code de Procédure Pénale).\n\n« Dans les lieux où un crime a été commis, il est interdit à toute personne non habilitée de modifier, avant les premières opérations de l'enquête judiciaire, l'état des lieux et d'y effectuer des prélèvements quelconques. »\n\nException : si nécessaire pour la sécurité, la salubrité publique, ou les soins aux victimes.\n\nPour l'APS : ne JAMAIS toucher / déplacer / nettoyer après un crime. Préserver les lieux pour les enquêteurs. Périmètre de sécurité, traçabilité sur main courante.\n\nSanction : amende de 4e classe pour non-respect."
+  },
+  {
     id: "def-art-73",
     category: "Articles de loi",
     term: "Article 73 CPP",
     definition: "DROIT D'APPRÉHENSION (Code de Procédure Pénale).\n\n« Dans les cas de crime flagrant ou de délit flagrant puni d'une peine d'emprisonnement, toute personne a qualité pour en appréhender l'auteur et le conduire devant l'officier de police judiciaire le plus proche. »\n\nC'est LE fondement légal de l'intervention de l'APS."
+  },
+  {
+    id: "def-art-803",
+    category: "Articles de loi",
+    term: "Article 803 CPP",
+    definition: "PORT DES MENOTTES ET ENTRAVES (Code de Procédure Pénale).\n\n« Nul ne peut être soumis au port des menottes ou des entraves que s'il est considéré soit comme DANGEREUX pour autrui ou pour lui-même, soit comme susceptible de tenter de PRENDRE LA FUITE. »\n\nDans ces deux cas : toutes mesures utiles pour éviter que la personne menottée soit photographiée ou filmée.\n\nPour l'APS :\n• L'usage de menottes par un APS est en pratique TRÈS ENCADRÉ (formation spécifique requise, contexte limité)\n• Le menottage d'une personne appréhendée doit rester l'exception (dangerosité ou fuite avérées)\n• JAMAIS de photo / vidéo / partage sur les réseaux d'une personne sous contrainte\n\nNote 2026 : article réécrit par ordonnance du 19/11/2025, applicable au 1er janvier 2029. Sur le fond rien ne change ; la diffusion d'images est désormais punie jusqu'à 15 000 € d'amende."
   },
   {
     id: "def-art-122-5",
@@ -486,6 +510,18 @@ const definitions = [
     category: "Opérationnel",
     term: "Signalement d'une personne",
     definition: "Éléments AUTORISÉS :\n• Sexe\n• Taille, corpulence\n• Tenue vestimentaire\n• Signes particuliers (tatouages, cicatrices)\n\nÉléments INTERDITS (discrimination) :\n• Nationalité\n• Religion\n• État de santé\n• Origine ethnique"
+  },
+  {
+    id: "def-alphabet-otan",
+    category: "Opérationnel",
+    term: "Alphabet OTAN (phonétique militaire)",
+    definition: "Alphabet utilisé en radio et au téléphone pour épeler SANS AMBIGUÏTÉ. Aussi appelé alphabet phonétique international ou alphabet militaire.\n\n━━━ A à I ━━━\n• A — Alpha\n• B — Bravo\n• C — Charlie\n• D — Delta\n• E — Echo\n• F — Foxtrot\n• G — Golf\n• H — Hotel\n• I — India\n\n━━━ J à R ━━━\n• J — Juliett\n• K — Kilo\n• L — Lima\n• M — Mike\n• N — November\n• O — Oscar\n• P — Papa\n• Q — Quebec\n• R — Romeo\n\n━━━ S à Z ━━━\n• S — Sierra\n• T — Tango\n• U — Uniform\n• V — Victor\n• W — Whiskey\n• X — X-Ray\n• Y — Yankee\n• Z — Zulu\n\n━━━ EXEMPLES EXAMEN ━━━\n\nEXAMEN s'écrit :\nEcho · X-Ray · Alpha · Mike · Echo · November\n\nAPS s'écrit :\nAlpha · Papa · Sierra"
+  },
+  {
+    id: "def-epellation-samy",
+    category: "Opérationnel",
+    term: "Épellation : SAMY BACHOUCHE",
+    definition: "Ton prénom et nom en alphabet OTAN, à savoir par cœur pour te présenter à la radio ou par téléphone.\n\n━━━ SAMY ━━━\n• S — Sierra\n• A — Alpha\n• M — Mike\n• Y — Yankee\n\n→ Sierra · Alpha · Mike · Yankee\n\n━━━ BACHOUCHE ━━━\n• B — Bravo\n• A — Alpha\n• C — Charlie\n• H — Hotel\n• O — Oscar\n• U — Uniform\n• C — Charlie\n• H — Hotel\n• E — Echo\n\n→ Bravo · Alpha · Charlie · Hotel · Oscar · Uniform · Charlie · Hotel · Echo\n\n━━━ EN SITUATION ━━━\n\nAu téléphone avec l'OPJ ou les secours, si on te demande d'épeler ton nom :\n\n'Samy : Sierra-Alpha-Mike-Yankee. Bachouche : Bravo-Alpha-Charlie-Hotel-Oscar-Uniform-Charlie-Hotel-Echo.'\n\nPrononce chaque mot distinctement, sans précipitation. C'est un détail qui montre au jury que tu maîtrises la communication pro."
   }
 ];
 

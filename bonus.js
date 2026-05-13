@@ -245,6 +245,178 @@ const bonusQuestions = [
     ],
     correct: 1,
     explanation: "Règle des 3×15 : eau à 15°C, pendant 15 minutes, à 15 cm de la brûlure. Ne JAMAIS appliquer de glace (gelures), de beurre, de pommade ou percer les cloques."
+  },
+
+  // ========== TYPES ERP (J à Y) · 12 questions ==========
+  // Section critique pour l'UV 5 (incendie) et l'UV 8 (environnement professionnel)
+  // Souvent piège à l'examen : confusion type/catégorie, lettres inexistantes
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Combien y a-t-il de TYPES d'ERP différents (classés par lettre) ?",
+    options: ["10", "12", "14", "16"],
+    correct: 2,
+    explanation: "14 types : J, L, M, N, O, P, R, S, T, U, V, W, X, Y. Les autres lettres (A, B, C, D, E, F, G, H, I, K, Q, Z) n'existent PAS comme types ERP. À ne pas confondre avec les CATÉGORIES (1 à 5, par effectif)."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un hôtel est un ERP de type :",
+    options: ["H", "J", "O", "U"],
+    correct: 2,
+    explanation: "Type O = Hôtels et pensions de famille. Piège classique : la lettre H n'existe PAS comme type ERP. Le type O fait partie des 4 types avec LOCAUX À SOMMEIL (avec J, R, U) qui imposent un SSI catégorie A."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un magasin de vente ou un centre commercial est un ERP de type :",
+    options: ["M", "C", "V", "S"],
+    correct: 0,
+    explanation: "Type M = Magasins de vente et centres commerciaux. Mnémo : M comme Magasin. À ne pas confondre avec V (Vente ? Non : Culte) ou S (Stock ? Non : bibliothèques)."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un hôpital ou une clinique est un ERP de type :",
+    options: ["S", "H", "U", "J"],
+    correct: 2,
+    explanation: "Type U = Établissements de soins (hôpitaux, cliniques). Piège : H n'existe pas comme type. Le type U fait partie des LOCAUX À SOMMEIL (SSI cat. A obligatoire). Le type J concerne les EHPAD/maisons de retraite (sommeil aussi mais public différent)."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Une école ou un établissement d'enseignement est un ERP de type :",
+    options: ["E", "R", "S", "J"],
+    correct: 1,
+    explanation: "Type R = établissements d'enseignement (écoles, collèges, lycées, universités) et colonies de vacances. Le type R peut être AVEC ou SANS locaux à sommeil (internat = sommeil)."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Une salle de spectacle, de conférence ou de cinéma est un ERP de type :",
+    options: ["C", "L", "M", "S"],
+    correct: 1,
+    explanation: "Type L = salles d'auditions, de conférences, de spectacles, multimédia, cinémas. Mnémo : L comme 'Live' (spectacle vivant)."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un restaurant ou un débit de boissons est un ERP de type :",
+    options: ["R", "N", "M", "T"],
+    correct: 1,
+    explanation: "Type N = restaurants et débits de boissons. Piège : R n'est PAS le restaurant (R = enseignement). Mnémo : N comme 'restauratioN'."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Une banque, une administration ou un immeuble de bureaux est un ERP de type :",
+    options: ["B", "A", "W", "M"],
+    correct: 2,
+    explanation: "Type W = administrations, banques, bureaux. Les lettres A et B n'existent PAS comme types ERP (elles existent comme catégories SSI : SSI catégorie A, B...)."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un gymnase ou une piscine couverte est un ERP de type :",
+    options: ["S", "X", "P", "G"],
+    correct: 1,
+    explanation: "Type X = établissements sportifs couverts (gymnases, piscines, salles de sport). Mnémo : X comme les 'Xtraordinaires' performances sportives. Les lettres G et P existent ailleurs : G n'existe pas comme type, P = salles de danse/jeux."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un musée est un ERP de type :",
+    options: ["M", "T", "Y", "S"],
+    correct: 2,
+    explanation: "Type Y = Musées. Piège : M = Magasins (pas Musées), T = expositions temporaires (salons/foires, pas musées permanents). Mnémo : Y comme... la dernière lettre, pour les œuvres immortelles 😉"
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Quels TYPES d'ERP imposent obligatoirement un SSI de catégorie A ?",
+    options: [
+      "Tous les types",
+      "Les types avec locaux à sommeil : J, O, R, U",
+      "Uniquement les magasins (type M)",
+      "Seulement les IGH"
+    ],
+    correct: 1,
+    explanation: "Les ERP avec LOCAUX À SOMMEIL (J = personnes âgées/handicapées, O = hôtels, R = colonies/internats, U = soins) imposent un SSI catégorie A (le plus complet, avec DAI = Détecteurs Automatiques d'Incendie). Les IGH aussi, mais ce ne sont pas des ERP au sens strict."
+  },
+  {
+    theme: "ERP · Types & Catégories",
+    q: "Un ERP qui peut accueillir 850 personnes est de quelle CATÉGORIE ?",
+    options: [
+      "1re catégorie",
+      "2e catégorie",
+      "3e catégorie",
+      "4e catégorie"
+    ],
+    correct: 1,
+    explanation: "2e catégorie = de 701 à 1500 personnes. Rappel des seuils : 1re cat. > 1500 / 2e cat. 701-1500 / 3e cat. 301-700 / 4e cat. ≤ 300 (sauf 5e) / 5e cat. petits établissements. À ne pas confondre avec le TYPE (lettre, activité)."
+  },
+
+  // ========== ALPHABET OTAN (phonétique militaire) · 8 questions ==========
+  // Communication radio/téléphone — classique de l'examen
+  {
+    theme: "Alphabet OTAN",
+    q: "En alphabet OTAN, la lettre 'B' se dit :",
+    options: ["Bernard", "Bravo", "Beta", "Bingo"],
+    correct: 1,
+    explanation: "B = BRAVO. À ne pas confondre avec les prénoms (Bernard, etc.) qui ne sont PAS l'alphabet OTAN officiel. Mnémo : 'Bravo' comme l'applaudissement."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "En alphabet OTAN, la lettre 'K' se dit :",
+    options: ["Kevin", "Kilo", "Karl", "King"],
+    correct: 1,
+    explanation: "K = KILO. Comme l'unité de poids. Piège classique : on confond souvent avec un prénom (Kevin) ou une autre lettre (King → c'est pour le roi aux échecs, pas l'OTAN)."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "En alphabet OTAN, la lettre 'Q' se dit :",
+    options: ["Quartier", "Québec", "Quentin", "Qatar"],
+    correct: 1,
+    explanation: "Q = QUEBEC (prononcé 'kwé-bek'). C'est l'une des 4 villes/régions de l'alphabet OTAN avec Lima (L), Oscar... non Oscar c'est un prénom. Bref, Q = Quebec."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "En alphabet OTAN, la lettre 'V' se dit :",
+    options: ["Victor", "Vincent", "Vienna", "Volt"],
+    correct: 0,
+    explanation: "V = VICTOR. À ne pas confondre avec Vincent (prénom courant français mais pas OTAN). Mnémo : Victor comme 'victoire'."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "Comment épelle-t-on 'APS' en alphabet OTAN ?",
+    options: [
+      "Alpha · Papa · Sierra",
+      "Alpha · Paris · Sébastien",
+      "Alex · Pierre · Sami",
+      "Alpha · Pierre · Sigma"
+    ],
+    correct: 0,
+    explanation: "APS = ALPHA · PAPA · SIERRA. C'est typiquement ce qu'on dit au téléphone : 'agent APS, je répète : Alpha-Papa-Sierra'. Connaître les lettres clés de ton métier est essentiel."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "Comment épelle-t-on 'CNAPS' en alphabet OTAN ?",
+    options: [
+      "Charlie · November · Alpha · Papa · Sierra",
+      "Charles · Nathan · Alex · Pierre · Sami",
+      "Charlie · Noël · Alpha · Paris · Sierra",
+      "Charlie · November · Alex · Pierre · Sébastien"
+    ],
+    correct: 0,
+    explanation: "CNAPS = CHARLIE · NOVEMBER · ALPHA · PAPA · SIERRA. Toutes les autres options mélangent l'OTAN avec des prénoms français = faux."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "Quel mot OTAN désigne la lettre 'X' ?",
+    options: ["Xylophone", "X-Ray", "Xavier", "Xenon"],
+    correct: 1,
+    explanation: "X = X-RAY (rayon X en anglais). Question piège classique de l'examen, on te propose souvent Xavier ou Xenon comme distracteurs. C'est X-Ray, toujours."
+  },
+  {
+    theme: "Alphabet OTAN",
+    q: "Le but de l'alphabet OTAN en communication radio est :",
+    options: [
+      "Crypter les messages pour qu'ils soient secrets",
+      "Épeler sans ambiguïté un mot, un nom ou une plaque",
+      "Parler plus vite",
+      "Communiquer uniquement avec l'armée"
+    ],
+    correct: 1,
+    explanation: "L'alphabet phonétique sert à épeler SANS ambiguïté — au téléphone ou en radio, on confond facilement B/D/P, M/N, F/S. Dire 'Bravo' au lieu de 'B' supprime toute confusion. Utilisé partout : aviation, marine, sécurité, police, secours."
   }
 
 ];
@@ -1275,8 +1447,8 @@ const examensBlancs = [
 // 3. INTÉGRATION UI — branchement propre sur le state existant
 // ============================================================
 
-// Démarre un quiz "bonus" sur les UV manquantes (UV7 ou UV11)
-// uvFilter : 'uv7' | 'uv11' | 'all'
+// Démarre un quiz "bonus" sur les UV manquantes (UV7, UV11, ERP)
+// uvFilter : 'uv7' | 'uv11' | 'erp' | 'all'
 function startBonusQuiz(uvFilter = 'all') {
   if (typeof state === 'undefined') return;
 
@@ -1288,6 +1460,8 @@ function startBonusQuiz(uvFilter = 'all') {
   let pool = [...bonusQuestions];
   if (uvFilter === 'uv7') pool = pool.filter(q => q.theme.startsWith('UV7'));
   else if (uvFilter === 'uv11') pool = pool.filter(q => q.theme.startsWith('UV11'));
+  else if (uvFilter === 'erp') pool = pool.filter(q => q.theme.startsWith('ERP'));
+  else if (uvFilter === 'otan') pool = pool.filter(q => q.theme.startsWith('Alphabet'));
 
   state.quiz = (typeof shuffle === 'function' ? shuffle(pool) : pool).slice(0, Math.min(20, pool.length));
 
@@ -1343,6 +1517,8 @@ function showBonusMenu() {
 
   const uv7Count = bonusQuestions.filter(q => q.theme.startsWith('UV7')).length;
   const uv11Count = bonusQuestions.filter(q => q.theme.startsWith('UV11')).length;
+  const erpCount = bonusQuestions.filter(q => q.theme.startsWith('ERP')).length;
+  const otanCount = bonusQuestions.filter(q => q.theme.startsWith('Alphabet')).length;
 
   screen.innerHTML = `
     <div class="hero" style="margin-bottom: 2rem;">
@@ -1367,10 +1543,24 @@ function showBonusMenu() {
         <div class="mode-meta">S'entraîner</div>
       </button>
 
+      <button class="mode-card" onclick="startBonusQuiz('erp')">
+        <div class="mode-number">ERP</div>
+        <div class="mode-title">Types & Catégories ERP</div>
+        <div class="mode-desc">14 types (J→Y) + 5 catégories. Pièges classiques de l'examen. ${erpCount} questions ciblées.</div>
+        <div class="mode-meta">S'entraîner</div>
+      </button>
+
+      <button class="mode-card" onclick="startBonusQuiz('otan')">
+        <div class="mode-number">OTAN</div>
+        <div class="mode-title">Alphabet phonétique</div>
+        <div class="mode-desc">Alpha, Bravo, Charlie... 26 lettres pour épeler en radio. ${otanCount} questions piégeuses.</div>
+        <div class="mode-meta">S'entraîner</div>
+      </button>
+
       <button class="mode-card" onclick="startBonusQuiz('all')">
         <div class="mode-number">Mix</div>
-        <div class="mode-title">UV 7 + UV 11</div>
-        <div class="mode-desc">Toutes les questions bonus en aléatoire.</div>
+        <div class="mode-title">Tout en aléatoire</div>
+        <div class="mode-desc">UV 7 + UV 11 + ERP + OTAN mélangés. Idéal en révision finale.</div>
         <div class="mode-meta">Tout combiner</div>
       </button>
     </div>
