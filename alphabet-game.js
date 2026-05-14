@@ -139,8 +139,10 @@ function showOtanGame() {
 
   document.querySelectorAll('section').forEach(s => {
     s.classList.remove('active');
-    s.style.display = 'none';
+    s.style.display = '';
   });
+  const _home = document.getElementById('homeScreen');
+  if (_home) _home.style.display = 'none';
   screen.classList.add('active');
   screen.style.display = 'block';
 
@@ -372,8 +374,10 @@ function renderOtanQuestion() {
 
   document.querySelectorAll('section').forEach(s => {
     s.classList.remove('active');
-    s.style.display = 'none';
+    s.style.display = '';
   });
+  const _home = document.getElementById('homeScreen');
+  if (_home) _home.style.display = 'none';
   screen.classList.add('active');
   screen.style.display = 'block';
 

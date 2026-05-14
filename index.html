@@ -410,10 +410,14 @@ document.getElementById("totalQuestions").textContent=allQ.length;
 // ===== SCREENS =====
 const SCREENS=["homeScreen","examenOfficielScreen","quizScreen","resultsScreen","oralScreen","situationScreen"];
 function showScreen(id){
-  SCREENS.forEach(s=>{const e=document.getElementById(s);if(!e)return;e.classList.remove("active");e.style.display="none";});
+  SCREENS.forEach(s=>{
+    const e=document.getElementById(s);if(!e)return;
+    e.classList.remove("active");
+    if(s==="homeScreen"){e.style.display="none";}else{e.style.display="";}
+  });
   const oe=document.getElementById("otanGameScreen");if(oe)oe.style.display="none";
   const t=document.getElementById(id);if(!t)return;
-  if(id==="homeScreen"){t.style.display="block";}else{t.style.display="";t.classList.add("active");}
+  if(id==="homeScreen"){t.style.display="block";}else{t.classList.add("active");}
 }
 function showHome(){stopTimers();showScreen("homeScreen");updateHome();}
 
