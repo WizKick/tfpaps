@@ -385,13 +385,7 @@
 <script>
 
 // ===== POOL =====
-function buildAll(){
-  const a=[...questionsQCM];
-  const seen=new Set(questionsQCM.map(q=>q.q));
-  if(typeof bonusQuestions!=="undefined")bonusQuestions.forEach(q=>{if(!seen.has(q.q)){a.push(q);seen.add(q.q);}});
-  if(typeof examenOfficielUVs!=="undefined")examenOfficielUVs.forEach(uv=>{if(uv.questions)uv.questions.forEach(q=>{if(!seen.has(q.q)){a.push(q);seen.add(q.q);}});});
-  return a;
-}
+function buildAll(){const a=[...questionsQCM];if(typeof bonusQuestions!=="undefined")bonusQuestions.forEach(q=>a.push(q));if(typeof examenOfficielUVs!=="undefined")examenOfficielUVs.forEach(uv=>{if(uv.questions)uv.questions.forEach(q=>a.push(q));});return a;}
 const allQ=buildAll();
 
 const S={quiz:[],idx:0,score:0,mode:null,exam:false,answers:[],pqTimer:null,pqLeft:0,oralIdx:0,oralQ:[],qid:null,sound:true,lastUv:null};
@@ -414,22 +408,14 @@ function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.fl
 document.getElementById("totalQuestions").textContent=allQ.length;
 
 // ===== SCREENS =====
-const SCREENS=["homeScreen","examenOfficielScreen","quizScreen","resultsScreen","oralScreen","situationScreen","otanGameScreen","otanGamePlayScreen"];
+const SCREENS=["homeScreen","examenOfficielScreen","quizScreen","resultsScreen","oralScreen","situationScreen"];
 function showScreen(id){
-  SCREENS.forEach(s=>{const e=document.getElementById(s);if(!e)return;e.classList.remove("active");if(s!=="homeScreen")e.style.display="";});
+  SCREENS.forEach(s=>{const e=document.getElementById(s);if(!e)return;e.classList.remove("active");e.style.display="none";});
+  const oe=document.getElementById("otanGameScreen");if(oe)oe.style.display="none";
   const t=document.getElementById(id);if(!t)return;
-  if(id==="homeScreen")t.style.display="block";else t.classList.add("active");
+  if(id==="homeScreen"){t.style.display="block";}else{t.style.display="";t.classList.add("active");}
 }
-function showHome(){
-  stopTimers();
-  // Masquer les écrans OTAN créés dynamiquement si présents
-  ["otanGameScreen","otanGamePlayScreen"].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el){el.classList.remove("active");el.style.display="";}
-  });
-  showScreen("homeScreen");
-  updateHome();
-}
+function showHome(){stopTimers();showScreen("homeScreen");updateHome();}
 
 // ===== EXAMEN BLANC =====
 function showExamenOfficiel(){
