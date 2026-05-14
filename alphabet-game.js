@@ -51,22 +51,26 @@ function normalizeOtan(str) {
     .trim();
 }
 
-// Tolère 1 typo (distance Levenshtein simple)
+// Tolère 1 typo (vraie distance Levenshtein)
 function isCloseEnough(input, target) {
   const a = normalizeOtan(input);
   const b = normalizeOtan(target);
   if (a === b) return true;
-  // Tolérance : 1 caractère de différence si mot >= 4 lettres
-  if (b.length >= 4 && Math.abs(a.length - b.length) <= 1) {
-    let diff = 0;
-    const maxLen = Math.max(a.length, b.length);
-    for (let i = 0; i < maxLen; i++) {
-      if (a[i] !== b[i]) diff++;
-      if (diff > 1) return false;
+  if (Math.abs(a.length - b.length) > 2) return false;
+  // Levenshtein distance
+  const m = a.length, n = b.length;
+  const dp = Array.from({length: m+1}, (_, i) => [i, ...Array(n).fill(0)]);
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i-1] === b[j-1]
+        ? dp[i-1][j-1]
+        : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
     }
-    return diff <= 1;
   }
-  return false;
+  const dist = dp[m][n];
+  // Tolérance : 1 erreur si mot >= 4 lettres
+  return b.length >= 4 ? dist <= 1 : dist === 0;
 }
 
 // ============================================================
@@ -440,7 +444,7 @@ function submitOtanAnswer(e) {
 
   // Son
   try {
-    if (typeof state !== 'undefined' && state.soundEnabled) {
+    if (typeof S !== 'undefined' && S.sound) {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();

@@ -291,7 +291,14 @@ function pausePomodoro() {
 }
 
 function resetPomodoro() {
-  pausePomodoro();
+  clearInterval(pomodoroState.interval);
+  pomodoroState.active = false;
+  clearInterval(pauseTimerInterval);
+  pauseSeconds = 0;
+  const pauseBar = document.getElementById('pomodoroPauseTimer');
+  if (pauseBar) pauseBar.style.display = 'none';
+  const btn = document.getElementById('pomodoroPlayBtn');
+  if (btn) { btn.textContent = '▶'; btn.classList.remove('running'); }
   const durations = { work: pomodoroState.custom, pause: 5, long: 15 };
   pomodoroState.seconds = (durations[pomodoroState.type] || 25) * 60;
   updatePomodoroDisplay();
@@ -308,7 +315,15 @@ function resetPomodoroStats() {
 }
 
 function setPomodoroMode(mode) {
-  pausePomodoro();
+  // Arrêter le timer sans déclencher le chrono de pause
+  clearInterval(pomodoroState.interval);
+  pomodoroState.active = false;
+  clearInterval(pauseTimerInterval);
+  pauseSeconds = 0;
+  const pauseBar = document.getElementById('pomodoroPauseTimer');
+  if (pauseBar) pauseBar.style.display = 'none';
+  const btn = document.getElementById('pomodoroPlayBtn');
+  if (btn) { btn.textContent = '▶'; btn.classList.remove('running'); }
   pomodoroState.type = 'work';
   pomodoroState.seconds = pomodoroState.custom * 60;
   const workBtn = document.getElementById('modeWork');
@@ -321,7 +336,15 @@ function setPomodoroMode(mode) {
 }
 
 function changePomoDuration(delta) {
-  pausePomodoro();
+  // Arrêter sans déclencher le chrono de pause
+  clearInterval(pomodoroState.interval);
+  pomodoroState.active = false;
+  clearInterval(pauseTimerInterval);
+  pauseSeconds = 0;
+  const pauseBar = document.getElementById('pomodoroPauseTimer');
+  if (pauseBar) pauseBar.style.display = 'none';
+  const btn = document.getElementById('pomodoroPlayBtn');
+  if (btn) { btn.textContent = '▶'; btn.classList.remove('running'); }
   pomodoroState.custom = Math.max(5, Math.min(60, pomodoroState.custom + delta));
   if (pomodoroState.type === 'work') pomodoroState.seconds = pomodoroState.custom * 60;
   const workBtn = document.getElementById('modeWork');
@@ -335,7 +358,7 @@ function onPomodoroEnd() {
   const widget = document.getElementById('pomodoroWidget');
   if (widget) { widget.classList.add('notify'); setTimeout(() => widget.classList.remove('notify'), 3000); }
   try {
-    if (typeof state !== 'undefined' && state.soundEnabled) {
+    if (typeof S !== 'undefined' && S.sound) {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       [523, 659, 784, 1047].forEach((freq, i) => {
         const osc = ctx.createOscillator(), gain = ctx.createGain();
