@@ -51,26 +51,22 @@ function normalizeOtan(str) {
     .trim();
 }
 
-// Tolère 1 typo (vraie distance Levenshtein)
+// Tolère 1 typo (distance Levenshtein simple)
 function isCloseEnough(input, target) {
   const a = normalizeOtan(input);
   const b = normalizeOtan(target);
   if (a === b) return true;
-  if (Math.abs(a.length - b.length) > 2) return false;
-  // Levenshtein distance
-  const m = a.length, n = b.length;
-  const dp = Array.from({length: m+1}, (_, i) => [i, ...Array(n).fill(0)]);
-  for (let j = 0; j <= n; j++) dp[0][j] = j;
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      dp[i][j] = a[i-1] === b[j-1]
-        ? dp[i-1][j-1]
-        : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  // Tolérance : 1 caractère de différence si mot >= 4 lettres
+  if (b.length >= 4 && Math.abs(a.length - b.length) <= 1) {
+    let diff = 0;
+    const maxLen = Math.max(a.length, b.length);
+    for (let i = 0; i < maxLen; i++) {
+      if (a[i] !== b[i]) diff++;
+      if (diff > 1) return false;
     }
+    return diff <= 1;
   }
-  const dist = dp[m][n];
-  // Tolérance : 1 erreur si mot >= 4 lettres
-  return b.length >= 4 ? dist <= 1 : dist === 0;
+  return false;
 }
 
 // ============================================================
@@ -143,13 +139,10 @@ function showOtanGame() {
 
   document.querySelectorAll('section').forEach(s => {
     s.classList.remove('active');
-    if (s.id !== 'otanGameScreen' && s.id !== 'otanGamePlayScreen') s.style.display = '';
+    s.style.display = 'none';
   });
   screen.classList.add('active');
   screen.style.display = 'block';
-
-  const home = document.getElementById('homeScreen');
-  if (home) home.style.display = 'none';
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -379,13 +372,10 @@ function renderOtanQuestion() {
 
   document.querySelectorAll('section').forEach(s => {
     s.classList.remove('active');
-    if (s.id !== 'otanGamePlayScreen') s.style.display = '';
+    s.style.display = 'none';
   });
   screen.classList.add('active');
   screen.style.display = 'block';
-
-  const home = document.getElementById('homeScreen');
-  if (home) home.style.display = 'none';
 
   // Focus auto sur l'input
   setTimeout(() => {
@@ -444,7 +434,7 @@ function submitOtanAnswer(e) {
 
   // Son
   try {
-    if (typeof S !== 'undefined' && S.sound) {
+    if (typeof state !== 'undefined' && state.soundEnabled) {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
