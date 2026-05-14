@@ -1717,7 +1717,7 @@ body::before { display: none !important; }
       <button class="mode-card highlight" onclick="showExamenOfficiel()">
         <div class="mode-number">01 / Officiel</div>
         <div class="mode-title">Examen Blanc</div>
-        <div class="mode-desc">103 questions · 45 sec/question · Score par UV. Conditions réelles d'examen.</div>
+        <div class="mode-desc">103 questions · ~77 min · 45 s/question · Score par UV. Conditions réelles d'examen.</div>
         <div class="mode-meta">Démarrer</div>
       </button>
 
@@ -1776,7 +1776,7 @@ body::before { display: none !important; }
   <!-- EXAMEN BLANC : sélection UV -->
   <section id="examenOfficielScreen" class="uv-screen">
     <h2 class="section-title">Examen <em>Blanc</em></h2>
-    <p class="section-sub">103 questions · 45 secondes par question · Note ≥ 12/20 requis par UV.<br>Lance tout d'un coup ou entraîne-toi UV par UV.</p>
+    <p class="section-sub">103 questions · ~77 min · 45 secondes par question · Note ≥ 12/20 requis par UV.<br>Lance tout d'un coup ou entraîne-toi UV par UV.</p>
     <div class="uv-grid" id="uvGrid"></div>
     <button class="btn btn-ghost" onclick="showHome()">← Retour</button>
   </section>
@@ -8310,7 +8310,7 @@ function showHome(){stopTimers();showScreen("homeScreen");updateHome();}
 // ===== EXAMEN BLANC =====
 function showExamenOfficiel(){
   const g=document.getElementById("uvGrid");g.innerHTML="";
-  const a=document.createElement("button");a.className="uv-card uv-all";a.innerHTML=`<div class="uv-code">Complet</div><div class="uv-title">Toutes les UV</div><div class="uv-count">103 questions · ~77 min</div>`;a.onclick=()=>launchExam(null);g.appendChild(a);
+  const a=document.createElement("button");a.className="uv-card uv-all";a.innerHTML=`<div class="uv-code">Complet</div><div class="uv-title">Toutes les UV</div><div class="uv-count">103 questions · ~77 min · 45 s/question</div>`;a.onclick=()=>launchExam(null);g.appendChild(a);
   examenOfficielUVs.forEach(uv=>{const c=document.createElement("button");c.className="uv-card";const d=Math.ceil(uv.questions.length*45/60);c.innerHTML=`<div class="uv-code">${uv.code}</div><div class="uv-title">${uv.title}</div><div class="uv-count">${uv.questions.length} questions · ~${d} min</div>`;c.onclick=()=>launchExam(uv.id);g.appendChild(c);});
   showScreen("examenOfficielScreen");
 }
@@ -8569,7 +8569,10 @@ function updateHome(){
   const errs=getErrQ(),eb=document.getElementById("errorsBtn"),ed=document.getElementById("errorsDesc");
   if(errs.length){ed.textContent=`${errs.length} question${errs.length>1?"s":""} ratée${errs.length>1?"s":""} à retravailler.`;eb.disabled=false;}
   else{ed.textContent="Aucune erreur enregistrée pour le moment.";eb.disabled=true;}
-  document.getElementById("toutesDesc").textContent=`${allQ.length} questions issues des annales. Correction immédiate, explications détaillées.`;
+  const toutesMin=Math.round(allQ.length*30/60);
+  const toutesH=Math.floor(toutesMin/60),toutesRem=toutesMin%60;
+  const toutesTime=toutesH>0?`~${toutesH}h${toutesRem>0?toutesRem.toString().padStart(2,"0"):""}`:` ~${toutesMin} min`;
+  document.getElementById("toutesDesc").textContent=`${allQ.length} questions · ${toutesTime} estimées · Correction immédiate, explications détaillées.`;
   // SRS stats
   const srs=getSRSStats();
   const srsDesc=document.getElementById("srsDesc");
