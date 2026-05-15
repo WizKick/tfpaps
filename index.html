@@ -7166,250 +7166,202 @@ function updateWeakUVBtn(){
 // ===== CAS N°6 GUIDE =====
 function showCas6Guide() {
   const sc = document.getElementById('cas6Screen');
-  sc.innerHTML = `
-    <div class="cas6-wrap">
-      <div class="cas6-header">
-        <div class="cas6-badge">Examen TFP APS · Cas Pratique</div>
-        <div class="cas6-title">CAS N°6 · Personne en état d'ébriété</div>
-        <div class="cas6-subtitle">Toutes les étapes dans l'ordre. Apprends-les par cœur — c'est exactement ce que le jury attend.</div>
-      </div>
 
-      <div class="cas6-context">
-        <div class="cas6-context-label">📋 Contexte de l'examen</div>
-        <div class="cas6-context-text">
-          <strong>Sujet :</strong> Une personne titube sur le parking de l'entreprise, fait tomber ses affaires et veut prendre sa voiture pour rentrer chez elle après un verre d'honneur avec ses collègues.<br><br>
-          <strong>Contexte :</strong> Service de sécurité en vacation de jour sur un site (X) en activité.<br>
-          <strong>Consigne :</strong> Départ d'une ronde générale de sécurité pointée, périmétrique et périphérique à 17h00 sur le site.<br>
-          <strong>Composant incident :</strong> Le chef de poste est prévenu par un appel téléphonique d'un salarié qu'une personne étrange est autour des véhicules sur le parking (état d'ébriété).
+  const PHASES = [
+    {
+      id: 'prise',
+      num: '01',
+      title: 'Prise de service',
+      tag: 'Avant de partir en ronde · Obligatoire',
+      color: '#c0a050',
+      steps: [
+        { icon: '💡', label: 'Test des lampes des tableaux de signalisation', detail: 'SSI, intrusion, accès — tous les voyants verts. Tout dysfonctionnement → MC.', type: 'ok' },
+        { icon: '📻', label: 'Contrôle état général des radios', detail: 'Charge, réception, clarté. Radio défaillante = non-conformité immédiate.', type: 'ok' },
+        { icon: '📞', label: 'Essai des moyens de communication', detail: 'Radio ET téléphone urbain (ligne fixe). Les deux doivent être opérationnels.', type: 'ok' },
+        { icon: '🔑', label: 'Prise en compte des clefs', detail: 'Trousseau complet, correspondances vérifiées. Signer le registre des clefs.', type: 'ok' },
+        { icon: '🔦', label: '⚠️ INCIDENT — Lampe torche hors service', detail: 'Note sur MC + heure. Informe chef de poste. Demande remplacement. Ne pas partir sans lampe.', type: 'danger' },
+        { icon: '📋', label: '⚠️ INCIDENT — Absence d\'un registre', detail: 'Note sur MC. Informe chef de poste. Demande fourniture ou remplacement.', type: 'danger' },
+        { icon: '🗝️', label: '⚠️ INCIDENT — Clef tordue', detail: 'Note sur MC. Informe chef de poste. Clef inutilisable, remplacement requis.', type: 'danger' },
+      ]
+    },
+    {
+      id: 'ronde',
+      num: '02',
+      title: 'Départ en ronde à 17h00',
+      tag: 'Ronde générale pointée · Périmétrique et périphérique',
+      color: '#6ee7a8',
+      steps: [
+        { icon: '🗺️', label: 'Consulter le plan du site et les consignes', detail: 'Itinéraire, points de pointage, zones sensibles.', type: 'ok' },
+        { icon: '🎒', label: 'Vérifier mon équipement complet', detail: 'Radio chargée · Lampe de remplacement · Carnet MC · DATI si applicable.', type: 'ok' },
+        { icon: '⏱️', label: 'Noter l\'heure de départ sur la MC', detail: '17h00 — Départ ronde générale périmétrique et périphérique. Format 24h.', type: 'ok' },
+      ]
+    },
+    {
+      id: 'info',
+      num: '03',
+      title: 'Réception de l\'info — Incident parking',
+      tag: 'Le chef de poste vous contacte par radio',
+      color: '#fcc864',
+      steps: [
+        { icon: '📻', label: 'Réception radio du chef de poste', detail: '"Personne en état d\'ébriété autour des véhicules." → Je répète, confirme, et me dirige immédiatement vers le parking.', type: 'critical' },
+        { icon: '⏱️', label: 'Horodater la réception de l\'info sur la MC', detail: 'Heure, nature de l\'info, source (salarié via CDP), lieu (parking).', type: 'critical' },
+      ]
+    },
+    {
+      id: 'parking',
+      num: '04',
+      title: 'Arrivée parking — Gestion de la personne',
+      tag: 'Le cœur du cas · Ce que le jury évalue',
+      color: '#fb8585',
+      steps: [
+        { icon: '👁️', label: 'Observer avant d\'intervenir', detail: 'Repérer la personne, évaluer l\'état, noter le véhicule (marque/couleur/plaque). Pas de danger pour moi.', type: 'ok' },
+        { icon: '🗣️', label: 'Interpeller calmement et professionnellement', detail: '"Bonjour, je suis agent de sécurité. J\'ai été informé que vous semblez avoir besoin d\'aide. Puis-je vous parler ?" Ton calme, distance de sécurité.', type: 'critical' },
+        { icon: '🚗', label: 'Dissuader de prendre le volant', detail: '"Je ne peux pas vous laisser conduire dans cet état. Je peux appeler quelqu\'un pour vous." Proposer : proche, taxi.', type: 'critical' },
+        { icon: '🚫', label: 'NE PAS confisquer les clés — NE PAS retenir physiquement', detail: 'Pas une prérogative APS. Contrainte physique sans art.73 CPP = poursuites pénales.', type: 'danger' },
+        { icon: '📻', label: 'Tenir le chef de poste informé en temps réel', detail: 'Compte-rendu radio régulier : état personne, évolution, actions en cours.', type: 'critical' },
+        { icon: '🚔', label: 'Si elle insiste pour conduire → appeler le 17', detail: '"Agent de sécurité, site [adresse]. Personne en état d\'ébriété s\'apprête à conduire. Véhicule : [desc + plaque]. Intervention urgente."', type: 'critical' },
+      ]
+    },
+    {
+      id: 'cloture',
+      num: '05',
+      title: 'Clôture de l\'incident',
+      tag: 'Traçabilité obligatoire · QQOQCP',
+      color: '#c0a050',
+      steps: [
+        { icon: '👤', label: 'QUI ? — Décrire la personne', detail: 'Sexe, âge approximatif, tenue vestimentaire, lien avec l\'entreprise (salarié selon appelant).', type: 'critical' },
+        { icon: '📋', label: 'QUOI ? — Décrire les faits', detail: 'État d\'ébriété manifeste (titubements, affaires tombées), tentative de prendre son véhicule pour rentrer.', type: 'critical' },
+        { icon: '📍', label: 'OÙ ? — Localisation précise', detail: 'Parking du site [X], zone précise (parking principal / véhicules personnels / entrée).', type: 'critical' },
+        { icon: '🕐', label: 'QUAND ? — 3 horodatages', detail: 'Info reçue à [heure] · Arrivée sur place à [heure] · Fin d\'intervention à [heure].', type: 'critical' },
+        { icon: '🔄', label: 'COMMENT ? — Déroulement chronologique', detail: 'Interpellation verbale · Dissuasion · Proposition alternative · Radio CDP · Appel 17 à [heure].', type: 'critical' },
+        { icon: '❓', label: 'POURQUOI ? — Motivation de l\'intervention', detail: 'Sécurité de la personne + usagers de la voie publique. Prévention d\'un accident lié à l\'ébriété.', type: 'critical' },
+        { icon: '🚘', label: 'COMBIEN ? — Éléments chiffrés', detail: '1 personne · 1 véhicule · [Marque] [couleur] immat. [plaque si visible].', type: 'critical' },
+        { icon: '✅', label: 'Reprendre la ronde après clôture', detail: 'Note l\'heure de reprise sur MC. Finaliser l\'itinéraire périmétrique et périphérique.', type: 'ok' },
+      ]
+    }
+  ];
+
+  let currentPhase = 0;
+  let checkedSteps = {};
+
+  function totalSteps() {
+    return PHASES.reduce((s, p) => s + p.steps.length, 0);
+  }
+  function checkedCount() {
+    return Object.values(checkedSteps).filter(Boolean).length;
+  }
+
+  function renderGuide() {
+    const phase = PHASES[currentPhase];
+    const done = checkedCount();
+    const total = totalSteps();
+    const pct = Math.round((done / total) * 100);
+
+    // Phase progress dots
+    const dots = PHASES.map((p, i) => {
+      const phaseChecked = p.steps.every((_, si) => checkedSteps[p.id + '-' + si]);
+      const isCurrent = i === currentPhase;
+      return `<div onclick="goPhase(${i})" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;">
+        <div style="width:32px;height:32px;border-radius:50%;border:2px solid ${isCurrent ? p.color : phaseChecked ? '#6ee7a8' : 'var(--border)'};background:${isCurrent ? p.color : phaseChecked ? 'rgba(110,231,168,.15)' : 'var(--surface)'};display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;color:${isCurrent ? 'var(--bg)' : phaseChecked ? '#6ee7a8' : 'var(--text-faint)'};transition:all .3s;">${phaseChecked ? '✓' : p.num}</div>
+        <div style="font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:${isCurrent ? p.color : 'var(--text-faint)'};text-align:center;line-height:1.2;max-width:56px;">${p.title.split('—')[0].trim().substring(0, 12)}</div>
+      </div>`;
+    }).join(`<div style="flex:0 0 12px;height:2px;background:var(--border);margin-top:14px;"></div>`);
+
+    // Steps
+    const steps = phase.steps.map((s, i) => {
+      const key = phase.id + '-' + i;
+      const checked = checkedSteps[key];
+      const borderColor = checked ? '#6ee7a8' : s.type === 'danger' ? 'rgba(251,133,133,.5)' : s.type === 'critical' ? 'rgba(192,160,80,.4)' : 'var(--border)';
+      const leftBorder = s.type === 'danger' ? '#fb8585' : s.type === 'critical' ? 'var(--gold)' : 'var(--success)';
+      return `
+        <div onclick="toggleStep('${key}')" style="cursor:pointer;display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;background:${checked ? 'rgba(110,231,168,.06)' : 'var(--surface)'};border:1px solid ${borderColor};border-left:3px solid ${checked ? '#6ee7a8' : leftBorder};border-radius:5px;transition:all .25s;margin-bottom:.6rem;">
+          <div style="width:22px;height:22px;border-radius:50%;border:2px solid ${checked ? '#6ee7a8' : 'var(--border-strong)'};background:${checked ? '#6ee7a8' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;transition:all .25s;font-size:.7rem;">${checked ? '✓' : ''}</div>
+          <div style="flex:1;">
+            <div style="font-size:.93rem;font-weight:500;color:${checked ? 'var(--text-dim)' : 'var(--text)'};margin-bottom:.25rem;${checked ? 'text-decoration:line-through;opacity:.7;' : ''}">${s.icon} ${s.label}</div>
+            <div style="font-size:.8rem;color:var(--text-dim);line-height:1.5;">${s.detail}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    sc.innerHTML = `
+      <div style="max-width:800px;margin:0 auto;">
+
+        <!-- Header -->
+        <div style="margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);">
+          <div style="display:inline-block;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);padding:.3rem .85rem;border:1px solid var(--gold);border-radius:999px;margin-bottom:1rem;">⭐ Examen TFP APS · CAS N°6</div>
+          <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.25rem);letter-spacing:-.03em;margin-bottom:.5rem;">Personne en état d'ébriété</h2>
+          <p style="color:var(--text-dim);font-size:.9rem;">Coche chaque étape au fur et à mesure. Tout cocher = tu es prêt.</p>
         </div>
-      </div>
 
-      <div class="cas6-phase">
-        <div class="cas6-phase-header">
-          <div class="cas6-phase-num">01</div>
+        <!-- Global progress -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:150px;">
+            <div style="height:6px;background:var(--border);border-radius:999px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:${pct === 100 ? '#6ee7a8' : 'var(--gold)'};border-radius:999px;transition:width .4s cubic-bezier(.16,1,.3,1);"></div>
+            </div>
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:${pct === 100 ? '#6ee7a8' : 'var(--gold)'};">${done}/${total}</div>
+          <div style="font-size:.75rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.15em;">${pct === 100 ? '🎯 Prêt pour l\'examen !' : pct + '% complété'}</div>
+          ${pct > 0 ? `<button onclick="resetAll()" style="background:transparent;border:1px solid var(--border);color:var(--text-faint);padding:.35rem .75rem;border-radius:4px;cursor:pointer;font-size:.7rem;font-family:'Outfit',sans-serif;letter-spacing:.1em;text-transform:uppercase;">Reset</button>` : ''}
+        </div>
+
+        <!-- Phase navigation -->
+        <div style="display:flex;align-items:flex-start;gap:0;margin-bottom:2rem;padding:1.25rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+          ${dots}
+        </div>
+
+        <!-- Current phase -->
+        <div style="margin-bottom:.75rem;display:flex;align-items:center;gap:1rem;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:2rem;color:${phase.color};line-height:1;">${phase.num}</div>
           <div>
-            <div class="cas6-phase-title">Prise de service</div>
-            <div class="cas6-phase-tag">Avant de partir en ronde · Obligatoire</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:1.2rem;letter-spacing:-.01em;">${phase.title}</div>
+            <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-faint);">${phase.tag}</div>
           </div>
         </div>
-        <div class="cas6-steps">
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">💡</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Test des lampes des différents tableaux de signalisation</div>
-              <div class="cas6-step-detail">Vérifier que tous les voyants et tableaux (SSI, intrusion, accès) sont opérationnels. Noter tout dysfonctionnement.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">📻</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Contrôle de l'état général des radios</div>
-              <div class="cas6-step-detail">Vérifier la charge, le bon fonctionnement, la clarté de réception. Une radio défaillante = non-conformité.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">📞</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Essai des moyens de communication</div>
-              <div class="cas6-step-detail">Test des communications directes (radio) ET du téléphone urbain (ligne fixe). Les deux doivent fonctionner.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">🔑</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Prise en compte des clefs</div>
-              <div class="cas6-step-detail">Vérifier que toutes les clefs du trousseau sont présentes et correspondantes. Signer le registre des clefs.</div>
-            </div>
-          </div>
-          <div class="cas6-step danger">
-            <div class="cas6-step-icon">🔦</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">⚠️ Incident : lampe torche hors service</div>
-              <div class="cas6-step-detail">Je note immédiatement sur la main courante. J'informe le chef de poste. Je demande une lampe de remplacement. Je ne pars PAS en ronde sans lampe fonctionnelle — c'est un équipement de sécurité obligatoire.</div>
-            </div>
-          </div>
-          <div class="cas6-step danger">
-            <div class="cas6-step-icon">📋</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">⚠️ Incident : absence d'un registre</div>
-              <div class="cas6-step-detail">Je note sur la main courante. J'informe le chef de poste. Je demande à ce qu'il soit fourni ou remplacé.</div>
-            </div>
-          </div>
-          <div class="cas6-step danger">
-            <div class="cas6-step-icon">🗝️</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">⚠️ Incident : clef tordue</div>
-              <div class="cas6-step-detail">Je note sur la main courante. J'informe le chef de poste. Je signale que la clef est inutilisable en l'état et demande son remplacement.</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="cas6-phase">
-        <div class="cas6-phase-header">
-          <div class="cas6-phase-num">02</div>
-          <div>
-            <div class="cas6-phase-title">Départ en ronde à 17h00</div>
-            <div class="cas6-phase-tag">Ronde générale · Pointée, périmétrique et périphérique</div>
-          </div>
-        </div>
-        <div class="cas6-steps">
-          <div class="cas6-step ok">
-            <div class="cas6-step-icon">🗺️</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je consulte le plan du site et les consignes de ronde</div>
-              <div class="cas6-step-detail">Je connais mon itinéraire, les points de pointage, et les zones sensibles à surveiller.</div>
-            </div>
-          </div>
-          <div class="cas6-step ok">
-            <div class="cas6-step-icon">📱</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je pars avec mon équipement complet</div>
-              <div class="cas6-step-detail">Radio chargée, lampe torche (de remplacement), carnet de main courante, DATI si applicable.</div>
-            </div>
-          </div>
-          <div class="cas6-step ok">
-            <div class="cas6-step-icon">⏱️</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je note l'heure de départ sur la main courante</div>
-              <div class="cas6-step-detail">Format 24h. Ex : "17h00 — Départ ronde générale périmétrique et périphérique."</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div style="margin-bottom:2rem;">${steps}</div>
 
-      <div class="cas6-phase">
-        <div class="cas6-phase-header">
-          <div class="cas6-phase-num">03</div>
-          <div>
-            <div class="cas6-phase-title">Réception de l'information — Incident parking</div>
-            <div class="cas6-phase-tag">Le chef de poste vous contacte pendant la ronde</div>
-          </div>
+        <!-- Navigation -->
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.5rem;border-top:1px solid var(--border);">
+          <button class="btn btn-ghost" onclick="${currentPhase === 0 ? 'showHome()' : 'goPhase(' + (currentPhase - 1) + ')'}">${currentPhase === 0 ? '← Accueil' : '← ' + PHASES[currentPhase-1].title.split('—')[0].trim()}</button>
+          ${currentPhase < PHASES.length - 1
+            ? `<button class="btn btn-primary" onclick="goPhase(${currentPhase + 1})">Phase ${PHASES[currentPhase+1].num} : ${PHASES[currentPhase+1].title.split('—')[0].trim()} →</button>`
+            : `<button class="btn btn-primary" onclick="showHome()">✓ Terminé — Retour accueil</button>`
+          }
         </div>
-        <div class="cas6-steps">
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">📻</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je reçois l'info du chef de poste par radio</div>
-              <div class="cas6-step-detail">"Un salarié signale une personne en état d'ébriété autour des véhicules sur le parking." Je répète l'information pour confirmer et me dirige immédiatement vers le parking.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">⏱️</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je note l'heure de réception de l'information</div>
-              <div class="cas6-step-detail">Sur la main courante : heure, nature de l'information, source (salarié via chef de poste), lieu (parking).</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="cas6-phase">
-        <div class="cas6-phase-header">
-          <div class="cas6-phase-num">04</div>
-          <div>
-            <div class="cas6-phase-title">Arrivée sur le parking — Gestion de la personne</div>
-            <div class="cas6-phase-tag">Le cœur du cas pratique · Ce que le jury évalue</div>
-          </div>
-        </div>
-        <div class="cas6-steps">
-          <div class="cas6-step ok">
-            <div class="cas6-step-icon">👁️</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">J'observe la situation avant d'intervenir</div>
-              <div class="cas6-step-detail">Je repère la personne, j'évalue son état, je note le véhicule (marque, couleur, plaque si visible). Je m'assure qu'il n'y a pas de danger immédiat pour moi.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">🗣️</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je l'interpelle calmement et professionnellement</div>
-              <div class="cas6-step-detail">"Bonjour, je suis agent de sécurité du site. J'ai été informé que vous semblez avoir besoin d'aide. Puis-je vous parler ?" Ton calme, voix posée, distance de sécurité.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">🚗</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je la dissuade de prendre le volant</div>
-              <div class="cas6-step-detail">"Je ne peux pas vous laisser prendre votre véhicule dans cet état, c'est dangereux pour vous et pour les autres. Je peux appeler quelqu'un pour vous." Proposer une alternative : appeler un proche, un taxi.</div>
-            </div>
-          </div>
-          <div class="cas6-step danger">
-            <div class="cas6-step-icon">🚫</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je ne confisque PAS ses clés, je ne la retiens PAS physiquement</div>
-              <div class="cas6-step-detail">Ce n'est pas une prérogative de l'APS. Toute contrainte physique sans cadre légal (article 73 CPP) m'exposerait à des poursuites.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">📻</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je tiens le chef de poste informé en temps réel</div>
-              <div class="cas6-step-detail">Compte-rendu radio régulier : état de la personne, évolution de la situation, actions en cours.</div>
-            </div>
-          </div>
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">🚔</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Si elle insiste pour partir en voiture → j'appelle le 17</div>
-              <div class="cas6-step-detail">"Je suis agent de sécurité sur le site [adresse]. Une personne en état d'ébriété manifeste s'apprête à conduire. Véhicule : [description + plaque]. Besoin d'intervention urgente." Et je continue de surveiller à distance.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <!-- Tip box only on phase 04 -->
+        ${currentPhase === 3 ? `
+        <div style="margin-top:2rem;background:linear-gradient(135deg,var(--surface),rgba(212,180,131,.04));border:1px solid var(--gold);border-radius:6px;padding:1.4rem 1.65rem;">
+          <div style="font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem;">💬 Phrase clé — Si le jury demande pourquoi tu n'as pas agi physiquement</div>
+          <div style="font-size:.93rem;line-height:1.65;color:var(--text);font-style:italic;">"En tant qu'APS, je n'ai pas de pouvoir de contrainte. Mon rôle est de protéger, alerter et dissuader. Toute intervention physique sans cadre légal m'exposerait à des poursuites. J'ai donc alerté les forces de l'ordre compétentes."</div>
+        </div>` : ''}
 
-      <div class="cas6-phase">
-        <div class="cas6-phase-header">
-          <div class="cas6-phase-num">05</div>
-          <div>
-            <div class="cas6-phase-title">Clôture de l'incident</div>
-            <div class="cas6-phase-tag">Traçabilité obligatoire</div>
-          </div>
-        </div>
-        <div class="cas6-steps">
-          <div class="cas6-step critical">
-            <div class="cas6-step-icon">📝</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je rédige le rapport d'incident complet — méthode QQOQCP</div>
-              <div class="cas6-step-detail">
-                <strong style="color:var(--gold)">QUI ?</strong> Personne de sexe [masculin/féminin], âge approximatif [X] ans, vêtue de [description tenue], salariée de l'entreprise selon le salarié appelant.<br><br>
-                <strong style="color:var(--gold)">QUOI ?</strong> Personne en état d'ébriété manifeste (titubements, affaires tombées), tentant de prendre son véhicule personnel pour rentrer à son domicile.<br><br>
-                <strong style="color:var(--gold)">OÙ ?</strong> Parking du site [X], zone [préciser : parking principal / zone véhicules personnels / devant l'entrée].<br><br>
-                <strong style="color:var(--gold)">QUAND ?</strong> Information reçue à [heure] — Arrivée sur les lieux à [heure] — Fin d'intervention à [heure].<br><br>
-                <strong style="color:var(--gold)">COMMENT ?</strong> Interpellation verbale calme. Tentative de dissuasion de prendre le volant. Proposition d'appeler un proche / un taxi. Contact avec le chef de poste par radio. Appel au 17 (Police Nationale) à [heure] suite au refus de la personne de quitter son véhicule.<br><br>
-                <strong style="color:var(--gold)">POURQUOI ?</strong> Sécurité de la personne elle-même et des autres usagers de la voie publique. Prévention d'un accident de la route lié à l'état d'ébriété.<br><br>
-                <strong style="color:var(--gold)">COMBIEN ?</strong> 1 personne impliquée. 1 véhicule concerné : [marque] [couleur] immatriculé [plaque si visible].
-              </div>
-            </div>
-          </div>
-          <div class="cas6-step ok">
-            <div class="cas6-step-icon">📋</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je note le numéro de plaque et description du véhicule</div>
-              <div class="cas6-step-detail">Indispensable si la police doit intervenir ultérieurement.</div>
-            </div>
-          </div>
-          <div class="cas6-step ok">
-            <div class="cas6-step-icon">✅</div>
-            <div class="cas6-step-content">
-              <div class="cas6-step-action">Je reprends ma ronde après clôture de l'incident</div>
-              <div class="cas6-step-detail">Je note l'heure de reprise sur la main courante et finalise mon itinéraire périmétrique et périphérique.</div>
-            </div>
-          </div>
-        </div>
       </div>
+    `;
+  }
 
-      <div class="cas6-tip">
-        <div class="cas6-tip-label">💬 Phrase clé si le jury te demande pourquoi tu n'as pas agi physiquement</div>
-        <div class="cas6-tip-text">"En tant qu'APS, je n'ai pas de pouvoir de contrainte. Mon rôle est de protéger, d'alerter et de dissuader. Toute intervention physique sans cadre légal m'exposerait à des poursuites. J'ai donc alerté les forces de l'ordre compétentes."</div>
-      </div>
+  window.goPhase = function(i) {
+    if (i >= 0 && i < PHASES.length) {
+      currentPhase = i;
+      renderGuide();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  };
 
-      <div style="margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap;">
-        <button class="btn btn-ghost" onclick="showHome()">← Retour</button>
-      </div>
-    </div>
-  `;
+  window.toggleStep = function(key) {
+    checkedSteps[key] = !checkedSteps[key];
+    renderGuide();
+  };
+
+  window.resetAll = function() {
+    checkedSteps = {};
+    currentPhase = 0;
+    renderGuide();
+  };
+
   showScreen('cas6Screen');
+  renderGuide();
 }
 
 // ===== KEYBOARD =====
