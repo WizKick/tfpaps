@@ -1683,226 +1683,389 @@ body::before { display: none !important; }
 <body>
 
 <!-- ============================================================
-     FAUX ÉCRAN D'ERREUR · Accès secret "007"
-     Desktop : taper 0, 0, 7 au clavier
-     Mobile  : cliquer 2× sur le "0" puis 1× sur le "7" du code 4037852189
+     FAUX CHROME DNS ERROR · Accès secret "007"
+     Desktop  : taper 0, 0, 7 au clavier (n'importe où)
+     Mobile   : 3 taps sur le mot "ERR_CONNECTION_REFUSED"
+                (séquence cachée : tap simple = 0, double-tap = 7)
+                → 1 tap, 1 tap, 1 double-tap
      ============================================================ -->
-<div id="fakeErrorScreen" class="fake-error-screen">
-  <div class="fake-error-noise"></div>
-  <div class="fake-error-content">
-    <div class="fake-error-top">
-      <span class="fake-error-dot"></span>
-      <span class="fake-error-status">SYSTEM FAILURE</span>
+<div id="chromeErrorScreen" class="ce-screen">
+  <div class="ce-container">
+    <div class="ce-icon">
+      <svg viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 12 L22 12"></path>
+        <path d="M12 2 L12 22"></path>
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12 A 14 14 0 0 1 22 12"></path>
+        <path d="M2 12 A 14 14 0 0 0 22 12"></path>
+        <path d="M12 2 A 10 14 0 0 1 12 22"></path>
+        <path d="M12 2 A 10 14 0 0 0 12 22"></path>
+      </svg>
     </div>
-    <h1 class="fake-error-code">ERROR</h1>
-    <div class="fake-error-number" id="fakeErrorNumber">
-      <span class="fe-digit" data-d="4">4</span><span class="fe-digit" data-d="0">0</span><span class="fe-digit" data-d="3">3</span><span class="fe-digit" data-d="7">7</span><span class="fe-digit" data-d="8">8</span><span class="fe-digit" data-d="5">5</span><span class="fe-digit" data-d="2">2</span><span class="fe-digit" data-d="1">1</span><span class="fe-digit" data-d="8">8</span><span class="fe-digit" data-d="9">9</span>
+    <h1 class="ce-title">This site can't be reached</h1>
+    <p class="ce-desc">
+      The webpage at <strong id="ceUrl">https://tfp-aps.local/</strong> might be temporarily down or it may have moved permanently to a new web address.
+    </p>
+    <ul class="ce-suggestions">
+      <li>Checking the connection</li>
+      <li>Checking the proxy and the firewall</li>
+      <li>Running Windows Network Diagnostics</li>
+    </ul>
+    <p class="ce-errcode" id="ceErrCode">ERR_CONNECTION_REFUSED</p>
+    <div class="ce-actions">
+      <button class="ce-btn ce-btn-primary" id="ceReloadBtn">Reload</button>
+      <button class="ce-btn ce-btn-secondary" id="ceDetailsBtn">Details</button>
     </div>
-    <p class="fake-error-msg">An unexpected error has occurred.<br>The system could not load the requested resource.</p>
-    <div class="fake-error-meta">
-      <div><span>HOST</span><b>aps-srv-04</b></div>
-      <div><span>TIME</span><b id="fakeErrorTime">--:--:--</b></div>
-      <div><span>REF</span><b>x7F·A0C·11B</b></div>
+    <div class="ce-details" id="ceDetails">
+      <p>Check your Internet connection</p>
+      <p>Check any cables and reboot any routers, modems, or other network devices you may be using.</p>
+      <p>Allow Chrome to access the network in your firewall or antivirus settings.</p>
+      <p>If it is already listed as a program allowed to access the network, try removing it from the list and adding it again.</p>
+      <p>If you use a proxy server, check your proxy settings or contact your network administrator to make sure the proxy server is working. If you don't believe you should be using a proxy server: Go to Settings &gt; System &gt; Open your computer's proxy settings and try to disable any proxy settings.</p>
     </div>
-    <div class="fake-error-footer">Please contact your system administrator if the problem persists.</div>
   </div>
 </div>
 
 <style>
-.fake-error-screen{
+/* Reset isolé pour cet écran uniquement */
+.ce-screen, .ce-screen *{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+.ce-screen{
   position:fixed; inset:0; z-index:99999;
-  background:#0a0b0d;
-  color:#cfcabd;
-  font-family:'DM Mono', monospace;
-  display:flex; align-items:center; justify-content:center;
-  padding:32px 24px;
-  overflow:hidden;
-  user-select:none;
+  background:#ffffff;
+  color:#202124;
+  overflow-y:auto;
+  -webkit-font-smoothing:antialiased;
   -webkit-user-select:none;
+  user-select:none;
 }
-.fake-error-screen.fe-hidden{ display:none; }
-.fake-error-screen.fe-fade-out{ animation:feFadeOut .5s ease forwards; }
-@keyframes feFadeOut{ to{ opacity:0; transform:scale(1.02); visibility:hidden; } }
+.ce-screen.ce-hidden{ display:none; }
+.ce-screen.ce-fade-out{ animation:ceFade .25s ease forwards; }
+@keyframes ceFade{ to{ opacity:0; visibility:hidden; } }
 
-.fake-error-noise{
-  position:absolute; inset:0;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
-    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.6) 100%);
-  pointer-events:none;
-  animation:feFlicker 4s infinite;
-}
-@keyframes feFlicker{
-  0%,100%{opacity:1;}
-  92%{opacity:1;}
-  93%{opacity:.85;}
-  94%{opacity:1;}
-  97%{opacity:.92;}
-  98%{opacity:1;}
+@media (prefers-color-scheme: dark){
+  .ce-screen{ background:#202124; color:#e8eaed; }
 }
 
-.fake-error-content{
-  position:relative;
-  max-width:560px; width:100%;
-  text-align:left;
+.ce-container{
+  max-width:600px;
+  margin:0 auto;
+  padding:80px 40px 40px;
 }
-.fake-error-top{
-  display:flex; align-items:center; gap:10px;
-  font-size:11px; letter-spacing:.3em;
-  color:#9a3a3a;
-  margin-bottom:28px;
-  text-transform:uppercase;
+@media (max-width:600px){
+  .ce-container{ padding:48px 24px 24px; }
 }
-.fake-error-dot{
-  width:8px; height:8px; border-radius:50%;
-  background:#9a3a3a;
-  box-shadow:0 0 12px #9a3a3a;
-  animation:feBlink 1.2s infinite;
-}
-@keyframes feBlink{ 0%,49%{opacity:1;} 50%,100%{opacity:.2;} }
 
-.fake-error-code{
-  font-family:'Big Shoulders Display', sans-serif;
-  font-size:clamp(56px, 12vw, 110px);
-  font-weight:800;
-  letter-spacing:.04em;
-  margin:0 0 12px;
-  color:#e4dfd3;
-  line-height:1;
-}
-.fake-error-number{
-  font-family:'DM Mono', monospace;
-  font-size:clamp(22px, 5vw, 32px);
-  letter-spacing:.18em;
-  color:#7a6828;
+.ce-icon{
+  color:#a8a8a8;
   margin-bottom:32px;
-  word-spacing:2px;
+  line-height:0;
 }
-.fe-digit{
-  display:inline-block;
-  padding:2px 1px;
-  transition:color .15s, transform .15s;
-}
-.fe-digit.fe-tap{
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-}
-.fe-digit.fe-tap:active{
-  color:#c0a050;
-  transform:scale(.9);
-}
-.fe-digit.fe-flash{
-  color:#c0a050 !important;
-  text-shadow:0 0 8px rgba(192,160,80,.5);
+@media (prefers-color-scheme: dark){
+  .ce-icon{ color:#5f6368; }
 }
 
-.fake-error-msg{
-  font-size:14px;
-  line-height:1.6;
-  color:#8a857a;
-  margin:0 0 28px;
+.ce-title{
+  font-size:28px;
+  font-weight:500;
+  line-height:1.3;
+  margin-bottom:16px;
+  letter-spacing:-.01em;
 }
-.fake-error-meta{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:16px;
-  padding:16px 0;
-  border-top:1px solid #24262a;
-  border-bottom:1px solid #24262a;
+@media (max-width:600px){
+  .ce-title{ font-size:22px; }
+}
+
+.ce-desc{
+  font-size:15px;
+  line-height:1.5;
+  color:#5f6368;
   margin-bottom:24px;
 }
-.fake-error-meta > div{
-  display:flex; flex-direction:column; gap:4px;
-}
-.fake-error-meta span{
-  font-size:9px; letter-spacing:.25em;
-  color:#3c3d40;
-  text-transform:uppercase;
-}
-.fake-error-meta b{
-  font-size:12px;
-  color:#cfcabd;
+.ce-desc strong{
+  color:#202124;
   font-weight:400;
+  word-break:break-all;
 }
-.fake-error-footer{
-  font-size:11px;
-  color:#3c3d40;
-  letter-spacing:.1em;
+@media (prefers-color-scheme: dark){
+  .ce-desc{ color:#9aa0a6; }
+  .ce-desc strong{ color:#e8eaed; }
 }
 
-@media (max-width:480px){
-  .fake-error-meta{ grid-template-columns:1fr 1fr; }
-  .fake-error-meta > div:nth-child(3){ grid-column:1 / -1; }
+.ce-suggestions{
+  list-style:none;
+  font-size:14px;
+  color:#5f6368;
+  margin-bottom:24px;
+  padding-left:0;
+}
+.ce-suggestions li{
+  margin-bottom:8px;
+  padding-left:14px;
+  position:relative;
+}
+.ce-suggestions li::before{
+  content:"";
+  position:absolute;
+  left:0; top:8px;
+  width:4px; height:4px;
+  border-radius:50%;
+  background:#5f6368;
+}
+@media (prefers-color-scheme: dark){
+  .ce-suggestions{ color:#9aa0a6; }
+  .ce-suggestions li::before{ background:#9aa0a6; }
+}
+
+.ce-errcode{
+  font-family:'Courier New', Consolas, monospace !important;
+  font-size:13px;
+  color:#80868b;
+  letter-spacing:.02em;
+  margin-bottom:32px;
+  cursor:default;
+  -webkit-tap-highlight-color:transparent;
+  display:inline-block;
+  padding:4px 0;
+}
+@media (prefers-color-scheme: dark){
+  .ce-errcode{ color:#9aa0a6; }
+}
+
+.ce-actions{
+  display:flex;
+  gap:8px;
+  margin-bottom:32px;
+}
+.ce-btn{
+  font-size:14px;
+  font-weight:500;
+  padding:8px 16px;
+  border-radius:4px;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:background .15s, box-shadow .15s;
+  -webkit-tap-highlight-color:transparent;
+  letter-spacing:.01em;
+}
+.ce-btn:focus{ outline:none; }
+.ce-btn-primary{
+  background:#1a73e8;
+  color:#fff;
+}
+.ce-btn-primary:hover{
+  background:#1765cc;
+  box-shadow:0 1px 2px rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+}
+.ce-btn-primary:active{ background:#185abc; }
+.ce-btn-secondary{
+  background:#fff;
+  color:#1a73e8;
+  border-color:#dadce0;
+}
+.ce-btn-secondary:hover{
+  background:#f8faff;
+  border-color:#d2e3fc;
+}
+@media (prefers-color-scheme: dark){
+  .ce-btn-primary{ background:#8ab4f8; color:#202124; }
+  .ce-btn-primary:hover{ background:#aecbfa; }
+  .ce-btn-secondary{ background:#202124; color:#8ab4f8; border-color:#5f6368; }
+  .ce-btn-secondary:hover{ background:#28292c; }
+}
+
+.ce-details{
+  display:none;
+  font-size:14px;
+  line-height:1.6;
+  color:#5f6368;
+  padding-top:8px;
+  border-top:1px solid #e8eaed;
+}
+.ce-details.ce-open{ display:block; }
+.ce-details p{ margin:16px 0; }
+@media (prefers-color-scheme: dark){
+  .ce-details{ color:#9aa0a6; border-top-color:#3c4043; }
+}
+
+/* Spinner de rechargement */
+.ce-reload-spin{
+  position:fixed; inset:0;
+  background:#fff;
+  display:none;
+  align-items:flex-start;
+  justify-content:flex-start;
+  z-index:100000;
+  padding:6px 12px;
+}
+.ce-reload-spin.ce-show{ display:flex; }
+.ce-reload-bar{
+  height:3px;
+  background:#1a73e8;
+  width:0%;
+  animation:ceBar 1.2s ease-out forwards;
+  border-radius:2px;
+}
+@keyframes ceBar{
+  0%{ width:0%; }
+  30%{ width:65%; }
+  100%{ width:95%; }
+}
+@media (prefers-color-scheme: dark){
+  .ce-reload-spin{ background:#202124; }
 }
 </style>
 
 <script>
 (function(){
-  const SECRET = ['0','0','7'];
-  const screen = document.getElementById('fakeErrorScreen');
-  const digits = document.querySelectorAll('#fakeErrorNumber .fe-digit');
-  let buffer = [];
+  const SECRET = '007';
+  const screen = document.getElementById('chromeErrorScreen');
+  const errCode = document.getElementById('ceErrCode');
+  const reloadBtn = document.getElementById('ceReloadBtn');
+  const detailsBtn = document.getElementById('ceDetailsBtn');
+  const detailsBlock = document.getElementById('ceDetails');
 
-  // Heure factice
-  function tick(){
-    const t = document.getElementById('fakeErrorTime');
-    if(!t) return;
-    const d = new Date();
-    t.textContent = d.toTimeString().slice(0,8);
-  }
-  tick();
-  const timeInterval = setInterval(tick, 1000);
-
-  // Détection mobile/tactile : on rend les chiffres cliquables
-  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  if(isTouch){
-    digits.forEach(d => d.classList.add('fe-tap'));
-  }
-
-  function tryUnlock(d){
-    buffer.push(d);
-    if(buffer.length > SECRET.length) buffer.shift();
-    if(buffer.join('') === SECRET.join('')){
-      unlock();
-    } else if(SECRET.join('').indexOf(buffer.join('')) !== 0){
-      // séquence cassée → on reset mais on garde le dernier chiffre s'il peut commencer la séquence
-      buffer = (SECRET[0] === d) ? [d] : [];
-    }
-  }
-
-  function flashDigit(el){
-    el.classList.add('fe-flash');
-    setTimeout(() => el.classList.remove('fe-flash'), 200);
-  }
-
-  // Clic sur les chiffres (mobile + souris)
-  digits.forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      const d = el.getAttribute('data-d');
-      flashDigit(el);
-      tryUnlock(d);
-    });
-  });
-
-  // Clavier (desktop)
-  document.addEventListener('keydown', (e) => {
-    if(screen.classList.contains('fe-hidden') || screen.classList.contains('fe-fade-out')) return;
-    if(e.key >= '0' && e.key <= '9'){
-      // flash visuel du premier chiffre correspondant
-      const match = Array.from(digits).find(x => x.getAttribute('data-d') === e.key);
-      if(match) flashDigit(match);
-      tryUnlock(e.key);
-    }
-  });
-
-  function unlock(){
-    clearInterval(timeInterval);
-    screen.classList.add('fe-fade-out');
-    setTimeout(() => {
-      screen.classList.add('fe-hidden');
+  // Si déjà débloqué dans cette session → ne pas réafficher l'écran
+  try{
+    if(sessionStorage.getItem('ce_unlocked') === '1'){
       screen.remove();
-    }, 600);
+      return;
+    }
+  }catch(e){}
+
+  // Sauvegarder + remplacer titre et favicon pour réalisme total
+  const originalTitle = document.title;
+  document.title = 'tfp-aps.local';
+
+  // Favicon : on remplace par une favicon vide (Chrome n'en affiche pas sur erreur DNS)
+  const oldIcons = document.querySelectorAll('link[rel*="icon"]');
+  const savedIcons = Array.from(oldIcons).map(l => l.cloneNode(true));
+  oldIcons.forEach(l => l.remove());
+
+  // Restaurer à l'unlock
+  function restoreIdentity(){
+    document.title = originalTitle;
+    savedIcons.forEach(l => document.head.appendChild(l));
+  }
+
+  // ===== Anti-inspection pendant le faux écran =====
+  function blockKey(e){
+    if(screen.classList.contains('ce-hidden') || screen.classList.contains('ce-fade-out')) return;
+    // F12
+    if(e.key === 'F12'){ e.preventDefault(); return; }
+    // Ctrl+Shift+I / J / C  (DevTools)
+    if((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J','C','i','j','c'].includes(e.key)){
+      e.preventDefault(); return;
+    }
+    // Ctrl+U (view source)
+    if((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U')){
+      e.preventDefault(); return;
+    }
+    // Ctrl+S (save page)
+    if((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')){
+      e.preventDefault(); return;
+    }
+  }
+  document.addEventListener('keydown', blockKey, true);
+
+  function blockCtx(e){
+    if(!screen.classList.contains('ce-hidden') && !screen.classList.contains('ce-fade-out')){
+      e.preventDefault();
+    }
+  }
+  document.addEventListener('contextmenu', blockCtx, true);
+
+  // ===== Détection 0,0,7 au clavier =====
+  let buffer = '';
+  let bufferTimer = null;
+
+  function handleDigit(d){
+    if(bufferTimer) clearTimeout(bufferTimer);
+    buffer += d;
+    if(buffer.length > SECRET.length) buffer = buffer.slice(-SECRET.length);
+    if(buffer === SECRET){ unlock(); return; }
+    // Si la séquence en cours ne peut plus mener au secret, reset partiellement
+    if(SECRET.indexOf(buffer) !== 0){
+      buffer = (d === SECRET[0]) ? d : '';
+    }
+    // Auto-reset après 3s d'inactivité
+    bufferTimer = setTimeout(() => { buffer = ''; }, 3000);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if(screen.classList.contains('ce-hidden') || screen.classList.contains('ce-fade-out')) return;
+    if(e.key >= '0' && e.key <= '9'){
+      handleDigit(e.key);
+    }
+  });
+
+  // ===== Séquence tactile cachée sur ERR_CONNECTION_REFUSED =====
+  // 1 tap = '0', double-tap (≤350ms) = '7'
+  // Donc : tap, tap, double-tap → "0" + "0" + "7" = unlock
+  let lastTap = 0;
+  let pendingTapTimer = null;
+
+  errCode.addEventListener('click', (e) => {
+    e.preventDefault();
+    const now = Date.now();
+    const delta = now - lastTap;
+    lastTap = now;
+
+    if(delta < 350 && delta > 0){
+      // Double-tap détecté → on annule le simple tap en attente et on envoie '7'
+      if(pendingTapTimer){
+        clearTimeout(pendingTapTimer);
+        pendingTapTimer = null;
+        // Le tap précédent avait été compté comme '0' → on doit le retirer
+        if(buffer.length > 0) buffer = buffer.slice(0, -1);
+      }
+      handleDigit('7');
+    } else {
+      // Simple tap potentiel → on attend 350ms avant de valider comme '0'
+      pendingTapTimer = setTimeout(() => {
+        handleDigit('0');
+        pendingTapTimer = null;
+      }, 360);
+    }
+  });
+
+  // ===== Boutons (faux comportements crédibles) =====
+  const spinner = document.createElement('div');
+  spinner.className = 'ce-reload-spin';
+  spinner.innerHTML = '<div class="ce-reload-bar"></div>';
+  document.body.appendChild(spinner);
+
+  reloadBtn.addEventListener('click', () => {
+    // Faux reload : barre de chargement, puis ré-affichage de la même erreur
+    spinner.classList.add('ce-show');
+    setTimeout(() => {
+      spinner.classList.remove('ce-show');
+      // micro-jitter du code d'erreur pour l'effet "ça a réessayé"
+      errCode.style.opacity = '0.4';
+      setTimeout(() => { errCode.style.opacity = '1'; }, 150);
+    }, 1300);
+  });
+
+  detailsBtn.addEventListener('click', () => {
+    const open = detailsBlock.classList.toggle('ce-open');
+    detailsBtn.textContent = open ? 'Hide details' : 'Details';
+  });
+
+  // ===== Unlock =====
+  function unlock(){
+    try{ sessionStorage.setItem('ce_unlocked', '1'); }catch(e){}
+    document.removeEventListener('keydown', blockKey, true);
+    document.removeEventListener('contextmenu', blockCtx, true);
+    restoreIdentity();
+    screen.classList.add('ce-fade-out');
+    setTimeout(() => {
+      screen.remove();
+      spinner.remove();
+    }, 300);
   }
 })();
 </script>
