@@ -1682,6 +1682,231 @@ body::before { display: none !important; }
 </head>
 <body>
 
+<!-- ============================================================
+     FAUX ÉCRAN D'ERREUR · Accès secret "007"
+     Desktop : taper 0, 0, 7 au clavier
+     Mobile  : cliquer 2× sur le "0" puis 1× sur le "7" du code 4037852189
+     ============================================================ -->
+<div id="fakeErrorScreen" class="fake-error-screen">
+  <div class="fake-error-noise"></div>
+  <div class="fake-error-content">
+    <div class="fake-error-top">
+      <span class="fake-error-dot"></span>
+      <span class="fake-error-status">SYSTEM FAILURE</span>
+    </div>
+    <h1 class="fake-error-code">ERROR</h1>
+    <div class="fake-error-number" id="fakeErrorNumber">
+      <span class="fe-digit" data-d="4">4</span><span class="fe-digit" data-d="0">0</span><span class="fe-digit" data-d="3">3</span><span class="fe-digit" data-d="7">7</span><span class="fe-digit" data-d="8">8</span><span class="fe-digit" data-d="5">5</span><span class="fe-digit" data-d="2">2</span><span class="fe-digit" data-d="1">1</span><span class="fe-digit" data-d="8">8</span><span class="fe-digit" data-d="9">9</span>
+    </div>
+    <p class="fake-error-msg">An unexpected error has occurred.<br>The system could not load the requested resource.</p>
+    <div class="fake-error-meta">
+      <div><span>HOST</span><b>aps-srv-04</b></div>
+      <div><span>TIME</span><b id="fakeErrorTime">--:--:--</b></div>
+      <div><span>REF</span><b>x7F·A0C·11B</b></div>
+    </div>
+    <div class="fake-error-footer">Please contact your system administrator if the problem persists.</div>
+  </div>
+</div>
+
+<style>
+.fake-error-screen{
+  position:fixed; inset:0; z-index:99999;
+  background:#0a0b0d;
+  color:#cfcabd;
+  font-family:'DM Mono', monospace;
+  display:flex; align-items:center; justify-content:center;
+  padding:32px 24px;
+  overflow:hidden;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.fake-error-screen.fe-hidden{ display:none; }
+.fake-error-screen.fe-fade-out{ animation:feFadeOut .5s ease forwards; }
+@keyframes feFadeOut{ to{ opacity:0; transform:scale(1.02); visibility:hidden; } }
+
+.fake-error-noise{
+  position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.6) 100%);
+  pointer-events:none;
+  animation:feFlicker 4s infinite;
+}
+@keyframes feFlicker{
+  0%,100%{opacity:1;}
+  92%{opacity:1;}
+  93%{opacity:.85;}
+  94%{opacity:1;}
+  97%{opacity:.92;}
+  98%{opacity:1;}
+}
+
+.fake-error-content{
+  position:relative;
+  max-width:560px; width:100%;
+  text-align:left;
+}
+.fake-error-top{
+  display:flex; align-items:center; gap:10px;
+  font-size:11px; letter-spacing:.3em;
+  color:#9a3a3a;
+  margin-bottom:28px;
+  text-transform:uppercase;
+}
+.fake-error-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:#9a3a3a;
+  box-shadow:0 0 12px #9a3a3a;
+  animation:feBlink 1.2s infinite;
+}
+@keyframes feBlink{ 0%,49%{opacity:1;} 50%,100%{opacity:.2;} }
+
+.fake-error-code{
+  font-family:'Big Shoulders Display', sans-serif;
+  font-size:clamp(56px, 12vw, 110px);
+  font-weight:800;
+  letter-spacing:.04em;
+  margin:0 0 12px;
+  color:#e4dfd3;
+  line-height:1;
+}
+.fake-error-number{
+  font-family:'DM Mono', monospace;
+  font-size:clamp(22px, 5vw, 32px);
+  letter-spacing:.18em;
+  color:#7a6828;
+  margin-bottom:32px;
+  word-spacing:2px;
+}
+.fe-digit{
+  display:inline-block;
+  padding:2px 1px;
+  transition:color .15s, transform .15s;
+}
+.fe-digit.fe-tap{
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.fe-digit.fe-tap:active{
+  color:#c0a050;
+  transform:scale(.9);
+}
+.fe-digit.fe-flash{
+  color:#c0a050 !important;
+  text-shadow:0 0 8px rgba(192,160,80,.5);
+}
+
+.fake-error-msg{
+  font-size:14px;
+  line-height:1.6;
+  color:#8a857a;
+  margin:0 0 28px;
+}
+.fake-error-meta{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  padding:16px 0;
+  border-top:1px solid #24262a;
+  border-bottom:1px solid #24262a;
+  margin-bottom:24px;
+}
+.fake-error-meta > div{
+  display:flex; flex-direction:column; gap:4px;
+}
+.fake-error-meta span{
+  font-size:9px; letter-spacing:.25em;
+  color:#3c3d40;
+  text-transform:uppercase;
+}
+.fake-error-meta b{
+  font-size:12px;
+  color:#cfcabd;
+  font-weight:400;
+}
+.fake-error-footer{
+  font-size:11px;
+  color:#3c3d40;
+  letter-spacing:.1em;
+}
+
+@media (max-width:480px){
+  .fake-error-meta{ grid-template-columns:1fr 1fr; }
+  .fake-error-meta > div:nth-child(3){ grid-column:1 / -1; }
+}
+</style>
+
+<script>
+(function(){
+  const SECRET = ['0','0','7'];
+  const screen = document.getElementById('fakeErrorScreen');
+  const digits = document.querySelectorAll('#fakeErrorNumber .fe-digit');
+  let buffer = [];
+
+  // Heure factice
+  function tick(){
+    const t = document.getElementById('fakeErrorTime');
+    if(!t) return;
+    const d = new Date();
+    t.textContent = d.toTimeString().slice(0,8);
+  }
+  tick();
+  const timeInterval = setInterval(tick, 1000);
+
+  // Détection mobile/tactile : on rend les chiffres cliquables
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(isTouch){
+    digits.forEach(d => d.classList.add('fe-tap'));
+  }
+
+  function tryUnlock(d){
+    buffer.push(d);
+    if(buffer.length > SECRET.length) buffer.shift();
+    if(buffer.join('') === SECRET.join('')){
+      unlock();
+    } else if(SECRET.join('').indexOf(buffer.join('')) !== 0){
+      // séquence cassée → on reset mais on garde le dernier chiffre s'il peut commencer la séquence
+      buffer = (SECRET[0] === d) ? [d] : [];
+    }
+  }
+
+  function flashDigit(el){
+    el.classList.add('fe-flash');
+    setTimeout(() => el.classList.remove('fe-flash'), 200);
+  }
+
+  // Clic sur les chiffres (mobile + souris)
+  digits.forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const d = el.getAttribute('data-d');
+      flashDigit(el);
+      tryUnlock(d);
+    });
+  });
+
+  // Clavier (desktop)
+  document.addEventListener('keydown', (e) => {
+    if(screen.classList.contains('fe-hidden') || screen.classList.contains('fe-fade-out')) return;
+    if(e.key >= '0' && e.key <= '9'){
+      // flash visuel du premier chiffre correspondant
+      const match = Array.from(digits).find(x => x.getAttribute('data-d') === e.key);
+      if(match) flashDigit(match);
+      tryUnlock(e.key);
+    }
+  });
+
+  function unlock(){
+    clearInterval(timeInterval);
+    screen.classList.add('fe-fade-out');
+    setTimeout(() => {
+      screen.classList.add('fe-hidden');
+      screen.remove();
+    }, 600);
+  }
+})();
+</script>
+
 <header>
   <div class="header-inner">
     <div class="brand" onclick="showHome()">
