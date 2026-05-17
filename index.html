@@ -1684,18 +1684,16 @@ body::before { display: none !important; }
 
 <!-- ============================================================
      FAUX CHROME DNS ERROR · Accès secret "007"
-     Desktop  : taper 0, 0, 7 au clavier (n'importe où)
-     Mobile   : 3 taps sur le mot "ERR_CONNECTION_REFUSED"
-                (séquence cachée : tap simple = 0, double-tap = 7)
-                → 1 tap, 1 tap, 1 double-tap
+     Desktop : taper 0, 0, 7 au clavier (n'importe où)
+     Mobile  : 3 taps consécutifs sur "007" dans "Status code: 007"
      ============================================================ -->
 <div id="chromeErrorScreen" class="ce-screen">
   <div class="ce-container">
     <div class="ce-icon">
       <svg viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
         <path d="M2 12 L22 12"></path>
         <path d="M12 2 L12 22"></path>
-        <circle cx="12" cy="12" r="10"></circle>
         <path d="M2 12 A 14 14 0 0 1 22 12"></path>
         <path d="M2 12 A 14 14 0 0 0 22 12"></path>
         <path d="M12 2 A 10 14 0 0 1 12 22"></path>
@@ -1711,7 +1709,8 @@ body::before { display: none !important; }
       <li>Checking the proxy and the firewall</li>
       <li>Running Windows Network Diagnostics</li>
     </ul>
-    <p class="ce-errcode" id="ceErrCode">ERR_CONNECTION_REFUSED</p>
+    <p class="ce-errcode">ERR_CONNECTION_REFUSED</p>
+    <p class="ce-substatus">Status code: <span id="ceStatusCode">007</span></p>
     <div class="ce-actions">
       <button class="ce-btn ce-btn-primary" id="ceReloadBtn">Reload</button>
       <button class="ce-btn ce-btn-secondary" id="ceDetailsBtn">Details</button>
@@ -1727,7 +1726,6 @@ body::before { display: none !important; }
 </div>
 
 <style>
-/* Reset isolé pour cet écran uniquement */
 .ce-screen, .ce-screen *{
   box-sizing:border-box;
   margin:0;
@@ -1826,14 +1824,30 @@ body::before { display: none !important; }
   font-size:13px;
   color:#80868b;
   letter-spacing:.02em;
+  margin-bottom:4px;
+}
+.ce-substatus{
+  font-family:'Courier New', Consolas, monospace !important;
+  font-size:12px;
+  color:#9aa0a6;
+  letter-spacing:.02em;
   margin-bottom:32px;
+}
+.ce-substatus #ceStatusCode{
+  display:inline-block;
+  padding:2px 4px;
+  margin:-2px -4px;
   cursor:default;
   -webkit-tap-highlight-color:transparent;
-  display:inline-block;
-  padding:4px 0;
+  transition:color .12s;
+}
+.ce-substatus #ceStatusCode.ce-flash{
+  color:#1a73e8;
 }
 @media (prefers-color-scheme: dark){
   .ce-errcode{ color:#9aa0a6; }
+  .ce-substatus{ color:#80868b; }
+  .ce-substatus #ceStatusCode.ce-flash{ color:#8ab4f8; }
 }
 
 .ce-actions{
@@ -1892,7 +1906,6 @@ body::before { display: none !important; }
   .ce-details{ color:#9aa0a6; border-top-color:#3c4043; }
 }
 
-/* Spinner de rechargement */
 .ce-reload-spin{
   position:fixed; inset:0;
   background:#fff;
@@ -1900,7 +1913,7 @@ body::before { display: none !important; }
   align-items:flex-start;
   justify-content:flex-start;
   z-index:100000;
-  padding:6px 12px;
+  padding:0;
 }
 .ce-reload-spin.ce-show{ display:flex; }
 .ce-reload-bar{
@@ -1908,7 +1921,6 @@ body::before { display: none !important; }
   background:#1a73e8;
   width:0%;
   animation:ceBar 1.2s ease-out forwards;
-  border-radius:2px;
 }
 @keyframes ceBar{
   0%{ width:0%; }
@@ -1924,12 +1936,12 @@ body::before { display: none !important; }
 (function(){
   const SECRET = '007';
   const screen = document.getElementById('chromeErrorScreen');
-  const errCode = document.getElementById('ceErrCode');
+  const statusCode = document.getElementById('ceStatusCode');
   const reloadBtn = document.getElementById('ceReloadBtn');
   const detailsBtn = document.getElementById('ceDetailsBtn');
   const detailsBlock = document.getElementById('ceDetails');
 
-  // Si déjà débloqué dans cette session → ne pas réafficher l'écran
+  // Session storage : déjà débloqué = on n'affiche plus
   try{
     if(sessionStorage.getItem('ce_unlocked') === '1'){
       screen.remove();
@@ -1937,36 +1949,26 @@ body::before { display: none !important; }
     }
   }catch(e){}
 
-  // Sauvegarder + remplacer titre et favicon pour réalisme total
+  // Remplacer titre + favicon pour réalisme
   const originalTitle = document.title;
   document.title = 'tfp-aps.local';
-
-  // Favicon : on remplace par une favicon vide (Chrome n'en affiche pas sur erreur DNS)
   const oldIcons = document.querySelectorAll('link[rel*="icon"]');
   const savedIcons = Array.from(oldIcons).map(l => l.cloneNode(true));
   oldIcons.forEach(l => l.remove());
 
-  // Restaurer à l'unlock
   function restoreIdentity(){
     document.title = originalTitle;
     savedIcons.forEach(l => document.head.appendChild(l));
   }
 
-  // ===== Anti-inspection pendant le faux écran =====
+  // Anti-inspection pendant l'écran
   function blockKey(e){
     if(screen.classList.contains('ce-hidden') || screen.classList.contains('ce-fade-out')) return;
-    // F12
     if(e.key === 'F12'){ e.preventDefault(); return; }
-    // Ctrl+Shift+I / J / C  (DevTools)
     if((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J','C','i','j','c'].includes(e.key)){
       e.preventDefault(); return;
     }
-    // Ctrl+U (view source)
-    if((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U')){
-      e.preventDefault(); return;
-    }
-    // Ctrl+S (save page)
-    if((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')){
+    if((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')){
       e.preventDefault(); return;
     }
   }
@@ -1979,7 +1981,7 @@ body::before { display: none !important; }
   }
   document.addEventListener('contextmenu', blockCtx, true);
 
-  // ===== Détection 0,0,7 au clavier =====
+  // ===== Logique 007 =====
   let buffer = '';
   let bufferTimer = null;
 
@@ -1988,14 +1990,13 @@ body::before { display: none !important; }
     buffer += d;
     if(buffer.length > SECRET.length) buffer = buffer.slice(-SECRET.length);
     if(buffer === SECRET){ unlock(); return; }
-    // Si la séquence en cours ne peut plus mener au secret, reset partiellement
     if(SECRET.indexOf(buffer) !== 0){
       buffer = (d === SECRET[0]) ? d : '';
     }
-    // Auto-reset après 3s d'inactivité
     bufferTimer = setTimeout(() => { buffer = ''; }, 3000);
   }
 
+  // Desktop : clavier
   document.addEventListener('keydown', (e) => {
     if(screen.classList.contains('ce-hidden') || screen.classList.contains('ce-fade-out')) return;
     if(e.key >= '0' && e.key <= '9'){
@@ -2003,50 +2004,43 @@ body::before { display: none !important; }
     }
   });
 
-  // ===== Séquence tactile cachée sur ERR_CONNECTION_REFUSED =====
-  // 1 tap = '0', double-tap (≤350ms) = '7'
-  // Donc : tap, tap, double-tap → "0" + "0" + "7" = unlock
-  let lastTap = 0;
-  let pendingTapTimer = null;
+  // Mobile : 3 taps sur "007"
+  // Simule la séquence complète : 0, 0, 7 envoyée au buffer
+  let tapCount = 0;
+  let tapTimer = null;
 
-  errCode.addEventListener('click', (e) => {
+  function handleStatusTap(e){
     e.preventDefault();
-    const now = Date.now();
-    const delta = now - lastTap;
-    lastTap = now;
+    e.stopPropagation();
 
-    if(delta < 350 && delta > 0){
-      // Double-tap détecté → on annule le simple tap en attente et on envoie '7'
-      if(pendingTapTimer){
-        clearTimeout(pendingTapTimer);
-        pendingTapTimer = null;
-        // Le tap précédent avait été compté comme '0' → on doit le retirer
-        if(buffer.length > 0) buffer = buffer.slice(0, -1);
-      }
-      handleDigit('7');
-    } else {
-      // Simple tap potentiel → on attend 350ms avant de valider comme '0'
-      pendingTapTimer = setTimeout(() => {
-        handleDigit('0');
-        pendingTapTimer = null;
-      }, 360);
-    }
-  });
+    // Reset si trop de temps entre les taps
+    if(tapTimer) clearTimeout(tapTimer);
 
-  // ===== Boutons (faux comportements crédibles) =====
+    tapCount++;
+    statusCode.classList.add('ce-flash');
+    setTimeout(() => statusCode.classList.remove('ce-flash'), 120);
+
+    // À chaque tap, on envoie le chiffre correspondant de "007"
+    if(tapCount === 1) handleDigit('0');
+    else if(tapCount === 2) handleDigit('0');
+    else if(tapCount === 3){ handleDigit('7'); tapCount = 0; return; }
+
+    // Reset si pause > 1.2s entre les taps
+    tapTimer = setTimeout(() => { tapCount = 0; }, 1200);
+  }
+
+  statusCode.addEventListener('click', handleStatusTap);
+
+  // ===== Boutons crédibles =====
   const spinner = document.createElement('div');
   spinner.className = 'ce-reload-spin';
   spinner.innerHTML = '<div class="ce-reload-bar"></div>';
   document.body.appendChild(spinner);
 
   reloadBtn.addEventListener('click', () => {
-    // Faux reload : barre de chargement, puis ré-affichage de la même erreur
     spinner.classList.add('ce-show');
     setTimeout(() => {
       spinner.classList.remove('ce-show');
-      // micro-jitter du code d'erreur pour l'effet "ça a réessayé"
-      errCode.style.opacity = '0.4';
-      setTimeout(() => { errCode.style.opacity = '1'; }, 150);
     }, 1300);
   });
 
