@@ -1684,8 +1684,8 @@ body::before { display: none !important; }
 
 <!-- ============================================================
      FAUX CHROME DNS ERROR · Accès secret "007"
-     Desktop : taper 0, 0, 7 au clavier (n'importe où)
-     Mobile  : 3 taps consécutifs sur "007" dans "Status code: 007"
+     Desktop : taper 0, 0, 7 au clavier
+     Mobile  : taper individuellement sur les chiffres 0, 0, 7 du Trace ID
      ============================================================ -->
 <div id="chromeErrorScreen" class="ce-screen">
   <div class="ce-container">
@@ -1710,7 +1710,7 @@ body::before { display: none !important; }
       <li>Running Windows Network Diagnostics</li>
     </ul>
     <p class="ce-errcode">ERR_CONNECTION_REFUSED</p>
-    <p class="ce-substatus">Status code: <span id="ceStatusCode">007</span></p>
+    <p class="ce-trace">Trace ID: <span id="ceTraceId"></span></p>
     <div class="ce-actions">
       <button class="ce-btn ce-btn-primary" id="ceReloadBtn">Reload</button>
       <button class="ce-btn ce-btn-secondary" id="ceDetailsBtn">Details</button>
@@ -1826,28 +1826,34 @@ body::before { display: none !important; }
   letter-spacing:.02em;
   margin-bottom:4px;
 }
-.ce-substatus{
+.ce-trace{
   font-family:'Courier New', Consolas, monospace !important;
   font-size:12px;
   color:#9aa0a6;
   letter-spacing:.02em;
   margin-bottom:32px;
+  word-break:break-all;
 }
-.ce-substatus #ceStatusCode{
+.ce-trace .ce-d{
   display:inline-block;
-  padding:2px 4px;
-  margin:-2px -4px;
-  cursor:default;
+  padding:1px 2px;
+  margin:-1px -1px;
   -webkit-tap-highlight-color:transparent;
-  transition:color .12s;
+  transition:color .12s, background .12s;
+  cursor:default;
 }
-.ce-substatus #ceStatusCode.ce-flash{
+.ce-trace .ce-d.ce-flash{
   color:#1a73e8;
+  background:rgba(26,115,232,0.08);
+  border-radius:2px;
 }
 @media (prefers-color-scheme: dark){
   .ce-errcode{ color:#9aa0a6; }
-  .ce-substatus{ color:#80868b; }
-  .ce-substatus #ceStatusCode.ce-flash{ color:#8ab4f8; }
+  .ce-trace{ color:#80868b; }
+  .ce-trace .ce-d.ce-flash{
+    color:#8ab4f8;
+    background:rgba(138,180,248,0.15);
+  }
 }
 
 .ce-actions{
@@ -1936,7 +1942,7 @@ body::before { display: none !important; }
 (function(){
   const SECRET = '007';
   const screen = document.getElementById('chromeErrorScreen');
-  const statusCode = document.getElementById('ceStatusCode');
+  const traceIdEl = document.getElementById('ceTraceId');
   const reloadBtn = document.getElementById('ceReloadBtn');
   const detailsBtn = document.getElementById('ceDetailsBtn');
   const detailsBlock = document.getElementById('ceDetails');
@@ -1949,7 +1955,7 @@ body::before { display: none !important; }
     }
   }catch(e){}
 
-  // Remplacer titre + favicon pour réalisme
+  // Remplacer titre + favicon
   const originalTitle = document.title;
   document.title = 'tfp-aps.local';
   const oldIcons = document.querySelectorAll('link[rel*="icon"]');
@@ -1961,7 +1967,55 @@ body::before { display: none !important; }
     savedIcons.forEach(l => document.head.appendChild(l));
   }
 
-  // Anti-inspection pendant l'écran
+  // ===== Génération du Trace ID =====
+  // Format façon Cloudflare/Chrome : 4 groupes de 4 hex chars
+  // On garantit la présence d'au moins deux 0 et un 7, mais répartis dans la masse
+  function generateTraceId(){
+    // 16 caractères hex, mélangés en 4 groupes de 4
+    const pool = [];
+    // Garantir présence : 2× '0', 1× '7'
+    pool.push('0','0','7');
+    // Remplir le reste avec hex aléatoire (en évitant trop de zéros supplémentaires
+    // pour ne pas créer de pièges : si y'a 5 zéros le risque de mauvais tap monte)
+    const safeChars = ['1','2','3','4','5','6','8','9','a','b','c','d','e','f'];
+    while(pool.length < 16){
+      pool.push(safeChars[Math.floor(Math.random() * safeChars.length)]);
+    }
+    // Shuffle Fisher-Yates
+    for(let i = pool.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    // Format en groupes de 4 séparés par '-'
+    const groups = [
+      pool.slice(0,4).join(''),
+      pool.slice(4,8).join(''),
+      pool.slice(8,12).join(''),
+      pool.slice(12,16).join('')
+    ];
+    return groups.join('-');
+  }
+
+  // Construire le DOM avec chaque chiffre tappable individuellement
+  function renderTraceId(traceId){
+    traceIdEl.innerHTML = '';
+    for(const ch of traceId){
+      if(ch === '-'){
+        traceIdEl.appendChild(document.createTextNode('-'));
+      } else {
+        const span = document.createElement('span');
+        span.className = 'ce-d';
+        span.textContent = ch;
+        span.setAttribute('data-v', ch);
+        traceIdEl.appendChild(span);
+      }
+    }
+  }
+
+  const traceId = generateTraceId();
+  renderTraceId(traceId);
+
+  // ===== Anti-inspection =====
   function blockKey(e){
     if(screen.classList.contains('ce-hidden') || screen.classList.contains('ce-fade-out')) return;
     if(e.key === 'F12'){ e.preventDefault(); return; }
@@ -1981,7 +2035,7 @@ body::before { display: none !important; }
   }
   document.addEventListener('contextmenu', blockCtx, true);
 
-  // ===== Logique 007 =====
+  // ===== Logique de buffer 007 =====
   let buffer = '';
   let bufferTimer = null;
 
@@ -2004,32 +2058,28 @@ body::before { display: none !important; }
     }
   });
 
-  // Mobile : 3 taps sur "007"
-  // Simule la séquence complète : 0, 0, 7 envoyée au buffer
-  let tapCount = 0;
-  let tapTimer = null;
-
-  function handleStatusTap(e){
+  // Mobile / click : chaque chiffre du Trace ID est tappable
+  traceIdEl.addEventListener('click', (e) => {
+    const target = e.target.closest('.ce-d');
+    if(!target) return;
     e.preventDefault();
     e.stopPropagation();
+    const v = target.getAttribute('data-v');
+    if(!v) return;
 
-    // Reset si trop de temps entre les taps
-    if(tapTimer) clearTimeout(tapTimer);
+    // Flash visuel
+    target.classList.add('ce-flash');
+    setTimeout(() => target.classList.remove('ce-flash'), 180);
 
-    tapCount++;
-    statusCode.classList.add('ce-flash');
-    setTimeout(() => statusCode.classList.remove('ce-flash'), 120);
-
-    // À chaque tap, on envoie le chiffre correspondant de "007"
-    if(tapCount === 1) handleDigit('0');
-    else if(tapCount === 2) handleDigit('0');
-    else if(tapCount === 3){ handleDigit('7'); tapCount = 0; return; }
-
-    // Reset si pause > 1.2s entre les taps
-    tapTimer = setTimeout(() => { tapCount = 0; }, 1200);
-  }
-
-  statusCode.addEventListener('click', handleStatusTap);
+    // On envoie seulement chiffres 0-9 au buffer (pas les hex a-f)
+    if(v >= '0' && v <= '9'){
+      handleDigit(v);
+    }
+    // Les lettres hex ne font rien → reset silencieux du buffer pour éviter qu'on triche par erreur
+    else {
+      buffer = '';
+    }
+  });
 
   // ===== Boutons crédibles =====
   const spinner = document.createElement('div');
@@ -2041,6 +2091,10 @@ body::before { display: none !important; }
     spinner.classList.add('ce-show');
     setTimeout(() => {
       spinner.classList.remove('ce-show');
+      // Régénérer un nouveau Trace ID au "reload" pour le réalisme
+      const newId = generateTraceId();
+      renderTraceId(newId);
+      buffer = '';
     }, 1300);
   });
 
