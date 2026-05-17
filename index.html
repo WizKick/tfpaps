@@ -8125,7 +8125,7 @@ function answerErp(i){
   document.querySelectorAll('#erpOptions .option').forEach((btn, idx) => {
     btn.disabled = true;
     if(idx === q.correctIdx) btn.classList.add('correct');
-    else if(idx === i) btn.classList.add('incorrect');
+    else if(idx === i) btn.classList.add('wrong');
   });
 
   const exp = document.getElementById('erpExplain');
