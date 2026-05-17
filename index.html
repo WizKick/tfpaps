@@ -2213,6 +2213,13 @@ body::before { display: none !important; }
         <div class="mode-meta">Réviser intelligemment</div>
       </button>
 
+      <button class="mode-card" onclick="showErpModule()">
+        <div class="mode-number">09 / ERP</div>
+        <div class="mode-title">Types d'ERP</div>
+        <div class="mode-desc">Mémorise les types d'ERP (L, M, N, O, R...) et leurs activités. Tableau + QCU drill. Tombe à chaque exam.</div>
+        <div class="mode-meta">Maîtriser</div>
+      </button>
+
     </div>
   </section>
 
@@ -2771,9 +2778,9 @@ const questionsQCM = [
 {
     theme: "Palpation / Fouille",
     q: "Pouvez-vous fouiller une personne suspectée de vol ?",
-    options: ["Non c'est un acte illégal, un abus de pouvoir", "Oui, sur ordre de mon Directeur", "Oui c'est mon devoir de citoyen", "Seulement en flagrant délit (art 53 du CPP)", "Aucune des réponses précédentes"],
-    correct: 3,
-    explanation: "La fouille n'est possible qu'en flagrant délit (article 53 CPP). Le consentement est toujours nécessaire."
+    options: ["Non, la fouille est un acte de police judiciaire réservé à l'OPJ", "Oui, sur ordre de mon Directeur", "Oui c'est mon devoir de citoyen", "Seulement en flagrant délit (art 53 du CPP)", "Aucune des réponses précédentes"],
+    correct: 0,
+    explanation: "L'APS n'a JAMAIS le droit de fouiller. La fouille est un acte de police judiciaire réservé à un OPJ. L'APS peut uniquement effectuer une palpation de sécurité avec consentement (L613-2 CSI). Attention au piège : fouille ≠ palpation."
   },
 {
     theme: "Palpation / Fouille",
@@ -7133,7 +7140,7 @@ function showScreen(id){
     if(s==="homeScreen"){e.style.display="none";}else{e.style.display="";}
   });
   // Cacher aussi les écrans dynamiques OTAN
-  ["otanGameScreen","otanGamePlayScreen"].forEach(sid=>{const oe=document.getElementById(sid);if(oe)oe.style.display="none";});
+  ["otanGameScreen","otanGamePlayScreen","erpScreen","erpTableScreen","erpQuizScreen"].forEach(sid=>{const oe=document.getElementById(sid);if(oe)oe.style.display="none";});
   const t=document.getElementById(id);if(!t)return;
   if(id==="homeScreen"){t.style.display="block";}else{t.classList.add("active");}
 }
@@ -7805,6 +7812,478 @@ document.addEventListener("keydown",e=>{
   if(document.getElementById("oralScreen").classList.contains("active")){if(e.key==="ArrowRight")nextOral();if(e.key==="ArrowLeft")prevOral();if(e.key===" "){e.preventDefault();toggleOralAnswer();}}
   if(document.getElementById("quizScreen").classList.contains("active")){if(e.key==="Enter"&&document.getElementById("nextBtn").style.display!=="none")nextQuestion();}
 });
+
+// ============================================================
+// MODULE ERP · Types d'ERP + QCU drill
+// ============================================================
+
+const ERP_TYPES = [
+  // 1ère catégorie - "JOUR" (mémo) - les principaux par activité
+  { letter: "J",  nom: "Structures d'accueil pour personnes âgées et handicapées", exemples: "EHPAD, foyer logement, IME", seuil: "Effectif > 25 résidents OU > 100 total", famille: "Habitation collective" },
+  { letter: "L",  nom: "Salles d'auditions, de conférences, de réunions, de spectacles ou à usages multiples", exemples: "Salle de spectacle, théâtre, salle polyvalente", seuil: "Public ≥ 50 (sous-sol ≥ 20)", famille: "Salles" },
+  { letter: "M",  nom: "Magasins de vente, centres commerciaux", exemples: "Supermarché, boutique, centre commercial", seuil: "Public ≥ 100 (étage) ou ≥ 200 (total)", famille: "Commerces" },
+  { letter: "N",  nom: "Restaurants et débits de boissons", exemples: "Restaurant, café, bar, brasserie", seuil: "Public ≥ 100 (étage) ou ≥ 200 (total)", famille: "Restauration" },
+  { letter: "O",  nom: "Hôtels et pensions de famille", exemples: "Hôtel, pension, motel, auberge", seuil: "Public ≥ 100 (peut être moins selon étages)", famille: "Hébergement" },
+  { letter: "P",  nom: "Salles de danse et salles de jeux", exemples: "Discothèque, casino, salle de jeux, dancing", seuil: "Public ≥ 100 (sous-sol ≥ 20)", famille: "Loisirs" },
+  { letter: "R",  nom: "Établissements d'enseignement, colonies de vacances", exemples: "École, collège, lycée, crèche, internat", seuil: "Public ≥ 100 (200 avec hébergement) - 1 seul élève en crèche", famille: "Enseignement" },
+  { letter: "S",  nom: "Bibliothèques, centres de documentation", exemples: "Bibliothèque, médiathèque, centre de doc", seuil: "Public ≥ 100 (sous-sol ≥ 20)", famille: "Culture" },
+  { letter: "T",  nom: "Salles d'expositions", exemples: "Salon, foire, musée d'expo temporaire", seuil: "Public ≥ 100 (sous-sol ≥ 20)", famille: "Expositions" },
+  { letter: "U",  nom: "Établissements sanitaires", exemples: "Hôpital, clinique, maison de santé", seuil: "Effectif > 20 lits / hospitalisation", famille: "Santé" },
+  { letter: "V",  nom: "Établissements de culte", exemples: "Église, mosquée, synagogue, temple", seuil: "Public ≥ 300 (sous-sol ≥ 100)", famille: "Culte" },
+  { letter: "W",  nom: "Administrations, banques, bureaux", exemples: "Mairie, préfecture, banque, bureaux d'entreprise", seuil: "Public ≥ 100 (sous-sol ≥ 100) ou > 200 (étage)", famille: "Bureaux" },
+  { letter: "X",  nom: "Établissements sportifs couverts", exemples: "Gymnase, piscine couverte, salle de sport", seuil: "Public ≥ 100 (sous-sol ≥ 20)", famille: "Sport" },
+  { letter: "Y",  nom: "Musées", exemples: "Musée d'art, musée d'histoire, musée permanent", seuil: "Public ≥ 100 (sous-sol ≥ 20)", famille: "Culture" },
+  // Spéciaux / plein air
+  { letter: "PA", nom: "Établissements de plein air", exemples: "Stade, terrain de sport, parc d'attractions", seuil: "Public ≥ 300", famille: "Plein air" },
+  { letter: "CTS",nom: "Chapiteaux, tentes et structures itinérantes", exemples: "Chapiteau de cirque, tente événementielle", seuil: "Public ≥ 50", famille: "Plein air" },
+  { letter: "SG", nom: "Structures gonflables", exemples: "Château gonflable, structure gonflable événementielle", seuil: "Public quelconque", famille: "Plein air" },
+  { letter: "PS", nom: "Parcs de stationnement couverts", exemples: "Parking couvert, parking souterrain", seuil: "Capacité > 10 véhicules", famille: "Stationnement" },
+  { letter: "OA", nom: "Hôtels-restaurants d'altitude", exemples: "Refuge de montagne, hôtel d'altitude", seuil: "Accès difficile (secours retardés)", famille: "Spéciaux" },
+  { letter: "REF",nom: "Refuges de montagne", exemples: "Refuge gardé ou non gardé", seuil: "Public quelconque - accès difficile", famille: "Spéciaux" },
+  { letter: "GA", nom: "Gares accessibles au public", exemples: "Gare SNCF, gare routière, gare souterraine", seuil: "Public quelconque", famille: "Spéciaux" },
+  { letter: "EF", nom: "Établissements flottants", exemples: "Bateau-mouche, péniche-restaurant, bateau amarré", seuil: "Public ≥ 12 (≥ 50 = catégorie sup.)", famille: "Spéciaux" }
+];
+
+const ERP_CATEGORIES = [
+  { cat: "1ʳᵉ", effectif: "Plus de 1 500 personnes", note: "Très grand établissement" },
+  { cat: "2ᵉ",  effectif: "De 701 à 1 500 personnes", note: "Grand établissement" },
+  { cat: "3ᵉ",  effectif: "De 301 à 700 personnes", note: "Établissement moyen" },
+  { cat: "4ᵉ",  effectif: "300 personnes et moins (sauf 5ᵉ cat)", note: "Petit établissement" },
+  { cat: "5ᵉ",  effectif: "Sous les seuils du règlement de sécurité", note: "Très petit - règles allégées" }
+];
+
+// ===== HOME ERP =====
+function showErpModule(){
+  stopTimers();
+  let screen = document.getElementById('erpScreen');
+  if(!screen){
+    screen = document.createElement('section');
+    screen.id = 'erpScreen';
+    screen.className = 'fiche-detail';
+    document.querySelector('main').appendChild(screen);
+  }
+  screen.innerHTML = `
+    <div class="hero" style="margin-bottom:2rem;">
+      <span class="hero-tag">ERP · Établissements Recevant du Public</span>
+      <h1>Maîtrise les <em>types d'ERP</em>.<br>Tableau + QCU drill.</h1>
+      <p>Mémorise les ${ERP_TYPES.length} types d'ERP et leurs activités. Tombe à chaque examen. Méthode mnémo : <strong>JLM NORST UVWXY</strong> puis spéciaux (PA, CTS, PS, GA, EF, OA, REF, SG).</p>
+    </div>
+
+    <div class="modes">
+      <button class="mode-card highlight" onclick="showErpTable()">
+        <div class="mode-number">01 / Référence</div>
+        <div class="mode-title">Tableau complet</div>
+        <div class="mode-desc">Tous les types, activités, exemples et seuils dans un tableau filtrable. À consulter avant le drill.</div>
+        <div class="mode-meta">Consulter</div>
+      </button>
+
+      <button class="mode-card" onclick="startErpQuiz('letter-to-activity')">
+        <div class="mode-number">02 / QCU</div>
+        <div class="mode-title">Lettre → Activité</div>
+        <div class="mode-desc">On te donne la lettre (L, M, R...), tu choisis l'activité correspondante. Le mode le plus tombé.</div>
+        <div class="mode-meta">Drill</div>
+      </button>
+
+      <button class="mode-card" onclick="startErpQuiz('activity-to-letter')">
+        <div class="mode-number">03 / QCU</div>
+        <div class="mode-title">Activité → Lettre</div>
+        <div class="mode-desc">On te donne un exemple (école, hôpital, supermarché...), tu donnes la lettre. Plus dur.</div>
+        <div class="mode-meta">Drill</div>
+      </button>
+
+      <button class="mode-card" onclick="startErpQuiz('categories')">
+        <div class="mode-number">04 / QCU</div>
+        <div class="mode-title">Catégories ERP</div>
+        <div class="mode-desc">1ʳᵉ, 2ᵉ, 3ᵉ, 4ᵉ, 5ᵉ catégorie · Mémorise les seuils d'effectif. 1500, 700, 300, etc.</div>
+        <div class="mode-meta">Drill</div>
+      </button>
+
+      <button class="mode-card highlight" onclick="startErpQuiz('mixed')">
+        <div class="mode-number">05 / Examen</div>
+        <div class="mode-title">Mix complet</div>
+        <div class="mode-desc">Mélange des 3 modes ci-dessus. Conditions exam : 20 questions, correction immédiate.</div>
+        <div class="mode-meta">Conditions réelles</div>
+      </button>
+    </div>
+
+    <button class="btn btn-ghost" onclick="showHome()" style="margin-top:2rem;">← Retour à l'accueil</button>
+  `;
+  // Cacher tous les autres écrans
+  document.querySelectorAll('main > section').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
+  screen.style.display = '';
+  screen.classList.add('active');
+}
+
+// ===== TABLEAU ERP =====
+function showErpTable(){
+  let screen = document.getElementById('erpTableScreen');
+  if(!screen){
+    screen = document.createElement('section');
+    screen.id = 'erpTableScreen';
+    screen.className = 'fiche-detail';
+    document.querySelector('main').appendChild(screen);
+  }
+
+  const rowsHtml = ERP_TYPES.map(t => `
+    <div class="erp-row" data-search="${(t.letter+' '+t.nom+' '+t.exemples+' '+t.famille).toLowerCase()}">
+      <div class="erp-letter">${t.letter}</div>
+      <div class="erp-content">
+        <div class="erp-nom">${t.nom}</div>
+        <div class="erp-meta"><span class="erp-tag">Exemples</span> ${t.exemples}</div>
+        <div class="erp-meta"><span class="erp-tag">Seuil</span> ${t.seuil}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const catHtml = ERP_CATEGORIES.map(c => `
+    <div class="erp-cat-row">
+      <div class="erp-cat-num">${c.cat}</div>
+      <div>
+        <div class="erp-cat-eff">${c.effectif}</div>
+        <div class="erp-cat-note">${c.note}</div>
+      </div>
+    </div>
+  `).join('');
+
+  screen.innerHTML = `
+    <div class="hero" style="margin-bottom:1.5rem;">
+      <span class="hero-tag">ERP · Tableau complet</span>
+      <h1>${ERP_TYPES.length} <em>types</em> + 5 catégories.</h1>
+      <p>Filtre par lettre, mot-clé ou activité. Méthode mnémo principale : <strong>JLM NORST UVWXY</strong>.</p>
+    </div>
+
+    <div class="erp-search-wrap">
+      <input type="text" id="erpSearch" class="erp-search" placeholder="Filtrer : 'école', 'hôpital', 'M'..." autocomplete="off">
+    </div>
+
+    <h2 class="section-title" style="margin-top:2rem;">Types <em>par activité</em></h2>
+    <div class="erp-table" id="erpTableList">
+      ${rowsHtml}
+    </div>
+
+    <h2 class="section-title" style="margin-top:3rem;">Catégories <em>par effectif</em></h2>
+    <div class="erp-cat-table">
+      ${catHtml}
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
+      <button class="btn" onclick="startErpQuiz('mixed')">Tester mes connaissances →</button>
+      <button class="btn btn-ghost" onclick="showErpModule()">← Retour ERP</button>
+    </div>
+  `;
+  document.querySelectorAll('main > section').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
+  screen.style.display = '';
+  screen.classList.add('active');
+
+  // Recherche live
+  const input = document.getElementById('erpSearch');
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    document.querySelectorAll('#erpTableList .erp-row').forEach(r => {
+      const d = r.getAttribute('data-search');
+      r.style.display = (!q || d.includes(q)) ? '' : 'none';
+    });
+  });
+}
+
+// ===== QUIZ ERP =====
+const erpState = { mode:null, questions:[], idx:0, score:0, answers:[] };
+
+function buildErpQuestions(mode){
+  const qs = [];
+  const shuf = arr => { const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+  const pick = (arr,n,exclude) => shuf(arr.filter(x => !exclude || !exclude(x))).slice(0,n);
+
+  if(mode === 'letter-to-activity' || mode === 'mixed'){
+    ERP_TYPES.forEach(t => {
+      const distract = pick(ERP_TYPES, 3, x => x.letter === t.letter);
+      const opts = shuf([t, ...distract]);
+      qs.push({
+        kind: 'letter-to-activity',
+        q: `Type <strong>${t.letter}</strong> : à quelle activité correspond-il ?`,
+        options: opts.map(o => o.nom),
+        correctIdx: opts.indexOf(t),
+        explanation: `<strong>${t.letter}</strong> = ${t.nom}.<br><span style="color:var(--text-dim)">Exemples : ${t.exemples}</span>`
+      });
+    });
+  }
+
+  if(mode === 'activity-to-letter' || mode === 'mixed'){
+    ERP_TYPES.forEach(t => {
+      const distract = pick(ERP_TYPES, 3, x => x.letter === t.letter);
+      const opts = shuf([t, ...distract]);
+      // Choisir un exemple parmi ceux du type
+      const exempleList = t.exemples.split(',').map(s => s.trim());
+      const ex = exempleList[Math.floor(Math.random()*exempleList.length)];
+      qs.push({
+        kind: 'activity-to-letter',
+        q: `<strong>${ex}</strong> : quel type d'ERP ?`,
+        options: opts.map(o => `Type <strong>${o.letter}</strong> — ${o.nom.length > 60 ? o.nom.slice(0,60)+'…' : o.nom}`),
+        correctIdx: opts.indexOf(t),
+        explanation: `<strong>${ex}</strong> → Type <strong>${t.letter}</strong> (${t.nom}).`
+      });
+    });
+  }
+
+  if(mode === 'categories' || mode === 'mixed'){
+    ERP_CATEGORIES.forEach(c => {
+      const distract = pick(ERP_CATEGORIES, 3, x => x.cat === c.cat);
+      const opts = shuf([c, ...distract]);
+      qs.push({
+        kind: 'categories',
+        q: `Catégorie <strong>${c.cat}</strong> : quel effectif ?`,
+        options: opts.map(o => o.effectif),
+        correctIdx: opts.indexOf(c),
+        explanation: `<strong>${c.cat} catégorie</strong> : ${c.effectif}. ${c.note}.`
+      });
+    });
+    // Et l'inverse : effectif → catégorie
+    ERP_CATEGORIES.forEach(c => {
+      const distract = pick(ERP_CATEGORIES, 3, x => x.cat === c.cat);
+      const opts = shuf([c, ...distract]);
+      qs.push({
+        kind: 'categories',
+        q: `Un ERP de <strong>${c.effectif}</strong> est de quelle catégorie ?`,
+        options: opts.map(o => `${o.cat} catégorie`),
+        correctIdx: opts.indexOf(c),
+        explanation: `<strong>${c.effectif}</strong> → ${c.cat} catégorie (${c.note}).`
+      });
+    });
+  }
+
+  return shuf(qs).slice(0, mode === 'mixed' ? 20 : qs.length);
+}
+
+function startErpQuiz(mode){
+  erpState.mode = mode;
+  erpState.questions = buildErpQuestions(mode);
+  erpState.idx = 0;
+  erpState.score = 0;
+  erpState.answers = [];
+  renderErpQ();
+}
+
+function renderErpQ(){
+  let screen = document.getElementById('erpQuizScreen');
+  if(!screen){
+    screen = document.createElement('section');
+    screen.id = 'erpQuizScreen';
+    screen.className = 'fiche-detail';
+    document.querySelector('main').appendChild(screen);
+  }
+
+  if(erpState.idx >= erpState.questions.length){
+    renderErpResults();
+    return;
+  }
+
+  const q = erpState.questions[erpState.idx];
+  const progress = ((erpState.idx) / erpState.questions.length) * 100;
+
+  screen.innerHTML = `
+    <div class="quiz-header">
+      <div class="quiz-header-left">
+        <div class="quiz-meta">ERP · Question ${erpState.idx + 1}/${erpState.questions.length}</div>
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" style="width:${progress}%"></div>
+        </div>
+      </div>
+      <div class="quiz-header-right">
+        <div class="quiz-score">${erpState.score} / ${erpState.idx}</div>
+      </div>
+    </div>
+
+    <div class="theme-pill">${q.kind === 'letter-to-activity' ? 'Lettre → Activité' : q.kind === 'activity-to-letter' ? 'Activité → Lettre' : 'Catégorie ERP'}</div>
+    <h2 class="quiz-question">${q.q}</h2>
+
+    <div class="options" id="erpOptions">
+      ${q.options.map((opt, i) => `
+        <button class="option" data-i="${i}" onclick="answerErp(${i})">
+          <span class="option-letter">${String.fromCharCode(65+i)}</span>
+          <span class="option-text">${opt}</span>
+        </button>
+      `).join('')}
+    </div>
+
+    <div id="erpExplain" style="display:none;"></div>
+
+    <div class="quiz-footer" id="erpFooter" style="display:none;">
+      <button class="btn btn-ghost" onclick="abandonErpQuiz()">Abandonner</button>
+      <button class="btn" onclick="nextErpQ()" id="erpNextBtn">${erpState.idx === erpState.questions.length - 1 ? 'Voir résultats →' : 'Question suivante →'}</button>
+    </div>
+  `;
+  document.querySelectorAll('main > section').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
+  screen.style.display = '';
+  screen.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function answerErp(i){
+  const q = erpState.questions[erpState.idx];
+  const correct = i === q.correctIdx;
+  if(correct) erpState.score++;
+  erpState.answers.push({ q, given:i, correct });
+
+  document.querySelectorAll('#erpOptions .option').forEach((btn, idx) => {
+    btn.disabled = true;
+    if(idx === q.correctIdx) btn.classList.add('correct');
+    else if(idx === i) btn.classList.add('incorrect');
+  });
+
+  const exp = document.getElementById('erpExplain');
+  exp.innerHTML = `
+    <div class="explanation">
+      <div class="explanation-label">${correct ? '✓ Correct' : '✗ Incorrect'} · Explication</div>
+      <div class="explanation-text">${q.explanation}</div>
+    </div>
+  `;
+  exp.style.display = 'block';
+  document.getElementById('erpFooter').style.display = 'flex';
+
+  if(typeof sndGood === 'function' && correct) sndGood();
+  if(typeof sndBad === 'function' && !correct) sndBad();
+}
+
+function nextErpQ(){
+  erpState.idx++;
+  renderErpQ();
+}
+
+function abandonErpQuiz(){
+  if(confirm('Abandonner le drill ERP ?')){
+    showErpModule();
+  }
+}
+
+function renderErpResults(){
+  const total = erpState.questions.length;
+  const score = erpState.score;
+  const pct = Math.round((score/total)*100);
+  const note20 = Math.round((score/total)*20*10)/10;
+
+  let verdict, color;
+  if(pct >= 80){ verdict = "Excellent · prêt pour l'exam"; color = "var(--success)"; }
+  else if(pct >= 60){ verdict = "Bien · encore un peu de drill"; color = "var(--gold)"; }
+  else { verdict = "À retravailler · revois le tableau"; color = "var(--error)"; }
+
+  const wrongs = erpState.answers.filter(a => !a.correct);
+
+  let screen = document.getElementById('erpQuizScreen');
+  screen.innerHTML = `
+    <div class="hero" style="margin-bottom:2rem;">
+      <span class="hero-tag">ERP · Résultats</span>
+      <h1 style="color:${color};">${score} / ${total}</h1>
+      <p style="font-size:1.2rem;color:var(--text);"><strong>${note20}/20</strong> · ${verdict}</p>
+    </div>
+
+    ${wrongs.length > 0 ? `
+      <h2 class="section-title">À revoir (${wrongs.length})</h2>
+      <div class="erp-table" style="margin-bottom:2rem;">
+        ${wrongs.map(a => `
+          <div class="erp-row" style="border-left:3px solid var(--error);">
+            <div class="erp-content" style="flex:1;">
+              <div class="erp-nom">${a.q.q}</div>
+              <div class="erp-meta"><span class="erp-tag">Correct</span> ${a.q.options[a.q.correctIdx]}</div>
+              <div class="erp-meta" style="margin-top:.5rem;">${a.q.explanation}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '<p style="text-align:center;color:var(--success);margin:2rem 0;font-size:1.1rem;">Sans-faute. Excellent.</p>'}
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
+      <button class="btn" onclick="startErpQuiz('${erpState.mode}')">Rejouer ce mode</button>
+      <button class="btn btn-ghost" onclick="showErpTable()">Voir le tableau</button>
+      <button class="btn btn-ghost" onclick="showErpModule()">← Module ERP</button>
+    </div>
+  `;
+}
+
+// ===== STYLES ERP =====
+(function injectErpStyles(){
+  const s = document.createElement('style');
+  s.textContent = `
+    .erp-search-wrap{ margin:1.5rem 0; }
+    .erp-search{
+      width:100%; padding:.9rem 1.1rem;
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:6px; color:var(--text);
+      font-family:'Outfit', sans-serif; font-size:1rem;
+      transition:border-color .2s;
+    }
+    .erp-search:focus{ outline:none; border-color:var(--gold); }
+
+    .erp-table{ display:flex; flex-direction:column; gap:.5rem; }
+    .erp-row{
+      display:flex; gap:1.2rem; align-items:flex-start;
+      padding:1rem 1.2rem;
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:6px;
+      transition:border-color .2s, background .2s;
+    }
+    .erp-row:hover{ border-color:var(--border-strong); background:var(--surface-hover); }
+    .erp-letter{
+      flex:0 0 auto;
+      min-width:48px; height:48px;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg, var(--gold), var(--gold-dim));
+      color:#0e0f11;
+      font-family:'Syne', sans-serif; font-weight:800;
+      font-size:1.3rem; border-radius:6px;
+      padding:0 .5rem;
+    }
+    .erp-content{ flex:1; min-width:0; }
+    .erp-nom{
+      font-family:'Syne', sans-serif; font-weight:500;
+      font-size:1rem; color:var(--text); margin-bottom:.4rem;
+      line-height:1.4;
+    }
+    .erp-meta{
+      font-size:.85rem; color:var(--text-dim);
+      margin-bottom:.2rem; line-height:1.4;
+    }
+    .erp-tag{
+      display:inline-block; min-width:65px;
+      font-family:'DM Mono', monospace; font-size:.7rem;
+      color:var(--gold); text-transform:uppercase;
+      letter-spacing:.1em; margin-right:.4rem;
+    }
+
+    .erp-cat-table{ display:flex; flex-direction:column; gap:.5rem; }
+    .erp-cat-row{
+      display:flex; gap:1.2rem; align-items:center;
+      padding:1rem 1.2rem;
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:6px;
+    }
+    .erp-cat-num{
+      flex:0 0 auto; min-width:64px; height:64px;
+      display:flex; align-items:center; justify-content:center;
+      background:transparent; border:2px solid var(--gold);
+      color:var(--gold);
+      font-family:'Syne', sans-serif; font-weight:700;
+      font-size:1.4rem; border-radius:50%;
+    }
+    .erp-cat-eff{ font-family:'Syne', sans-serif; font-weight:500; color:var(--text); font-size:1rem; }
+    .erp-cat-note{ font-size:.85rem; color:var(--text-dim); margin-top:.2rem; }
+
+    .theme-pill{
+      display:inline-block;
+      font-family:'DM Mono', monospace; font-size:.75rem;
+      color:var(--gold); letter-spacing:.15em; text-transform:uppercase;
+      padding:.4rem .8rem;
+      background:rgba(192,160,80,.08); border:1px solid rgba(192,160,80,.25);
+      border-radius:4px; margin-bottom:1rem;
+    }
+
+    @media (max-width:600px){
+      .erp-row{ padding:.85rem; gap:.85rem; }
+      .erp-letter{ min-width:40px; height:40px; font-size:1.1rem; }
+      .erp-cat-num{ min-width:54px; height:54px; font-size:1.2rem; }
+    }
+  `;
+  document.head.appendChild(s);
+})();
 
 // ===== INIT =====
 try{
