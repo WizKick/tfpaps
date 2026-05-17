@@ -8079,22 +8079,20 @@ function renderErpQ(){
 
   const q = erpState.questions[erpState.idx];
   const progress = ((erpState.idx) / erpState.questions.length) * 100;
+  const kindLabel = q.kind === 'letter-to-activity' ? 'Lettre → Activité' : q.kind === 'activity-to-letter' ? 'Activité → Lettre' : 'Catégorie ERP';
 
   screen.innerHTML = `
     <div class="quiz-header">
       <div class="quiz-header-left">
-        <div class="quiz-meta">ERP · Question ${erpState.idx + 1}/${erpState.questions.length}</div>
-        <div class="quiz-progress">
-          <div class="quiz-progress-bar" style="width:${progress}%"></div>
+        <div class="quiz-top-row">
+          <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+          <div class="progress-text">${erpState.idx + 1} / ${erpState.questions.length} · ${erpState.score} pts</div>
         </div>
-      </div>
-      <div class="quiz-header-right">
-        <div class="quiz-score">${erpState.score} / ${erpState.idx}</div>
       </div>
     </div>
 
-    <div class="theme-pill">${q.kind === 'letter-to-activity' ? 'Lettre → Activité' : q.kind === 'activity-to-letter' ? 'Activité → Lettre' : 'Catégorie ERP'}</div>
-    <h2 class="quiz-question">${q.q}</h2>
+    <div class="question-theme">ERP · ${kindLabel}</div>
+    <div class="question-text">${q.q}</div>
 
     <div class="options" id="erpOptions">
       ${q.options.map((opt, i) => `
@@ -8105,11 +8103,11 @@ function renderErpQ(){
       `).join('')}
     </div>
 
-    <div id="erpExplain" style="display:none;"></div>
+    <div id="erpExplain"></div>
 
-    <div class="quiz-footer" id="erpFooter" style="display:none;">
+    <div class="actions" id="erpFooter" style="display:none;">
       <button class="btn btn-ghost" onclick="abandonErpQuiz()">Abandonner</button>
-      <button class="btn" onclick="nextErpQ()" id="erpNextBtn">${erpState.idx === erpState.questions.length - 1 ? 'Voir résultats →' : 'Question suivante →'}</button>
+      <button class="btn btn-primary" onclick="nextErpQ()" id="erpNextBtn">${erpState.idx === erpState.questions.length - 1 ? 'Voir résultats →' : 'Question suivante →'}</button>
     </div>
   `;
   document.querySelectorAll('main > section').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
@@ -8177,15 +8175,13 @@ function renderErpResults(){
     </div>
 
     ${wrongs.length > 0 ? `
-      <h2 class="section-title">À revoir (${wrongs.length})</h2>
-      <div class="erp-table" style="margin-bottom:2rem;">
+      <h2 class="section-title">À <em>revoir</em> (${wrongs.length})</h2>
+      <div class="erp-review-list" style="margin-bottom:2rem;">
         ${wrongs.map(a => `
-          <div class="erp-row" style="border-left:3px solid var(--error);">
-            <div class="erp-content" style="flex:1;">
-              <div class="erp-nom">${a.q.q}</div>
-              <div class="erp-meta"><span class="erp-tag">Correct</span> ${a.q.options[a.q.correctIdx]}</div>
-              <div class="erp-meta" style="margin-top:.5rem;">${a.q.explanation}</div>
-            </div>
+          <div class="erp-review-card">
+            <div class="erp-review-q">${a.q.q}</div>
+            <div class="erp-review-meta"><span class="erp-tag">Bonne réponse</span> ${a.q.options[a.q.correctIdx]}</div>
+            <div class="erp-review-exp">${a.q.explanation}</div>
           </div>
         `).join('')}
       </div>
@@ -8203,84 +8199,129 @@ function renderErpResults(){
 (function injectErpStyles(){
   const s = document.createElement('style');
   s.textContent = `
-    .erp-search-wrap{ margin:1.5rem 0; }
+    /* Search bar */
+    .erp-search-wrap{ margin:1.5rem 0 .5rem; }
     .erp-search{
-      width:100%; padding:.9rem 1.1rem;
+      width:100%; padding:.95rem 1.15rem;
       background:var(--surface); border:1px solid var(--border);
       border-radius:6px; color:var(--text);
       font-family:'Outfit', sans-serif; font-size:1rem;
-      transition:border-color .2s;
+      transition:border-color .2s, background .2s;
+      -webkit-appearance:none;
+      appearance:none;
     }
-    .erp-search:focus{ outline:none; border-color:var(--gold); }
+    .erp-search:focus{ outline:none; border-color:var(--gold); background:var(--surface-hover); }
+    .erp-search::placeholder{ color:var(--text-dim); }
 
-    .erp-table{ display:flex; flex-direction:column; gap:.5rem; }
+    /* Liste principale des types */
+    .erp-table{ display:flex; flex-direction:column; gap:.55rem; margin-top:.75rem; }
     .erp-row{
-      display:flex; gap:1.2rem; align-items:flex-start;
-      padding:1rem 1.2rem;
+      display:flex; gap:1.1rem; align-items:stretch;
+      padding:1rem 1.15rem;
       background:var(--surface); border:1px solid var(--border);
       border-radius:6px;
-      transition:border-color .2s, background .2s;
+      transition:border-color .2s, background .2s, transform .2s;
     }
     .erp-row:hover{ border-color:var(--border-strong); background:var(--surface-hover); }
     .erp-letter{
       flex:0 0 auto;
-      min-width:48px; height:48px;
+      min-width:54px;
+      padding:.5rem .7rem;
       display:flex; align-items:center; justify-content:center;
       background:linear-gradient(135deg, var(--gold), var(--gold-dim));
       color:#0e0f11;
       font-family:'Syne', sans-serif; font-weight:800;
-      font-size:1.3rem; border-radius:6px;
-      padding:0 .5rem;
+      font-size:1.25rem; line-height:1;
+      border-radius:6px;
+      align-self:flex-start;
     }
-    .erp-content{ flex:1; min-width:0; }
+    .erp-content{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:.35rem; }
     .erp-nom{
       font-family:'Syne', sans-serif; font-weight:500;
-      font-size:1rem; color:var(--text); margin-bottom:.4rem;
+      font-size:1rem; color:var(--text);
       line-height:1.4;
     }
     .erp-meta{
       font-size:.85rem; color:var(--text-dim);
-      margin-bottom:.2rem; line-height:1.4;
+      line-height:1.45;
+      display:flex; gap:.4rem; align-items:baseline; flex-wrap:wrap;
     }
     .erp-tag{
-      display:inline-block; min-width:65px;
-      font-family:'DM Mono', monospace; font-size:.7rem;
+      flex:0 0 auto;
+      font-family:'DM Mono', monospace; font-size:.65rem;
       color:var(--gold); text-transform:uppercase;
-      letter-spacing:.1em; margin-right:.4rem;
+      letter-spacing:.12em;
     }
 
-    .erp-cat-table{ display:flex; flex-direction:column; gap:.5rem; }
+    /* Catégories */
+    .erp-cat-table{ display:flex; flex-direction:column; gap:.55rem; margin-top:.75rem; }
     .erp-cat-row{
-      display:flex; gap:1.2rem; align-items:center;
-      padding:1rem 1.2rem;
+      display:flex; gap:1.1rem; align-items:center;
+      padding:1rem 1.15rem;
       background:var(--surface); border:1px solid var(--border);
       border-radius:6px;
     }
     .erp-cat-num{
-      flex:0 0 auto; min-width:64px; height:64px;
+      flex:0 0 auto; width:60px; height:60px;
       display:flex; align-items:center; justify-content:center;
       background:transparent; border:2px solid var(--gold);
       color:var(--gold);
       font-family:'Syne', sans-serif; font-weight:700;
-      font-size:1.4rem; border-radius:50%;
+      font-size:1.15rem; border-radius:50%;
+      line-height:1;
     }
-    .erp-cat-eff{ font-family:'Syne', sans-serif; font-weight:500; color:var(--text); font-size:1rem; }
-    .erp-cat-note{ font-size:.85rem; color:var(--text-dim); margin-top:.2rem; }
-
-    .theme-pill{
-      display:inline-block;
-      font-family:'DM Mono', monospace; font-size:.75rem;
-      color:var(--gold); letter-spacing:.15em; text-transform:uppercase;
-      padding:.4rem .8rem;
-      background:rgba(192,160,80,.08); border:1px solid rgba(192,160,80,.25);
-      border-radius:4px; margin-bottom:1rem;
+    .erp-cat-eff{
+      font-family:'Syne', sans-serif; font-weight:500;
+      color:var(--text); font-size:1rem; line-height:1.4;
+    }
+    .erp-cat-note{
+      font-size:.85rem; color:var(--text-dim);
+      margin-top:.25rem; line-height:1.4;
     }
 
+    /* Résultats / revue */
+    .erp-review-list{ display:flex; flex-direction:column; gap:.6rem; }
+    .erp-review-card{
+      padding:1.1rem 1.2rem;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-left:3px solid var(--error);
+      border-radius:6px;
+    }
+    .erp-review-q{
+      font-family:'Syne', sans-serif; font-weight:500;
+      font-size:1rem; color:var(--text);
+      line-height:1.45; margin-bottom:.65rem;
+    }
+    .erp-review-meta{
+      font-size:.88rem; color:var(--success);
+      margin-bottom:.55rem; line-height:1.5;
+      display:flex; gap:.5rem; align-items:baseline; flex-wrap:wrap;
+    }
+    .erp-review-meta .erp-tag{ color:var(--success); }
+    .erp-review-exp{
+      font-size:.88rem; color:var(--text-dim);
+      line-height:1.55;
+      padding-top:.5rem;
+      border-top:1px dashed var(--border);
+    }
+
+    /* Mobile */
     @media (max-width:600px){
-      .erp-row{ padding:.85rem; gap:.85rem; }
-      .erp-letter{ min-width:40px; height:40px; font-size:1.1rem; }
-      .erp-cat-num{ min-width:54px; height:54px; font-size:1.2rem; }
+      .erp-row{ padding:.85rem .9rem; gap:.85rem; }
+      .erp-letter{ min-width:44px; font-size:1.05rem; padding:.4rem .55rem; }
+      .erp-nom{ font-size:.95rem; }
+      .erp-meta{ font-size:.8rem; gap:.3rem; }
+      .erp-tag{ font-size:.6rem; }
+      .erp-cat-row{ padding:.85rem .9rem; gap:.85rem; }
+      .erp-cat-num{ width:50px; height:50px; font-size:1rem; }
+      .erp-cat-eff{ font-size:.95rem; }
+      .erp-review-card{ padding:.95rem 1rem; }
     }
+
+    /* Light mode */
+    html.light .erp-letter{ color:#fff; }
+    html.light .erp-cat-num{ background:rgba(192,160,80,.05); }
   `;
   document.head.appendChild(s);
 })();
