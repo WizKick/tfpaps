@@ -2150,6 +2150,14 @@ body::before { display: none !important; }
     </div>
     <div class="modes">
 
+      <button class="mode-card highlight examen-lundi-card" onclick="showExamenLundi()" style="grid-column:1/-1;border:1px solid var(--gold);background:linear-gradient(135deg,var(--surface),rgba(192,160,80,.08));position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;right:0;background:var(--gold);color:#000;font-family:'Outfit',sans-serif;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;padding:.3rem .85rem;font-weight:600;">D-DAY · Lundi</div>
+        <div class="mode-number" style="color:var(--gold);">⚡ / Examen Final</div>
+        <div class="mode-title" style="background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;">MODE EXAMEN ORAL LUNDI</div>
+        <div class="mode-desc">Tes 3 modules de l'oral : <strong style="color:var(--text);">Questionnaire examinateur</strong> (24 questions du jury) · <strong style="color:var(--text);">Poste de travail</strong> (prise de service complète) · <strong style="color:var(--text);">Cas N°6</strong> (personne en état d'ébriété).</div>
+        <div class="mode-meta">Lancer la préparation finale →</div>
+      </button>
+
       <button class="mode-card highlight" onclick="showExamenOfficiel()">
         <div class="mode-number">01 / Officiel</div>
         <div class="mode-title">Examen Blanc</div>
@@ -2190,13 +2198,6 @@ body::before { display: none !important; }
         <div class="mode-title">Situation Réelle</div>
         <div class="mode-desc">Scénarios concrets de terrain. Tu es agent, que fais-tu ? Prends les bonnes décisions.</div>
         <div class="mode-meta">Se mettre en situation</div>
-      </button>
-
-      <button class="mode-card highlight" onclick="showCas6Guide()">
-        <div class="mode-number">⭐ / Examen</div>
-        <div class="mode-title">CAS N°6 · Guide</div>
-        <div class="mode-desc">Toutes les étapes de ton cas pratique d'examen : prise de service, incidents, gestion de la personne en état d'ébriété.</div>
-        <div class="mode-meta">Réviser</div>
       </button>
 
       <button class="mode-card" id="weakUvBtn" onclick="startWeakUV()" style="display:none;">
@@ -2303,6 +2304,18 @@ body::before { display: none !important; }
 
   <!-- CAS N°6 GUIDE -->
   <section id="cas6Screen" style="display:none;">
+  </section>
+
+  <!-- MODE EXAMEN LUNDI · Hub -->
+  <section id="examenLundiScreen" style="display:none;">
+  </section>
+
+  <!-- MODE EXAMEN LUNDI · Questionnaire Examinateur -->
+  <section id="examQuestionnaireScreen" style="display:none;">
+  </section>
+
+  <!-- MODE EXAMEN LUNDI · Prise de Service -->
+  <section id="priseServiceScreen" style="display:none;">
   </section>
 </main>
 
@@ -7132,7 +7145,7 @@ function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.fl
 document.getElementById("totalQuestions").textContent=allQ.length;
 
 // ===== SCREENS =====
-const SCREENS=["homeScreen","examenOfficielScreen","quizScreen","resultsScreen","oralScreen","situationScreen","cas6Screen"];
+const SCREENS=["homeScreen","examenOfficielScreen","quizScreen","resultsScreen","oralScreen","situationScreen","cas6Screen","examenLundiScreen","examQuestionnaireScreen","priseServiceScreen"];
 function showScreen(id){
   SCREENS.forEach(s=>{
     const e=document.getElementById(s);if(!e)return;
@@ -7614,17 +7627,27 @@ function showCas6Guide() {
     {
       id: 'prise',
       num: '01',
-      title: 'Prise de service',
-      tag: 'Avant de partir en ronde · Obligatoire',
+      title: 'Prise de service au PC Sécurité',
+      tag: 'Avant ronde · Vérification présence/nombre/état · Astreinte',
       color: '#c0a050',
       steps: [
-        { icon: '💡', label: 'Test des lampes des tableaux de signalisation', detail: 'SSI, intrusion, accès — tous les voyants verts. Tout dysfonctionnement → MC.', type: 'ok' },
-        { icon: '📻', label: 'Contrôle état général des radios', detail: 'Charge, réception, clarté. Radio défaillante = non-conformité immédiate.', type: 'ok' },
-        { icon: '📞', label: 'Essai des moyens de communication', detail: 'Radio ET téléphone urbain (ligne fixe). Les deux doivent être opérationnels.', type: 'ok' },
-        { icon: '🔑', label: 'Prise en compte des clefs', detail: 'Trousseau complet, correspondances vérifiées. Signer le registre des clefs.', type: 'ok' },
-        { icon: '🔦', label: '⚠️ INCIDENT — Lampe torche hors service', detail: 'Note sur MC + heure. Informe chef de poste. Demande remplacement. Ne pas partir sans lampe.', type: 'danger' },
-        { icon: '📋', label: '⚠️ INCIDENT — Absence d\'un registre', detail: 'Note sur MC. Informe chef de poste. Demande fourniture ou remplacement.', type: 'danger' },
-        { icon: '🗝️', label: '⚠️ INCIDENT — Clef tordue', detail: 'Note sur MC. Informe chef de poste. Clef inutilisable, remplacement requis.', type: 'danger' },
+        { icon: '📞', label: 'Appel à l\'astreinte', detail: '« Bonjour Samy Bachouche, George V, 7h-19h, ADS. Prise de service. » Format : Nom Prénom · Site · Horaires · Fonction.', type: 'critical' },
+        { icon: '📻', label: 'Émetteur-récepteur (radio)', detail: 'Présence · Nombre · État. Charge OK, canal correct, essai réception/émission avec CDP.', type: 'ok' },
+        { icon: '📹', label: 'Caméras de surveillance', detail: '« Les caméras fonctionnent, je vois toutes les zones. » Vérifier chaque écran/zone, qualité image, pas de zone aveugle.', type: 'ok' },
+        { icon: '🕐', label: 'Heure et date du système', detail: '« L\'heure et la date sont correctes ? » Vérifier sur l\'enregistreur DVR/NVR. Horodatage critique pour les rapports.', type: 'ok' },
+        { icon: '🚨', label: 'Alarme intrusion · voyant vert ?', detail: 'Centrale intrusion sous tension, voyant vert. Pas de défaut, pas de zone en alarme. Test si procédure le prévoit.', type: 'ok' },
+        { icon: '⚙️', label: 'Alarme technique', detail: 'Centrale technique : surveillance des défauts (chauffage, ascenseurs, froid, gaz...). Voyants au vert.', type: 'ok' },
+        { icon: '🔑', label: 'Clés · présence + traçabilité', detail: 'Vérifier le trousseau complet. Si clé manquante → consulter le REGISTRE DES CLÉS pour la traçabilité (qui a pris quoi, quand). Si pas tracée = anomalie MC.', type: 'critical' },
+        { icon: '🟢', label: 'SSI · voyant vert ?', detail: 'ECS/TS sous tension (voyant vert). Aucune anomalie visible.', type: 'ok' },
+        { icon: '🟠', label: 'SSI · voyants jaunes ?', detail: 'Jaune fixe = dérangement → MC + aviser technicien. Jaune clignotant = défaut position d\'attente → réarmer le DAS concerné.', type: 'critical' },
+        { icon: '💡', label: 'BAES · éclairage d\'ambiance', detail: 'Éclairage antipanique : présent, fonctionnel. Autonomie minimum 1h en ERP.', type: 'ok' },
+        { icon: '🚪', label: 'BAES · éclairage d\'évacuation', detail: 'Balisage des sorties (flèches lumineuses) : présent, fonctionnel, dégagements visibles. Autonomie 1h en ERP.', type: 'ok' },
+        { icon: '📋', label: 'Lecture des consignes du jour', detail: 'Permis feu en cours, travaux prévus, interventions entreprises extérieures, événements particuliers de la vacation.', type: 'critical' },
+        { icon: '📒', label: 'Main courante', detail: 'Lecture de la MC depuis le dernier jour de travail. Ouverture de la MC du jour. Noter toute anomalie constatée à la prise de service.', type: 'critical' },
+        { icon: '🚪', label: 'Vérif extérieure pré-PC (rappel)', detail: 'Vacuité des voies engins et échelles · BI/PI accessibles · présence du plan d\'intervention à l\'entrée du bâtiment.', type: 'ok' },
+        { icon: '🔦', label: '⚠️ INCIDENT — Lampe torche HS', detail: 'Note MC + heure. Informe CDP. Demande remplacement. Ne pas partir en ronde sans lampe.', type: 'danger' },
+        { icon: '📋', label: '⚠️ INCIDENT — Registre absent', detail: 'Note MC. Informe CDP. Demande fourniture/remplacement immédiat.', type: 'danger' },
+        { icon: '🗝️', label: '⚠️ INCIDENT — Clé tordue/cassée', detail: 'Note MC. Informe CDP. Clé inutilisable, remplacement requis avant la ronde.', type: 'danger' },
       ]
     },
     {
@@ -7811,6 +7834,16 @@ function showCas6Guide() {
 document.addEventListener("keydown",e=>{
   if(document.getElementById("oralScreen").classList.contains("active")){if(e.key==="ArrowRight")nextOral();if(e.key==="ArrowLeft")prevOral();if(e.key===" "){e.preventDefault();toggleOralAnswer();}}
   if(document.getElementById("quizScreen").classList.contains("active")){if(e.key==="Enter"&&document.getElementById("nextBtn").style.display!=="none")nextQuestion();}
+  // Questionnaire Examinateur · Mode Lundi
+  const qexamScreen=document.getElementById("examQuestionnaireScreen");
+  if(qexamScreen&&qexamScreen.classList.contains("active")){
+    if(e.key==="ArrowLeft"&&typeof prevQexam==="function")prevQexam();
+    if(e.key==="ArrowRight"&&typeof skipQexam==="function")skipQexam();
+    if(e.key===" "){e.preventDefault();if(typeof toggleQexamAnswer==="function")toggleQexamAnswer();}
+    if(e.key==="1"&&typeof rateQexam==="function")rateQexam("ok");
+    if(e.key==="2"&&typeof rateQexam==="function")rateQexam("mid");
+    if(e.key==="3"&&typeof rateQexam==="function")rateQexam("ko");
+  }
 });
 
 // ============================================================
@@ -8325,6 +8358,1020 @@ function renderErpResults(){
   `;
   document.head.appendChild(s);
 })();
+
+// ============================================================
+// MODE EXAMEN LUNDI · Module self-injecting
+// Hub regroupant : Questionnaire examinateur · Prise de service · Cas N°6
+// ============================================================
+(function(){
+
+  // ===== Style spécifique au module =====
+  const moduleStyle = document.createElement('style');
+  moduleStyle.textContent = `
+    /* Hub */
+    .lundi-hero {
+      position: relative;
+      padding: 2.25rem 2rem 2rem;
+      background: linear-gradient(135deg, var(--surface), rgba(192,160,80,.06));
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .lundi-hero::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .lundi-badge {
+      display: inline-block;
+      font-size: .58rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: .35rem .9rem;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .lundi-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin: 0 0 .65rem;
+    }
+    .lundi-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lundi-sub {
+      color: var(--text-dim);
+      font-size: .95rem;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .lundi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .lundi-mod {
+      padding: 1.75rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .3s cubic-bezier(.16,1,.3,1);
+      text-align: left;
+      color: var(--text);
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .lundi-mod:hover {
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+      border-left-color: var(--gold-light);
+    }
+    .lundi-mod-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .85rem;
+    }
+    .lundi-mod-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: -.02em;
+      margin-bottom: .6rem;
+    }
+    .lundi-mod-desc {
+      font-size: .85rem;
+      line-height: 1.55;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    .lundi-mod-meta {
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .lundi-mod-meta::after {
+      content: '→';
+      transition: transform .3s;
+    }
+    .lundi-mod:hover .lundi-mod-meta::after {
+      transform: translateX(4px);
+    }
+    .lundi-mod-progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform-origin: left;
+      opacity: .7;
+    }
+    .lundi-checklist {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.35rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .lundi-checklist h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+    .lundi-checklist ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: .55rem;
+    }
+    .lundi-checklist li {
+      font-size: .82rem;
+      color: var(--text-dim);
+      display: flex;
+      gap: .55rem;
+      align-items: center;
+    }
+    .lundi-checklist li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* Questionnaire examinateur · Drill mode */
+    .qexam-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 1.75rem;
+      margin: 1.5rem 0 2rem;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      cursor: pointer;
+      transition: border-color .25s;
+      position: relative;
+    }
+    .qexam-card:hover { border-color: var(--border-strong); }
+    .qexam-label {
+      font-size: .62rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .qexam-q {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      letter-spacing: -.01em;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .qexam-a {
+      font-size: .92rem;
+      line-height: 1.65;
+      color: var(--text-dim);
+      white-space: pre-line;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: .5rem;
+    }
+    .qexam-hint {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: center;
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+    .qexam-rate {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .65rem;
+      margin-top: 1rem;
+    }
+    .qexam-rate-btn {
+      padding: .9rem .85rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Outfit', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-align: center;
+    }
+    .qexam-rate-btn:hover { background: var(--surface-hover); transform: translateY(-1px); }
+    .qexam-rate-btn.rate-ok { border-color: rgba(74,154,106,.4); }
+    .qexam-rate-btn.rate-ok:hover { border-color: var(--success); background: rgba(74,154,106,.1); }
+    .qexam-rate-btn.rate-mid { border-color: rgba(176,136,48,.4); }
+    .qexam-rate-btn.rate-mid:hover { border-color: var(--warning); background: rgba(176,136,48,.1); }
+    .qexam-rate-btn.rate-ko { border-color: rgba(154,58,58,.4); }
+    .qexam-rate-btn.rate-ko:hover { border-color: var(--error); background: rgba(154,58,58,.1); }
+    .qexam-rate-btn .rate-label { display:block; font-weight: 600; margin-bottom: .15rem; }
+    .qexam-rate-btn .rate-sub { display:block; font-size: .58rem; letter-spacing: .15em; color: var(--text-faint); }
+
+    .qexam-stats {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .qexam-stat {
+      flex: 1;
+      min-width: 100px;
+      padding: .9rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      text-align: center;
+    }
+    .qexam-stat-val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+    .qexam-stat-label {
+      font-size: .55rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: .15rem;
+    }
+    .qexam-stat.ok .qexam-stat-val { color: var(--success); }
+    .qexam-stat.mid .qexam-stat-val { color: var(--warning); }
+    .qexam-stat.ko .qexam-stat-val { color: var(--error); }
+
+    /* Prise de service · Steps interactive */
+    .ps-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem 1.4rem;
+      margin-bottom: .65rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: all .25s;
+    }
+    .ps-card:hover { background: var(--surface-hover); }
+    .ps-card.checked {
+      background: rgba(110,231,168,.05);
+      border-color: rgba(110,231,168,.3);
+      border-left: 3px solid #6ee7a8;
+    }
+    .ps-card.danger { border-left: 3px solid var(--error); }
+    .ps-card.critical { border-left: 3px solid var(--gold); }
+    .ps-card.ok { border-left: 3px solid var(--success); }
+    .ps-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border-strong);
+      flex-shrink: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      transition: all .25s;
+      margin-top: 2px;
+    }
+    .ps-card.checked .ps-check {
+      background: #6ee7a8;
+      border-color: #6ee7a8;
+      color: #000;
+    }
+    .ps-card.checked .ps-check::before { content: '✓'; font-weight: 700; }
+    .ps-body { flex: 1; cursor: pointer; }
+    .ps-label {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: .25rem;
+      line-height: 1.4;
+    }
+    .ps-card.checked .ps-label { color: var(--text-dim); text-decoration: line-through; opacity: .65; }
+    .ps-detail {
+      font-size: .8rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .ps-quote {
+      display: inline-block;
+      background: rgba(192,160,80,.08);
+      border-left: 2px solid var(--gold);
+      padding: .35rem .65rem;
+      margin: .35rem 0;
+      font-style: italic;
+      color: var(--text);
+      font-size: .82rem;
+      border-radius: 2px;
+    }
+    .ps-section {
+      margin: 2rem 0 1rem;
+      padding-bottom: .65rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .ps-section-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .ps-section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+    .ps-section-tag {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: .2rem;
+    }
+
+    @media (max-width: 640px) {
+      .lundi-hero { padding: 1.75rem 1.4rem 1.5rem; }
+      .qexam-card { padding: 1.5rem 1.25rem; }
+      .qexam-rate { grid-template-columns: 1fr; gap: .5rem; }
+      .ps-card { padding: 1rem 1.15rem; }
+    }
+  `;
+  document.head.appendChild(moduleStyle);
+
+  // ============================================================
+  // DATA · 24 questions du PDF officiel TFP APS
+  // ============================================================
+  const QUESTIONS_EXAM = [
+    {
+      q: "Présentez-vous !",
+      a: "Je m'appelle [Prénom et Nom], et je suis là aujourd'hui pour passer l'examen pratique du TFP APS — Titre à Finalité Professionnelle d'Agent de Prévention et de Sécurité.",
+      key: "presentation"
+    },
+    {
+      q: "Que signifie TFP APS ?",
+      a: "Titre à Finalité Professionnelle d'Agent de Prévention et de Sécurité.",
+      key: "sigle-tfp"
+    },
+    {
+      q: "Qu'est-ce que le CNAPS ?",
+      a: "Le Conseil National des Activités Privées de Sécurité. C'est un établissement public rattaché au ministère de l'Intérieur, chargé de réguler, contrôler et discipliner les métiers de la sécurité privée.",
+      key: "cnaps"
+    },
+    {
+      q: "Quelles sont les conditions pour exercer comme agent de sécurité ?",
+      a: "• Avoir un casier judiciaire vierge (bulletin n°2)\n• Suivre une formation TFP APS dans un centre agréé\n• Obtenir une carte professionnelle délivrée par le CNAPS\n• Avoir une aptitude médicale\n• Être majeur et autorisé à travailler en France",
+      key: "conditions"
+    },
+    {
+      q: "Qu'est-ce que la carte professionnelle ?",
+      a: "C'est un document officiel délivré par le CNAPS, obligatoire pour exercer dans le domaine de la sécurité privée. Elle est valable 5 ans et doit être renouvelée.",
+      key: "carte-pro"
+    },
+    {
+      q: "Combien de temps dure la formation TFP APS ?",
+      a: "Elle dure 175 heures, soit environ 5 semaines.",
+      key: "duree-formation"
+    },
+    {
+      q: "Quelles sont les principales missions d'un agent de sécurité privée ?",
+      a: "• Surveillance des biens et des personnes\n• Contrôle d'accès et filtrage\n• Rondes de sécurité\n• Intervention en cas d'intrusion ou d'incident\n• Gestion des conflits\n• Appel aux secours\n• Rédaction des rapports (main courante, rapport d'incident)",
+      key: "missions"
+    },
+    {
+      q: "Quels sont les équipements nécessaires pour une ronde ?",
+      a: "• Radio émetteur-récepteur\n• Contrôleur de point\n• Lampe torche\n• Stylo et carnet de notes\n• Clés d'accès / badge / pass",
+      key: "equipement-ronde"
+    },
+    {
+      q: "Qu'est-ce qu'une main courante ?",
+      a: "C'est un registre dans lequel l'agent note toutes les informations importantes pendant sa vacation : prises de poste, anomalies, incidents, visites, événements...",
+      key: "main-courante"
+    },
+    {
+      q: "Quelles sont les règles pour un contrôle d'accès ?",
+      a: "• Vérification de l'identité\n• Contrôle des autorisations (badge, liste, ordre de mission)\n• Application stricte des consignes\n• Signalement de toute anomalie à la hiérarchie",
+      key: "controle-acces"
+    },
+    {
+      q: "Que faire en cas d'incident (bagarre, vol, intrusion) ?",
+      a: "• Observer et sécuriser les lieux sans s'exposer\n• Prévenir les secours compétents (police, pompiers)\n• Rédiger un rapport détaillé\n• Informer sa hiérarchie",
+      key: "incident"
+    },
+    {
+      q: "Quels sont les types de rondes ?",
+      a: "• Ronde d'ouverture / fermeture\n• Ronde préventive\n• Ronde de surveillance incendie\n• Ronde technique (vérification des équipements)",
+      key: "types-rondes"
+    },
+    {
+      q: "Quelles sont les qualités attendues d'un agent de sécurité ?",
+      a: "• Discrétion\n• Maîtrise de soi\n• Sens de l'observation\n• Ponctualité\n• Respect des consignes et de la loi",
+      key: "qualites"
+    },
+    {
+      q: "Quels sont les comportements interdits pour un agent de sécurité ?",
+      a: "• Porter une arme sans autorisation\n• Porter atteinte à la liberté des personnes\n• Se substituer aux forces de l'ordre\n• Utiliser la force sans justification\n• Avoir un comportement agressif ou discriminatoire",
+      key: "interdits"
+    },
+    {
+      q: "Comment fait-on une prise de service ?",
+      a: "La prise de service commence à l'EXTÉRIEUR du bâtiment :\n• Vacuité des voies engins et échelles\n• Vérification des BI/PI (bouches et poteaux incendie)\n• Présence du plan d'intervention à l'entrée\n\nUne fois au PC Sécurité :\n\n1. APPEL À L'ASTREINTE\n« Bonjour, c'est Monsieur [Nom] pour la prise de service de 7h à 19h à [nom du site] »\n\n2. VÉRIFICATION DU MATÉRIEL (3 critères pour chaque élément : présence · nombre · état)\n→ Émetteur-récepteur · caméras · alarme intrusion · alarme technique · clés (avec traçabilité sur registre) · BAES (ambiance + évacuation)\nEn cas de manque/défaut → signaler sur la main courante\n\n3. LECTURE DES CONSIGNES JOURNALIÈRES\nTravaux, permis feu, intervention entreprises extérieures...\n\n4. CONTRÔLE DU SSI\na) Sous tension → voyant vert sur ECS/TS\nb) Voyant jaune fixe = dérangement → MC + technicien\n   Voyant jaune clignotant = défaut position d'attente → réarmer le DAS\nc) Test de signalisation (voyants, alarme restreinte, écran)\n\n5. MAIN COURANTE\nLecture depuis le dernier jour de travail, ouverture de la MC du jour, notation des anomalies.",
+      key: "prise-service"
+    },
+    {
+      q: "Définition du SSI ?",
+      a: "Le SSI — Système de Sécurité Incendie — est un ensemble de matériel qui :\n• Collecte les informations sur les incendies\n• Les traite\n• Met l'établissement en sécurité",
+      key: "ssi-def"
+    },
+    {
+      q: "Combien de catégories de SSI existe-t-il ?",
+      a: "5 catégories : A, B, C, D, E.",
+      key: "ssi-cat"
+    },
+    {
+      q: "Comment sont classés les SSI ?",
+      a: "Du plus sévère au moins sévère. Le SSI de catégorie A est le plus sévère.",
+      key: "ssi-class"
+    },
+    {
+      q: "Quelle est la différence entre le SSI A et B ?",
+      a: "La présence des DAI — Détecteurs Automatiques d'Incendie — dans le SSI A.",
+      key: "ssi-ab"
+    },
+    {
+      q: "Où trouve-t-on le SSI catégorie A ?",
+      a: "Dans tous les IGH (Immeubles de Grande Hauteur), les ERP de type J, U, et les ERP avec locaux à sommeil.",
+      key: "ssi-a-ou"
+    },
+    {
+      q: "Quelles sont les missions pendant la ronde ?",
+      a: "• S'assurer de la vacuité des dégagements\n• Contrôler les moyens d'extinction\n• Contrôler l'éclairage normal et l'éclairage de sécurité\n• Relever les anomalies liées à la sécurité\n• Surveiller les points sensibles et dangereux de l'établissement",
+      key: "missions-ronde"
+    },
+    {
+      q: "Quels sont les différents types d'éclairage ?",
+      a: "• Éclairage normal\n• Éclairage de remplacement\n• Éclairage de sécurité, qui se divise en :\n   — Éclairage d'ambiance (antipanique)\n   — Éclairage d'évacuation",
+      key: "eclairage-types"
+    },
+    {
+      q: "Quelle est l'autonomie de l'éclairage de sécurité ?",
+      a: "Minimum 1 heure en ERP.",
+      key: "eclairage-auto"
+    },
+    {
+      q: "Comment contrôler un extincteur ?",
+      a: "1. Présent, accroché et accessible\n2. L'extincteur correspond à la signalétique (agent extincteur et classes de feu)\n3. Présence de la goupille de sécurité et du scellé\n4. État général de l'extincteur (corps et flexible)\n5. Date de la dernière vérification réglementaire :\n   • Vérification quotidienne par le SSIAP\n   • Vérification annuelle par une société agréée",
+      key: "extincteur"
+    }
+  ];
+
+  // ============================================================
+  // DATA · Prise de service complète (poste de travail)
+  // ============================================================
+  const PRISE_SERVICE = [
+    {
+      section: '01',
+      title: 'Vérifications extérieures',
+      tag: 'Avant d\'entrer au PC sécurité',
+      steps: [
+        { icon: '🚒', label: 'Vacuité des voies engins et échelles', detail: 'S\'assurer qu\'aucun obstacle ne bloque l\'accès des secours. Voies dégagées, pas de stationnement gênant.', type: 'ok' },
+        { icon: '🔥', label: 'Bouches et Poteaux Incendie (BI/PI)', detail: 'Accessibles, signalétique visible, pas obstrués. Permet aux pompiers d\'intervenir rapidement.', type: 'ok' },
+        { icon: '🗺️', label: 'Plan d\'intervention à l\'entrée du bâtiment', detail: 'Présent, lisible, à jour. C\'est le document que les secours consultent en premier en arrivant.', type: 'ok' },
+      ]
+    },
+    {
+      section: '02',
+      title: 'Appel à l\'astreinte',
+      tag: 'Première action au PC · Annonce officielle',
+      steps: [
+        { icon: '📞', label: 'Annonce formelle à l\'astreinte', detail: 'Format strict : Nom Prénom · Site · Horaires · Fonction.', quote: '« Bonjour Samy Bachouche, George V, 7h-19h, ADS. Prise de service. »', type: 'critical' },
+      ]
+    },
+    {
+      section: '03',
+      title: 'Vérification du matériel · 3 critères',
+      tag: 'Pour chaque élément : présence · nombre · état',
+      steps: [
+        { icon: '📻', label: 'Émetteur-récepteur (radio)', detail: 'Présence, quantité du parc radio, état de charge, qualité de réception. Essai radio avec le CDP : « PC à ronde, vous me recevez ? ».', type: 'ok' },
+        { icon: '📹', label: 'Caméras de surveillance', detail: 'Toutes les caméras fonctionnent, aucune zone aveugle. Image nette, défilement correct. Annonce : « Les caméras fonctionnent, je vois toutes les zones surveillées. »', type: 'ok' },
+        { icon: '🕐', label: 'Heure et date du système', detail: 'Vérifier sur l\'enregistreur DVR/NVR. Horodatage exact = essentiel pour les rapports d\'incident et la valeur probante des images.', quote: '« L\'heure et la date sont correctes. »', type: 'ok' },
+        { icon: '🚨', label: 'Alarme intrusion · voyant vert', detail: 'Centrale intrusion sous tension, voyant vert. Aucun défaut, aucune zone en alarme. Test si la procédure du site le prévoit.', quote: '« Centrale intrusion : voyant vert, RAS. »', type: 'ok' },
+        { icon: '⚙️', label: 'Alarme technique', detail: 'Centrale qui surveille les défauts techniques du bâtiment : chauffage, froid, ascenseurs, niveau d\'eau, gaz, défaut électrique... Tous les voyants au vert.', type: 'ok' },
+        { icon: '🔑', label: 'Clés · présence + traçabilité', detail: 'Vérifier le trousseau complet. SI une clé manque → consulter le REGISTRE DES CLÉS pour vérifier la traçabilité (qui l\'a prise, quand, pour quel usage). Si pas de traçabilité = anomalie à signaler en MC.', type: 'critical' },
+      ]
+    },
+    {
+      section: '04',
+      title: 'Contrôle du SSI',
+      tag: 'Système de Sécurité Incendie · ECS/TS',
+      steps: [
+        { icon: '🟢', label: 'SSI sous tension · voyant vert', detail: 'Sur l\'ECS (Équipement de Contrôle et de Signalisation) ou le TS (Tableau de Signalisation), voyant vert allumé = le système est alimenté et actif.', type: 'ok' },
+        { icon: '🟠', label: 'Voyant jaune fixe = dérangement', detail: 'Note l\'anomalie sur la main courante + aviser le technicien de maintenance. Le système peut encore fonctionner mais une intervention est requise.', type: 'critical' },
+        { icon: '🟡', label: 'Voyant jaune clignotant = défaut position d\'attente', detail: 'Un DAS (Dispositif Actionné de Sécurité) n\'est pas dans sa position normale. Action : réarmer le DAS concerné.', type: 'critical' },
+        { icon: '🧪', label: 'Test de signalisation', detail: 'Vérifier le bon fonctionnement des voyants, de l\'alarme restreinte et de l\'écran. Permet de s\'assurer que les signalisations remontent bien.', type: 'ok' },
+      ]
+    },
+    {
+      section: '05',
+      title: 'Éclairage de sécurité (BAES)',
+      tag: 'Blocs Autonomes d\'Éclairage de Sécurité · Autonomie 1h minimum',
+      steps: [
+        { icon: '💡', label: 'BAES d\'ambiance (antipanique)', detail: 'Éclairage diffus qui se déclenche en cas de panne pour éviter la panique dans les locaux recevant du public. Présent, fonctionnel, non occulté.', type: 'ok' },
+        { icon: '🚪', label: 'BAES d\'évacuation', detail: 'Balisage des sorties (flèches lumineuses vertes, pictogrammes « SORTIE »). Indique le chemin vers la sortie. Présent, fonctionnel, visible depuis tout point du local.', type: 'ok' },
+      ]
+    },
+    {
+      section: '06',
+      title: 'Consignes & Main Courante',
+      tag: 'Tâches du jour · Historique · Ouverture MC',
+      steps: [
+        { icon: '📋', label: 'Lecture des consignes journalières', detail: 'Permis feu en cours, travaux programmés, interventions d\'entreprises extérieures, événements particuliers, VIP attendus, livraisons, manifestations...', type: 'critical' },
+        { icon: '📒', label: 'Lecture de la main courante précédente', detail: 'Lire la MC depuis le dernier jour de travail pour prendre connaissance des événements en cours et des consignes laissées par les collègues.', type: 'critical' },
+        { icon: '✍️', label: 'Ouverture de la MC du jour', detail: 'Date, heure, identité de l\'agent. Première inscription : heure de prise de service + état général à l\'arrivée + toute anomalie constatée.', type: 'critical' },
+      ]
+    }
+  ];
+
+  // ============================================================
+  // STATE · localStorage
+  // ============================================================
+  const LS_QEXAM = 'tfp_qexam_progress';
+  const LS_PS = 'tfp_priseservice_progress';
+
+  function loadProgress(key) {
+    try { return JSON.parse(localStorage.getItem(key) || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveProgress(key, data) {
+    try { localStorage.setItem(key, JSON.stringify(data)); } catch(e) {}
+  }
+
+  // ============================================================
+  // SCREEN · Hub Mode Examen Lundi
+  // ============================================================
+  function renderHub() {
+    const sc = document.getElementById('examenLundiScreen');
+    const qProg = loadProgress(LS_QEXAM);
+    const qOk = Object.values(qProg).filter(v => v === 'ok').length;
+    const qMid = Object.values(qProg).filter(v => v === 'mid').length;
+    const qKo = Object.values(qProg).filter(v => v === 'ko').length;
+    const qTotal = QUESTIONS_EXAM.length;
+    const qDone = qOk + qMid + qKo;
+    const qPct = qTotal ? Math.round((qOk / qTotal) * 100) : 0;
+
+    const psProg = loadProgress(LS_PS);
+    const psTotal = PRISE_SERVICE.reduce((s, sec) => s + sec.steps.length, 0);
+    const psDone = Object.values(psProg).filter(Boolean).length;
+    const psPct = psTotal ? Math.round((psDone / psTotal) * 100) : 0;
+
+    // Cas N°6 progress (from existing cas6 system if any, fallback 0)
+    const cas6Total = 27; // approximation des steps cas n°6
+    const cas6Pct = 0; // pas de localStorage dedie pour le cas6 dans l'existant
+
+    sc.innerHTML = `
+      <div style="max-width:820px;margin:0 auto;">
+
+        <div class="lundi-hero">
+          <div class="lundi-badge">⚡ Préparation finale · D-Day Lundi</div>
+          <h2 class="lundi-title">Tes 3 modules pour <em>l'oral</em>.</h2>
+          <p class="lundi-sub">Le QCU c'est plié. Maintenant on serre les vis sur l'oral : les 24 questions du jury, la prise de service complète au PC sécurité, et le cas N°6 (personne en état d'ébriété au parking).</p>
+        </div>
+
+        <div class="lundi-grid">
+
+          <button class="lundi-mod" onclick="startQuestionnaireExamen()">
+            <div class="lundi-mod-num">01 · Questionnaire</div>
+            <div class="lundi-mod-title">Questions du Jury</div>
+            <div class="lundi-mod-desc">Les 24 questions de l'annale officielle. Mode drill examinateur : tu lis, tu te récites à voix haute, tu auto-évalues. Carte non vue ou ratée = elle revient.</div>
+            <div class="lundi-mod-meta">${qDone}/${qTotal} vues · ${qPct}% acquis</div>
+            <div class="lundi-mod-progress" style="width:${qPct}%;"></div>
+          </button>
+
+          <button class="lundi-mod" onclick="startPriseService()">
+            <div class="lundi-mod-num">02 · Poste de Travail</div>
+            <div class="lundi-mod-title">Prise de Service</div>
+            <div class="lundi-mod-desc">Tu arrives au PC George V à 7h. Tout ce que tu dois vérifier et annoncer : matériel, SSI, BAES, clés, astreinte. La trame que tu devras dérouler devant le jury.</div>
+            <div class="lundi-mod-meta">${psDone}/${psTotal} étapes · ${psPct}% maîtrisé</div>
+            <div class="lundi-mod-progress" style="width:${psPct}%;"></div>
+          </button>
+
+          <button class="lundi-mod" onclick="showCas6Guide()">
+            <div class="lundi-mod-num">03 · Cas Pratique</div>
+            <div class="lundi-mod-title">CAS N°6 · Parking</div>
+            <div class="lundi-mod-desc">Personne en état d'ébriété qui titube autour des véhicules au parking. Prise de service → ronde 17h → réception info radio → arrivée parking → clôture QQOQCP.</div>
+            <div class="lundi-mod-meta">5 phases · Guide complet</div>
+          </button>
+
+        </div>
+
+        <div class="lundi-checklist">
+          <h3>Ta routine de la dernière ligne droite</h3>
+          <ul>
+            <li>Les 24 questions à voix haute</li>
+            <li>La prise de service récitée en boucle</li>
+            <li>L'annonce astreinte fluide</li>
+            <li>Cas N°6 maîtrisé phase par phase</li>
+            <li>L'alphabet OTAN au cas où</li>
+            <li>Dormir 8h la veille</li>
+          </ul>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1rem;">
+          <button class="btn btn-ghost" onclick="showHome()">← Accueil</button>
+          <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);">Tu vas le défoncer cet examen.</div>
+        </div>
+
+      </div>
+    `;
+  }
+
+  // ============================================================
+  // SCREEN · Questionnaire Examinateur (Drill flashcards)
+  // ============================================================
+  let qexamState = {
+    order: [],
+    idx: 0,
+    showAnswer: false,
+    onlyUnacquired: false
+  };
+
+  function initQexamOrder(onlyUnacquired) {
+    const prog = loadProgress(LS_QEXAM);
+    let pool = QUESTIONS_EXAM.map((_, i) => i);
+    if (onlyUnacquired) {
+      pool = pool.filter(i => prog[QUESTIONS_EXAM[i].key] !== 'ok');
+    }
+    // Shuffle
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    qexamState.order = pool;
+    qexamState.idx = 0;
+    qexamState.showAnswer = false;
+    qexamState.onlyUnacquired = onlyUnacquired;
+  }
+
+  function renderQexam() {
+    const sc = document.getElementById('examQuestionnaireScreen');
+    const prog = loadProgress(LS_QEXAM);
+    const total = QUESTIONS_EXAM.length;
+    const okCount = Object.values(prog).filter(v => v === 'ok').length;
+    const midCount = Object.values(prog).filter(v => v === 'mid').length;
+    const koCount = Object.values(prog).filter(v => v === 'ko').length;
+
+    // Empty state
+    if (qexamState.order.length === 0) {
+      sc.innerHTML = `
+        <div style="max-width:720px;margin:0 auto;text-align:center;padding:3rem 1rem;">
+          <div class="lundi-badge" style="margin-bottom:1.5rem;">🎯 Toutes les questions acquises !</div>
+          <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:2rem;margin-bottom:1rem;">Tu es prêt.</h2>
+          <p style="color:var(--text-dim);margin-bottom:2rem;">Tu as marqué toutes les 24 questions comme "Acquis". Tu peux reprendre le pool complet pour réviser à froid.</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="restartQexam(false)">Rejouer toutes les questions</button>
+            <button class="btn btn-ghost" onclick="resetQexamProgress()">Reset progression</button>
+            <button class="btn btn-ghost" onclick="showExamenLundi()">← Hub examen</button>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    const qIdx = qexamState.order[qexamState.idx];
+    const q = QUESTIONS_EXAM[qIdx];
+    const pct = Math.round(((qexamState.idx) / qexamState.order.length) * 100);
+
+    sc.innerHTML = `
+      <div style="max-width:820px;margin:0 auto;">
+
+        <!-- Header -->
+        <div style="margin-bottom:1.5rem;">
+          <div class="lundi-badge" style="margin-bottom:.85rem;">Questionnaire Examinateur</div>
+          <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.4rem,3.5vw,2rem);letter-spacing:-.02em;margin:0;">Question ${qexamState.idx + 1} / ${qexamState.order.length}</h2>
+        </div>
+
+        <!-- Progress bar -->
+        <div style="height:4px;background:var(--border);border-radius:999px;overflow:hidden;margin-bottom:1.5rem;">
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--gold-light),var(--gold));border-radius:999px;transition:width .4s cubic-bezier(.16,1,.3,1);"></div>
+        </div>
+
+        <!-- Stats overview -->
+        <div class="qexam-stats">
+          <div class="qexam-stat ok">
+            <div class="qexam-stat-val">${okCount}</div>
+            <div class="qexam-stat-label">Acquis</div>
+          </div>
+          <div class="qexam-stat mid">
+            <div class="qexam-stat-val">${midCount}</div>
+            <div class="qexam-stat-label">À revoir</div>
+          </div>
+          <div class="qexam-stat ko">
+            <div class="qexam-stat-val">${koCount}</div>
+            <div class="qexam-stat-label">Pas su</div>
+          </div>
+          <div class="qexam-stat">
+            <div class="qexam-stat-val">${total - okCount - midCount - koCount}</div>
+            <div class="qexam-stat-label">Non vue</div>
+          </div>
+        </div>
+
+        <!-- Question card -->
+        <div class="qexam-card" id="qexamCard" onclick="toggleQexamAnswer()">
+          <div class="qexam-label">${qexamState.showAnswer ? 'Réponse attendue' : 'Question du jury'}</div>
+          <div class="qexam-q">${q.q}</div>
+          ${qexamState.showAnswer ? `<div class="qexam-a">${q.a}</div>` : ''}
+          <div class="qexam-hint">${qexamState.showAnswer ? 'Évalue ta réponse ci-dessous' : 'Récite à voix haute · puis clique pour la correction'}</div>
+        </div>
+
+        ${qexamState.showAnswer ? `
+        <div class="qexam-rate">
+          <button class="qexam-rate-btn rate-ok" onclick="rateQexam('ok')">
+            <span class="rate-label">✓ Acquis</span>
+            <span class="rate-sub">Parfait</span>
+          </button>
+          <button class="qexam-rate-btn rate-mid" onclick="rateQexam('mid')">
+            <span class="rate-label">~ À revoir</span>
+            <span class="rate-sub">Approximatif</span>
+          </button>
+          <button class="qexam-rate-btn rate-ko" onclick="rateQexam('ko')">
+            <span class="rate-label">✗ Pas su</span>
+            <span class="rate-sub">À retravailler</span>
+          </button>
+        </div>
+        ` : ''}
+
+        <!-- Navigation -->
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);flex-wrap:wrap;">
+          <button class="btn btn-ghost" onclick="showExamenLundi()">← Hub examen</button>
+          <div style="display:flex;gap:.65rem;">
+            <button class="btn" onclick="prevQexam()" ${qexamState.idx === 0 ? 'disabled style="opacity:.4;cursor:not-allowed;"' : ''}>← Préc.</button>
+            <button class="btn" onclick="skipQexam()">Passer →</button>
+          </div>
+        </div>
+
+      </div>
+    `;
+  }
+
+  window.toggleQexamAnswer = function() {
+    qexamState.showAnswer = !qexamState.showAnswer;
+    renderQexam();
+  };
+
+  window.rateQexam = function(rating) {
+    const qIdx = qexamState.order[qexamState.idx];
+    const key = QUESTIONS_EXAM[qIdx].key;
+    const prog = loadProgress(LS_QEXAM);
+    prog[key] = rating;
+    saveProgress(LS_QEXAM, prog);
+    // Move next
+    if (qexamState.idx < qexamState.order.length - 1) {
+      qexamState.idx++;
+      qexamState.showAnswer = false;
+      renderQexam();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      // Finished — show summary
+      renderQexamFinish();
+    }
+  };
+
+  function renderQexamFinish() {
+    const sc = document.getElementById('examQuestionnaireScreen');
+    const prog = loadProgress(LS_QEXAM);
+    const okCount = Object.values(prog).filter(v => v === 'ok').length;
+    const midCount = Object.values(prog).filter(v => v === 'mid').length;
+    const koCount = Object.values(prog).filter(v => v === 'ko').length;
+    const total = QUESTIONS_EXAM.length;
+    const pct = Math.round((okCount / total) * 100);
+
+    sc.innerHTML = `
+      <div style="max-width:720px;margin:0 auto;text-align:center;padding:3rem 1rem;">
+        <div class="lundi-badge" style="margin-bottom:1.5rem;">Session terminée</div>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;">${pct}% <span style="color:var(--text-faint);">acquis</span></h2>
+        <p style="color:var(--text-dim);margin-bottom:2rem;">${okCount}/${total} questions maîtrisées · ${midCount} à revoir · ${koCount} pas su</p>
+
+        <div class="qexam-stats" style="margin-bottom:2rem;">
+          <div class="qexam-stat ok"><div class="qexam-stat-val">${okCount}</div><div class="qexam-stat-label">Acquis</div></div>
+          <div class="qexam-stat mid"><div class="qexam-stat-val">${midCount}</div><div class="qexam-stat-label">À revoir</div></div>
+          <div class="qexam-stat ko"><div class="qexam-stat-val">${koCount}</div><div class="qexam-stat-label">Pas su</div></div>
+        </div>
+
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          ${(midCount + koCount > 0) ? `<button class="btn btn-primary" onclick="restartQexam(true)">Rejouer les non-acquises (${midCount + koCount})</button>` : ''}
+          <button class="btn" onclick="restartQexam(false)">Tout rejouer</button>
+          <button class="btn btn-ghost" onclick="showExamenLundi()">← Hub examen</button>
+        </div>
+      </div>
+    `;
+  }
+
+  window.prevQexam = function() {
+    if (qexamState.idx > 0) {
+      qexamState.idx--;
+      qexamState.showAnswer = false;
+      renderQexam();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  };
+
+  window.skipQexam = function() {
+    if (qexamState.idx < qexamState.order.length - 1) {
+      qexamState.idx++;
+      qexamState.showAnswer = false;
+      renderQexam();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      renderQexamFinish();
+    }
+  };
+
+  window.restartQexam = function(onlyUnacquired) {
+    initQexamOrder(onlyUnacquired);
+    renderQexam();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  window.resetQexamProgress = function() {
+    if (confirm('Réinitialiser toute la progression du questionnaire ?')) {
+      localStorage.removeItem(LS_QEXAM);
+      initQexamOrder(false);
+      renderQexam();
+    }
+  };
+
+  window.startQuestionnaireExamen = function() {
+    // Si y'a deja des questions non acquises, propose un mode ciblé
+    const prog = loadProgress(LS_QEXAM);
+    const unacquired = QUESTIONS_EXAM.filter(q => prog[q.key] !== 'ok').length;
+    if (unacquired > 0 && unacquired < QUESTIONS_EXAM.length) {
+      // On démarre direct sur les non-acquises mais on laisse un bouton pour tout faire
+      initQexamOrder(true);
+    } else {
+      initQexamOrder(false);
+    }
+    showScreen('examQuestionnaireScreen');
+    renderQexam();
+  };
+
+  // ============================================================
+  // SCREEN · Prise de Service (interactive checklist)
+  // ============================================================
+  function renderPriseService() {
+    const sc = document.getElementById('priseServiceScreen');
+    const prog = loadProgress(LS_PS);
+    const total = PRISE_SERVICE.reduce((s, sec) => s + sec.steps.length, 0);
+    const done = Object.values(prog).filter(Boolean).length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+
+    const sectionsHtml = PRISE_SERVICE.map((sec, sIdx) => {
+      const stepsHtml = sec.steps.map((step, stIdx) => {
+        const key = `s${sIdx}-${stIdx}`;
+        const checked = !!prog[key];
+        return `
+          <div class="ps-card ${checked ? 'checked' : ''} ${step.type}" data-key="${key}">
+            <div class="ps-check" onclick="togglePsStep('${key}')"></div>
+            <div class="ps-body" onclick="togglePsStep('${key}')">
+              <div class="ps-label">${step.icon} ${step.label}</div>
+              <div class="ps-detail">${step.detail}${step.quote ? `<br><span class="ps-quote">${step.quote}</span>` : ''}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="ps-section">
+          <div class="ps-section-num">${sec.section}</div>
+          <div>
+            <div class="ps-section-title">${sec.title}</div>
+            <div class="ps-section-tag">${sec.tag}</div>
+          </div>
+        </div>
+        <div>${stepsHtml}</div>
+      `;
+    }).join('');
+
+    sc.innerHTML = `
+      <div style="max-width:820px;margin:0 auto;">
+
+        <!-- Header -->
+        <div style="margin-bottom:1.5rem;">
+          <div class="lundi-badge" style="margin-bottom:.85rem;">Poste de Travail · Prise de Service</div>
+          <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.25rem);letter-spacing:-.03em;margin:0 0 .5rem;">Au PC sécurité <em style="font-style:normal;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">George V</em>, 7h-19h</h2>
+          <p style="color:var(--text-dim);font-size:.95rem;line-height:1.6;">La trame complète de ta prise de service. Coche au fur et à mesure que tu maîtrises. C'est ce que tu devras dérouler devant le jury.</p>
+        </div>
+
+        <!-- Progress -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.15rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:140px;">
+            <div style="height:6px;background:var(--border);border-radius:999px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:${pct === 100 ? '#6ee7a8' : 'var(--gold)'};border-radius:999px;transition:width .4s cubic-bezier(.16,1,.3,1);"></div>
+            </div>
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:${pct === 100 ? '#6ee7a8' : 'var(--gold)'};">${done}/${total}</div>
+          <div style="font-size:.7rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.15em;">${pct === 100 ? '🎯 Prêt pour le jury' : pct + '% maîtrisé'}</div>
+          ${pct > 0 ? `<button onclick="resetPsProgress()" style="background:transparent;border:1px solid var(--border);color:var(--text-faint);padding:.35rem .75rem;border-radius:4px;cursor:pointer;font-size:.68rem;font-family:'Outfit',sans-serif;letter-spacing:.1em;text-transform:uppercase;">Reset</button>` : ''}
+        </div>
+
+        ${sectionsHtml}
+
+        <!-- Key reminder -->
+        <div style="margin-top:2rem;background:linear-gradient(135deg,var(--surface),rgba(192,160,80,.04));border:1px solid var(--gold);border-radius:6px;padding:1.4rem 1.65rem;">
+          <div style="font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem;">💬 La phrase clé à dire au jury</div>
+          <div style="font-size:.95rem;line-height:1.65;color:var(--text);font-style:italic;">« Pour chaque élément, je vérifie ces 3 critères : la présence, le nombre, et l'état de fonctionnement. En cas d'absence, de manque ou de défaut, je le signale sur la main courante. Sauf pour les clés et badges où je dois d'abord vérifier la traçabilité sur le registre correspondant. »</div>
+        </div>
+
+        <!-- Navigation -->
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);flex-wrap:wrap;">
+          <button class="btn btn-ghost" onclick="showExamenLundi()">← Hub examen</button>
+          <button class="btn btn-primary" onclick="showCas6Guide()">Suite · Cas N°6 →</button>
+        </div>
+
+      </div>
+    `;
+  }
+
+  window.togglePsStep = function(key) {
+    const prog = loadProgress(LS_PS);
+    prog[key] = !prog[key];
+    if (!prog[key]) delete prog[key];
+    saveProgress(LS_PS, prog);
+    // Re-render in place efficiently
+    const card = document.querySelector(`.ps-card[data-key="${key}"]`);
+    if (card) {
+      card.classList.toggle('checked');
+      // Update counter
+      const total = PRISE_SERVICE.reduce((s, sec) => s + sec.steps.length, 0);
+      const done = Object.values(prog).filter(Boolean).length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      const counter = document.querySelector('#priseServiceScreen [style*="font-family:\'Syne\'"][style*="font-weight:700"][style*="font-size:1.05rem"]');
+      // simpler: re-render
+      renderPriseService();
+    } else {
+      renderPriseService();
+    }
+  };
+
+  window.resetPsProgress = function() {
+    if (confirm('Réinitialiser la progression de la prise de service ?')) {
+      localStorage.removeItem(LS_PS);
+      renderPriseService();
+    }
+  };
+
+  window.startPriseService = function() {
+    showScreen('priseServiceScreen');
+    renderPriseService();
+  };
+
+  // ============================================================
+  // Public entry · Hub
+  // ============================================================
+  window.showExamenLundi = function() {
+    showScreen('examenLundiScreen');
+    renderHub();
+  };
+
+})();
+
 
 // ===== INIT =====
 try{
