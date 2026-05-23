@@ -9090,6 +9090,137 @@ function renderErpResults(){
       line-height: 1.4;
     }
 
+    /* ===== Study mode (interactive lecture) ===== */
+    .study-dots {
+      display: flex;
+      gap: .4rem;
+      margin-bottom: 1.5rem;
+      padding: .85rem 1rem;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .study-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text-faint);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+    .study-dot:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .study-dot.current {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #000;
+      transform: scale(1.1);
+    }
+    .study-dot.done {
+      background: rgba(74,154,106,.15);
+      border-color: var(--success);
+      color: var(--success);
+    }
+    .study-dot.current.done {
+      background: var(--success);
+      color: #000;
+    }
+
+    .study-exo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: .85rem;
+      padding: .65rem .85rem;
+      background: linear-gradient(135deg, var(--surface), rgba(192,160,80,.04));
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+    }
+    .study-exo-label {
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .study-exo-dots {
+      display: flex;
+      gap: .3rem;
+    }
+    .study-exo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      transition: all .25s;
+    }
+    .study-exo-dot.current {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+    .study-exo-dot.correct { background: var(--success); }
+    .study-exo-dot.wrong { background: var(--error); }
+
+    .study-exo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 1.65rem;
+      margin-bottom: 1rem;
+    }
+    .study-exo-q {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -.01em;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .study-mcq-options {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin: 1rem 0;
+    }
+    .study-mcq-option {
+      padding: .9rem 1.15rem;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .2s;
+      text-align: left;
+      color: var(--text);
+      font-family: inherit;
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+    .study-mcq-option:hover {
+      background: var(--surface-hover);
+      border-left-color: var(--gold);
+    }
+    .study-mcq-option.selected {
+      background: rgba(192,160,80,.1);
+      border-color: var(--gold);
+      border-left-color: var(--gold);
+    }
+
     /* Questionnaire · Feedback panel */
     .qexam-feedback {
       background: var(--surface);
@@ -9866,7 +9997,29 @@ function renderErpResults(){
       texte: "Nul n'est responsable pénalement que de son propre fait.",
       keywords: ["responsabilité", "personnelle", "propre fait"],
       memo: "Tu réponds uniquement de tes actes, pas de ceux de tes collègues ou de ton employeur. Principe fondamental qui te protège : on ne peut pas te reprocher la faute d'un autre agent.",
-      categorie: "Responsabilité"
+      categorie: "Responsabilité",
+      exos: [
+        {
+          type: "keywords",
+          q: "Reconstitue la formule exacte de l'article 121-1",
+          hint: "Phrase de 7 mots · commence par « Nul »",
+          keywords: [
+            { word: "Nul", aliases: ["nul"], required: true },
+            { word: "responsable pénalement", aliases: ["responsable", "pénalement"], required: true },
+            { word: "propre fait", aliases: ["propre fait", "son fait"], required: true }
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Ton collègue commet une faute en oubliant de fermer une porte. Tu es tenu pour responsable ?",
+          options: [
+            { text: "Oui, on est solidaires de l'équipe", correct: false },
+            { text: "Non, je ne réponds que de mes propres actes (art. 121-1)", correct: true },
+            { text: "Oui, si je l'ai vu faire", correct: false },
+            { text: "Seulement si le chef de poste me désigne", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "122-5",
@@ -9876,7 +10029,36 @@ function renderErpResults(){
       texte: "N'est pas pénalement responsable la personne qui, devant une atteinte injustifiée envers elle-même ou autrui, accomplit, dans le même temps, un acte commandé par la nécessité de la légitime défense d'elle-même ou d'autrui, sauf s'il y a disproportion entre les moyens de défense employés et la gravité de l'atteinte.\n\nN'est pas pénalement responsable la personne qui, pour interrompre l'exécution d'un crime ou d'un délit contre un bien, accomplit un acte de défense, autre qu'un homicide volontaire, lorsque cet acte est strictement nécessaire au but poursuivi dès lors que les moyens employés sont proportionnés à la gravité de l'infraction.",
       keywords: ["légitime défense", "atteinte injustifiée", "même temps", "proportionnés"],
       memo: "C'EST L'ARTICLE QUI TE PROTÈGE si tu interviens physiquement. 4 conditions obligatoires : atteinte injustifiée · même temps (riposte immédiate) · nécessaire · proportionnée. Pas de légitime défense par anticipation, pas de représailles.",
-      categorie: "Irresponsabilité"
+      categorie: "Irresponsabilité",
+      exos: [
+        {
+          type: "build",
+          q: "Sélectionne les 4 conditions cumulatives de la légitime défense (art. 122-5)",
+          items: [
+            "Atteinte injustifiée envers soi ou autrui",
+            "Riposte dans le même temps (immédiate)",
+            "Nécessité de la défense",
+            "Proportionnalité des moyens employés"
+          ],
+          decoys: [
+            "Préméditation de la riposte",
+            "Autorisation préalable du chef de poste",
+            "Présence d'un témoin",
+            "Dépôt de plainte préalable",
+            "Riposte différée de 24h maximum"
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Un individu vient de te frapper, il s'éloigne calmement. Tu cours derrière et tu le frappes. Es-tu en légitime défense ?",
+          options: [
+            { text: "Oui, il m'a agressé en premier", correct: false },
+            { text: "Non, l'agression a cessé · plus dans le même temps (art. 122-5)", correct: true },
+            { text: "Oui si je le frappe pas trop fort", correct: false },
+            { text: "Oui parce qu'il pourrait recommencer", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "122-6",
@@ -9886,7 +10068,34 @@ function renderErpResults(){
       texte: "Est présumé avoir agi en état de légitime défense celui qui accomplit l'acte :\n\n1° Pour repousser, de nuit, l'entrée par effraction, violence ou ruse dans un lieu habité ;\n\n2° Pour se défendre contre les auteurs de vols ou de pillages exécutés avec violence.",
       keywords: ["présomption", "nuit", "effraction", "lieu habité", "vols", "pillages"],
       memo: "2 situations où la légitime défense est PRÉSUMÉE (mais c'est une présomption simple, la preuve contraire est possible) : intrusion nocturne dans un lieu habité, ou face à des vols/pillages violents.",
-      categorie: "Irresponsabilité"
+      categorie: "Irresponsabilité",
+      exos: [
+        {
+          type: "build",
+          q: "Quelles sont les 2 situations de présomption de légitime défense (art. 122-6) ?",
+          items: [
+            "Repousser, de nuit, une entrée par effraction/violence/ruse dans un lieu habité",
+            "Se défendre contre les auteurs de vols ou pillages exécutés avec violence"
+          ],
+          decoys: [
+            "Repousser une intrusion en journée",
+            "Empêcher une dégradation de véhicule",
+            "Protéger un commerce ouvert au public",
+            "Intervenir lors d'une bagarre dans la rue",
+            "Défendre un mineur agressé verbalement"
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Quelqu'un entre par effraction chez toi à 23h. Tu le frappes pour le faire sortir. Quel article s'applique ?",
+          options: [
+            { text: "Art. 122-7 état de nécessité", correct: false },
+            { text: "Art. 122-6 présomption de légitime défense (nuit + effraction + lieu habité)", correct: true },
+            { text: "Art. 121-1 responsabilité personnelle", correct: false },
+            { text: "Aucun, c'est interdit", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "122-7",
@@ -9896,7 +10105,40 @@ function renderErpResults(){
       texte: "N'est pas pénalement responsable la personne qui, face à un danger actuel ou imminent qui menace elle-même, autrui ou un bien, accomplit un acte nécessaire à la sauvegarde de la personne ou du bien, sauf s'il y a disproportion entre les moyens employés et la gravité de la menace.",
       keywords: ["état de nécessité", "danger actuel ou imminent", "sauvegarde", "proportion"],
       memo: "Différent de la légitime défense : ici il n'y a pas d'agresseur, juste un PÉRIL (feu, accident, danger naturel). Ex : tu défonces une porte pour sortir une personne d'un local enfumé. L'acte illégal est justifié par la nécessité.",
-      categorie: "Irresponsabilité"
+      categorie: "Irresponsabilité",
+      exos: [
+        {
+          type: "keywords",
+          q: "Quelles sont les conditions de l'état de nécessité (art. 122-7) ?",
+          hint: "Danger actuel/imminent · sauvegarde · proportion",
+          keywords: [
+            { word: "danger actuel ou imminent", aliases: ["danger actuel", "imminent", "actuel"], required: true },
+            { word: "sauvegarde", aliases: ["sauvegarde", "sauver", "protéger"], required: true },
+            { word: "personne ou bien", aliases: ["personne", "bien", "autrui"], required: false },
+            { word: "proportion", aliases: ["proportion", "proportionnés", "disproportion"], required: true }
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Un incendie démarre, tu défonces une porte fermée à clé pour sauver une personne piégée. Quel article te protège ?",
+          options: [
+            { text: "Art. 122-5 légitime défense", correct: false },
+            { text: "Art. 122-7 état de nécessité (pas d'agresseur, juste un péril)", correct: true },
+            { text: "Art. 311-1 vol", correct: false },
+            { text: "Art. 223-1 mise en danger", correct: false }
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Quelle est la grande différence entre légitime défense (122-5) et état de nécessité (122-7) ?",
+          options: [
+            { text: "L'heure (jour vs nuit)", correct: false },
+            { text: "Le lieu (public vs privé)", correct: false },
+            { text: "La présence d'un agresseur (122-5) vs un péril sans agresseur (122-7)", correct: true },
+            { text: "L'âge de la victime", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "223-1",
@@ -9907,7 +10149,36 @@ function renderErpResults(){
       keywords: ["risque immédiat", "mort", "mutilation", "infirmité permanente", "violation délibérée"],
       memo: "Tu peux être poursuivi si tu mets délibérément quelqu'un en danger en violant une règle de sécurité — même sans blessure réelle. Le risque suffit. Ex : tu laisses passer un véhicule sans vérification dans une zone dangereuse.",
       peine: "1 an de prison · 15 000 € d'amende",
-      categorie: "Mise en danger"
+      categorie: "Mise en danger",
+      exos: [
+        {
+          type: "peine",
+          q: "Quelle est la peine encourue pour mise en danger de la vie d'autrui (art. 223-1) ?",
+          options: [
+            { text: "1 an de prison · 15 000 € d'amende", correct: true },
+            { text: "2 ans de prison · 30 000 € d'amende", correct: false },
+            { text: "5 ans de prison · 75 000 € d'amende", correct: false },
+            { text: "7 ans de prison · 100 000 € d'amende", correct: false }
+          ]
+        },
+        {
+          type: "build",
+          q: "Quels sont les éléments constitutifs de l'art. 223-1 ?",
+          items: [
+            "Exposition directe d'autrui à un risque",
+            "Risque immédiat de mort ou blessures graves",
+            "Violation manifestement délibérée",
+            "Obligation imposée par la loi ou le règlement"
+          ],
+          decoys: [
+            "Blessure effectivement causée",
+            "Témoin présent au moment des faits",
+            "Préjudice financier",
+            "Récidive constatée",
+            "Plainte de la victime"
+          ]
+        }
+      ]
     },
     {
       key: "223-5",
@@ -9918,7 +10189,29 @@ function renderErpResults(){
       keywords: ["entraver", "arrivée de secours", "péril imminent", "sinistre"],
       memo: "Bloquer les secours = 7 ans de prison. Tu dois TOUJOURS faciliter l'accès des pompiers/SAMU/police. D'où la vérification de la vacuité des voies engins et échelles à la prise de service.",
       peine: "7 ans de prison · 100 000 € d'amende",
-      categorie: "Omission de porter secours"
+      categorie: "Omission de porter secours",
+      exos: [
+        {
+          type: "peine",
+          q: "Quelle est la peine encourue pour entrave aux secours (art. 223-5) ?",
+          options: [
+            { text: "1 an de prison · 15 000 € d'amende", correct: false },
+            { text: "2 ans de prison · 30 000 € d'amende", correct: false },
+            { text: "5 ans de prison · 75 000 € d'amende", correct: false },
+            { text: "7 ans de prison · 100 000 € d'amende", correct: true }
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Pourquoi tu dois vérifier la vacuité des voies engins et échelles à la prise de service ?",
+          options: [
+            { text: "Pour faire plaisir au chef de poste", correct: false },
+            { text: "Pour éviter d'être poursuivi sur l'art. 223-5 (entrave aux secours)", correct: true },
+            { text: "Pour le confort des salariés", correct: false },
+            { text: "Pour les statistiques de l'entreprise", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "223-6",
@@ -9929,7 +10222,44 @@ function renderErpResults(){
       keywords: ["pouvant empêcher", "sans risque", "péril", "assistance", "provoquant un secours"],
       memo: "LE PLUS IMPORTANT POUR TOI EN TANT QU'APS. Si tu peux aider sans risque (au minimum appeler les secours), tu DOIS le faire. Sinon = 5 ans de prison. Mais attention : « sans risque pour toi ou pour les tiers » — donc tu n'as pas à te mettre en danger physique.",
       peine: "5 ans de prison · 75 000 € d'amende",
-      categorie: "Omission de porter secours"
+      categorie: "Omission de porter secours",
+      exos: [
+        {
+          type: "peine",
+          q: "Quelle est la peine encourue pour non-assistance à personne en danger (art. 223-6) ?",
+          options: [
+            { text: "1 an de prison · 15 000 € d'amende", correct: false },
+            { text: "2 ans de prison · 30 000 € d'amende", correct: false },
+            { text: "5 ans de prison · 75 000 € d'amende", correct: true },
+            { text: "7 ans de prison · 100 000 € d'amende", correct: false }
+          ]
+        },
+        {
+          type: "build",
+          q: "Quelles sont les 2 conditions clés de la non-assistance (art. 223-6) ?",
+          items: [
+            "Possibilité d'agir par son action immédiate ou en provoquant un secours",
+            "Action possible sans risque pour soi ou pour les tiers"
+          ],
+          decoys: [
+            "Connaissance préalable de la victime",
+            "Capacité de premiers secours (PSC1, SST)",
+            "Présence des forces de l'ordre",
+            "Autorisation de la hiérarchie",
+            "Témoin de l'événement"
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Tu vois quelqu'un s'effondrer dans la rue. Tu n'as pas de formation aux premiers secours. Que dois-tu faire au minimum ?",
+          options: [
+            { text: "Ne rien faire, je ne suis pas formé", correct: false },
+            { text: "Provoquer un secours en appelant le 15/18/112 (art. 223-6)", correct: true },
+            { text: "Attendre qu'un médecin passe", correct: false },
+            { text: "Filmer pour avoir des preuves", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "223-7",
@@ -9940,7 +10270,29 @@ function renderErpResults(){
       keywords: ["abstient", "combattre", "sinistre", "danger sécurité"],
       memo: "Face à un début d'incendie, fuite de gaz, inondation... tu DOIS au minimum donner l'alerte. Ne rien faire alors que tu pouvais agir sans danger = 2 ans de prison. Décroche un extincteur si formé, sinon évacue et appelle.",
       peine: "2 ans de prison · 30 000 € d'amende",
-      categorie: "Omission de porter secours"
+      categorie: "Omission de porter secours",
+      exos: [
+        {
+          type: "peine",
+          q: "Quelle est la peine encourue pour abstention de combattre un sinistre (art. 223-7) ?",
+          options: [
+            { text: "1 an de prison · 15 000 € d'amende", correct: false },
+            { text: "2 ans de prison · 30 000 € d'amende", correct: true },
+            { text: "5 ans de prison · 75 000 € d'amende", correct: false },
+            { text: "7 ans de prison · 100 000 € d'amende", correct: false }
+          ]
+        },
+        {
+          type: "scenario",
+          q: "Tu repères un début d'incendie en ronde. Tu n'es pas formé à l'utilisation d'extincteur. Que dois-tu faire ?",
+          options: [
+            { text: "Continuer ma ronde, ce n'est pas mon problème", correct: false },
+            { text: "Provoquer l'alerte (PC, pompiers) au minimum — art. 223-7", correct: true },
+            { text: "Attendre que ça s'éteigne tout seul", correct: false },
+            { text: "Prendre l'extincteur même sans formation", correct: false }
+          ]
+        }
+      ]
     },
     {
       key: "311-1",
@@ -9950,7 +10302,36 @@ function renderErpResults(){
       texte: "Le vol est la soustraction frauduleuse de la chose d'autrui.",
       keywords: ["soustraction", "frauduleuse", "chose d'autrui"],
       memo: "Définition très courte mais essentielle. 3 éléments : SOUSTRACTION (prendre) + FRAUDULEUSE (sans le consentement) + CHOSE D'AUTRUI (qui n'est pas à toi). C'est ce que tu dois retenir pour qualifier un vol dans un rapport.",
-      categorie: "Atteintes aux biens"
+      categorie: "Atteintes aux biens",
+      exos: [
+        {
+          type: "keywords",
+          q: "Reconstitue la définition exacte du vol (art. 311-1)",
+          hint: "Phrase de 8 mots · 3 éléments constitutifs",
+          keywords: [
+            { word: "soustraction", aliases: ["soustraction", "soustraire"], required: true },
+            { word: "frauduleuse", aliases: ["frauduleuse", "frauduleux"], required: true },
+            { word: "chose d'autrui", aliases: ["chose d'autrui", "chose autrui", "chose"], required: true }
+          ]
+        },
+        {
+          type: "build",
+          q: "Quels sont les 3 éléments constitutifs du vol (art. 311-1) ?",
+          items: [
+            "Soustraction (prendre la chose)",
+            "Frauduleuse (sans le consentement)",
+            "Chose d'autrui (qui n'est pas à soi)"
+          ],
+          decoys: [
+            "Violence physique",
+            "Préjudice supérieur à 50 €",
+            "Récidive",
+            "Effraction",
+            "Témoin présent",
+            "Préméditation"
+          ]
+        }
+      ]
     }
   ];
 
@@ -10806,10 +11187,10 @@ function renderErpResults(){
         <!-- 2 modes -->
         <div class="lundi-grid" style="margin-bottom:2rem;">
           <button class="lundi-mod" onclick="articlesGoRead()">
-            <div class="lundi-mod-num">📖 Mode Lecture</div>
-            <div class="lundi-mod-title">Lire les 9 articles</div>
-            <div class="lundi-mod-desc">Textes officiels Légifrance · keywords surlignés · memo APS pour chaque article. Coche ceux que tu maîtrises.</div>
-            <div class="lundi-mod-meta">Réviser</div>
+            <div class="lundi-mod-num">📖 Mode Étude</div>
+            <div class="lundi-mod-title">Apprendre les articles</div>
+            <div class="lundi-mod-desc">Pour chaque article : fiche complète + exercices interactifs (taper le texte, sélectionner les éléments, mises en situation). Article acquis quand tous les exos sont OK.</div>
+            <div class="lundi-mod-meta">Étudier</div>
           </button>
           <button class="lundi-mod" onclick="articlesGoQuiz()">
             <div class="lundi-mod-num">🎯 Mode Quiz</div>
@@ -10842,59 +11223,410 @@ function renderErpResults(){
   }
 
   function renderArticlesRead(sc) {
+    // Mode "study" interactif : un article à la fois, avec exos
     const prog = loadProgress(LS_ART);
+    const a = ARTICLES[articlesState.currentIdx];
+    if (!a) { articlesBackToMenu(); return; }
 
-    const articlesHtml = ARTICLES.map((a, i) => {
-      const acquired = prog[a.key] === 'ok';
-      // Highlight keywords in text
-      let highlightedText = a.texte;
-      (a.keywords || []).forEach(kw => {
-        const safe = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const re = new RegExp('(' + safe + ')', 'gi');
-        highlightedText = highlightedText.replace(re, '<mark class="art-kw">$1</mark>');
-      });
+    const totalArt = ARTICLES.length;
+    const acquired = prog[a.key] === 'ok';
+    const totalExos = (a.exos || []).length;
+    const exoIdx = articlesState.exoIdx || 0;
+    const exo = (a.exos || [])[exoIdx];
 
-      return `
-        <article class="art-card ${acquired ? 'acquired' : ''}">
-          <header class="art-card-header">
-            <div class="art-num-block">
-              <div class="art-num">Art. ${a.num}</div>
-              <div class="art-code">${a.code}</div>
-            </div>
-            <div class="art-titre-block">
-              <h3 class="art-titre">${a.titre}</h3>
-              <div class="art-cat">${a.categorie}</div>
-            </div>
-            <button class="art-toggle ${acquired ? 'acquired' : ''}" onclick="toggleArticleAcquired('${a.key}')" title="Marquer comme acquis">
-              ${acquired ? '✓' : ''}
-            </button>
-          </header>
+    // Highlight keywords in text
+    let highlightedText = a.texte;
+    (a.keywords || []).forEach(kw => {
+      const safe = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp('(' + safe + ')', 'gi');
+      highlightedText = highlightedText.replace(re, '<mark class="art-kw">$1</mark>');
+    });
+
+    // Progress dots for articles
+    const dotsHtml = ARTICLES.map((art, i) => {
+      const done = prog[art.key] === 'ok';
+      const current = i === articlesState.currentIdx;
+      return `<button onclick="studyGoToArticle(${i})" class="study-dot ${current ? 'current' : ''} ${done ? 'done' : ''}" title="Art. ${art.num}">${done ? '✓' : (i + 1)}</button>`;
+    }).join('');
+
+    // Exo rendering
+    let exoHtml = '';
+    if (exo) {
+      if (articlesState.exoPhase === 'feedback') {
+        exoHtml = renderExoFeedback(a, exo);
+      } else {
+        exoHtml = renderExoQuestion(a, exo);
+      }
+    }
+
+    sc.innerHTML = `
+      <div style="max-width:820px;margin:0 auto;">
+
+        <!-- Header -->
+        <div style="margin-bottom:1.5rem;">
+          <div class="lundi-badge" style="margin-bottom:.85rem;">📖 Étude · Article ${articlesState.currentIdx + 1}/${totalArt}</div>
+          <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;">
+            <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.25rem);letter-spacing:-.02em;margin:0;color:var(--gold);">Art. ${a.num}</h2>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:500;font-size:clamp(1rem,2.5vw,1.3rem);margin:0;color:var(--text);">${a.titre}</h3>
+          </div>
+          <div style="font-size:.7rem;color:var(--text-faint);letter-spacing:.15em;text-transform:uppercase;margin-top:.4rem;">${a.code} · ${a.categorie}</div>
+        </div>
+
+        <!-- Article progress dots -->
+        <div class="study-dots">${dotsHtml}</div>
+
+        <!-- Fiche article (always visible) -->
+        <article class="art-card ${acquired ? 'acquired' : ''}" style="margin-bottom:1.5rem;">
           <div class="art-texte">${highlightedText.replace(/\n/g, '<br>')}</div>
-          ${a.peine ? `<div class="art-peine"><span class="art-peine-label">⚖️ Peine encourue</span><span class="art-peine-value">${a.peine}</span></div>` : ''}
+          ${a.peine ? `<div class="art-peine"><span class="art-peine-label">⚖️ Peine</span><span class="art-peine-value">${a.peine}</span></div>` : ''}
           <div class="art-memo">
             <div class="art-memo-label">💡 Memo APS</div>
             <div class="art-memo-text">${a.memo}</div>
           </div>
         </article>
-      `;
-    }).join('');
 
-    sc.innerHTML = `
-      <div style="max-width:820px;margin:0 auto;">
-        <div style="margin-bottom:1.5rem;">
-          <div class="lundi-badge" style="margin-bottom:.85rem;">📖 Mode Lecture</div>
-          <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.4rem,3.5vw,2rem);letter-spacing:-.02em;margin:0;">9 articles · Code Pénal</h2>
-          <p style="color:var(--text-dim);font-size:.85rem;margin-top:.5rem;">Mots-clés surlignés en or. Coche les articles que tu maîtrises pour les retirer du quiz adaptatif.</p>
-        </div>
+        <!-- Exo interactif -->
+        ${totalExos > 0 ? `
+          <div class="study-exo-header">
+            <div class="study-exo-label">🎯 Exercice ${exoIdx + 1}/${totalExos}</div>
+            <div class="study-exo-dots">
+              ${(a.exos || []).map((_, i) => {
+                const isDone = (articlesState.exoResults || []).find(r => r.artKey === a.key && r.exoIdx === i);
+                const isCurrent = i === exoIdx;
+                return `<span class="study-exo-dot ${isCurrent ? 'current' : ''} ${isDone ? (isDone.correct ? 'correct' : 'wrong') : ''}"></span>`;
+              }).join('')}
+            </div>
+          </div>
+          ${exoHtml}
+        ` : '<div style="text-align:center;padding:2rem;color:var(--text-faint);">Aucun exercice pour cet article.</div>'}
 
-        ${articlesHtml}
-
+        <!-- Navigation -->
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);flex-wrap:wrap;">
-          <button class="btn btn-ghost" onclick="articlesBackToMenu()">← Retour</button>
-          <button class="btn btn-primary" onclick="articlesGoQuiz()">Passer au quiz →</button>
+          <button class="btn btn-ghost" onclick="articlesBackToMenu()">← Menu</button>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+            <button class="btn" onclick="studyPrevArticle()" ${articlesState.currentIdx === 0 ? 'disabled style="opacity:.4;cursor:not-allowed;"' : ''}>← Art. préc.</button>
+            <button class="btn" onclick="studyNextArticle()">${articlesState.currentIdx === totalArt - 1 ? 'Terminer →' : 'Art. suivant →'}</button>
+          </div>
         </div>
+
       </div>
     `;
+
+    // Focus textarea if applicable
+    if (exo && exo.type === 'keywords' && articlesState.exoPhase !== 'feedback') {
+      const ta = document.getElementById('studyInput');
+      if (ta) {
+        ta.addEventListener('input', () => { articlesState.exoInput = ta.value; });
+        setTimeout(() => ta.focus(), 50);
+      }
+    }
+  }
+
+  function renderExoQuestion(article, exo) {
+    if (exo.type === 'keywords') {
+      return `
+        <div class="study-exo-card">
+          <div class="study-exo-q">${exo.q}</div>
+          ${exo.hint ? `<div class="qexam-hint-box" style="margin-bottom:.75rem;">💡 ${exo.hint}</div>` : ''}
+          <textarea id="studyInput" class="qexam-textarea" placeholder="Tape ta réponse de mémoire..." rows="4">${articlesState.exoInput || ''}</textarea>
+          <div style="display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end;margin-top:.85rem;">
+            <button class="btn" onclick="studyRevealAnswer()">Voir la réponse</button>
+            <button class="btn btn-primary" onclick="studyCheckKeywords()">Vérifier</button>
+          </div>
+        </div>
+      `;
+    }
+
+    if (exo.type === 'build') {
+      const allPool = [...exo.items, ...(exo.decoys || [])];
+      const pool = allPool.slice().sort((a, b) => {
+        const seed = (article.key + (articlesState.exoIdx || 0)).length;
+        return ((a.charCodeAt(0) + seed) % 7) - ((b.charCodeAt(0) + seed) % 7);
+      });
+      const selected = articlesState.exoBuildSelected || [];
+      return `
+        <div class="study-exo-card">
+          <div class="study-exo-q">${exo.q}</div>
+          <div class="qexam-build-hint">Clique pour sélectionner · ${exo.items.length} bonnes réponses attendues · attention aux leurres</div>
+          <div class="qexam-build-pool">
+            ${pool.map(item => {
+              const isSel = selected.includes(item);
+              return `<button class="qexam-build-item ${isSel ? 'selected' : ''}" onclick="studyToggleBuild('${item.replace(/'/g, "\\'")}')">${item}</button>`;
+            }).join('')}
+          </div>
+          <div class="qexam-selected-count">${selected.length} sélectionnée(s) · ${exo.items.length} attendues</div>
+          <div style="display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end;">
+            <button class="btn" onclick="studyRevealAnswer()">Voir la réponse</button>
+            <button class="btn btn-primary" onclick="studyCheckBuild()" ${selected.length === 0 ? 'disabled style="opacity:.4;cursor:not-allowed;"' : ''}>Vérifier</button>
+          </div>
+        </div>
+      `;
+    }
+
+    if (exo.type === 'scenario' || exo.type === 'peine') {
+      const sel = articlesState.exoMcqSelected;
+      return `
+        <div class="study-exo-card">
+          <div class="study-exo-q">${exo.q}</div>
+          <div class="study-mcq-options">
+            ${exo.options.map((opt, i) => {
+              const cls = sel === i ? 'selected' : '';
+              return `<button class="study-mcq-option ${cls}" onclick="studySelectMcq(${i})">${opt.text}</button>`;
+            }).join('')}
+          </div>
+          <div style="display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end;margin-top:.85rem;">
+            <button class="btn btn-primary" onclick="studyCheckMcq()" ${sel === null || sel === undefined ? 'disabled style="opacity:.4;cursor:not-allowed;"' : ''}>Valider</button>
+          </div>
+        </div>
+      `;
+    }
+
+    return '';
+  }
+
+  function renderExoFeedback(article, exo) {
+    const r = articlesState.exoResult || {};
+    let inner = '';
+
+    if (exo.type === 'keywords') {
+      const requiredMissing = (r.missing || []).filter(m => m.required);
+      const status = r.requiredOk && r.score >= 70 ? '✓ Très bien' : r.score >= 40 ? '~ Tu y es presque' : '✗ À retravailler';
+      const fbClass = r.requiredOk && r.score >= 70 ? 'fb-ok' : r.score >= 40 ? 'fb-mid' : 'fb-ko';
+      inner = `
+        <div class="qexam-feedback ${fbClass}">
+          <div class="fb-header">
+            <div class="fb-score">${r.score || 0}%</div>
+            <div class="fb-status">${status}</div>
+          </div>
+          ${(r.matched || []).length > 0 ? `
+            <div class="fb-section">
+              <div class="fb-section-label">✓ Tu as cité</div>
+              <div class="fb-chips">${r.matched.map(m => `<span class="fb-chip fb-chip-ok">${m.word}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+          ${(r.missing || []).length > 0 ? `
+            <div class="fb-section">
+              <div class="fb-section-label">${requiredMissing.length > 0 ? '✗ Il te manque (essentiel)' : '~ Tu pourrais ajouter'}</div>
+              <div class="fb-chips">${r.missing.map(m => `<span class="fb-chip ${m.required ? 'fb-chip-ko' : 'fb-chip-mid'}">${m.word}${m.required ? ' *' : ''}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+          <div class="fb-section">
+            <div class="fb-section-label">📜 Texte officiel</div>
+            <div class="fb-ideal">${article.texte.replace(/\n/g, '<br>')}</div>
+          </div>
+        </div>
+      `;
+    } else if (exo.type === 'build') {
+      const overall = r.matched.length === exo.items.length && r.wrong.length === 0;
+      const goodScore = r.score >= 70 && r.wrong.length === 0;
+      const fbClass = overall ? 'fb-ok' : goodScore ? 'fb-mid' : 'fb-ko';
+      const status = overall ? '✓ Parfait — toutes bonnes, aucun leurre' : goodScore ? '~ Bien — quelques oublis' : '✗ À retravailler';
+      inner = `
+        <div class="qexam-feedback ${fbClass}">
+          <div class="fb-header">
+            <div class="fb-score">${r.score || 0}%</div>
+            <div class="fb-status">${status}</div>
+          </div>
+          ${(r.matched || []).length > 0 ? `
+            <div class="fb-section">
+              <div class="fb-section-label">✓ Bonnes réponses cochées (${r.matched.length}/${exo.items.length})</div>
+              <div class="fb-chips">${r.matched.map(m => `<span class="fb-chip fb-chip-ok">${m}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+          ${(r.wrong || []).length > 0 ? `
+            <div class="fb-section">
+              <div class="fb-section-label">✗ Leurres cochés (à éviter)</div>
+              <div class="fb-chips">${r.wrong.map(w => `<span class="fb-chip fb-chip-ko">${w}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+          ${(r.missing || []).length > 0 ? `
+            <div class="fb-section">
+              <div class="fb-section-label">~ Oubliées</div>
+              <div class="fb-chips">${r.missing.map(m => `<span class="fb-chip fb-chip-mid">${m}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    } else if (exo.type === 'scenario' || exo.type === 'peine') {
+      const selected = articlesState.exoMcqSelected;
+      const correctIdx = exo.options.findIndex(o => o.correct);
+      const correct = selected === correctIdx;
+      const fbClass = correct ? 'fb-ok' : 'fb-ko';
+      const status = correct ? '✓ Bonne réponse' : '✗ Mauvaise réponse';
+      inner = `
+        <div class="qexam-feedback ${fbClass}">
+          <div class="fb-header">
+            <div class="fb-score">${correct ? '✓' : '✗'}</div>
+            <div class="fb-status">${status}</div>
+          </div>
+          <div class="fb-section">
+            <div class="fb-section-label">${correct ? 'Tu as choisi' : 'La bonne réponse'}</div>
+            <div class="fb-ideal"><strong style="color:${correct ? 'var(--success)' : 'var(--gold)'};">${exo.options[correctIdx].text}</strong></div>
+          </div>
+          ${!correct ? `
+            <div class="fb-section">
+              <div class="fb-section-label">Ta réponse</div>
+              <div class="fb-user-text">${exo.options[selected].text}</div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    // Bouton "exo suivant" ou "passer à l'article suivant"
+    const totalExos = (article.exos || []).length;
+    const exoIdx = articlesState.exoIdx || 0;
+    const hasNextExo = exoIdx < totalExos - 1;
+    const nextArtIdx = articlesState.currentIdx + 1;
+    const hasNextArt = nextArtIdx < ARTICLES.length;
+
+    const actions = `
+      <div style="display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end;margin-top:1rem;">
+        <button class="btn btn-ghost" onclick="studyRetryExo()">↻ Réessayer</button>
+        ${hasNextExo
+          ? `<button class="btn btn-primary" onclick="studyNextExo()">Exo suivant →</button>`
+          : (hasNextArt
+              ? `<button class="btn btn-primary" onclick="studyNextArticle()">Art. suivant →</button>`
+              : `<button class="btn btn-primary" onclick="articlesBackToMenu()">✓ Terminer</button>`)
+        }
+      </div>
+    `;
+
+    return inner + actions;
+  }
+
+  // ===== Study mode handlers =====
+  window.studyGoToArticle = function(i) {
+    if (i < 0 || i >= ARTICLES.length) return;
+    articlesState.currentIdx = i;
+    articlesState.exoIdx = 0;
+    articlesState.exoPhase = 'answer';
+    articlesState.exoInput = '';
+    articlesState.exoBuildSelected = [];
+    articlesState.exoMcqSelected = null;
+    articlesState.exoResult = null;
+    renderArticles();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  window.studyNextArticle = function() {
+    if (articlesState.currentIdx < ARTICLES.length - 1) {
+      studyGoToArticle(articlesState.currentIdx + 1);
+    } else {
+      articlesBackToMenu();
+    }
+  };
+
+  window.studyPrevArticle = function() {
+    if (articlesState.currentIdx > 0) studyGoToArticle(articlesState.currentIdx - 1);
+  };
+
+  window.studyNextExo = function() {
+    const a = ARTICLES[articlesState.currentIdx];
+    const total = (a.exos || []).length;
+    if ((articlesState.exoIdx || 0) < total - 1) {
+      articlesState.exoIdx = (articlesState.exoIdx || 0) + 1;
+      articlesState.exoPhase = 'answer';
+      articlesState.exoInput = '';
+      articlesState.exoBuildSelected = [];
+      articlesState.exoMcqSelected = null;
+      articlesState.exoResult = null;
+      renderArticles();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  };
+
+  window.studyRetryExo = function() {
+    articlesState.exoPhase = 'answer';
+    articlesState.exoInput = '';
+    articlesState.exoBuildSelected = [];
+    articlesState.exoMcqSelected = null;
+    articlesState.exoResult = null;
+    renderArticles();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  window.studyCheckKeywords = function() {
+    const a = ARTICLES[articlesState.currentIdx];
+    const exo = (a.exos || [])[articlesState.exoIdx || 0];
+    if (!exo) return;
+    const ta = document.getElementById('studyInput');
+    articlesState.exoInput = ta ? ta.value : (articlesState.exoInput || '');
+    articlesState.exoResult = evaluateKeywords(articlesState.exoInput, exo.keywords);
+    articlesState.exoPhase = 'feedback';
+    recordExoResult(a.key, articlesState.exoIdx || 0, articlesState.exoResult.requiredOk && articlesState.exoResult.score >= 70);
+    renderArticles();
+  };
+
+  window.studyToggleBuild = function(item) {
+    if (!articlesState.exoBuildSelected) articlesState.exoBuildSelected = [];
+    const ix = articlesState.exoBuildSelected.indexOf(item);
+    if (ix >= 0) articlesState.exoBuildSelected.splice(ix, 1);
+    else articlesState.exoBuildSelected.push(item);
+    renderArticles();
+  };
+
+  window.studyCheckBuild = function() {
+    const a = ARTICLES[articlesState.currentIdx];
+    const exo = (a.exos || [])[articlesState.exoIdx || 0];
+    if (!exo) return;
+    articlesState.exoResult = evaluateBuild(articlesState.exoBuildSelected || [], exo.items);
+    articlesState.exoPhase = 'feedback';
+    const ok = articlesState.exoResult.matched.length === exo.items.length && articlesState.exoResult.wrong.length === 0;
+    recordExoResult(a.key, articlesState.exoIdx || 0, ok);
+    renderArticles();
+  };
+
+  window.studySelectMcq = function(i) {
+    articlesState.exoMcqSelected = i;
+    renderArticles();
+  };
+
+  window.studyCheckMcq = function() {
+    const a = ARTICLES[articlesState.currentIdx];
+    const exo = (a.exos || [])[articlesState.exoIdx || 0];
+    if (!exo || articlesState.exoMcqSelected === null || articlesState.exoMcqSelected === undefined) return;
+    const correctIdx = exo.options.findIndex(o => o.correct);
+    const correct = articlesState.exoMcqSelected === correctIdx;
+    articlesState.exoResult = { correct };
+    articlesState.exoPhase = 'feedback';
+    recordExoResult(a.key, articlesState.exoIdx || 0, correct);
+    renderArticles();
+  };
+
+  window.studyRevealAnswer = function() {
+    const a = ARTICLES[articlesState.currentIdx];
+    const exo = (a.exos || [])[articlesState.exoIdx || 0];
+    if (!exo) return;
+    if (exo.type === 'keywords') {
+      articlesState.exoResult = evaluateKeywords(articlesState.exoInput || '', exo.keywords);
+    } else if (exo.type === 'build') {
+      articlesState.exoResult = evaluateBuild(articlesState.exoBuildSelected || [], exo.items);
+    }
+    articlesState.exoPhase = 'feedback';
+    renderArticles();
+  };
+
+  function recordExoResult(artKey, exoIdx, correct) {
+    if (!articlesState.exoResults) articlesState.exoResults = [];
+    // Remplace si déjà existant
+    const existing = articlesState.exoResults.findIndex(r => r.artKey === artKey && r.exoIdx === exoIdx);
+    if (existing >= 0) articlesState.exoResults[existing] = { artKey, exoIdx, correct };
+    else articlesState.exoResults.push({ artKey, exoIdx, correct });
+
+    // Si TOUS les exos de l'article sont OK, on marque l'article acquis
+    const a = ARTICLES.find(art => art.key === artKey);
+    if (a && a.exos) {
+      const allOk = a.exos.every((_, i) => {
+        const r = articlesState.exoResults.find(rr => rr.artKey === artKey && rr.exoIdx === i);
+        return r && r.correct;
+      });
+      if (allOk) {
+        const prog = loadProgress(LS_ART);
+        prog[artKey] = 'ok';
+        saveProgress(LS_ART, prog);
+      }
+    }
   }
 
   function renderArticleDetail(sc) {
@@ -11100,7 +11832,7 @@ function renderErpResults(){
 
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="articlesGoQuiz()">Refaire le quiz</button>
-          <button class="btn" onclick="articlesGoRead()">Mode Lecture</button>
+          <button class="btn" onclick="articlesGoRead()">Mode Étude</button>
           <button class="btn btn-ghost" onclick="articlesBackToMenu()">← Menu articles</button>
         </div>
       </div>
@@ -11118,6 +11850,13 @@ function renderErpResults(){
 
   window.articlesGoRead = function() {
     articlesState.view = 'read';
+    articlesState.currentIdx = 0;
+    articlesState.exoIdx = 0;
+    articlesState.exoPhase = 'answer';
+    articlesState.exoInput = '';
+    articlesState.exoBuildSelected = [];
+    articlesState.exoMcqSelected = null;
+    articlesState.exoResult = null;
     renderArticles();
     window.scrollTo({top: 0, behavior: 'smooth'});
   };
