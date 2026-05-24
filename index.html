@@ -1719,7 +1719,7 @@ body::before { display: none !important; }
         <div style="position:absolute;top:0;right:0;background:var(--gold);color:#000;font-family:'Outfit',sans-serif;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;padding:.3rem .85rem;font-weight:600;">D-DAY · Lundi</div>
         <div class="mode-number" style="color:var(--gold);">⚡ / Examen Final</div>
         <div class="mode-title" style="background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;">MODE EXAMEN ORAL LUNDI</div>
-        <div class="mode-desc">Tes 3 modules de l'oral : <strong style="color:var(--text);">Questionnaire examinateur</strong> (24 questions du jury) · <strong style="color:var(--text);">Poste de travail</strong> (prise de service complète) · <strong style="color:var(--text);">Cas N°6</strong> (personne en état d'ébriété).</div>
+        <div class="mode-desc">Tes 3 modules de l'oral : <strong style="color:var(--text);">Questionnaire examinateur</strong> (24 questions du jury) · <strong style="color:var(--text);">Poste de travail</strong> (prise de service complète) · <strong style="color:var(--text);">Cas N°6</strong> (personne en état d'ébriété) · <strong style="color:var(--text);">Cas N°7</strong> (feu de poubelle).</div>
         <div class="mode-meta">Lancer la préparation finale →</div>
       </button>
 
@@ -7406,7 +7406,188 @@ function showCas6Guide() {
   renderGuide();
 }
 
-// ===== KEYBOARD =====
+// ===== CAS N°7 · FEU DE POUBELLE GUIDE =====
+function showFeuPoubelle() {
+
+  // Réutiliser cas6Screen pour l'affichage
+  let sc = document.getElementById('cas6Screen');
+  if (!sc) return;
+
+  const PHASES_FEU = [
+    {
+      num: '01',
+      title: 'Découverte — Identification du feu',
+      tag: 'Détection & évaluation immédiate',
+      color: '#e05a2b',
+      steps: [
+        { icon: '👃', label: 'Détection : odeur de fumée / flammes visibles', detail: 'En ronde ou signalement. Localiser précisément : couloir, local, niveau, zone.', type: 'critical' },
+        { icon: '✋', label: 'Toucher la porte avec le DOS de la main', detail: 'Porte froide → ouverture prudente possible. Porte chaude → NE JAMAIS OUVRIR (risque backdraft).', type: 'critical' },
+        { icon: '👁️', label: 'Évaluer : taille du feu, propagation, fumée', detail: 'Feu de poubelle maîtrisable ≠ feu en cours de propagation. Décision : attaque ou repli total.', type: 'normal' },
+        { icon: '🚪', label: 'Si porte chaude : colmater le bas de la porte', detail: 'Tissu, veste, tout ce qui est disponible pour ralentir la propagation de fumée dans le couloir.', type: 'critical' },
+      ]
+    },
+    {
+      num: '02',
+      title: 'Alerter — Déclencher l\'alarme & appeler les secours',
+      tag: 'Alertes obligatoires AVANT toute attaque',
+      color: '#e8a020',
+      steps: [
+        { icon: '🔴', label: 'Déclencher le DAM (Déclencheur Alarme Manuel)', detail: 'Le boîtier rouge en saillie dans les couloirs. À activer IMMÉDIATEMENT — ne pas attendre que le SSI détecte automatiquement.', type: 'critical' },
+        { icon: '📞', label: 'Appeler le 18 (pompiers) ou le 112', detail: '"Agent de sécurité, [nom du site], [adresse]. Feu de poubelle au [niveau/localisation]. Alarme déclenchée. Personnes évacuées." Rester en ligne si possible.', type: 'critical' },
+        { icon: '📻', label: 'Alerter le chef de poste par radio', detail: 'Nature de l\'incident, localisation, actions en cours. Il coordonne l\'évacuation globale.', type: 'critical' },
+        { icon: '📋', label: 'Horodater sur la main courante', detail: 'Heure de découverte, heure déclenchement DAM, heure appel 18. Indispensable pour le rapport.', type: 'normal' },
+      ]
+    },
+    {
+      num: '03',
+      title: 'Évacuer — Protéger les personnes',
+      tag: 'Priorité absolue : les vies avant les biens',
+      color: '#e8a020',
+      steps: [
+        { icon: '🚶', label: 'Évacuer les personnes proches de la zone immédiatement', detail: 'Guider calmement, sans courir, vers les issues de secours. Fermer les portes derrière pour confiner le feu.', type: 'critical' },
+        { icon: '🚫', label: 'Interdire l\'accès à la zone', detail: 'Baliser si possible. Empêcher tout retour dans la zone sinistrée.', type: 'critical' },
+        { icon: '📍', label: 'Guider vers le point de rassemblement', detail: 'Lieu défini dans le plan d\'évacuation du site. Vérifier que personne ne manque.', type: 'normal' },
+        { icon: '🛗', label: 'Interdire l\'utilisation des ascenseurs', detail: 'En cas d\'incendie, les ascenseurs sont INTERDITS. Uniquement les escaliers et issues de secours.', type: 'critical' },
+      ]
+    },
+    {
+      num: '04',
+      title: 'Attaque — Utiliser l\'extincteur (si possible)',
+      tag: 'Uniquement si feu naissant, accessible, sans risque',
+      color: '#c0a050',
+      steps: [
+        { icon: '🧯', label: 'Choisir le bon extincteur : EAU PULVÉRISÉE pour feu de classe A', detail: 'Classe A = solides (papier, carton, plastique, bois). Eau pulvérisée = refroidissement + extinction. CO₂ = efficace mais moins adapté aux feux couvants. Poudre = polyvalente mais déconseillée en bureaux (encrassement).', type: 'critical' },
+        { icon: '↩️', label: 'Se positionner DOS à la sortie', detail: 'Toujours garder une voie de repli derrière soi. Ne jamais se laisser piéger entre le feu et le mur.', type: 'critical' },
+        { icon: '📏', label: 'Attaquer à la base des flammes à 2-3 mètres', detail: 'Viser la base du feu, pas les flammes. Balayage horizontal. Reculer si le feu grossit.', type: 'normal' },
+        { icon: '🛑', label: 'Si le feu grossit : REPLI IMMÉDIAT', detail: 'Règle d\'or : un extincteur vide en 15-30 secondes. Dès que le feu dépasse la capacité de l\'extincteur → sortir et laisser faire les pompiers. Aucun bien ne vaut une vie.', type: 'critical' },
+      ]
+    },
+    {
+      num: '05',
+      title: 'Clôture — Rapport & accueil pompiers',
+      tag: 'Fin d\'intervention & traçabilité',
+      color: '#4a9a6a',
+      steps: [
+        { icon: '🚒', label: 'Accueillir et guider les pompiers à l\'arrivée', detail: 'Les diriger vers le sinistre, informer sur la localisation précise, l\'état du feu au moment du repli, les personnes évacuées, les éventuelles personnes manquantes.', type: 'critical' },
+        { icon: '🔑', label: 'Remettre les clés / plans du bâtiment au chef d\'agrès', detail: 'Clés des locaux techniques, plans d\'évacuation, schémas SSI. Faciliter au maximum l\'intervention.', type: 'normal' },
+        { icon: '📋', label: 'Compléter la main courante (QQOQCP)', detail: 'QUI : personnes impliquées. QUOI : nature du feu. OÙ : localisation précise. QUAND : horaires. COMMENT : actions menées. POURQUOI : cause supposée.', type: 'critical' },
+        { icon: '📝', label: 'Rédiger le rapport d\'incident complet', detail: 'Heure découverte, localisation, type de feu, personnes évacuées, actions APS, services alertés, heure d\'arrivée pompiers, bilan dommages constatés.', type: 'normal' },
+      ]
+    }
+  ];
+
+  let currentPhase = 0;
+  let checkedSteps = {};
+
+  function renderFeuGuide() {
+    const phase = PHASES_FEU[currentPhase];
+    const totalSteps = PHASES_FEU.reduce((sum, p) => sum + p.steps.length, 0);
+    const done = Object.keys(checkedSteps).filter(k => checkedSteps[k]).length;
+    const pct = totalSteps ? Math.round((done / totalSteps) * 100) : 0;
+
+    const dots = PHASES_FEU.map((p, i) => {
+      const phaseDone = p.steps.filter((_, si) => checkedSteps[`${i}-${si}`]).length;
+      const phasePct = p.steps.length ? Math.round((phaseDone / p.steps.length) * 100) : 0;
+      const isActive = i === currentPhase;
+      const isDone = phasePct === 100;
+      return `
+        <div onclick="goFeuPhase(${i})" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;padding:.4rem .2rem;opacity:${isActive ? '1' : '0.55'};transition:opacity .2s;">
+          <div style="width:28px;height:28px;border-radius:50%;border:2px solid ${isActive ? p.color : (isDone ? '#4a9a6a' : 'var(--border-strong)')};background:${isActive ? p.color : (isDone ? 'rgba(74,154,106,.15)' : 'transparent')};display:flex;align-items:center;justify-content:center;font-size:.7rem;color:${isActive ? '#000' : (isDone ? '#4a9a6a' : 'var(--text-faint)')};font-family:'Syne',sans-serif;font-weight:700;transition:all .2s;">${isDone ? '✓' : p.num}</div>
+          <div style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:${isActive ? p.color : 'var(--text-faint)'};text-align:center;line-height:1.2;">${p.title.split('—')[0].trim()}</div>
+        </div>`;
+    }).join('');
+
+    const steps = phase.steps.map((step, si) => {
+      const key = `${currentPhase}-${si}`;
+      const checked = !!checkedSteps[key];
+      return `
+        <div onclick="toggleFeuStep('${key}')" style="display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;margin-bottom:.5rem;background:${checked ? 'rgba(74,154,106,.06)' : 'var(--surface)'};border:1px solid ${checked ? '#4a9a6a' : (step.type === 'critical' ? 'rgba(192,160,80,.25)' : 'var(--border)')};border-radius:6px;cursor:pointer;transition:all .2s;">
+          <div style="width:22px;height:22px;border-radius:50%;border:2px solid ${checked ? '#4a9a6a' : 'var(--border-strong)'};background:${checked ? '#4a9a6a' : 'transparent'};flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;margin-top:.1rem;transition:all .2s;">${checked ? '✓' : ''}</div>
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">
+              <span style="font-size:1rem;">${step.icon}</span>
+              <span style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;color:${checked ? 'var(--text-dim)' : 'var(--text)'};text-decoration:${checked ? 'line-through' : 'none'};">${step.label}</span>
+              ${step.type === 'critical' ? '<span style="font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:.15rem .4rem;border-radius:2px;">Clé</span>' : ''}
+            </div>
+            <div style="font-size:.82rem;color:var(--text-dim);line-height:1.55;">${step.detail}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    sc.innerHTML = `
+      <div style="max-width:820px;margin:0 auto;">
+
+        <div style="display:inline-block;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#e05a2b;padding:.3rem .85rem;border:1px solid rgba(224,90,43,.4);border-radius:999px;margin-bottom:1rem;">🔥 Examen TFP APS · CAS N°7</div>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.25rem);letter-spacing:-.03em;margin-bottom:.5rem;">Feu de poubelle en ERP</h2>
+        <p style="color:var(--text-dim);font-size:.9rem;margin-bottom:2rem;">Séquence complète d'intervention APS face à un début d'incendie. Chaque étape clochée = acquise.</p>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:150px;">
+            <div style="height:6px;background:var(--border);border-radius:999px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:${pct === 100 ? '#6ee7a8' : '#e05a2b'};border-radius:999px;transition:width .4s cubic-bezier(.16,1,.3,1);"></div>
+            </div>
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:${pct === 100 ? '#6ee7a8' : '#e05a2b'};">${done}/${totalSteps}</div>
+          <div style="font-size:.75rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.15em;">${pct === 100 ? '🎯 Prêt pour l\'examen !' : pct + '% complété'}</div>
+          ${pct > 0 ? `<button onclick="resetFeu()" style="background:transparent;border:1px solid var(--border);color:var(--text-faint);padding:.35rem .75rem;border-radius:4px;cursor:pointer;font-size:.7rem;font-family:'Outfit',sans-serif;letter-spacing:.1em;text-transform:uppercase;">Reset</button>` : ''}
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:0;margin-bottom:2rem;padding:1.25rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+          ${dots}
+        </div>
+
+        <div style="margin-bottom:.75rem;display:flex;align-items:center;gap:1rem;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:2rem;color:${phase.color};line-height:1;">${phase.num}</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:1.2rem;letter-spacing:-.01em;">${phase.title}</div>
+            <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-faint);">${phase.tag}</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:2rem;">${steps}</div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.5rem;border-top:1px solid var(--border);">
+          <button class="btn btn-ghost" onclick="${currentPhase === 0 ? 'showExamenLundi()' : 'goFeuPhase(' + (currentPhase - 1) + ')'}">${currentPhase === 0 ? '← Retour hub' : '← ' + PHASES_FEU[currentPhase-1].title.split('—')[0].trim()}</button>
+          ${currentPhase < PHASES_FEU.length - 1
+            ? `<button class="btn btn-primary" onclick="goFeuPhase(${currentPhase + 1})">Phase ${PHASES_FEU[currentPhase+1].num} : ${PHASES_FEU[currentPhase+1].title.split('—')[0].trim()} →</button>`
+            : `<button class="btn btn-primary" onclick="showExamenLundi()">✓ Terminé — Retour hub</button>`
+          }
+        </div>
+
+        ${currentPhase === 3 ? `
+        <div style="margin-top:2rem;background:linear-gradient(135deg,var(--surface),rgba(224,90,43,.04));border:1px solid #e05a2b;border-radius:6px;padding:1.4rem 1.65rem;">
+          <div style="font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#e05a2b;margin-bottom:.65rem;">💬 Phrase clé — Si le jury demande pourquoi tu n'as pas utilisé l'extincteur</div>
+          <div style="font-size:.93rem;line-height:1.65;color:var(--text);font-style:italic;">"La priorité est la protection des personnes. J'ai déclenché l'alarme, alerté le 18, et fait évacuer la zone. J'aurais tenté d'attaquer le feu uniquement si celui-ci était naissant, accessible et sans risque de me couper la retraite. Dès que le feu dépasse mes capacités, je me replie : aucun bien ne justifie de mettre ma vie en danger."</div>
+        </div>` : ''}
+
+      </div>
+    `;
+  }
+
+  window.goFeuPhase = function(i) {
+    if (i >= 0 && i < PHASES_FEU.length) {
+      currentPhase = i;
+      renderFeuGuide();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  };
+
+  window.toggleFeuStep = function(key) {
+    checkedSteps[key] = !checkedSteps[key];
+    renderFeuGuide();
+  };
+
+  window.resetFeu = function() {
+    checkedSteps = {};
+    currentPhase = 0;
+    renderFeuGuide();
+  };
+
+  showScreen('cas6Screen');
+  renderFeuGuide();
+}
+
+
 document.addEventListener("keydown",e=>{
   if(document.getElementById("oralScreen").classList.contains("active")){if(e.key==="ArrowRight")nextOral();if(e.key==="ArrowLeft")prevOral();if(e.key===" "){e.preventDefault();toggleOralAnswer();}}
   if(document.getElementById("quizScreen").classList.contains("active")){if(e.key==="Enter"&&document.getElementById("nextBtn").style.display!=="none")nextQuestion();}
@@ -11003,7 +11184,7 @@ function renderErpResults(){
         <div class="lundi-hero">
           <div class="lundi-badge">⚡ Préparation finale · D-Day Lundi</div>
           <h2 class="lundi-title">Tes 3 modules pour <em>l'oral</em>.</h2>
-          <p class="lundi-sub">Le QCU c'est plié. Maintenant on serre les vis sur l'oral : les 24 questions du jury, la prise de service complète au PC sécurité, et le cas N°6 (personne en état d'ébriété au parking).</p>
+          <p class="lundi-sub">Le QCU c'est plié. Maintenant on serre les vis sur l'oral : les 24 questions du jury, la prise de service complète au PC sécurité, le cas N°6 (personne en état d'ébriété) et le cas N°7 (feu de poubelle).</p>
         </div>
 
         <div class="lundi-grid">
@@ -11031,8 +11212,15 @@ function renderErpResults(){
             <div class="lundi-mod-meta">5 phases · Guide complet</div>
           </button>
 
+          <button class="lundi-mod" onclick="showFeuPoubelle()">
+            <div class="lundi-mod-num">04 · Cas Pratique</div>
+            <div class="lundi-mod-title">CAS N°7 · Feu de poubelle</div>
+            <div class="lundi-mod-desc">Début d'incendie en ERP. Séquence DAM → 18 → évacuation → extincteur. Classes de feu, porte chaude, backdraft. Les 3 scénarios terrain que le jury peut te poser.</div>
+            <div class="lundi-mod-meta">3 scénarios · Guide complet</div>
+          </button>
+
           <button class="lundi-mod" onclick="startArticles()">
-            <div class="lundi-mod-num">04 · Articles de loi</div>
+            <div class="lundi-mod-num">05 · Articles de loi</div>
             <div class="lundi-mod-title">Code Pénal Essentiel</div>
             <div class="lundi-mod-desc">Les 9 articles que le jury peut te demander : légitime défense (122-5/6), état de nécessité (122-7), non-assistance (223-6), entrave aux secours (223-5/7), mise en danger (223-1), vol (311-1), responsabilité (121-1).</div>
             <div class="lundi-mod-meta">${artDone}/${artTotal} articles · ${artPct}% maîtrisés</div>
@@ -11040,7 +11228,7 @@ function renderErpResults(){
           </button>
 
           <button class="lundi-mod" onclick="startGlossaire()">
-            <div class="lundi-mod-num">05 · Termes techniques</div>
+            <div class="lundi-mod-num">06 · Termes techniques</div>
             <div class="lundi-mod-title">Glossaire SSI · DAE · ERP</div>
             <div class="lundi-mod-desc">Tous les sigles que le jury peut te lâcher : ECS, CMSI, DAS, DAI, SDI, SMSI, UGA, BAES, DAE, ERP, IGH, BI/PI... Fiches avec memo + quiz « De quel sigle s'agit-il ? ».</div>
             <div class="lundi-mod-meta">${glDone}/${glTotal} sigles · ${glPct}% maîtrisés</div>
@@ -11056,6 +11244,7 @@ function renderErpResults(){
             <li>La prise de service récitée en boucle</li>
             <li>L'annonce astreinte fluide</li>
             <li>Cas N°6 maîtrisé phase par phase</li>
+            <li>Cas N°7 · Feu de poubelle : séquence DAM → 18 → évacuation</li>
             <li>Les 9 articles : numéro + objet</li>
             <li>L'alphabet OTAN au cas où</li>
             <li>Dormir 8h la veille</li>
