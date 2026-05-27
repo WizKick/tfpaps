@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-<title>TFP APS</title>
+<title>ASPR Formation</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#141414">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="TFP APS">
+<meta name="apple-mobile-web-app-title" content="ASPR Formation">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -58,7 +58,7 @@ html, body {
 #splash007 {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: #fff;
   z-index: 99999;
   display: flex;
   flex-direction: column;
@@ -77,8 +77,8 @@ html, body {
     0deg,
     transparent 0,
     transparent 2px,
-    rgba(255,255,255,0.015) 2px,
-    rgba(255,255,255,0.015) 3px
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 3px
   );
   pointer-events: none;
   z-index: 5;
@@ -95,7 +95,7 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%);
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(204,26,0,0.08) 100%);
   pointer-events: none;
   z-index: 4;
 }
@@ -194,9 +194,9 @@ html, body {
 }
 
 @keyframes barrelRingExpand {
-  0%   { width: 20px; height: 20px; opacity: 0; border-color: #fff; }
+  0%   { width: 20px; height: 20px; opacity: 0; border-color: #cc1a00; }
   20%  { opacity: 1; }
-  80%  { width: 280px; height: 280px; border-color: #fff; opacity: 1; }
+  80%  { width: 280px; height: 280px; border-color: #cc1a00; opacity: 1; }
   100% { width: 280px; height: 280px; border-color: var(--gold); opacity: 1; }
 }
 
@@ -507,7 +507,7 @@ html, body {
 @keyframes splashExit {
   0%   { opacity: 1; }
   15%  { background: #fff; }
-  16%  { background: #000; }
+  16%  { background: #fff; }
   100% { opacity: 0; pointer-events: none; }
 }
 
@@ -568,7 +568,7 @@ header {
 /* ===== BRAND ===== */
 .brand-logo {
   font-family: 'Outfit', sans-serif !important;
-  font-weight: 400 !important;
+  font-weight: 700 !important;
   font-size: 1.5rem !important;
   letter-spacing: 0.12em !important;
   color: var(--white) !important;
@@ -688,7 +688,7 @@ header {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(200,168,74,0.04) 100%);
+  background: linear-gradient(135deg, transparent 0%, rgba(204,26,0,0.04) 100%);
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -708,15 +708,15 @@ header {
   background: var(--surface-hover) !important;
   border-color: #222 !important;
   transform: translateY(-4px) !important;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.8), 0 0 0 1px rgba(200,168,74,0.12) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.8), 0 0 0 1px rgba(204,26,0,0.12) !important;
 }
 
 .mode-card:hover::before { opacity: 1; }
 .mode-card:hover::after  { border-color: transparent var(--gold) transparent transparent; }
 
 .mode-card.highlight {
-  border-color: rgba(200,168,74,0.25) !important;
-  background: linear-gradient(135deg, var(--surface), rgba(200,168,74,0.04)) !important;
+  border-color: rgba(204,26,0,0.25) !important;
+  background: linear-gradient(135deg, var(--surface), rgba(204,26,0,0.04)) !important;
 }
 
 .mode-number {
@@ -770,26 +770,26 @@ header {
 /* ===== PARCOURS HERO ===== */
 .parcours-hero {
   background: linear-gradient(135deg, var(--bg-soft), var(--surface)) !important;
-  border: 1px solid rgba(200,168,74,0.2) !important;
+  border: 1px solid rgba(204,26,0,0.2) !important;
   border-radius: 0 !important;
   border-top: 1px solid var(--gold) !important;
   box-shadow: 0 0 60px rgba(0,0,0,0.6);
 }
 
 .parcours-hero:hover {
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(200,168,74,0.15) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(204,26,0,0.15) !important;
   transform: translateY(-2px) !important;
 }
 
 .parcours-hero::before {
-  background: radial-gradient(circle at 80% 50%, rgba(200,168,74,0.06), transparent 60%) !important;
+  background: radial-gradient(circle at 80% 50%, rgba(204,26,0,0.06), transparent 60%) !important;
 }
 
 .parcours-badge {
   font-family: 'DM Mono', monospace !important;
   font-size: 0.5rem !important;
   letter-spacing: 0.35em !important;
-  border: 1px solid rgba(200,168,74,0.3) !important;
+  border: 1px solid rgba(204,26,0,0.3) !important;
   color: var(--gold) !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -1102,7 +1102,7 @@ header {
   background: var(--surface-hover) !important;
   border-color: #1c1c1c !important;
   transform: translateY(-3px) !important;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.7) !important;
+  box-shadow: 0 12px 40px rgba(204,26,0,0.08) !important;
 }
 
 .fiche-card:hover::after { transform: scaleX(1); }
@@ -1346,7 +1346,7 @@ header {
 }
 
 .flashcard-face-back {
-  background: linear-gradient(135deg, #090909, rgba(200,168,74,0.04)) !important;
+  background: linear-gradient(135deg, #090909, rgba(204,26,0,0.04)) !important;
 }
 
 .flashcard-term {
@@ -1405,7 +1405,7 @@ header {
 }
 
 .defs-category-card:hover { background: var(--surface-hover) !important; border-color: #1c1c1c !important; }
-.defs-all-btn { border-color: rgba(200,168,74,0.2) !important; background: linear-gradient(135deg, var(--surface), rgba(200,168,74,0.03)) !important; }
+.defs-all-btn { border-color: rgba(204,26,0,0.2) !important; background: linear-gradient(135deg, var(--surface), rgba(204,26,0,0.03)) !important; }
 
 .defs-category-name {
   font-family: 'Outfit', sans-serif !important;
@@ -1437,21 +1437,21 @@ footer {
 
 /* ===== MODE CLAIR : papier journal ===== */
 html.light {
-  --bg:             #f3f0e8;
-  --bg-soft:        #ede9de;
-  --surface:        #f8f5ec;
-  --surface-hover:  #f0ede3;
-  --border:         #d8d2c2;
-  --border-strong:  #b8b0a0;
-  --text:           #2a2820;
-  --text-dim:       #605c50;
-  --text-faint:     #a8a498;
-  --gold:           #8a6820;
-  --gold-light:     #b08030;
-  --gold-dim:       #c8a840;
-  --white:          #2a2820;
-  --accent:         #2a2820;
-  --header-bg:      rgba(243,240,232,0.96);
+  --bg:             #ffffff;
+  --bg-soft:        #f7f7f7;
+  --surface:        #ffffff;
+  --surface-hover:  #fff0f0;
+  --border:         #e8d0d0;
+  --border-strong:  #d0a0a0;
+  --text:           #1a1a1a;
+  --text-dim:       #555555;
+  --text-faint:     #aaaaaa;
+  --gold:           #c0a050;
+  --gold-light:     #d8b870;
+  --gold-dim:       #7a6828;
+  --white:          #1a1a1a;
+  --accent:         #1a1a1a;
+  --header-bg:      rgba(255,255,255,0.97);
 }
 
 html.light body {
@@ -1464,10 +1464,10 @@ html.light body::after {
   opacity: 0.4;
 }
 
-html.light .option.correct { background: rgba(58,138,90,0.06) !important; border-color: #aaccaa !important; }
-html.light .option.wrong   { background: rgba(138,42,42,0.06) !important; border-color: #ccaaaa !important; }
-html.light .parcours-hero  { background: linear-gradient(135deg, #f6f2e8, rgba(138,104,32,0.04)) !important; }
-html.light .mode-card.highlight { background: linear-gradient(135deg, #fff, rgba(138,104,32,0.04)) !important; }
+html.light .option.correct { background: rgba(46,125,79,0.06) !important; border-color: #a0ccb0 !important; }
+html.light .option.wrong   { background: rgba(204,26,0,0.06) !important; border-color: #f0a0a0 !important; }
+html.light .parcours-hero  { background: linear-gradient(135deg, #fff, rgba(204,26,0,0.03)) !important; }
+html.light .mode-card.highlight { background: linear-gradient(135deg, #fff, rgba(204,26,0,0.03)) !important; }
 html.light .defs-all-btn   { background: linear-gradient(135deg, #fff, rgba(138,104,32,0.04)) !important; }
 html.light .flashcard-face-front { background: #f6f2e8 !important; border-color: var(--border) !important; }
 
@@ -1477,8 +1477,8 @@ body::before { display: none !important; }
 
 </style>
 <style>
-  :root{--bg:#0e0f11;--surface:#15171a;--surface-hover:#1c1f23;--border:#24262a;--border-strong:#32353a;--text:#e4dfd3;--text-dim:#8a857a;--text-faint:#3c3d40;--success:#6ee7a8;--error:#fb8585;--warning:#fcc864;--gold:#c0a050;--header-bg:rgba(14,15,17,0.85);}
-  html.light{--bg:#f3f0e8;--surface:#f8f5ec;--surface-hover:#f0ede3;--border:#d8d2c2;--border-strong:#b8b0a0;--text:#2a2820;--text-dim:#605c50;--text-faint:#a8a498;--success:#1a7a4a;--error:#c0392b;--warning:#b07a10;--gold:#8a6820;--header-bg:rgba(243,240,232,0.9);}
+  :root{--bg:#ffffff;--surface:#ffffff;--surface-hover:#fff0f0;--border:#e8d0d0;--border-strong:#d0a0a0;--text:#1a1a1a;--text-dim:#555555;--text-faint:#aaaaaa;--success:#2e7d4f;--error:#cc2200;--warning:#c07000;--gold:#cc1a00;--header-bg:rgba(255,255,255,0.97);}
+  html.light{--bg:#ffffff;--surface:#ffffff;--surface-hover:#fff0f0;--border:#e8d0d0;--border-strong:#d0a0a0;--text:#1a1a1a;--text-dim:#555555;--text-faint:#aaaaaa;--success:#2e7d4f;--error:#cc2200;--warning:#c07000;--gold:#c0a050;--header-bg:rgba(255,255,255,0.97);}
   .theme-toggle{background:transparent;border:1px solid var(--border);color:var(--text-dim);height:36px;padding:0 .85rem;border-radius:999px;cursor:pointer;font-size:.7rem;font-family:"Outfit",sans-serif;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:.45rem;transition:all .25s;white-space:nowrap;flex-shrink:0;}
   .theme-toggle:hover{border-color:var(--gold);color:var(--gold);}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -1686,8 +1686,8 @@ body::before { display: none !important; }
 <header>
   <div class="header-inner">
     <div class="brand" onclick="showHome()">
-      <span class="brand-logo">TFP·APS</span>
-      <span class="brand-sub">Révision</span>
+      <span class="brand-logo">ASPR</span>
+      <span class="brand-sub">Formation</span>
     </div>
     <div class="header-controls">
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
@@ -1715,11 +1715,11 @@ body::before { display: none !important; }
     </div>
     <div class="modes">
 
-      <button class="mode-card highlight examen-lundi-card" onclick="showExamenLundi()" style="grid-column:1/-1;border:1px solid var(--gold);background:linear-gradient(135deg,var(--surface),rgba(192,160,80,.08));position:relative;overflow:hidden;">
+      <button class="mode-card highlight examen-lundi-card" onclick="showExamenLundi()" style="grid-column:1/-1;border:1px solid var(--gold);background:linear-gradient(135deg,var(--surface),rgba(204,26,0,.08));position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;right:0;background:var(--gold);color:#000;font-family:'Outfit',sans-serif;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;padding:.3rem .85rem;font-weight:600;">D-DAY · Lundi</div>
         <div class="mode-number" style="color:var(--gold);">⚡ / Examen Final</div>
         <div class="mode-title" style="background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;">MODE EXAMEN ORAL LUNDI</div>
-        <div class="mode-desc">Tes 3 modules de l'oral : <strong style="color:var(--text);">Questionnaire examinateur</strong> (24 questions du jury) · <strong style="color:var(--text);">Poste de travail</strong> (prise de service complète) · <strong style="color:var(--text);">Cas N°6</strong> (personne en état d'ébriété) · <strong style="color:var(--text);">Cas N°7</strong> (feu de poubelle).</div>
+        <div class="mode-desc">Tes 4 modules de l'oral : <strong style="color:var(--text);">Questionnaire examinateur</strong> (24 questions du jury) · <strong style="color:var(--text);">Poste de travail</strong> (prise de service complète) · <strong style="color:var(--text);">Articles de loi</strong> · <strong style="color:var(--text);">Glossaire SSI</strong>.</div>
         <div class="mode-meta">Lancer la préparation finale →</div>
       </button>
 
@@ -1900,7 +1900,44 @@ body::before { display: none !important; }
   </section>
 </main>
 
-<footer>TFP·APS Révision — Bon courage pour l'examen</footer>
+<footer>
+  <div style="max-width:900px;margin:0 auto;">
+
+    <!-- ASPR FORMATIONS -->
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:flex-start;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border);">
+
+      <div style="text-align:left;min-width:220px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.05em;color:var(--gold);margin-bottom:.3rem;">ASPR FORMATIONS</div>
+        <div style="font-size:.78rem;color:var(--text-dim);line-height:1.6;">
+          27 Rue du Gros Murger<br>
+          95220 Herblay-sur-Seine
+        </div>
+        <div style="font-size:.78rem;color:var(--text-dim);margin-top:.4rem;">
+          <a href="tel:0139090199" style="color:var(--text-dim);text-decoration:none;">01 39 09 01 99</a>
+        </div>
+      </div>
+
+      <div style="text-align:left;min-width:240px;">
+        <div style="font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-faint);margin-bottom:.6rem;">Horaires d'ouverture</div>
+        <table style="border-collapse:collapse;font-size:.78rem;color:var(--text-dim);line-height:1.8;">
+          <tr><td style="padding-right:1.5rem;color:var(--text);">Lundi</td><td>8h30 – 17h30</td></tr>
+          <tr><td style="color:var(--text);">Mardi</td><td>8h30 – 17h30</td></tr>
+          <tr><td style="color:var(--text);">Mercredi</td><td>8h30 – 17h30</td></tr>
+          <tr><td style="color:var(--text);">Jeudi</td><td>8h30 – 17h30</td></tr>
+          <tr><td style="color:var(--text);">Vendredi</td><td>8h30 – 17h30</td></tr>
+          <tr><td style="color:var(--text-faint);">Samedi</td><td style="color:var(--text-faint);">Fermé</td></tr>
+          <tr><td style="color:var(--text-faint);">Dimanche</td><td style="color:var(--text-faint);">Fermé</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <div style="font-size:.72rem;color:var(--text-faint);letter-spacing:.15em;text-transform:uppercase;">
+      ASPR Formation — Bon courage pour l'examen
+    </div>
+
+  </div>
+</footer>
 
 <script>
 // Base de données complète des questions TFP APS
@@ -7319,7 +7356,7 @@ function showCas6Guide() {
     const steps = phase.steps.map((s, i) => {
       const key = phase.id + '-' + i;
       const checked = checkedSteps[key];
-      const borderColor = checked ? '#6ee7a8' : s.type === 'danger' ? 'rgba(251,133,133,.5)' : s.type === 'critical' ? 'rgba(192,160,80,.4)' : 'var(--border)';
+      const borderColor = checked ? '#6ee7a8' : s.type === 'danger' ? 'rgba(251,133,133,.5)' : s.type === 'critical' ? 'rgba(204,26,0,.4)' : 'var(--border)';
       const leftBorder = s.type === 'danger' ? '#fb8585' : s.type === 'critical' ? 'var(--gold)' : 'var(--success)';
       return `
         <div onclick="toggleStep('${key}')" style="cursor:pointer;display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;background:${checked ? 'rgba(110,231,168,.06)' : 'var(--surface)'};border:1px solid ${borderColor};border-left:3px solid ${checked ? '#6ee7a8' : leftBorder};border-radius:5px;transition:all .25s;margin-bottom:.6rem;">
@@ -7507,7 +7544,7 @@ function showFeuPoubelle() {
       const key = `${currentPhase}-${si}`;
       const checked = !!checkedSteps[key];
       return `
-        <div onclick="toggleFeuStep('${key}')" style="display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;margin-bottom:.5rem;background:${checked ? 'rgba(74,154,106,.06)' : 'var(--surface)'};border:1px solid ${checked ? '#4a9a6a' : (step.type === 'critical' ? 'rgba(192,160,80,.25)' : 'var(--border)')};border-radius:6px;cursor:pointer;transition:all .2s;">
+        <div onclick="toggleFeuStep('${key}')" style="display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;margin-bottom:.5rem;background:${checked ? 'rgba(74,154,106,.06)' : 'var(--surface)'};border:1px solid ${checked ? '#4a9a6a' : (step.type === 'critical' ? 'rgba(204,26,0,.25)' : 'var(--border)')};border-radius:6px;cursor:pointer;transition:all .2s;">
           <div style="width:22px;height:22px;border-radius:50%;border:2px solid ${checked ? '#4a9a6a' : 'var(--border-strong)'};background:${checked ? '#4a9a6a' : 'transparent'};flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;margin-top:.1rem;transition:all .2s;">${checked ? '✓' : ''}</div>
           <div style="flex:1;">
             <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;">
@@ -8025,7 +8062,7 @@ function renderErpResults(){
       padding:.5rem .7rem;
       display:flex; align-items:center; justify-content:center;
       background:linear-gradient(135deg, var(--gold), var(--gold-dim));
-      color:#0e0f11;
+      color:#ffffff;
       font-family:'Syne', sans-serif; font-weight:800;
       font-size:1.25rem; line-height:1;
       border-radius:6px;
@@ -8117,14 +8154,14 @@ function renderErpResults(){
 
     /* Light mode */
     html.light .erp-letter{ color:#fff; }
-    html.light .erp-cat-num{ background:rgba(192,160,80,.05); }
+    html.light .erp-cat-num{ background:rgba(204,26,0,.05); }
   `;
   document.head.appendChild(s);
 })();
 
 // ============================================================
 // MODE EXAMEN LUNDI · Module self-injecting
-// Hub regroupant : Questionnaire examinateur · Prise de service · Cas N°6
+// Hub regroupant : Questionnaire examinateur · Prise de service · Articles · Glossaire
 // ============================================================
 (function(){
 
@@ -8139,7 +8176,7 @@ function renderErpResults(){
     .lundi-hero {
       position: relative;
       padding: 2.25rem 2rem 2rem;
-      background: linear-gradient(135deg, var(--surface), rgba(192,160,80,.06));
+      background: linear-gradient(135deg, var(--surface), rgba(204,26,0,.06));
       border: 1px solid var(--gold);
       border-radius: 8px;
       margin-bottom: 2rem;
@@ -8427,7 +8464,7 @@ function renderErpResults(){
       font-size: .8rem;
       color: var(--text-dim);
       padding: .65rem .85rem;
-      background: rgba(192,160,80,.06);
+      background: rgba(204,26,0,.06);
       border-left: 2px solid var(--gold);
       border-radius: 3px;
       line-height: 1.5;
@@ -8464,7 +8501,7 @@ function renderErpResults(){
       transform: translateY(-1px);
     }
     .qexam-build-item.selected {
-      background: rgba(192,160,80,.15);
+      background: rgba(204,26,0,.15);
       border-color: var(--gold);
       color: var(--gold-light);
     }
@@ -8530,7 +8567,7 @@ function renderErpResults(){
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      background: rgba(192,160,80,.08);
+      background: rgba(204,26,0,.08);
     }
     .qexam-order-text {
       flex: 1;
@@ -8702,7 +8739,7 @@ function renderErpResults(){
       margin-bottom: 1rem;
     }
     mark.art-kw {
-      background: rgba(192,160,80,.15);
+      background: rgba(204,26,0,.15);
       color: var(--gold-light);
       padding: .05em .25em;
       border-radius: 2px;
@@ -8733,7 +8770,7 @@ function renderErpResults(){
     }
     .art-memo {
       padding: 1rem 1.15rem;
-      background: linear-gradient(135deg, var(--surface), rgba(192,160,80,.04));
+      background: linear-gradient(135deg, var(--surface), rgba(204,26,0,.04));
       border-left: 2px solid var(--gold);
       border-radius: 3px;
     }
@@ -8816,7 +8853,7 @@ function renderErpResults(){
       transform: translateY(-1px);
     }
     .art-quiz-option.selected {
-      background: rgba(192,160,80,.12);
+      background: rgba(204,26,0,.12);
       border-color: var(--gold);
       border-left-color: var(--gold);
     }
@@ -8904,7 +8941,7 @@ function renderErpResults(){
       align-items: center;
       margin-bottom: .85rem;
       padding: .65rem .85rem;
-      background: linear-gradient(135deg, var(--surface), rgba(192,160,80,.04));
+      background: linear-gradient(135deg, var(--surface), rgba(204,26,0,.04));
       border: 1px solid var(--gold);
       border-radius: 4px;
     }
@@ -8975,7 +9012,7 @@ function renderErpResults(){
       border-left-color: var(--gold);
     }
     .study-mcq-option.selected {
-      background: rgba(192,160,80,.1);
+      background: rgba(204,26,0,.1);
       border-color: var(--gold);
       border-left-color: var(--gold);
     }
@@ -9012,7 +9049,7 @@ function renderErpResults(){
       color: var(--gold);
     }
     .qcu-nav-cell.answered {
-      background: rgba(192,160,80,.15);
+      background: rgba(204,26,0,.15);
       border-color: var(--gold);
       color: var(--gold-light);
     }
@@ -9078,7 +9115,7 @@ function renderErpResults(){
       transform: translateX(2px);
     }
     .qcu-option.selected {
-      background: rgba(192,160,80,.1);
+      background: rgba(204,26,0,.1);
       border-color: var(--gold);
       border-left-color: var(--gold);
     }
@@ -9095,7 +9132,7 @@ function renderErpResults(){
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      background: rgba(192,160,80,.05);
+      background: rgba(204,26,0,.05);
     }
     .qcu-option.selected .qcu-option-letter {
       background: var(--gold);
@@ -9180,7 +9217,7 @@ function renderErpResults(){
     .qcu-result-art {
       margin-top: .85rem;
       padding: .9rem 1.05rem;
-      background: linear-gradient(135deg, var(--bg-soft), rgba(192,160,80,.04));
+      background: linear-gradient(135deg, var(--bg-soft), rgba(204,26,0,.04));
       border-left: 2px solid var(--gold);
       border-radius: 3px;
     }
@@ -9337,7 +9374,7 @@ function renderErpResults(){
     }
     .ps-quote {
       display: inline-block;
-      background: rgba(192,160,80,.08);
+      background: rgba(204,26,0,.08);
       border-left: 2px solid var(--gold);
       padding: .35rem .65rem;
       margin: .35rem 0;
@@ -11180,17 +11217,13 @@ function renderErpResults(){
     const glDone = Object.values(glProg).filter(v => v === 'ok').length;
     const glPct = glTotal ? Math.round((glDone / glTotal) * 100) : 0;
 
-    // Cas N°6 progress (from existing cas6 system if any, fallback 0)
-    const cas6Total = 27;
-    const cas6Pct = 0;
-
     sc.innerHTML = `
       <div style="max-width:820px;margin:0 auto;">
 
         <div class="lundi-hero">
           <div class="lundi-badge">⚡ Préparation finale · D-Day Lundi</div>
-          <h2 class="lundi-title">Tes 3 modules pour <em>l'oral</em>.</h2>
-          <p class="lundi-sub">Le QCU c'est plié. Maintenant on serre les vis sur l'oral : les 24 questions du jury, la prise de service complète au PC sécurité, le cas N°6 (personne en état d'ébriété) et le cas N°7 (feu de poubelle).</p>
+          <h2 class="lundi-title">Tes 4 modules pour <em>l'oral</em>.</h2>
+          <p class="lundi-sub">Le QCU c'est plié. Maintenant on serre les vis sur l'oral : les 24 questions du jury, la prise de service complète au PC sécurité, les articles de loi et le glossaire SSI.</p>
         </div>
 
         <div class="lundi-grid">
@@ -11211,22 +11244,8 @@ function renderErpResults(){
             <div class="lundi-mod-progress" style="width:${psPct}%;"></div>
           </button>
 
-          <button class="lundi-mod" onclick="showCas6Guide()">
-            <div class="lundi-mod-num">03 · Cas Pratique</div>
-            <div class="lundi-mod-title">CAS N°6 · Parking</div>
-            <div class="lundi-mod-desc">Personne en état d'ébriété qui titube autour des véhicules au parking. Prise de service → ronde 17h → réception info radio → arrivée parking → clôture QQOQCP.</div>
-            <div class="lundi-mod-meta">5 phases · Guide complet</div>
-          </button>
-
-          <button class="lundi-mod" onclick="showFeuPoubelle()">
-            <div class="lundi-mod-num">04 · Cas Pratique</div>
-            <div class="lundi-mod-title">CAS N°7 · Feu de poubelle</div>
-            <div class="lundi-mod-desc">Début d'incendie en ERP. Séquence DAM → 18 → évacuation → extincteur. Classes de feu, porte chaude, backdraft. Les 3 scénarios terrain que le jury peut te poser.</div>
-            <div class="lundi-mod-meta">3 scénarios · Guide complet</div>
-          </button>
-
           <button class="lundi-mod" onclick="startArticles()">
-            <div class="lundi-mod-num">05 · Articles de loi</div>
+            <div class="lundi-mod-num">03 · Articles de loi</div>
             <div class="lundi-mod-title">Code Pénal Essentiel</div>
             <div class="lundi-mod-desc">Les 9 articles que le jury peut te demander : légitime défense (122-5/6), état de nécessité (122-7), non-assistance (223-6), entrave aux secours (223-5/7), mise en danger (223-1), vol (311-1), responsabilité (121-1).</div>
             <div class="lundi-mod-meta">${artDone}/${artTotal} articles · ${artPct}% maîtrisés</div>
@@ -11234,7 +11253,7 @@ function renderErpResults(){
           </button>
 
           <button class="lundi-mod" onclick="startGlossaire()">
-            <div class="lundi-mod-num">06 · Termes techniques</div>
+            <div class="lundi-mod-num">04 · Termes techniques</div>
             <div class="lundi-mod-title">Glossaire SSI · DAE · ERP</div>
             <div class="lundi-mod-desc">Tous les sigles que le jury peut te lâcher : ECS, CMSI, DAS, DAI, SDI, SMSI, UGA, BAES, DAE, ERP, IGH, BI/PI... Fiches avec memo + quiz « De quel sigle s'agit-il ? ».</div>
             <div class="lundi-mod-meta">${glDone}/${glTotal} sigles · ${glPct}% maîtrisés</div>
@@ -11249,8 +11268,6 @@ function renderErpResults(){
             <li>Les 24 questions à voix haute</li>
             <li>La prise de service récitée en boucle</li>
             <li>L'annonce astreinte fluide</li>
-            <li>Cas N°6 maîtrisé phase par phase</li>
-            <li>Cas N°7 · Feu de poubelle : séquence DAM → 18 → évacuation</li>
             <li>Les 9 articles : numéro + objet</li>
             <li>L'alphabet OTAN au cas où</li>
             <li>Dormir 8h la veille</li>
@@ -11915,7 +11932,7 @@ function renderErpResults(){
         ${sectionsHtml}
 
         <!-- Key reminder -->
-        <div style="margin-top:2rem;background:linear-gradient(135deg,var(--surface),rgba(192,160,80,.04));border:1px solid var(--gold);border-radius:6px;padding:1.4rem 1.65rem;">
+        <div style="margin-top:2rem;background:linear-gradient(135deg,var(--surface),rgba(204,26,0,.04));border:1px solid var(--gold);border-radius:6px;padding:1.4rem 1.65rem;">
           <div style="font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem;">💬 La phrase clé à dire au jury</div>
           <div style="font-size:.95rem;line-height:1.65;color:var(--text);font-style:italic;">« Pour chaque élément, je vérifie ces 3 critères : la présence, le nombre, et l'état de fonctionnement. En cas d'absence, de manque ou de défaut, je le signale sur la main courante. Sauf pour les clés et badges où je dois d'abord vérifier la traçabilité sur le registre correspondant. »</div>
         </div>
@@ -11923,7 +11940,7 @@ function renderErpResults(){
         <!-- Navigation -->
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);flex-wrap:wrap;">
           <button class="btn btn-ghost" onclick="showExamenLundi()">← Hub examen</button>
-          <button class="btn btn-primary" onclick="showCas6Guide()">Suite · Cas N°6 →</button>
+          <button class="btn btn-primary" onclick="showExamenLundi()">Retour au hub →</button>
         </div>
 
       </div>
@@ -12903,7 +12920,7 @@ function renderErpResults(){
       <div style="max-width:820px;margin:0 auto;">
 
         <!-- Header score -->
-        <div style="text-align:center;padding:2.5rem 1rem 2rem;background:linear-gradient(135deg,var(--surface),rgba(192,160,80,.05));border:1px solid var(--border);border-radius:8px;margin-bottom:2rem;">
+        <div style="text-align:center;padding:2.5rem 1rem 2rem;background:linear-gradient(135deg,var(--surface),rgba(204,26,0,.05));border:1px solid var(--border);border-radius:8px;margin-bottom:2rem;">
           <div class="lundi-badge" style="margin-bottom:1rem;">📝 QCU Examen · Terminé</div>
           <div style="display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin-bottom:.5rem;">
             <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(3rem,8vw,4.5rem);color:${verdict.color};letter-spacing:-.03em;line-height:1;">${score}</span>
@@ -13325,7 +13342,7 @@ function renderErpResults(){
     if (glossaireState.quizDirection === 'sigle') {
       // On affiche le sigle, l'utilisateur choisit le nom
       questionLabel = '🔤 Que signifie ce sigle ?';
-      questionContent = `<div style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(2.5rem,7vw,4rem);letter-spacing:-.02em;color:var(--gold);padding:1.5rem;text-align:center;background:linear-gradient(135deg,var(--surface),rgba(192,160,80,.06));border:1px solid var(--gold);border-radius:6px;margin-bottom:1.5rem;">${correct.sigle}</div>`;
+      questionContent = `<div style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(2.5rem,7vw,4rem);letter-spacing:-.02em;color:var(--gold);padding:1.5rem;text-align:center;background:linear-gradient(135deg,var(--surface),rgba(204,26,0,.06));border:1px solid var(--gold);border-radius:6px;margin-bottom:1.5rem;">${correct.sigle}</div>`;
     } else {
       // On affiche la définition, l'utilisateur choisit le sigle
       questionLabel = '📜 De quel sigle s\'agit-il ?';
@@ -14120,8 +14137,6 @@ function renderErpResults(){
 // ===== INIT =====
 try{
   const saved = localStorage.getItem("tfp_theme");
-  // Si sauvegarde : respecter le choix de l'utilisateur
-  // Sinon : détecter automatiquement mobile (préférence clair) ou prefers-color-scheme
   const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
   const useLight = saved ? saved === "light" : (isMobile || prefersLight);
